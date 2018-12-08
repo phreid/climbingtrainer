@@ -1,0 +1,93 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    tools:context="com.adamson.miles.climbingtrainer.BuildNewProgramAboutYou">
+
+    <!-- view for AdMob Banner Ad -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/polygon_red"
+        android:orientation="vertical">
+
+        <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+            <Spinner
+                android:id="@+id/spinnerSessionsPerWeek"
+                style="@style/SpinnerWhite" />
+
+            <ImageButton
+                android:id="@+id/imageHelpSessions"
+                style="@style/ButtonImageSmall"
+                android:background="@color/colorWhite"
+                ads:srcCompat="@drawable/ic_help" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+            <Spinner
+                android:id="@+id/spinnerDurations"
+                style="@style/SpinnerWhite" />
+
+            <ImageButton
+                android:id="@+id/imageHelpDurations"
+                style="@style/ButtonImageSmall"
+                android:background="@color/colorWhite"
+                ads:srcCompat="@drawable/ic_help" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+            <Spinner
+                android:id="@+id/spinnerGrades"
+                style="@style/SpinnerWhite" />
+
+            <ImageButton
+                android:id="@+id/imageHelpGrades"
+                style="@style/ButtonImageSmall"
+                android:background="@color/colorWhite"
+                ads:srcCompat="@drawable/ic_help" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+            <Spinner
+                android:id="@+id/spinnerCommitment"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@color/colorWhite" />
+
+            <ImageButton
+                android:id="@+id/imageHelpCommitment"
+                style="@style/ButtonImageSmall"
+                android:background="@color/colorWhite"
+                ads:srcCompat="@drawable/ic_help" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+            <Button
+                android:id="@+id/buttonToEquipment"
+                style="@style/ButtonWhite"
+                android:text="@string/continue_to_equipment" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id" />
+
+</RelativeLayout>

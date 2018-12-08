@@ -1,0 +1,197 @@
+<resources>
+    <string name="app_name">CLMBR</string>
+    <string name="hello_world">Hello World</string>
+    <string name="next">Next</string>
+    <string name="ok">Ok</string>
+    <string name="continue_to_equipment">Continue to Equipment Selection</string>
+    <string name="continue_to_start_date">Continue to Program Date Selection</string>
+    <string name="accept_start_date">Accept Start Date</string>
+    <string name="accept_end_date">Accept End Date</string>
+
+    <string name="reps">Reps: </string>
+    <string name="sets">Sets: </string>
+    <string name="equip">Equipment: </string>
+    <string name="diff">Minimum Grade Range: </string>
+    <string name="rest">Rest: </string>
+    <string name="type">Drill Type: </string>
+    <string name="time">Time Allotted: </string>
+
+    <string name="help_message_title">Help Message</string>
+    <string name="welcome">Welcome!</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="exercise_database">View Exercises</string>
+    <string name="load_program">Load Program </string>
+    <string name="training_tips">Training Tips</string>
+    <string name="remove_ads">Remove Ads</string>
+    <string name="about_the_author">About the Author</string>
+    <string name="new_program">Build New Program</string>
+
+    <string name="program_segments">Program Segments</string>
+    <string name="volume_only">Volume Only</string>
+    <string name="strpow_only">Strength and Power Only</string>
+    <string name="powend_only">Power Endurance Only</string>
+    <string name="end_only">Route Endurance Only</string>
+    <string name="full_programs">Complete Programs</string>
+    <string name="bouldering_program">Bouldering Program</string>
+    <string name="routes_program">Routes Program</string>
+
+    <string-array name="program_types">
+        <item>Volume Only</item>
+        <item>Strength and Power Only</item>
+        <item>Power Endurance Only</item>
+        <item>Route Endurance Only</item>
+        <item>Complete Programs</item>
+        <item>Bouldering Program</item>
+        <item>Routes Program</item>
+    </string-array>
+
+    <string-array name="types_strings">
+        <item>Strength</item>
+        <item>Power</item>
+        <item>Power Endurance</item>
+        <item>Endurance</item>
+        <item>Conditioning</item>
+        <item>Volume</item>
+    </string-array>
+
+    <string name="PWR">PWR</string>
+    <string name="STR">STR</string>
+    <string name="POW">POW</string>
+    <string name="VOL">VOL</string>
+    <string name="ALL">ALL</string>
+    <string name="END">END</string>
+    <string name="CON">CON</string>
+    <string name="PWREND">PWR-END</string>
+
+
+    <string-array name="time_strings">
+        <item>15 Minutes</item>
+        <item>30 Minutes</item>
+        <item>45 Minutes</item>
+        <item>60 Minutes</item>
+    </string-array>
+
+    <string name="select_commitment">Select Commitment Level</string>
+
+    <string-array name="commitment_levels">
+        <item>Select Commitment Level...</item>
+        <item>Casual</item>
+        <item>Moderate</item>
+        <item>Dedicated</item>
+    </string-array>
+
+    <string-array name="grades">
+        <item>Select Current Grade Range...</item>
+        <item>Below 5.11a or V0</item>
+        <item>[5.11a to 5.11d] or [V1 to V3]</item>
+        <item>[5.12a to 5.12d] or [V4 to V6]</item>
+        <item>[5.13a to 5.13d] or [V7 to V9]</item>
+        <item>Above 5.14a or V10</item>
+    </string-array>
+
+    <string-array name="sessions_per_week">
+        <item>Select Current Sessions Per Week...</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+
+    <string-array name="session_durations">
+        <item>Select Typical Session Duration...</item>
+        <item>1 hour</item>
+        <item>1.5h hours</item>
+        <item>2 hours</item>
+        <item>2.5 hours</item>
+        <item>3 hours</item>
+        <item>3.5 hours</item>
+        <item>4 hours</item>
+    </string-array>
+
+    <string name="select_grade_range">Current Grade Range</string>
+    <string name="select_sessions_per_week">Current Sessions Per Week</string>
+    <string name="select_session_length">Typical Session Duration</string>
+    <string name="select_equipment">Equipment You Have Access To</string>
+
+    <string-array name="equipment">
+        <item>Hangboard</item>
+        <item>Campus Board</item>
+        <item>Fill Wall</item>
+        <item>Lead or Toprope</item>
+        <item>Small Freeweights</item>
+        <item>Pull Up Bar</item>
+        <item>Kettle Bells</item>
+        <item>Rings</item>
+        <item>Moonboard</item>
+        <item>Medicine Balls</item>
+        <item>Therabands</item>
+        <item>Angle-Adjustable Wall</item>
+    </string-array>
+
+    <string-array name="review_segments">
+        <item>Program Type: </item>
+        <item>Hours Per Session: </item>
+        <item>Days Per Week: </item>
+        <item>Commitment Level: </item>
+        <item>Grade Range: </item>
+        <item>Program Start Date: </item>
+        <item>Program End Date: </item>
+        <item>Equipment Available: </item>
+    </string-array>
+
+
+    <!-- -
+        This is an ad unit ID for a banner test ad. Replace with your own banner ad unit id.
+        For more information, see https://support.google.com/admob/answer/3052638
+    <!- -->
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+
+    <string name="bio_goes_here">bio goes here</string>
+
+    <string name="about_the_author_text">My name is Miles Adamson. I started climbing when I was 6 years old,
+        and am 25 now. From the age of 8 onwards, I competed in the Canadian climbing youth circuit.
+        During this time I trained on a junior team at the University of Alberta climbing wall. I won Canadian Nationals
+        3 times in lead. This was before youth climbers had a bouldering circuit, so I also competed in the adult bouldering
+        competitions. At 21, I won Canadian Bouldering Nationals hosted in Edmonton, Alberta.\n\nFrom then on, I
+        started to move away from competitions and more on to rock. I did my degree in electrical engineering at
+        the British Columbia Institute of Technology. Being only an hour from Squamish, I went there constantly.
+        Often I would bring my school work to the boulders, to work while I rested. In Squamish, I got into highball
+        bouldering. During my degree I had climbed virtually every highball in Squamish, along with the majority of
+        the classic lines. I had been to every area so many times that I started to explore more remote and obscure areas.
+        I found many new highball lines, some of which are on the "Top 25 Highballs" list. The highball list
+        I wrote for the 3rd edition of Squamish Bouldering.\n\nAfter my degree, I moved back to Edmonton to work as an Engineer.
+        Edmonton is relatively close to Canmore, Alberta. There was Canada\'s hardest sport climb, Honour and Glory. At the time, it was graded 5.15a, and I
+        began to project it. During that summer, Adam Ondra came to try to flash the route. He reached out to me for beta, and his
+        attempt was featured in Reel Rock 13. I was very happy to have a brief cameo in the film, and later send the route myself. Adam
+        had (appropriately) downgraded the route to 5.14d, but still it was my hardest redpoint to date. During the long hiked to the Colisseum,
+        I had a ton of time to talk to Adam about training, projecting and climbing.\n\nMuch of what I learned is applied to this app,
+        which I help you find useful in your journey!
+    </string>
+
+    <!-- -
+        This is an ad unit ID for an interstitial test ad. Replace with your own interstitial ad unit id.
+        For more information, see https://support.google.com/admob/answer/3052638
+    <!- -->
+    <string name="title_activity_remove_ads">Remove Ads</string>
+    <string name="title_activity_training_tips">Training Tips</string>
+    <string name="interstitial_ad_sample">Interstitial Ad Sample</string>
+    <string name="start_level">Level 1</string>
+    <string name="next_level">Next Level</string>
+    <string name="interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="title_activity_build_new_program_type_duration">Program Type</string>
+    <string name="title_activity_build_new_program_grade_commitment">Commitment and Climbing Level</string>
+    <string name="title_activity_build_new_program_about_you">About You</string>
+    <string name="title_activity_build_new_program_type_select">Program Type</string>
+    <string name="title_activity_build_new_program_equipment">Equipment Available</string>
+    <string name="title_activity_build_new_program_details">Choose Start Date</string>
+    <string name="title_activity_build_new_program_end_date">Choose End Date</string>
+    <string name="title_activity_build_new_program_review">Review Program</string>
+    <string name="title_activity_about_the_author">About The Author</string>
+    <string name="title_activity_exercises">Exercises</string>
+    <string name="title_activity_load_program">LoadProgram</string>
+    <string name="title_activity_view_exercise">View Exercise</string>
+</resources>

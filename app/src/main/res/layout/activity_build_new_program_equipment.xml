@@ -1,0 +1,244 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    tools:context="com.adamson.miles.climbingtrainer.BuildNewProgramEquipment">
+
+    <!-- view for AdMob Banner Ad -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp">
+
+        <LinearLayout
+            android:id="@+id/layoutEquipment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/polygon_red"
+            android:orientation="vertical">
+
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+                <CheckBox
+                    android:id="@+id/checkBoxBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:typeface="normal" />
+
+                <ImageButton
+                    android:id="@+id/imageHelpBar"
+                    style="@style/ButtonImageSmall"
+                    android:background="@color/colorWhite"
+                    ads:srcCompat="@drawable/ic_help" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+                <CheckBox
+                    android:id="@+id/checkBoxFreeweights"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:typeface="normal" />
+
+                <ImageButton
+                    android:id="@+id/imageHelpFreeweights"
+                    style="@style/ButtonImageSmall"
+                    android:background="@color/colorWhite"
+                    ads:srcCompat="@drawable/ic_help" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+                <CheckBox
+                    android:id="@+id/checkBoxRings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:typeface="normal" />
+
+                <ImageButton
+                    android:id="@+id/imageHelpRings"
+                    style="@style/ButtonImageSmall"
+                    android:background="@color/colorWhite"
+                    ads:srcCompat="@drawable/ic_help" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+                <CheckBox
+                    android:id="@+id/checkBoxCampusBoard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:typeface="normal" />
+
+                <ImageButton
+                    android:id="@+id/imageHelpCampusBoard"
+                    style="@style/ButtonImageSmall"
+                    android:background="@color/colorWhite"
+                    ads:srcCompat="@drawable/ic_help" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+                <CheckBox
+                    android:id="@+id/checkBoxMedicineBalls"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:typeface="normal" />
+
+                <ImageButton
+                    android:id="@+id/imageHelpMedicineBalls"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="1dp"
+                    android:background="@color/colorWhite"
+                    ads:srcCompat="@drawable/ic_help" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+                <CheckBox
+                    android:id="@+id/checkBoxFillWall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:typeface="normal" />
+
+                <ImageButton
+                    android:id="@+id/imageHelpFillWall"
+                    style="@style/ButtonImageSmall"
+                    android:background="@color/colorWhite"
+                    ads:srcCompat="@drawable/ic_help" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+                <CheckBox
+                    android:id="@+id/checkBoxMoonboard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:typeface="normal" />
+
+                <ImageButton
+                    android:id="@+id/imageHelpMoonboard"
+                    style="@style/ButtonImageSmall"
+                    android:background="@color/colorWhite"
+                    ads:srcCompat="@drawable/ic_help" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+                <CheckBox
+                    android:id="@+id/checkBoxHangboard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:typeface="normal" />
+
+                <ImageButton
+                    android:id="@+id/imageHelpHangboard"
+                    style="@style/ButtonImageSmall"
+                    android:background="@color/colorWhite"
+                    ads:srcCompat="@drawable/ic_help" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+                <CheckBox
+                    android:id="@+id/checkBoxKettleBells"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:typeface="normal" />
+
+                <ImageButton
+                    android:id="@+id/imageKettleBells"
+                    style="@style/ButtonImageSmall"
+                    android:background="@color/colorWhite"
+                    ads:srcCompat="@drawable/ic_help" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+                <CheckBox
+                    android:id="@+id/checkBoxLeadTR"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:typeface="normal" />
+
+                <ImageButton
+                    android:id="@+id/imageHelpLeadTR"
+                    style="@style/ButtonImageSmall"
+                    android:background="@color/colorWhite"
+                    ads:srcCompat="@drawable/ic_help" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+                <CheckBox
+                    android:id="@+id/checkBoxAdjustableWall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:typeface="normal" />
+
+                <ImageButton
+                    android:id="@+id/imageAdjustableWall"
+                    style="@style/ButtonImageSmall"
+                    android:background="@color/colorWhite"
+                    ads:srcCompat="@drawable/ic_help" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/LayoutHorizontalTransparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/buttonToStartDate"
+                    style="@style/ButtonWhite"
+                    android:text="@string/continue_to_start_date" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id" />
+
+</RelativeLayout>

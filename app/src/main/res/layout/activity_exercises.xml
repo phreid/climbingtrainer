@@ -1,0 +1,127 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    tools:context="com.adamson.miles.climbingtrainer.ExerciseList">
+
+    <!-- view for AdMob Banner Ad -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:background="@android:color/black"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonVOL"
+                style="@style/ButtonTypeSelect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:background="@drawable/gradient_red"
+                android:gravity="center_vertical|center"
+                android:text="@string/VOL" />
+
+            <Button
+                android:id="@+id/buttonSTR"
+                style="@style/ButtonTypeSelect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:background="@drawable/gradient_indigo"
+                android:gravity="center_vertical|center"
+                android:text="@string/STR" />
+
+            <Button
+                android:id="@+id/buttonPWR"
+                style="@style/ButtonTypeSelect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:background="@drawable/gradient_orange"
+                android:gravity="center_vertical|center"
+                android:text="@string/POW" />
+
+            <Button
+                android:id="@+id/buttonPWREND"
+                style="@style/ButtonTypeSelect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:background="@drawable/gradient_blue"
+                android:gravity="center_vertical|center"
+                android:text="@string/PWREND" />
+
+            <Button
+                android:id="@+id/buttonEND"
+                style="@style/ButtonTypeSelect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:background="@drawable/gradient_yellow"
+                android:gravity="center_vertical|center"
+                android:text="@string/END" />
+
+            <Button
+                android:id="@+id/buttonCON"
+                style="@style/ButtonTypeSelect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:background="@drawable/gradient_pink"
+                android:gravity="center_vertical|center"
+                android:text="@string/CON" />
+
+            <Button
+                android:id="@+id/buttonALL"
+                style="@style/ButtonTypeSelect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:background="@drawable/gradient_green"
+                android:gravity="center_vertical|center"
+                android:text="@string/ALL" />
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/scrollViewExercises"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp">
+
+            <LinearLayout
+                android:id="@+id/layoutExercises"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alpha="1"
+                android:background="@drawable/polygon_grey"
+                android:orientation="vertical"></LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id" />
+
+</RelativeLayout>

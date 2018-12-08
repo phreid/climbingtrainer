@@ -1,0 +1,126 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    tools:context="com.adamson.miles.climbingtrainer.BuildNewProgramTypeSelect">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/polygon_red"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            style="@style/LayoutHorizontalTransparent">
+
+            <Button
+                android:id="@+id/buttonVolume"
+                style="@style/ButtonWhite"
+                android:text="@string/volume_only"/>
+
+            <ImageButton
+                android:id="@+id/imageHelpVolume"
+                style="@style/ButtonImageSmall"
+                android:background="@color/colorWhite"
+                ads:srcCompat="@drawable/ic_help" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/LayoutHorizontalTransparent">
+
+            <Button
+                android:id="@+id/buttonStrPow"
+                style="@style/ButtonWhite"
+                android:text="@string/strpow_only"/>
+
+            <ImageButton
+                android:id="@+id/imageHelpStrPow"
+                style="@style/ButtonImageSmall"
+                android:background="@color/colorWhite"
+                ads:srcCompat="@drawable/ic_help" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/LayoutHorizontalTransparent">
+
+            <Button
+                android:id="@+id/buttonPowEnd"
+                style="@style/ButtonWhite"
+                android:text="@string/powend_only" />
+
+            <ImageButton
+                android:id="@+id/imageHelpPowEnd"
+                style="@style/ButtonImageSmall"
+                android:background="@color/colorWhite"
+                ads:srcCompat="@drawable/ic_help" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/LayoutHorizontalTransparent">
+
+            <Button
+                android:id="@+id/buttonEnd"
+                style="@style/ButtonWhite"
+                android:text="@string/end_only" />
+
+            <ImageButton
+                android:id="@+id/imageHelpEnd"
+                style="@style/ButtonImageSmall"
+                android:background="@color/colorWhite"
+                ads:srcCompat="@drawable/ic_help" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/LayoutHorizontalTransparent">
+
+            <Button
+                android:id="@+id/buttonBoulderingProgram"
+                style="@style/ButtonWhite"
+                android:text="@string/bouldering_program" />
+
+            <ImageButton
+                android:id="@+id/imageHelpBoulderingProgram"
+                style="@style/ButtonImageSmall"
+                android:background="@color/colorWhite"
+                ads:srcCompat="@drawable/ic_help" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/LayoutHorizontalTransparent">
+
+            <Button
+                android:id="@+id/buttonRoutesProgram"
+                style="@style/ButtonWhite"
+                android:text="@string/routes_program" />
+
+            <ImageButton
+                android:id="@+id/imageHelpRoutesProgram"
+                style="@style/ButtonImageSmall"
+                android:background="@color/colorWhite"
+                ads:srcCompat="@drawable/ic_help" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- view for AdMob Banner Ad -->
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id" />
+
+</RelativeLayout>
