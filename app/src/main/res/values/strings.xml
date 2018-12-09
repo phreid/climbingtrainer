@@ -11,7 +11,7 @@
     <string name="reps">Reps: </string>
     <string name="sets">Sets: </string>
     <string name="equip">Equipment: </string>
-    <string name="diff">Minimum Grade Range: </string>
+    <string name="diff">Minimum Grade Range to be in Program: </string>
     <string name="rest">Rest: </string>
     <string name="type">Drill Type: </string>
     <string name="time">Time Allotted: </string>
@@ -36,6 +36,8 @@
     <string name="bouldering_program">Bouldering Program</string>
     <string name="routes_program">Routes Program</string>
 
+    <string name="filter_text">Filter Exercises:</string>
+
     <string-array name="program_types">
         <item>Volume Only</item>
         <item>Strength and Power Only</item>
@@ -53,6 +55,7 @@
         <item>Endurance</item>
         <item>Conditioning</item>
         <item>Volume</item>
+        <item>All</item>
     </string-array>
 
     <string name="PWR">PWR</string>
@@ -227,7 +230,7 @@
     <string name="title_activity_build_new_program_review">Review Program</string>
     <string name="title_activity_about_the_author">About The Author</string>
     <string name="title_activity_exercises">Exercises</string>
-    <string name="title_activity_load_program">LoadProgram</string>
+    <string name="title_activity_load_program">Load Program</string>
     <string name="title_activity_view_exercise">View Exercise</string>
     <string name="title_activity_view_tip">View Tip</string>
 </resources>

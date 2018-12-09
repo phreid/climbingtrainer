@@ -21,81 +21,28 @@
             android:background="@android:color/black"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/buttonVOL"
-                style="@style/ButtonTypeSelect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:background="@drawable/gradient_red"
-                android:gravity="center_vertical|center"
-                android:text="@string/VOL" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="2dp"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:text="@string/filter_text"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:typeface="normal" />
 
-            <Button
-                android:id="@+id/buttonSTR"
-                style="@style/ButtonTypeSelect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="1dp"
+            <Spinner
+                android:id="@+id/spinnerFilterType"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
                 android:layout_weight="1"
-                android:background="@drawable/gradient_indigo"
-                android:gravity="center_vertical|center"
-                android:text="@string/STR" />
-
-            <Button
-                android:id="@+id/buttonPWR"
-                style="@style/ButtonTypeSelect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:background="@drawable/gradient_orange"
-                android:gravity="center_vertical|center"
-                android:text="@string/POW" />
-
-            <Button
-                android:id="@+id/buttonPWREND"
-                style="@style/ButtonTypeSelect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="1dp"
-                android:background="@drawable/gradient_blue"
-                android:gravity="center_vertical|center"
-                android:text="@string/PWREND" />
-
-            <Button
-                android:id="@+id/buttonEND"
-                style="@style/ButtonTypeSelect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:background="@drawable/gradient_yellow"
-                android:gravity="center_vertical|center"
-                android:text="@string/END" />
-
-            <Button
-                android:id="@+id/buttonCON"
-                style="@style/ButtonTypeSelect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:background="@drawable/gradient_pink"
-                android:gravity="center_vertical|center"
-                android:text="@string/CON" />
-
-            <Button
-                android:id="@+id/buttonALL"
-                style="@style/ButtonTypeSelect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:background="@drawable/gradient_green"
-                android:gravity="center_vertical|center"
-                android:text="@string/ALL" />
+                android:gravity="center"
+                android:background="@android:color/white" />
         </LinearLayout>
 
         <ScrollView

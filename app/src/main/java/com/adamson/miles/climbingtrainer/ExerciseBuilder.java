@@ -14,6 +14,7 @@ public class ExerciseBuilder {
     public static int ENDURANCE = 3;
     public static int CONDITIONING = 4;
     public static int VOLUME = 5;
+    public static int ALL = 6;
 
     public static String[] equip;
     public static int HANGBOARD = 0;

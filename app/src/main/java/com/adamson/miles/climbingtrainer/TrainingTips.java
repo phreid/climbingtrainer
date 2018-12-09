@@ -24,6 +24,8 @@ public class TrainingTips extends AppCompatActivity {
     Button buttonTipEndurance;
     Button buttonTipFastLeadLaps;
     Button buttonTipBouldering;
+    Button buttonTipOvertraining;
+    Button buttonTipTrainingCycles;
 
     private InterstitialAd mInterstitialAd;
 
@@ -126,6 +128,28 @@ public class TrainingTips extends AppCompatActivity {
                 Intent intent = new Intent(TrainingTips.this, ViewTip.class);
                 intent.putExtra("tip", getString(R.string.tip_boulder_for_routes));
                 intent.putExtra("title", buttonTipBouldering.getText());
+                startActivity(intent);
+            }
+        });
+
+        buttonTipOvertraining = (Button)findViewById(R.id.buttonTipOvertraining);
+        buttonTipOvertraining.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TrainingTips.this, ViewTip.class);
+                intent.putExtra("tip", getString(R.string.tip_overtraining));
+                intent.putExtra("title", buttonTipOvertraining.getText());
+                startActivity(intent);
+            }
+        });
+
+        buttonTipTrainingCycles = (Button)findViewById(R.id.buttonTipTrainingCycles);
+        buttonTipTrainingCycles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TrainingTips.this, ViewTip.class);
+                intent.putExtra("tip", getString(R.string.tip_training_cycles));
+                intent.putExtra("title", buttonTipTrainingCycles.getText());
                 startActivity(intent);
             }
         });

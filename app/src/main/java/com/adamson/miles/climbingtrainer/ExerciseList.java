@@ -11,27 +11,22 @@ import android.view.ContextThemeWrapper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-import android.widget.TextView;
+import android.widget.Spinner;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 
 public class ExerciseList extends AppCompatActivity {
 
     Exercise[] exercises;
+    String[] types;
     ScrollView scrollView;
     LinearLayout scrollLayoutChild;
-
-    Button buttonVOL;
-    Button buttonSTR;
-    Button buttonPWR;
-    Button buttonPWREND;
-    Button buttonEND;
-    Button buttonALL;
-    Button buttonCON;
+    Spinner spinnerFilterType;
+    Boolean firstCall = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +42,30 @@ public class ExerciseList extends AppCompatActivity {
         scrollView = (ScrollView)findViewById(R.id.scrollViewExercises);
         scrollLayoutChild = (LinearLayout)findViewById(R.id.layoutExercises);
 
+        spinnerFilterType = (Spinner)findViewById(R.id.spinnerFilterType);
+        types = getResources().getStringArray(R.array.types_strings);
+        ArrayAdapter<String> typesArray = new ArrayAdapter<>(
+                ExerciseList.this,
+                R.layout.spinner_design,
+                types);
+        typesArray.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        spinnerFilterType.setAdapter(typesArray);
+
+        int position = getIntent().getIntExtra("position", types.length - 1);
+        spinnerFilterType.setSelection(position);
+
         DatabaseHelper db = new DatabaseHelper(this);
 
-        if (getIntent().getStringExtra("type") == null) {
+        // If selected all types, select all. Also select All by default.
+        String intentType = getIntent().getStringExtra("type");
+        if(intentType == null || intentType.equals(ExerciseBuilder.types[ExerciseBuilder.ALL])) {
             exercises = db.selectAllExercises();
         } else {
-            exercises = db.selectAllExerciseByType(getIntent().getStringExtra("type"));
+            exercises = db.selectAllExerciseByType(intentType);
         }
 
+        // creates button for each exercise depending on the type given to the
+        // activity's intent. Selects all if no type given
         for(int i = 0; i < exercises.length; i++){
             LinearLayout layoutHorizontal = new LinearLayout(new ContextThemeWrapper(this, R.style.LayoutHorizontalTransparent),null, 0);
             Button button = new Button(new ContextThemeWrapper(this, R.style.ButtonWhite), null, 0);
@@ -76,98 +87,35 @@ public class ExerciseList extends AppCompatActivity {
             scrollLayoutChild.addView(layoutHorizontal);
         }
 
-        buttonALL = (Button)findViewById(R.id.buttonALL);
-        buttonALL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    }
 
+    // setOnItemSelectedListener is called when the spinner is initialized,
+    // make this first call not do anything. Should only do something when
+    // the user actually selects from the spinner.
+    @Override
+    protected void onStart() {
+        super.onStart();
+        spinnerFilterType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(!firstCall) {
+                    Intent intent = getIntent();
+                    intent.putExtra("type", types[position]);
+                    intent.putExtra("position", position);
+                    finish();
+                    startActivity(intent);
+                } else {
+                    firstCall = false;
+                }
             }
-        });
 
-        buttonPWR = (Button)findViewById(R.id.buttonPWR);
-        buttonPWR.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = getIntent();
-                String type = ExerciseBuilder.types[ExerciseBuilder.POWER];
-                intent.putExtra("type", type);
-                finish();
-                startActivity(intent);
-            }
-        });
+            public void onNothingSelected(AdapterView<?> parent) {
 
-        buttonEND = (Button)findViewById(R.id.buttonEND);
-        buttonEND.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = getIntent();
-                String type = ExerciseBuilder.types[ExerciseBuilder.ENDURANCE];
-                intent.putExtra("type", type);
-                finish();
-                startActivity(intent);
-            }
-        });
-
-        buttonPWREND = (Button)findViewById(R.id.buttonPWREND);
-        buttonPWREND.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = getIntent();
-                String type = ExerciseBuilder.types[ExerciseBuilder.POWEND];
-                intent.putExtra("type", type);
-                finish();
-                startActivity(intent);
-            }
-        });
-
-        buttonALL = (Button)findViewById(R.id.buttonALL);
-        buttonALL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = getIntent();
-                String type = null;
-                intent.putExtra("type", type);
-                finish();
-                startActivity(intent);
-            }
-        });
-
-        buttonVOL = (Button)findViewById(R.id.buttonVOL);
-        buttonVOL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = getIntent();
-                String type = ExerciseBuilder.types[ExerciseBuilder.VOLUME];
-                intent.putExtra("type", type);
-                finish();
-                startActivity(intent);
-            }
-        });
-
-        buttonCON = (Button)findViewById(R.id.buttonCON);
-        buttonCON.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = getIntent();
-                String type = ExerciseBuilder.types[ExerciseBuilder.CONDITIONING];
-                intent.putExtra("type", type);
-                finish();
-                startActivity(intent);
-            }
-        });
-
-        buttonSTR = (Button)findViewById(R.id.buttonSTR);
-        buttonSTR.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = getIntent();
-                String type = ExerciseBuilder.types[ExerciseBuilder.STRENGTH];
-                intent.putExtra("type", type);
-                finish();
-                startActivity(intent);
             }
         });
     }
+
 
 
     @Override

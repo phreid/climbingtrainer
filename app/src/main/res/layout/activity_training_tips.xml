@@ -22,6 +22,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/layoutGrades"
                 style="@style/LayoutHorizontalTransparent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -35,6 +36,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layoutVolume"
                 style="@style/LayoutHorizontalTransparent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -48,19 +50,7 @@
             </LinearLayout>
 
             <LinearLayout
-                style="@style/LayoutHorizontalTransparent"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/buttonTipPower"
-                    style="@style/ButtonWhite"
-                    android:layout_width="match_parent"
-                    android:text="@string/tip_power_name" />
-            </LinearLayout>
-
-            <LinearLayout
+                android:id="@+id/layoutStrength"
                 style="@style/LayoutHorizontalTransparent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -74,6 +64,21 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layoutPower"
+                style="@style/LayoutHorizontalTransparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonTipPower"
+                    style="@style/ButtonWhite"
+                    android:layout_width="match_parent"
+                    android:text="@string/tip_power_name" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutPowerEnd"
                 style="@style/LayoutHorizontalTransparent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -87,6 +92,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layoutEndurance"
                 style="@style/LayoutHorizontalTransparent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -100,6 +106,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layoutLeadLaps"
                 style="@style/LayoutHorizontalTransparent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -113,6 +120,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layoutBouldering"
                 style="@style/LayoutHorizontalTransparent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -124,6 +132,36 @@
                     android:layout_width="match_parent"
 
                     android:text="@string/tip_boulder_for_routes_name" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutCycles"
+                style="@style/LayoutHorizontalTransparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonTipTrainingCycles"
+                    style="@style/ButtonWhite"
+                    android:layout_width="match_parent"
+
+                    android:text="@string/tip_training_cycles_name" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutOvertraining"
+                style="@style/LayoutHorizontalTransparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonTipOvertraining"
+                    style="@style/ButtonWhite"
+                    android:layout_width="match_parent"
+
+                    android:text="@string/tip_overtraining_name" />
             </LinearLayout>
 
         </LinearLayout>
