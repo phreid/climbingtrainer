@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -46,6 +47,7 @@ public class ViewExercise extends AppCompatActivity {
 
         String rest = getResources().getString(R.string.rest) + "\n"  + exercise.rest;
         textViewRest.setText(rest);
+        textViewRest.setMovementMethod(new ScrollingMovementMethod());
 
         String sets = getResources().getString(R.string.sets) + " " + exercise.sets;
         textViewSets.setText(sets);
@@ -65,7 +67,7 @@ public class ViewExercise extends AppCompatActivity {
         setTextViewBG(textViewName, exercise);
 
         textViewDesc.setText(exercise.desc);
-
+        textViewDesc.setMovementMethod(new ScrollingMovementMethod());
     }
 
 

@@ -83,11 +83,11 @@
 
     <string-array name="grades">
         <item>Select Current Grade Range...</item>
-        <item>Below 5.11a or V0</item>
+        <item>[5.10d or V0 and below]</item>
         <item>[5.11a to 5.11d] or [V1 to V3]</item>
         <item>[5.12a to 5.12d] or [V4 to V6]</item>
         <item>[5.13a to 5.13d] or [V7 to V9]</item>
-        <item>Above 5.14a or V10</item>
+        <item>[5.14a or V10 and above]</item>
     </string-array>
 
     <string-array name="sessions_per_week">
@@ -172,6 +172,41 @@
         which I help you find useful in your journey!
     </string>
 
+    <string name="tip_volume">Volume training is done at the start of any program. The goal is to ready your body for the amount of climbing you will be doing later.\n\nBy climbing at a high volume and low difficulty, you work towards climbing at both a high volume and high quality. Volume training is so straightforward that it lacks a bit in variety and interest. You simply do a ton of easy/moderate moves in a day, without getting pumped. If you fail on a climb during volume training, it should be due to fatigue. Avoid moves which are hard for you, and climbs sustained enough to get you pumped.</string>
+    <string name="tip_volume_name">Volume Training</string>
+
+    <string name="tip_power">Power defines how much momentum you can generate. It defines the hardest dynamic moves you can do. It is trained though explosive moves and drills.\n\nPower drills aim to help you generate momentum from positions which are difficult, and to catch/control the swing that results from them. Many powerful moves involve a foot-cut, but they don’t necessarily have to. The gains from training power, like strength, stay with you for a long time. This is why it is trained early in a training cycle, the gains will still be there when you peak. </string>
+    <string name="tip_power_name">Power Training</string>
+
+    <string name="tip_strength">Strength defines what static positions you are able to hold. It involves mostly hand strength and lock-off strength. Training strength is often done on a hangboard, pull up bar or on short boulders. Like during power drills, boulders should be 4 or less moves.\n\nBy training strength, you will be able to lock-off deeper, hold worse holds, and keep your feet on when otherwise you wouldn’t have been able to. Like power, the gains from strength training stay with you for a very long time. This is why when you take a break from climbing, it feels like you can climb similarly hard moves, but not nearly as many in a row or for as long in the day. This is why it is trained early in a program’s periodization; the gains will still be there for when you peak.</string>
+    <string name="tip_strength_name">Strength Training</string>
+
+    <string name="tip_powerEnd">Power endurance defines how many near max-difficulty moves you can do in a row. It also has to do with your ability to do a near max-difficulty move at the end of a longer boulder. The classic power endurance drill is the Four by Four.\n\nWhen training power endurance, your boulder problems length should be 8-12 moves. Ideally, they should be sustained or have the hardest moves near the end. The gains from power endurance stay for longer than endurance, but not as long as strength and power. Therefor you train it in the middle of a training cycle.</string>
+    <string name="tip_powerEnd_name">Power Endurance Training</string>
+
+    <string name="tip_endurance">Endurance defines how long it takes you to get pumped, and what percentage of your max-difficulty move actually get you pumped. With great endurance, you can do long routes with sustained sections, and actually recover when you rest.\n\nEndurance is trained by getting very pumped a bunch of times. Many people avoid it, finding the drills boring and monotonous. However, you will never be able to do a near max-difficulty move at the 12th bolt of a route without it. The gains from endurance are fast, and lost just as quickly. This is why if you take a break from routes, you get extremely pumped the first day back but then almost immediately start to feel better at it after a couple days. This is why it is trained last in a training program. If it were trained too early, the gains wouldn’t be there when you peak.</string>
+    <string name="tip_endurance_name">Endurance Training</string>
+
+    <string name="tip_fast_lead_laps">When training endurance on routes, many drills require you to do multiple laps. If you do this on lead and untie then tie in every lap, you will spend too much time on the ground resting. Also, tying in multiple times as fast as possible could lead to errors in your knot.\n\nThe fastest way to do lead laps allows you to climb multiple times without untying. After you lower from a climb, immediately go back into a start jug. Your belayer takes off their belay device, removes the knot from the end of the rope, and pulls the rope from the climber’s side. This makes the rope fall down from the top of the gym, so make sure to yell ROPE. The belayer then attaches again to be on belay, the climber checks their setup from their jug, and then climbs on lead again. Typically, top-rope walls aren’t steep enough for advanced climbers to train endurance on. So this method is key to getting the most possible out of your endurance training.</string>
+    <string name="tip_fast_lead_laps_name">Fast Lead Laps - Don\'t Un-tie</string>
+
+    <string name="tip_training_cycles">When you choose the end date of your program, this is the date you want to peak for. It could be for a competition, or a trip on rock outdoors.  The goal of the program is to space the different training periods in a way to maximize you gains for that specific date. This is usually done in cycles.\n\nA complete route climbing cycle looks like this:  volume, strength and power, power endurance, endurance, peak, rest. A bouldering program will do the same, except skip endurance. Competition seasons are actually designed to accommodate this. It is the reason that in a competition season, bouldering is first and routes are second. Some have tried to train in other patters, such as doing all phases simultaneously. This app does not support this strategy, even though it could be perfectly valid to.</string>
+    <string name="tip_training_cycles_name">Training Cycles and Periodization</string>
+
+    <string name="tip_session_length">Resting is absolutely key in training. It is extremely common for climbers to over-train and almost immediately injure themselves. Your training sessions should never be longer than three hours. Going to the gym twice for 2.5 hour sessions is MUCH more effective than a single 5 hour session. This is because with incredibly long sessions, you get so worn down that you have to take multiple rest days to properly recover.\n\nAs you get stringer and train more, it is ideal to increase the frequency that you train instead of increasing the session length.\n\nFor example, Adam Ondra never trains for more than three hours in a row. He does however train twice in a day. By resting just the afternoon, he is able to have a second meaningful session in the evening. He told me that doing the same drills over the course of a very long session led to him needing a rest day, effectively lowering the total hours of training he could output over a week. Even on trips he will train in the gym for maintenance. An interesting fact – the day he climbed Honour and Glory-14d second try, he ate supper and then still trained that evening. </string>
+    <string name="tip_session_length_name">Session Length and Resting</string>
+
+    <string name="tip_overtraining">It is incredibly important to listen to your body to avoid overtraining. Err on the side of caution whenever you are more tired than normal. Slight differences in your normal sleep schedule, stress and diet can leave you susceptible to injury. It is important to find the balance of training as hard as you can while always being confident you are safe from injury.\n\nSince this is such a personal thing, it is hard to give a simple way to determine. Losing a day of your training schedule is nothing in the context of an entire season. Injuries are! This is especially true because tired, low quality training days will be very effective anyways. </string>
+    <string name="tip_overtraining_name">Overtraining</string>
+
+    <string name="tip_minimum_grade">All exercises have a minimum grade range. This controls which drills can be put into which programs. For example, if you select the [10d or V0 and Below] grade range, you will not have drills with muscle-ups and front leavers included in your program.\n\nTo be clear, this is not necessarily the grade of routes or boulders you should be doing within the drill.\n\nIt is the minimum grade range to have the drill included in a program. There are plenty of drills where a 5.13 climber will be on a 5.12 or 5.11. </string>
+    <string name="tip_minimum_grade_name">Minimum Grade for Exercises</string>
+
+    <string name="tip_boulder_for_routes">Bouldering is essential for route climbing. Don’t let any 5.10 alpine climber tell you otherwise. When the hardest boulder you can do goes up, all moves below it in grade feel easier than before. If the hardest move you can possibly do is V3, how can you climb a V3 boulder at the end of a long route? What if every move is V3? You cannot possibly do fifty max-difficulty moves in a row. Now think, what if the hardest move you can do is V8 and you warm up on V3? By increasing your bouldering strength, you will very directly become a better route climber too.</string>
+    <string name="tip_boulder_for_routes_name">Bouldering for Route Climbing?</string>
+
+
+
     <!-- -
         This is an ad unit ID for an interstitial test ad. Replace with your own interstitial ad unit id.
         For more information, see https://support.google.com/admob/answer/3052638
@@ -194,4 +229,5 @@
     <string name="title_activity_exercises">Exercises</string>
     <string name="title_activity_load_program">LoadProgram</string>
     <string name="title_activity_view_exercise">View Exercise</string>
+    <string name="title_activity_view_tip">View Tip</string>
 </resources>

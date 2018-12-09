@@ -22,6 +22,7 @@
 
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,40 +36,56 @@
             android:theme="@android:style/Theme.Translucent" />
         <activity
             android:name=".BuildNewProgramAboutYou"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_build_new_program_about_you" />
         <activity
             android:name=".BuildNewProgramTypeSelect"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_build_new_program_type_select" />
         <activity
             android:name=".BuildNewProgramEquipment"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_build_new_program_equipment" />
         <activity
             android:name=".BuildNewProgramStartDate"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_build_new_program_details" />
         <activity
             android:name=".BuildNewProgramEndDate"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_build_new_program_end_date" />
         <activity
             android:name=".BuildNewProgramReview"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_build_new_program_review" />
         <activity
             android:name=".AboutTheAuthor"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_about_the_author" />
         <activity
             android:name=".RemoveAds"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_remove_ads" />
         <activity
             android:name=".TrainingTips"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_training_tips" />
         <activity
             android:name=".ExerciseList"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_exercises" />
         <activity
             android:name=".LoadProgram"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_load_program" />
         <activity
             android:name=".ViewExercise"
-            android:label="@string/title_activity_view_exercise"></activity>
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_view_exercise" />
+        <activity
+            android:name=".ViewTip"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_view_tip"></activity>
     </application>
 
 </manifest>

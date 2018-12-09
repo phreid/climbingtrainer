@@ -11,14 +11,15 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class AboutTheAuthor extends AppCompatActivity {
+public class ViewTip extends AppCompatActivity {
 
-    TextView textViewAuthorText;
+    TextView textViewTip;
+    TextView textViewTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about_the_author);
+        setContentView(R.layout.activity_view_tip);
 
         // Load an ad into the AdMob banner view.
         AdView adView = (AdView) findViewById(R.id.adView);
@@ -26,14 +27,19 @@ public class AboutTheAuthor extends AppCompatActivity {
                 .setRequestAgent("android_studio:ad_template").build();
         adView.loadAd(adRequest);
 
-        textViewAuthorText = (TextView)findViewById(R.id.textViewAuthorText);
-        textViewAuthorText.setMovementMethod(new ScrollingMovementMethod());
+        textViewTip = (TextView)findViewById(R.id.textViewTip);
+        textViewTip.setText(getIntent().getStringExtra("tip"));
+        textViewTip.setMovementMethod(new ScrollingMovementMethod());
+
+        textViewTitle = (TextView)findViewById(R.id.textViewTipTitle);
+        textViewTitle.setText(getIntent().getStringExtra("title"));
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_about_the_author, menu);
+        getMenuInflater().inflate(R.menu.menu_view_tip, menu);
         return true;
     }
 

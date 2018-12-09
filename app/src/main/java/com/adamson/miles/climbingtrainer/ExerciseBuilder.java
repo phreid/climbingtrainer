@@ -101,7 +101,7 @@ public class ExerciseBuilder {
                 .setType(types[STRENGTH])
                 .setSets("3")
                 .setEquip(equip[PULLUPBAR])
-                .setReps("Until Failure")
+                .setReps("?")
                 .setRest("3 minutes")
                 .setTime(times[FIFTEEN_M])
                 .setDiff(grades[TEN]);
@@ -494,9 +494,9 @@ public class ExerciseBuilder {
                 .setName("Volume Bouldering Pyramid")
                 .setDesc("Choose 3 boulders: one is very easy, one is easy, one is moderate. Climb the first 8 times, the second 4 times, and the last twice. Then the second 4 more times, and the first 8 more times.")
                 .setType(types[VOLUME])
-                .setSets("1")
+                .setSets("5")
                 .setEquip("None")
-                .setReps("8 on very easy, 4 on easy, 2 on moderate, 4 on easy, 8 on very easy")
+                .setReps("8, 4, 2, 4, 8")
                 .setRest("Rest no more than 20 seconds between attempts and boulders. If you are getting pumped or falling, choose easier boulders.")
                 .setDiff(grades[TEN])
                 .setTime(times[SIXTY_M]);
@@ -510,7 +510,7 @@ public class ExerciseBuilder {
                 .setType(types[VOLUME])
                 .setSets("5")
                 .setEquip("None")
-                .setReps("5 laps up AND down on each boulder.")
+                .setReps("5 up+down")
                 .setRest("Rest no more than 20 seconds between attempts and boulders. If you are getting pumped or falling, choose easier boulders.")
                 .setDiff(grades[TEN])
                 .setTime(times[SIXTY_M]);
@@ -538,7 +538,7 @@ public class ExerciseBuilder {
                 .setType(types[VOLUME])
                 .setSets("2")
                 .setEquip(equip[LEADTR])
-                .setReps("10 Minutes on per set")
+                .setReps("10 Minutes")
                 .setRest("Rest equal to the time you spent on the wall. If training with a partner, simply alternate.")
                 .setDiff(grades[TEN])
                 .setTime(times[SIXTY_M]);
@@ -552,7 +552,7 @@ public class ExerciseBuilder {
                 .setType(types[VOLUME])
                 .setSets("2")
                 .setEquip(equip[LEADTR])
-                .setReps("10 Minutes on per set")
+                .setReps("10 Minutes")
                 .setRest("Rest equal to the time you spent on the wall. If training with a partner, simply alternate.")
                 .setDiff(grades[TEN])
                 .setTime(times[SIXTY_M]);

@@ -8,12 +8,126 @@
 
     <!-- view for AdMob Interstitial Ad -->
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="50dp"
-        android:background="@drawable/polygon_blue"
-        android:orientation="vertical"></LinearLayout>
+        android:background="@android:color/black">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/polygon_blue"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/LayoutHorizontalTransparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonTipGrades"
+                    style="@style/ButtonWhite"
+                    android:layout_width="match_parent"
+                    android:text="@string/tip_minimum_grade_name" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/LayoutHorizontalTransparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonTipVolume"
+                    style="@style/ButtonWhite"
+                    android:layout_width="match_parent"
+                    android:text="@string/tip_volume_name" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/LayoutHorizontalTransparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonTipPower"
+                    style="@style/ButtonWhite"
+                    android:layout_width="match_parent"
+                    android:text="@string/tip_power_name" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/LayoutHorizontalTransparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonTipStrength"
+                    style="@style/ButtonWhite"
+                    android:layout_width="match_parent"
+                    android:text="@string/tip_strength_name" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/LayoutHorizontalTransparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonTipPowerEnd"
+                    style="@style/ButtonWhite"
+                    android:layout_width="match_parent"
+                    android:text="@string/tip_powerEnd_name" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/LayoutHorizontalTransparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonTipEndurance"
+                    style="@style/ButtonWhite"
+                    android:layout_width="match_parent"
+                    android:text="@string/tip_endurance_name" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/LayoutHorizontalTransparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonTipFastLeadLaps"
+                    style="@style/ButtonWhite"
+                    android:layout_width="match_parent"
+                    android:text="@string/tip_fast_lead_laps_name" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/LayoutHorizontalTransparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonTipBouldering"
+                    style="@style/ButtonWhite"
+                    android:layout_width="match_parent"
+
+                    android:text="@string/tip_boulder_for_routes_name" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
@@ -22,6 +136,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="bottom"
+        android:background="@android:color/black"
         ads:adSize="BANNER"
         ads:adUnitId="@string/banner_ad_unit_id" />
 

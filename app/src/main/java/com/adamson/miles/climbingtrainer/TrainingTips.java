@@ -5,16 +5,25 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class TrainingTips extends AppCompatActivity {
+
+    Button buttonTipGrades;
+    Button buttonTipVolume;
+    Button buttonTipStrength;
+    Button buttonTipPower;
+    Button buttonTipPowerEnd;
+    Button buttonTipEndurance;
+    Button buttonTipFastLeadLaps;
+    Button buttonTipBouldering;
 
     private InterstitialAd mInterstitialAd;
 
@@ -33,6 +42,93 @@ public class TrainingTips extends AppCompatActivity {
                 .setRequestAgent("android_studio:ad_template").build();
         adView.loadAd(adRequest);
 
+        buttonTipGrades = (Button)findViewById(R.id.buttonTipGrades);
+        buttonTipGrades.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TrainingTips.this, ViewTip.class);
+                intent.putExtra("tip", getString(R.string.tip_minimum_grade));
+                intent.putExtra("title", buttonTipGrades.getText());
+                startActivity(intent);
+            }
+        });
+
+        buttonTipVolume = (Button)findViewById(R.id.buttonTipVolume);
+        buttonTipVolume.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TrainingTips.this, ViewTip.class);
+                intent.putExtra("tip", getString(R.string.tip_volume));
+                intent.putExtra("title", buttonTipVolume.getText());
+                startActivity(intent);
+            }
+        });
+
+        buttonTipStrength = (Button)findViewById(R.id.buttonTipStrength);
+        buttonTipStrength.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TrainingTips.this, ViewTip.class);
+                intent.putExtra("tip", getString(R.string.tip_strength));
+                intent.putExtra("title", buttonTipStrength.getText());
+                startActivity(intent);
+            }
+        });
+
+        buttonTipPower = (Button)findViewById(R.id.buttonTipPower);
+        buttonTipPower.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TrainingTips.this, ViewTip.class);
+                intent.putExtra("tip", getString(R.string.tip_power));
+                intent.putExtra("title", buttonTipPower.getText());
+                startActivity(intent);
+            }
+        });
+
+        buttonTipPowerEnd = (Button)findViewById(R.id.buttonTipPowerEnd);
+        buttonTipPowerEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TrainingTips.this, ViewTip.class);
+                intent.putExtra("tip", getString(R.string.tip_powerEnd));
+                intent.putExtra("title", buttonTipPowerEnd.getText());
+                startActivity(intent);
+            }
+        });
+
+        buttonTipEndurance = (Button)findViewById(R.id.buttonTipEndurance);
+        buttonTipEndurance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TrainingTips.this, ViewTip.class);
+                intent.putExtra("tip", getString(R.string.tip_endurance));
+                intent.putExtra("title", buttonTipEndurance.getText());
+                startActivity(intent);
+            }
+        });
+
+        buttonTipFastLeadLaps = (Button)findViewById(R.id.buttonTipFastLeadLaps);
+        buttonTipFastLeadLaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TrainingTips.this, ViewTip.class);
+                intent.putExtra("tip", getString(R.string.tip_fast_lead_laps));
+                intent.putExtra("title", buttonTipFastLeadLaps.getText());
+                startActivity(intent);
+            }
+        });
+
+        buttonTipBouldering = (Button)findViewById(R.id.buttonTipBouldering);
+        buttonTipBouldering.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TrainingTips.this, ViewTip.class);
+                intent.putExtra("tip", getString(R.string.tip_boulder_for_routes));
+                intent.putExtra("title", buttonTipBouldering.getText());
+                startActivity(intent);
+            }
+        });
     }
 
 
