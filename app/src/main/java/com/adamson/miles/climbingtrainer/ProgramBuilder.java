@@ -187,7 +187,7 @@ public class ProgramBuilder {
         trainingDays = new TrainingDay[(int)programLength];
         for(int i = 0; i < programLength; i++){
             if(trainingDatesInProgram[i] != null){
-                trainingDays[i] = new TrainingDay(trainingDatesInProgram[i]);
+                trainingDays[i] = new TrainingDay(trainingDatesInProgram[i], currentGrade, commitmentLevel);
            }
             // Step through days and assign a type based on the numbers found above.
             // A "null" day is a rest day which doesn't have a type.

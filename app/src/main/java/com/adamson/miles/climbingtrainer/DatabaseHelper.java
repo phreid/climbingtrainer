@@ -172,102 +172,56 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return exercises;
     }
-    /*
 
-    // Deletes an entire routine table and removes it from workouts list
-    public void deleteWorkout(String rowName) {
-        String rowNameNoSpaces = removeSpaces(rowName);
+    // Returns all exercises which are less than or equal to a given grade range
+    public Exercise[] selectByTypeGradeMinimum(String type, String grade){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(T1, T1_C1 + " = ?", new String[]{rowNameNoSpaces});
-        db.execSQL("DROP TABLE IF EXISTS " + rowNameNoSpaces);
-    }
 
-    // Adds a list of entriesList into a workout routine, if it exists. If it doesn't,
-    // return false.
-    public void fillWorkout(String table, String[] names, String[] durations){
-        String tableNoSpaces = removeSpaces(table);
-        SQLiteDatabase db = this.getWritableDatabase();
-        for(int i = 0; i < names.length; i++){
-            ContentValues myCV = new ContentValues();
-            myCV.put(T2_C1, names[i]);
-            myCV.put(T2_C2, durations[i]);
-            db.insert(tableNoSpaces, null, myCV);
+        String query = "SELECT * FROM "+T1+" WHERE "+T1_type+ " = '"+type+"'";
+        switch (grade){
+            case "[5.10d or V0 and below]":
+                query += " AND "+T1_diff+ " = '"+grade+"'";
+                break;
+
+            case "[5.11a to 5.11d] or [V1 to V3]":
+                query += " AND ("+T1_diff+ " = '"+grade+"' OR "+T1_diff+" = '[5.10d or V0 and below]')";
+                break;
+
+            case "[5.12a to 5.12d] or [V4 to V6]":
+                query += " AND ("+T1_diff+ " = '"+grade+"' OR "+T1_diff+" = '[5.10d or V0 and below]' OR "+T1_diff+" = '[5.11a to 5.11d] or [V1 to V3]')";
+                break;
+
+            case "[5.13a to 5.13d] or [V7 to V9]":
+                query += " AND ("+T1_diff+ " = '"+grade+"' OR "+T1_diff+" = '[5.10d or V0 and below]' OR "+T1_diff+" = '[5.11a to 5.11d] or [V1 to V3]' OR "+T1_diff+" = '[5.12a to 5.12d] or [V4 to V6]')";
+                break;
+
+            case "[5.14a or V10 and above]":
+                // no need to change query as this is the same as select all by type
+                break;
         }
-    }
+        query += ";";
 
-    // Returns the activities, durations and a human readable string for the workout.
-    // If the workout doesn't exist, the lists returned are empty.
-    public ArrayList<String>[] selectRoutine(String table){
-        String tableNoSpaces = removeSpaces(table);
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='"
-                + tableNoSpaces + "';)", null);
-        ArrayList<String> activities = new ArrayList<>();
-        ArrayList<String> durations = new ArrayList<>();
-        ArrayList<String> readable = new ArrayList<>();
-
-        // If workout exists, populate the return arrays.
-        if(cursor.getCount() != 0) {
-            cursor = db.rawQuery("SELECT * FROM " + tableNoSpaces + ";", null);
-            if (cursor.moveToFirst()) {
-                do {
-                    activities.add(cursor.getString(ACTIVITIES));
-                    durations.add(cursor.getString(DURATIONS));
-                    readable.add(cursor.getString(ACTIVITIES) + ": " +
-                            cursor.getString(DURATIONS) + "s");
-                }
-                while (cursor.moveToNext());
+        Cursor cursor = db.rawQuery(query, null);
+        Exercise[] exercises = new Exercise[cursor.getCount()];
+        // if there are any exercises, return them
+        if (cursor.moveToFirst()) {
+            for (int i = 0; i < exercises.length; i++) {
+                Exercise row = new Exercise()
+                        .setName(cursor.getString(0))
+                        .setDesc(cursor.getString(1))
+                        .setType(cursor.getString(2))
+                        .setSets(cursor.getString(3))
+                        .setReps(cursor.getString(4))
+                        .setRest(cursor.getString(5))
+                        .setDiff(cursor.getString(6))
+                        .setEquip(cursor.getString(7))
+                        .setTime(cursor.getString(8));
+                exercises[i] = row;
+                cursor.moveToNext();
             }
             cursor.close();
         }
-
-        return new ArrayList[]{activities, durations, readable};
+        return exercises;
     }
 
-    // Inserts a workout_editable_item into logbook table, which is the workout name
-    // and workout date strings. Date string should be pre-formatted
-    public boolean insertLogbook(String name, String date){
-        String nameNoSpace = removeSpaces(name);
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues myCV = new ContentValues();
-
-        myCV.put(T3_C1, nameNoSpace);
-        myCV.put(T3_C2, date);
-
-        long result = db.insert(T3, null, myCV);
-
-        if (result == -1) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    // Returns the entire logbook table
-    public ArrayList<String>[] selectLogbook(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + T3 + ";", null);
-
-        ArrayList<String> tableEntires = new ArrayList<>();
-        ArrayList<String> keys = new ArrayList<>();
-        ArrayList<String> names = new ArrayList<>();
-
-        if (cursor.moveToFirst()) {
-            do {
-                keys.add(cursor.getString(0));
-                names.add(replaceUnderscores(cursor.getString(1)));
-                tableEntires.add(cursor.getString(2) + ":\n " + replaceUnderscores(cursor.getString(1)));
-            }
-            while (cursor.moveToNext());
-        }
-        cursor.close();
-        return new ArrayList[] {tableEntires, keys, names};
-    }
-
-    // Deletes an entry in the logbook table based on its id
-    public void deleteLogbookEntry(String key){
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(T3, "_ID=?", new String[] { key });
-    }
-    */
 }

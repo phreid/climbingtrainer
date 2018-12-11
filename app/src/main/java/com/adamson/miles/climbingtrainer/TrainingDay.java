@@ -4,14 +4,42 @@ import java.util.Date;
 
 public class TrainingDay {
 
-    public String type;
+    public String type = "ERROR ERROR"; // Type should be overwritten by the actual type
     public Date date;
     public String grade;
     public String commitment;
+    public Exercise[] exercises;
 
-    public TrainingDay(Date d){
+    public TrainingDay(Date d, String g, String c){
         date = d;
-        type = "blank";
+        grade = g;
+        commitment = c;
+    }
+
+    public void generateDay(String t){
+        type = t;
+        switch (type) {
+            case "Volume":
+
+                break;
+
+            case "Strength":
+
+                break;
+
+            case "Power":
+
+                break;
+
+            case "Power Endurance":
+
+                break;
+
+            case "Endurance":
+
+                break;
+        }
+
     }
 
 
