@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -25,14 +27,24 @@ public class BuildNewProgramAboutYou extends AppCompatActivity {
             + "To show live ads, replace the ad unit ID in res/values/strings.xml with your own ad unit ID.";
 
     Spinner spinnerGrades;
-    Spinner spinnerDurations;
-    Spinner spinnerSessionsPerWeek;
     Spinner spinnerCommitment;
     String[] gradeStrings;
-    String[] durationStrings;
-    String[] sessionStrings;
     String[] commitmentStrings;
+    String[] daysStrings;
     Button buttonContinue;
+
+    ImageButton imageHelpGrades;
+    ImageButton imageHelpCommitment;
+    ImageButton imageHelpDaysSelect;
+
+    CheckBox checkBoxMonday;
+    CheckBox checkBoxTuesday;
+    CheckBox checkBoxWednesday;
+    CheckBox checkBoxThursday;
+    CheckBox checkBoxFriday;
+    CheckBox checkBoxSaturday;
+    CheckBox checkBoxSunday;
+    CheckBox[] checkBoxes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,23 +58,22 @@ public class BuildNewProgramAboutYou extends AppCompatActivity {
         adView.loadAd(adRequest);
 
         initSpinners();
+        initHelp();
+        initCheckBoxes();
         buttonContinue = (Button)findViewById(R.id.buttonToEquipment);
         buttonContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Boolean passed = false;
                 if(spinnerGrades.getSelectedItemPosition()!=0){
-                    if(spinnerDurations.getSelectedItemPosition()!=0){
-                        if(spinnerSessionsPerWeek.getSelectedItemPosition()!=0){
-                            if(spinnerCommitment.getSelectedItemPosition()!=0) {
-                                passed = true;
-                                ProgramBuilder programBuilder = ProgramBuilder.getInstance();
-                                programBuilder.setCommitmentLevel(commitmentStrings[spinnerCommitment.getSelectedItemPosition()]);
-                                programBuilder.setCurrentGrade(gradeStrings[spinnerGrades.getSelectedItemPosition()]);
-                                programBuilder.setSessionDuration(durationStrings[spinnerDurations.getSelectedItemPosition()]);
-                                programBuilder.setSessionsPerWeek(sessionStrings[spinnerSessionsPerWeek.getSelectedItemPosition()]);
-                                startActivity(new Intent(BuildNewProgramAboutYou.this, BuildNewProgramEquipment.class));
-                            }
+                    if(spinnerCommitment.getSelectedItemPosition()!=0) {
+                        if(checkBoxesClicked()) {
+                            passed = true;
+                            ProgramBuilder programBuilder = ProgramBuilder.getInstance();
+                            programBuilder.setCommitmentLevel(commitmentStrings[spinnerCommitment.getSelectedItemPosition()]);
+                            programBuilder.setCurrentGrade(gradeStrings[spinnerGrades.getSelectedItemPosition()]);
+                            programBuilder.setDaysOfWeek(boxesToArray());
+                            startActivity(new Intent(BuildNewProgramAboutYou.this, BuildNewProgramEquipment.class));
                         }
                     }
                 }
@@ -109,26 +120,6 @@ public class BuildNewProgramAboutYou extends AppCompatActivity {
         spinnerGrades.setAdapter(gradeArray);
         spinnerGrades.setSelection(0);
 
-        durationStrings = getResources().getStringArray(R.array.session_durations);
-        spinnerDurations = (Spinner) findViewById(R.id.spinnerDurations);
-        ArrayAdapter<String> durationsArray= new ArrayAdapter<>(
-                BuildNewProgramAboutYou.this,
-                R.layout.spinner_design,
-                durationStrings);
-        gradeArray.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerDurations.setAdapter(durationsArray);
-        spinnerDurations.setSelection(0);
-
-        sessionStrings = getResources().getStringArray(R.array.sessions_per_week);
-        spinnerSessionsPerWeek = (Spinner) findViewById(R.id.spinnerSessionsPerWeek);
-        ArrayAdapter<String> sessionsArray= new ArrayAdapter<>(
-                BuildNewProgramAboutYou.this,
-                R.layout.spinner_design,
-                sessionStrings);
-        gradeArray.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerSessionsPerWeek.setAdapter(sessionsArray);
-        spinnerSessionsPerWeek.setSelection(0);
-
         commitmentStrings = getResources().getStringArray(R.array.commitment_levels);
         spinnerCommitment = (Spinner) findViewById(R.id.spinnerCommitment);
         ArrayAdapter<String> commitmentArray= new ArrayAdapter<>(
@@ -140,4 +131,84 @@ public class BuildNewProgramAboutYou extends AppCompatActivity {
         spinnerCommitment.setSelection(0);
     }
 
+    void initHelp(){
+
+        imageHelpGrades = (ImageButton) findViewById(R.id.imageHelpGrades);
+        imageHelpGrades.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = "Select the grade range you fit into best. This controls what drills are allowed to be put into your program.\n\nFor example, you must select at least [5.11a to 5.11d] or [V1 to V3] for hangboard drills to be selected.";
+                AlertDialog.Builder builder = new AlertDialog.Builder(BuildNewProgramAboutYou.this);
+                builder.setMessage(text).setCancelable(true).show();
+            }
+        });
+
+        imageHelpCommitment = (ImageButton) findViewById(R.id.imageHelpCommitment);
+        imageHelpCommitment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = "Casual will generate 45 minutes of planned activites per day. Select this if you still wish to have lots of free time at the gym.\n\n" +
+                        "Moderate will generate 1.5 hours of planned activites per day. You will have some free time.\n\n" +
+                        "Dedicated will generate completely planned days. You should not climb outside of the drills listed, as it could lead to overtraining.";
+                AlertDialog.Builder builder = new AlertDialog.Builder(BuildNewProgramAboutYou.this);
+                builder.setMessage(text).setCancelable(true).show();
+            }
+        });
+
+        imageHelpDaysSelect = (ImageButton) findViewById(R.id.imageHelpDaysSelect);
+        imageHelpDaysSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = "Select all the days you want to climb. This also controls how many days per week of will be planned.";
+                AlertDialog.Builder builder = new AlertDialog.Builder(BuildNewProgramAboutYou.this);
+                builder.setMessage(text).setCancelable(true).show();
+            }
+        });
+    }
+
+    void initCheckBoxes(){
+        checkBoxMonday = (CheckBox)findViewById(R.id.checkBoxMonday);
+        checkBoxTuesday = (CheckBox)findViewById(R.id.checkBoxTuesday);
+        checkBoxWednesday = (CheckBox)findViewById(R.id.checkBoxWednesday);
+        checkBoxThursday = (CheckBox)findViewById(R.id.checkBoxThursday);
+        checkBoxFriday = (CheckBox)findViewById(R.id.checkBoxFriday);
+        checkBoxSaturday = (CheckBox)findViewById(R.id.checkBoxSaturday);
+        checkBoxSunday = (CheckBox)findViewById(R.id.checkBoxSunday);
+
+        checkBoxes = new CheckBox[]{
+                checkBoxMonday,
+                checkBoxTuesday,
+                checkBoxWednesday,
+                checkBoxThursday,
+                checkBoxFriday,
+                checkBoxSaturday,
+                checkBoxSunday
+        };
+
+        daysStrings = getResources().getStringArray(R.array.days_of_week);
+        for(int i = 0; i < checkBoxes.length; i++){
+            checkBoxes[i].setText(daysStrings[i]);
+        }
+    }
+
+    // Returns true if any check box is checked,
+    // false if none are
+    boolean checkBoxesClicked(){
+        for(int i = 0; i < checkBoxes.length; i++){
+            if(checkBoxes[i].isChecked()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    boolean[] boxesToArray(){
+        boolean[] array = new boolean[checkBoxes.length];
+        for(int i = 0; i < checkBoxes.length; i++){
+            if(checkBoxes[i].isChecked()){
+                array[i] = true;
+            }
+        }
+        return array;
+    }
 }

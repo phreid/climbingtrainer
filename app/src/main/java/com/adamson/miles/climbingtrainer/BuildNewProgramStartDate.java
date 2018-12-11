@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -43,7 +42,7 @@ public class BuildNewProgramStartDate extends AppCompatActivity {
             public void onClick(View v) {
                 Date startDate = new Date(datePicker.getYear()-1900,datePicker.getMonth(), datePicker.getDayOfMonth());
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                ProgramBuilder.getInstance().setStartDate(sdf.format(startDate));
+                ProgramBuilder.getInstance().setStartDateString(sdf.format(startDate));
                 startActivity(new Intent(BuildNewProgramStartDate.this, BuildNewProgramEndDate.class));
             }
         });

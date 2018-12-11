@@ -17,8 +17,6 @@ import android.widget.ImageButton;
 
 public class BuildNewProgramTypeSelect extends AppCompatActivity {
 
-    Context context;
-
     Button buttonVolumeOnly;
     Button buttonStrPowOnly;
     Button buttonPowEndOnly;
@@ -43,8 +41,6 @@ public class BuildNewProgramTypeSelect extends AppCompatActivity {
         AdRequest adRequest = new AdRequest.Builder()
                 .setRequestAgent("android_studio:ad_template").build();
         adView.loadAd(adRequest);
-
-        context = getApplicationContext();
 
         initButtons();
         initHelp();
@@ -187,7 +183,8 @@ public class BuildNewProgramTypeSelect extends AppCompatActivity {
         imageHelpBoulderingProgram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text = "Build an entire bouldering program with three phases: Volume, Strength and Power, and then Power Endurance.";
+                String text = "Build an entire bouldering program with three phases: Volume, Strength and Power, and then Power Endurance.\n\n" +
+                        "When selecting dates, remember that this type of program must be at least 4 weeks long.";
                 AlertDialog.Builder builder = new AlertDialog.Builder(BuildNewProgramTypeSelect.this);
                 builder.setMessage(text).setCancelable(true).show();
             }
@@ -197,15 +194,12 @@ public class BuildNewProgramTypeSelect extends AppCompatActivity {
         imageHelpRoutesProgram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text = "Build an entire routes program with four phases: Volume, Strength and Power, Power Endurance and then Endurance.";
+                String text = "Build an entire routes program with four phases: Volume, Strength and Power, Power Endurance and then Endurance.\n\n" +
+                        "When selecting dates, remember that this type of program must be at least 6 weeks long.";
                 AlertDialog.Builder builder = new AlertDialog.Builder(BuildNewProgramTypeSelect.this);
                 builder.setMessage(text).setCancelable(true).show();
             }
         });
-
-
-
-
     }
 
 }

@@ -5,6 +5,7 @@ import com.google.android.gms.ads.AdView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -44,10 +45,26 @@ public class BuildNewProgramEndDate extends AppCompatActivity {
             public void onClick(View v) {
                 Date endDate = new Date(datePicker.getYear()-1900, datePicker.getMonth(), datePicker.getDayOfMonth());
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                ProgramBuilder.getInstance().setEndDate(sdf.format(endDate));
-                startActivity(new Intent(BuildNewProgramEndDate.this, BuildNewProgramReview.class));
+                ProgramBuilder.getInstance().setEndDateString(sdf.format(endDate));
+                if(ProgramBuilder.getInstance().checkDates()){
+                    startActivity(new Intent(BuildNewProgramEndDate.this, BuildNewProgramReview.class));
+                } else {
+                    String text = "Route climbing programs must be at least 6 weeks long.\n\n" +
+                            "Bouldering programs must be at least 4 weeks long.\n\n" +
+                            "Program segments must be at least 1 week long.";
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildNewProgramEndDate.this);
+                    builder.setMessage(text).setCancelable(true).show();
+                }
+
             }
         });
+
+        // Upon entry, remind user how long a program must be.
+        String text = "Route climbing programs must be at least 6 weeks long.\n\n" +
+                "Bouldering programs must be at least 4 weeks long.\n\n" +
+                "Program segments must be at least 1 week long.";
+        AlertDialog.Builder builder = new AlertDialog.Builder(BuildNewProgramEndDate.this);
+        builder.setMessage(text).setCancelable(true).show();
     }
 
 

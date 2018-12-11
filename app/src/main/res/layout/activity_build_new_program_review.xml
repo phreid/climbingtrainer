@@ -23,14 +23,23 @@
                 android:id="@+id/textViewReview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:alpha="0.85"
+                android:layout_margin="15dp"
                 android:background="@color/colorWhite"
                 android:padding="15dp"
-                android:layout_margin="15dp"
+                android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:typeface="normal"
-                android:text="TextView" />
+                android:typeface="normal" />
+
+            <TextView
+                android:id="@+id/textViewTest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:background="@android:color/white"
+                android:textColor="@android:color/black"
+                android:textStyle="normal"
+                android:typeface="normal" />
         </LinearLayout>
     </ScrollView>
 

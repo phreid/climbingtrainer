@@ -62,9 +62,9 @@ public class ExerciseBuilder {
         insertHangboardTwo();
         insertHangboardThree();
         insertHangboardFour();
-        insertHangboardMetoliousOne();
-        insertHangboardMetoliousTwo();
-        insertHangboardMetoliousThree();
+        insertHangboardMetoliusOne();
+        insertHangboardMetoliusTwo();
+        insertHangboardMetoliusThree();
         insertHangboardDWoods();
         insertHangboardREIcoop();
         insertThreeHundredAbs();
@@ -249,9 +249,9 @@ public class ExerciseBuilder {
         db.insertExercise(e);
     }
 
-    void insertHangboardMetoliousOne(){
+    void insertHangboardMetoliusOne(){
         Exercise e = new Exercise()
-                .setName("Metolious Entry Level Hangboard")
+                .setName("Metolius Entry Level Hangboard")
                 .setDesc("1st minute: 15s hang, Jug: \n\n" +
                         "2nd minute: 1 pull-up, Round Sloper: \n\n" +
                         "3rd minute: 10s hang, Medium Edge: \n\n" +
@@ -273,9 +273,9 @@ public class ExerciseBuilder {
         db.insertExercise(e);
     }
 
-    void insertHangboardMetoliousTwo(){
+    void insertHangboardMetoliusTwo(){
         Exercise e = new Exercise()
-                .setName("Metolious Intermediate Hangboard")
+                .setName("Metolius Intermediate Hangboard")
                 .setDesc("1st minute: 15s hang, 3 pull-ups, Large Edge: \n\n" +
                         "2nd minute: 2 pull ups, Round Sloper + 20 s hang, Medium Edge: \n\n" +
                         "3rd minute: 20s hang, Small Edge + 15s 90º bent arm hang, Pocket: \n\n" +
@@ -296,9 +296,9 @@ public class ExerciseBuilder {
         db.insertExercise(e);
     }
 
-    void insertHangboardMetoliousThree(){
+    void insertHangboardMetoliusThree(){
         Exercise e = new Exercise()
-                .setName("Metolious Advanced Hangboard")
+                .setName("Metolius Advanced Hangboard")
                 .setDesc("1st minute: 20 seconds straight arm hang, Large Sloper + 3 pull-ups, 4-Finger Flat Edge: \n\n" +
                         "2nd minute: 20 seconds slightly bent arm hang, Large Slope, stay on 20 seconds L-sit or 20 hanging knee curls: \n\n" +
                         "3rd minute: 5 pull-ups, 3-Finger Pocket, stay on 25 seconds straight arm hang: \n\n" +

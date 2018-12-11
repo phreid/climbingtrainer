@@ -43,7 +43,6 @@
         <item>Strength and Power Only</item>
         <item>Power Endurance Only</item>
         <item>Route Endurance Only</item>
-        <item>Complete Programs</item>
         <item>Bouldering Program</item>
         <item>Routes Program</item>
     </string-array>
@@ -74,6 +73,26 @@
         <item>45 Minutes</item>
         <item>60 Minutes</item>
     </string-array>
+
+    <string-array name="days_of_week">
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
+
+    <string name="Monday">Monday</string>
+    <string name="Tuesday">Tuesday</string>
+    <string name="Wednesday">Wednesday</string>
+    <string name="Thursday">Thursday</string>
+    <string name="Friday">Friday</string>
+    <string name="Saturday">Saturday</string>
+    <string name="Sunday">Sunday</string>
+
+    <string name="days_select">Select the Days You Climb...</string>
 
     <string name="select_commitment">Select Commitment Level</string>
 

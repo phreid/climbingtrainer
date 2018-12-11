@@ -8,13 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class BuildNewProgramReview extends AppCompatActivity {
 
     TextView textViewReview;
+    TextView textViewTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,26 +60,49 @@ public class BuildNewProgramReview extends AppCompatActivity {
         ProgramBuilder programBuilder = ProgramBuilder.getInstance();
 
         String s = reviewSegments[0] + " " + programBuilder.getProgramType() + "\n\n";
-        s = s + reviewSegments[1] + " " +  programBuilder.getSessionDuration() + "\n\n";
-        s = s + reviewSegments[2] + " " +  programBuilder.getSessionsPerWeek() + "\n\n";
+      //  s = s + reviewSegments[1] + " " +  programBuilder.getSessionDuration() + "\n\n";
+       // s = s + reviewSegments[2] + " " +  programBuilder.getSessionsPerWeek() + "\n\n";
         s = s + reviewSegments[3] + " " +  programBuilder.getCommitmentLevel() + "\n\n";
         s = s + reviewSegments[4] + " " +  programBuilder.getCurrentGrade() + "\n\n";
-        s = s + reviewSegments[5] + " " +  programBuilder.getStartDate() + "\n\n";
-        s = s + reviewSegments[6] + " " +  programBuilder.getEndDate() + "\n\n";
+        s = s + reviewSegments[5] + " " +  programBuilder.getStartDateString() + "\n\n";
+        s = s + reviewSegments[6] + " " +  programBuilder.getEndDateString() + "\n\n";
+        s = s + "Program Length: " + Long.toString(programBuilder.getProgramLength()) + " Days\n\n";
         s = s + reviewSegments[7] + "\n\n";
 
         String[] equipment = getResources().getStringArray(R.array.equipment);
-        boolean[] booleenEquipment = programBuilder.getEquipmentAvailable();
+        boolean[] equipmentArray = programBuilder.getEquipmentAvailable();
         for(int i = 0; i < equipment.length; i++){
-            if(booleenEquipment[i]){
+            if(equipmentArray[i]){
                 s = s + equipment[i];
-                if(i != equipment.length-1){
+
+                // If this is not the last item of equipment, add a comma
+                boolean putComma = false;
+                for(int j = i + 1; j < equipmentArray.length; j++){
+                    if(equipmentArray[j]){
+                        putComma = true;
+                    }
+                }
+                if(putComma){
                     s = s + ", ";
                 }
             }
         }
 
         textViewReview.setText(s);
+
+        textViewTest = (TextView)findViewById(R.id.textViewTest);
+        ProgramBuilder.getInstance().buildDatesInProgram();
+        Date[] trainDays = ProgramBuilder.getInstance().getTrainingDatesInProgram();
+        String dates = "";
+        SimpleDateFormat format_yyyymmdd = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat format_EEEE = new SimpleDateFormat("EEEE");
+        for(int i = 0; i < trainDays.length; i++){
+            if(trainDays[i] != null){
+                dates += format_EEEE.format(trainDays[i])+ ", " + format_yyyymmdd.format(trainDays[i]) + "\n";
+            }
+        }
+        String text = "All Dates of Program and their Type:\n\n";
+        textViewTest.setText(text + dates);
     }
 
 }
