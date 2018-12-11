@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.adamson.miles.climbingtrainer">
 
     <!-- Include required permissions for Google Mobile Ads to run. -->
@@ -33,14 +34,14 @@
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-            android:theme="@android:style/Theme.Translucent" />
+            tools:replace="android:theme"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".BuildNewProgramAboutYou"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_build_new_program_about_you" />
         <activity
             android:name=".BuildNewProgramTypeSelect"
-            android:screenOrientation="portrait"
             android:label="@string/title_activity_build_new_program_type_select" />
         <activity
             android:name=".BuildNewProgramEquipment"

@@ -164,6 +164,51 @@
                     android:text="@string/tip_overtraining_name" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/layoutWarpUp"
+                style="@style/LayoutHorizontalTransparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonTipWamUp"
+                    style="@style/ButtonWhite"
+                    android:layout_width="match_parent"
+
+                    android:text="@string/tip_warm_up_name" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutHangboard"
+                style="@style/LayoutHorizontalTransparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonTipHangboard"
+                    style="@style/ButtonWhite"
+                    android:layout_width="match_parent"
+
+                    android:text="@string/tip_hangboard_form_name" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutAlcohol"
+                style="@style/LayoutHorizontalTransparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonTipAlcohol"
+                    style="@style/ButtonWhite"
+                    android:layout_width="match_parent"
+
+                    android:text="@string/tip_alcohol_name" />
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

@@ -6,6 +6,7 @@ import com.google.android.gms.ads.AdView;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -66,7 +67,9 @@ public class BuildNewProgramAboutYou extends AppCompatActivity {
                     }
                 }
                 if (!passed) {
-                    Help.helpAlert(R.id.buttonToEquipment, BuildNewProgramAboutYou.this);
+                    String text = "You must make a selection before continuing.";
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildNewProgramAboutYou.this);
+                    builder.setMessage(text).setCancelable(true).show();
                 }
             }
         });

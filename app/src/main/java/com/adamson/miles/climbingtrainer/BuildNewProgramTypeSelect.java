@@ -4,8 +4,10 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -135,11 +137,16 @@ public class BuildNewProgramTypeSelect extends AppCompatActivity {
 
 
     void initHelp(){
-        imageHelpVolume = (ImageButton) findViewById(R.id.imageHelpVolume);
+
+        imageHelpVolume = findViewById(R.id.imageHelpVolume);
         imageHelpVolume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Help.helpAlert(R.id.imageHelpVolume, BuildNewProgramTypeSelect.this);
+                String text = "Build only the Volume phase of a training program. Volume training aims to do as many moves as possible in a session. " +
+                        "It is often trained first to prepare the body with a baseline fitness level. During this phase the climbing " +
+                        "is not continuous or difficult enough to get a pump.";
+                AlertDialog.Builder builder = new AlertDialog.Builder(BuildNewProgramTypeSelect.this);
+                builder.setMessage(text).setCancelable(true).show();
             }
         });
 
@@ -147,7 +154,10 @@ public class BuildNewProgramTypeSelect extends AppCompatActivity {
         imageHelpStrPow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Help.helpAlert(R.id.imageHelpStrPow, BuildNewProgramTypeSelect.this);
+                String text = "Build only the Strength and Power phase of a training program. Strength and Power are defined as 1-4 moves. Strength is your ability to hold positions, " +
+                        "and power is your ability to generate from them. Strength and Power control the hardest individual moves you can do.";
+                AlertDialog.Builder builder = new AlertDialog.Builder(BuildNewProgramTypeSelect.this);
+                builder.setMessage(text).setCancelable(true).show();
             }
         });
 
@@ -155,7 +165,10 @@ public class BuildNewProgramTypeSelect extends AppCompatActivity {
         imageHelpPowEnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Help.helpAlert(R.id.imageHelpPowEnd, BuildNewProgramTypeSelect.this);
+                String text = "Build only the Power Endurance phase of a training program. Power Endurance is defined as 8-15 moves." +
+                        "It helps with your ability to do several near-limit moves in a row, or when slightly fatigued.";
+                AlertDialog.Builder builder = new AlertDialog.Builder(BuildNewProgramTypeSelect.this);
+                builder.setMessage(text).setCancelable(true).show();
             }
         });
 
@@ -163,7 +176,10 @@ public class BuildNewProgramTypeSelect extends AppCompatActivity {
         imageHelpEnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Help.helpAlert(R.id.imageHelpEnd, BuildNewProgramTypeSelect.this);
+                String text = "Build only the Endurance phase of a training program. Endurance is defined as more than 20 moves." +
+                        "It helps with your ability to complete long moderate sequences without getting pumped, and to recover from pump.";
+                AlertDialog.Builder builder = new AlertDialog.Builder(BuildNewProgramTypeSelect.this);
+                builder.setMessage(text).setCancelable(true).show();
             }
         });
 
@@ -171,7 +187,9 @@ public class BuildNewProgramTypeSelect extends AppCompatActivity {
         imageHelpBoulderingProgram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Help.helpAlert(R.id.imageHelpBoulderingProgram, BuildNewProgramTypeSelect.this);
+                String text = "Build an entire bouldering program with three phases: Volume, Strength and Power, and then Power Endurance.";
+                AlertDialog.Builder builder = new AlertDialog.Builder(BuildNewProgramTypeSelect.this);
+                builder.setMessage(text).setCancelable(true).show();
             }
         });
 
@@ -179,7 +197,9 @@ public class BuildNewProgramTypeSelect extends AppCompatActivity {
         imageHelpRoutesProgram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Help.helpAlert(R.id.imageHelpRoutesProgram, BuildNewProgramTypeSelect.this);
+                String text = "Build an entire routes program with four phases: Volume, Strength and Power, Power Endurance and then Endurance.";
+                AlertDialog.Builder builder = new AlertDialog.Builder(BuildNewProgramTypeSelect.this);
+                builder.setMessage(text).setCancelable(true).show();
             }
         });
 

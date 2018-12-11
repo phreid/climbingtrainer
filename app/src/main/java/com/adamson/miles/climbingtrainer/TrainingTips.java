@@ -26,6 +26,9 @@ public class TrainingTips extends AppCompatActivity {
     Button buttonTipBouldering;
     Button buttonTipOvertraining;
     Button buttonTipTrainingCycles;
+    Button buttonTipWamUp;
+    Button buttonTipHangboard;
+    Button buttonTipAlcohol;
 
     private InterstitialAd mInterstitialAd;
 
@@ -150,6 +153,39 @@ public class TrainingTips extends AppCompatActivity {
                 Intent intent = new Intent(TrainingTips.this, ViewTip.class);
                 intent.putExtra("tip", getString(R.string.tip_training_cycles));
                 intent.putExtra("title", buttonTipTrainingCycles.getText());
+                startActivity(intent);
+            }
+        });
+
+        buttonTipWamUp = (Button)findViewById(R.id.buttonTipWamUp);
+        buttonTipWamUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TrainingTips.this, ViewTip.class);
+                intent.putExtra("tip", getString(R.string.tip_warm_up));
+                intent.putExtra("title", buttonTipWamUp.getText());
+                startActivity(intent);
+            }
+        });
+
+        buttonTipHangboard = (Button)findViewById(R.id.buttonTipHangboard);
+        buttonTipHangboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TrainingTips.this, ViewTip.class);
+                intent.putExtra("tip", getString(R.string.tip_hangboard_form));
+                intent.putExtra("title", buttonTipHangboard.getText());
+                startActivity(intent);
+            }
+        });
+
+        buttonTipAlcohol = (Button)findViewById(R.id.buttonTipAlcohol);
+        buttonTipAlcohol.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TrainingTips.this, ViewTip.class);
+                intent.putExtra("tip", getString(R.string.tip_alcohol));
+                intent.putExtra("title", buttonTipAlcohol.getText());
                 startActivity(intent);
             }
         });
