@@ -92,13 +92,16 @@ public class BuildNewProgramReview extends AppCompatActivity {
 
         textViewTest = (TextView)findViewById(R.id.textViewTest);
         ProgramBuilder.getInstance().buildDatesInProgram();
-        Date[] trainDays = ProgramBuilder.getInstance().getTrainingDatesInProgram();
+        ProgramBuilder.getInstance().buildTrainingDays();
+        Date[] programDates = ProgramBuilder.getInstance().getTrainingDatesInProgram();
+        TrainingDay[] trainingDays = ProgramBuilder.getInstance().getTrainingDays();
         String dates = "";
         SimpleDateFormat format_yyyymmdd = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat format_EEEE = new SimpleDateFormat("EEEE");
-        for(int i = 0; i < trainDays.length; i++){
-            if(trainDays[i] != null){
-                dates += format_EEEE.format(trainDays[i])+ ", " + format_yyyymmdd.format(trainDays[i]) + "\n";
+        for(int i = 0; i < programDates.length; i++){
+            if(programDates[i] != null){
+                dates += format_EEEE.format(programDates[i])+ ", " + format_yyyymmdd.format(programDates[i]);
+                dates += "..." + trainingDays[i].type + "\n";
             }
         }
         String text = "All Dates of Program and their Type:\n\n";
