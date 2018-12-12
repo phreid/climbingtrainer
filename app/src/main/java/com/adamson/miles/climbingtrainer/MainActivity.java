@@ -4,6 +4,8 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,8 +22,15 @@ public class MainActivity extends AppCompatActivity {
     Button buttonLoadProgram;
     Button buttonTrainingTips;
     Button buttonAboutTheAuthor;
-    Button buttonRemoveAds;
     Button buttonExercises;
+    Button buttonRemoveAds;
+
+    ImageButton imageBuildNewProgram;
+    ImageButton imageLoadProgram;
+    ImageButton imageTips;
+    ImageButton imageAboutTheAuthor;
+    ImageButton imageExercises;
+    ImageButton imageRemoveAds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,47 +55,28 @@ public class MainActivity extends AppCompatActivity {
         buttonRemoveAds  = (Button) findViewById(R.id.buttonRemoveAds);
         buttonExercises = (Button)findViewById(R.id.buttonExercises);
 
-        buttonBuildNewProgram.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, BuildNewProgramTypeSelect.class));
-            }
-        });
+        imageBuildNewProgram = (ImageButton)findViewById(R.id.imageBuildNewProgram);
+        imageLoadProgram = (ImageButton)findViewById(R.id.imageLoadProgram);
+        imageTips = (ImageButton)findViewById(R.id.imageTips);
+        imageAboutTheAuthor = (ImageButton)findViewById(R.id.imageAboutTheAuthor);
+        imageExercises = (ImageButton)findViewById(R.id.imageExercises);
+        imageRemoveAds = (ImageButton)findViewById(R.id.imageRemoveAds);
 
-        buttonAboutTheAuthor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, AboutTheAuthor.class));
-            }
-        });
 
-        buttonRemoveAds.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, RemoveAds.class));
-            }
-        });
+        buttonBuildNewProgram.setOnClickListener(navigateTo(BuildNewProgramTypeSelect.class));
+        buttonAboutTheAuthor.setOnClickListener(navigateTo(AboutTheAuthor.class));
+        buttonRemoveAds.setOnClickListener(navigateTo(RemoveAds.class));
+        buttonTrainingTips.setOnClickListener(navigateTo(TrainingTips.class));
+        buttonExercises.setOnClickListener(navigateTo(ExerciseList.class));
+        buttonLoadProgram.setOnClickListener(navigateTo(LoadProgram.class));
 
-        buttonTrainingTips.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, TrainingTips.class));
-            }
-        });
+        imageBuildNewProgram.setOnClickListener(navigateTo(BuildNewProgramTypeSelect.class));
+        imageAboutTheAuthor.setOnClickListener(navigateTo(AboutTheAuthor.class));
+        imageRemoveAds.setOnClickListener(navigateTo(RemoveAds.class));
+        imageTips.setOnClickListener(navigateTo(TrainingTips.class));
+        imageExercises.setOnClickListener(navigateTo(ExerciseList.class));
+        imageLoadProgram.setOnClickListener(navigateTo(LoadProgram.class));
 
-        buttonExercises.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ExerciseList.class));
-            }
-        });
-
-        buttonLoadProgram.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, LoadProgram.class));
-            }
-        });
     }
 
 
@@ -108,6 +99,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    View.OnClickListener navigateTo(Class<?> destination){
+        final Intent intent = new Intent(MainActivity.this, destination);
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent);
+            }
+        };
     }
 
 }

@@ -174,7 +174,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Returns all exercises which are less than or equal to a given grade range
-    public Exercise[] selectByTypeGradeMinimum(String type, String grade){
+    public Exercise[] selectByTypeGradeMaximum(String type, String grade){
         SQLiteDatabase db = this.getWritableDatabase();
 
         String query = "SELECT * FROM "+T1+" WHERE "+T1_type+ " = '"+type+"'";

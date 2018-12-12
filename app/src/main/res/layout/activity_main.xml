@@ -93,7 +93,7 @@
                 android:text="@string/exercise_database" />
 
             <ImageButton
-                android:id="@+id/imageSettings"
+                android:id="@+id/imageExercises"
                 style="@style/ButtonImageSmall"
                 android:background="@drawable/gradient_yellow"
                 ads:srcCompat="@drawable/ic_exercises" />

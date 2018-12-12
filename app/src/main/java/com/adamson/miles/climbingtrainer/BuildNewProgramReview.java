@@ -15,7 +15,9 @@ import java.util.Date;
 public class BuildNewProgramReview extends AppCompatActivity {
 
     TextView textViewReview;
-    TextView textViewTest;
+    TextView textViewDate;
+    TextView textViewDayOfWeek;
+    TextView textViewType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,22 +92,35 @@ public class BuildNewProgramReview extends AppCompatActivity {
 
         textViewReview.setText(s);
 
-        textViewTest = (TextView)findViewById(R.id.textViewTest);
+        textViewDate = (TextView)findViewById(R.id.textViewDate);
+        textViewDayOfWeek = (TextView)findViewById(R.id.textViewDayOfWeek);
+        textViewType = (TextView)findViewById(R.id.textViewType);
+
         ProgramBuilder.getInstance().buildDatesInProgram();
         ProgramBuilder.getInstance().buildTrainingDays();
+
         Date[] programDates = ProgramBuilder.getInstance().getTrainingDatesInProgram();
         TrainingDay[] trainingDays = ProgramBuilder.getInstance().getTrainingDays();
+
         String dates = "";
+        String days = "";
+        String types = "";
+
         SimpleDateFormat format_yyyymmdd = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat format_EEEE = new SimpleDateFormat("EEEE");
+
         for(int i = 0; i < programDates.length; i++){
             if(programDates[i] != null){
-                dates += format_EEEE.format(programDates[i])+ ", " + format_yyyymmdd.format(programDates[i]);
-                dates += "..." + trainingDays[i].type + "\n";
+                //dates += format_EEEE.format(programDates[i])+ ", " + format_yyyymmdd.format(programDates[i]);
+                //dates += "..." + trainingDays[i].type + "\n";
+                dates += format_yyyymmdd.format(programDates[i]) + "\n";
+                days += format_EEEE.format(programDates[i]) + "\n";
+                types += trainingDays[i].type + "\n";
             }
         }
-        String text = "All Dates of Program and their Type:\n\n";
-        textViewTest.setText(text + dates);
+        textViewDate.setText(dates);
+        textViewDayOfWeek.setText(days);
+        textViewType.setText(types);
     }
 
 }
