@@ -175,7 +175,8 @@
             <Button
                 android:id="@+id/buttonToEquipment"
                 style="@style/ButtonWhite"
-                android:text="@string/continue_to_equipment" />
+                android:background="@drawable/gradient_green"
+                android:text="@string/done" />
         </LinearLayout>
 
     </LinearLayout>

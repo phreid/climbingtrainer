@@ -17,14 +17,15 @@
             android:id="@+id/datePickerEndDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorWhite" />
+            android:background="@color/colorWhite"
+            android:headerBackground="@android:color/holo_purple" />
 
         <LinearLayout style="@style/LayoutHorizontalTransparent">
 
             <Button
                 android:id="@+id/buttonToReview"
                 style="@style/ButtonWhite"
-                android:background="@drawable/gradient_red"
+                android:background="@drawable/gradient_pink"
                 android:gravity="center"
                 android:text="@string/accept_end_date" />
         </LinearLayout>

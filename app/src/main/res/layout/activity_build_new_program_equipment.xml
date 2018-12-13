@@ -227,7 +227,8 @@
                 <Button
                     android:id="@+id/buttonToStartDate"
                     style="@style/ButtonWhite"
-                    android:text="@string/continue_to_start_date" />
+                    android:background="@drawable/gradient_green"
+                    android:text="@string/done" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

@@ -46,8 +46,9 @@ public class BuildNewProgramEndDate extends AppCompatActivity {
                 Date endDate = new Date(datePicker.getYear()-1900, datePicker.getMonth(), datePicker.getDayOfMonth());
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 ProgramBuilder.getInstance().setEndDateString(sdf.format(endDate));
+                // Check if their selection was valid and continue if so and alert if not
                 if(ProgramBuilder.getInstance().checkDates()){
-                    startActivity(new Intent(BuildNewProgramEndDate.this, BuildNewProgramReview.class));
+                    startActivity(new Intent(BuildNewProgramEndDate.this, BuildNewProgramRoot.class));
                 } else {
                     String text = "Route climbing programs must be at least 6 weeks long.\n\n" +
                             "Bouldering programs must be at least 4 weeks long.\n\n" +

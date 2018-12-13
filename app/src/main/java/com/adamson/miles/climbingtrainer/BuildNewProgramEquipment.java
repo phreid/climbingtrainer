@@ -48,11 +48,9 @@ public class BuildNewProgramEquipment extends AppCompatActivity {
             public void onClick(View v) {
                 ProgramBuilder programBuilder = ProgramBuilder.getInstance();
                 for(int i = 0; i < boxes.length; i++){
-                    if(boxes[i].isChecked()){
-                        programBuilder.setEquipmentAvailable(i);
-                    }
+                    programBuilder.setEquipmentAvailable(i, boxes[i].isChecked());
                 }
-                startActivity(new Intent(BuildNewProgramEquipment.this, BuildNewProgramStartDate.class));
+                startActivity(new Intent(BuildNewProgramEquipment.this, BuildNewProgramRoot.class));
             }
         });
 

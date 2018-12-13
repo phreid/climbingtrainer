@@ -42,7 +42,7 @@ public class ProgramBuilder {
     public void setProgramType(String s){programType = s;}
     public void setCommitmentLevel(String s){commitmentLevel = s;}
     public void setCurrentGrade(String s){currentGrade = s;}
-    public void setEquipmentAvailable(int i){equipmentAvailable[i] = true;};
+    public void setEquipmentAvailable(int i, boolean b){equipmentAvailable[i] = b;};
     public void setStartDateString(String date){ startDateString = date;}
     public void setEndDateString(String date){ endDateString = date;}
     public void setDaysOfWeek(boolean[] b){daysOfWeek = b;}

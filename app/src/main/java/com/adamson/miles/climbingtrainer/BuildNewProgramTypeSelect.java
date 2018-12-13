@@ -44,7 +44,6 @@ public class BuildNewProgramTypeSelect extends AppCompatActivity {
 
         initButtons();
         initHelp();
-
     }
 
 
@@ -71,64 +70,18 @@ public class BuildNewProgramTypeSelect extends AppCompatActivity {
 
     void initButtons(){
         buttonVolumeOnly = (Button) findViewById(R.id.buttonVolume);
-        buttonVolumeOnly.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ProgramBuilder programBuilder = ProgramBuilder.getInstance();
-                programBuilder.setProgramType(buttonVolumeOnly.getText().toString());
-                startActivity(new Intent(BuildNewProgramTypeSelect.this, BuildNewProgramAboutYou.class));
-            }
-        });
-
         buttonStrPowOnly = (Button) findViewById(R.id.buttonStrPow);
-        buttonStrPowOnly.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ProgramBuilder programBuilder = ProgramBuilder.getInstance();
-                programBuilder.setProgramType(buttonStrPowOnly.getText().toString());
-                startActivity(new Intent(BuildNewProgramTypeSelect.this, BuildNewProgramAboutYou.class));
-            }
-        });
-
         buttonPowEndOnly = (Button) findViewById(R.id.buttonPowEnd);
-        buttonPowEndOnly.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ProgramBuilder programBuilder = ProgramBuilder.getInstance();
-                programBuilder.setProgramType(buttonPowEndOnly.getText().toString());
-                startActivity(new Intent(BuildNewProgramTypeSelect.this, BuildNewProgramAboutYou.class));
-            }
-        });
-
         buttonEndOnly = (Button) findViewById(R.id.buttonEnd);
-        buttonEndOnly.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ProgramBuilder programBuilder = ProgramBuilder.getInstance();
-                programBuilder.setProgramType(buttonEndOnly.getText().toString());
-                startActivity(new Intent(BuildNewProgramTypeSelect.this, BuildNewProgramAboutYou.class));
-            }
-        });
-
         buttonBoulderingProgram = (Button) findViewById(R.id.buttonBoulderingProgram);
-        buttonBoulderingProgram.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ProgramBuilder programBuilder = ProgramBuilder.getInstance();
-                programBuilder.setProgramType(buttonBoulderingProgram.getText().toString());
-                startActivity(new Intent(BuildNewProgramTypeSelect.this, BuildNewProgramAboutYou.class));
-            }
-        });
-
         buttonRoutesProgram = (Button) findViewById(R.id.buttonRoutesProgram);
-        buttonRoutesProgram.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ProgramBuilder programBuilder = ProgramBuilder.getInstance();
-                programBuilder.setProgramType(buttonRoutesProgram.getText().toString());
-                startActivity(new Intent(BuildNewProgramTypeSelect.this, BuildNewProgramAboutYou.class));
-            }
-        });
+
+        buttonVolumeOnly.setOnClickListener(select(buttonVolumeOnly));
+        buttonStrPowOnly.setOnClickListener(select(buttonStrPowOnly));
+        buttonPowEndOnly.setOnClickListener(select(buttonPowEndOnly));
+        buttonEndOnly.setOnClickListener(select(buttonEndOnly));
+        buttonBoulderingProgram.setOnClickListener(select(buttonBoulderingProgram));
+        buttonRoutesProgram.setOnClickListener(select(buttonRoutesProgram));
         }
 
 
@@ -200,6 +153,17 @@ public class BuildNewProgramTypeSelect extends AppCompatActivity {
                 builder.setMessage(text).setCancelable(true).show();
             }
         });
+    }
+
+    View.OnClickListener select(final Button button){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProgramBuilder programBuilder = ProgramBuilder.getInstance();
+                programBuilder.setProgramType(button.getText().toString());
+                startActivity(new Intent(BuildNewProgramTypeSelect.this, BuildNewProgramRoot.class));
+            }
+        };
     }
 
 }

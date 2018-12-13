@@ -23,8 +23,8 @@
 
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,59 +34,62 @@
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-            tools:replace="android:theme"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            tools:replace="android:theme" />
         <activity
             android:name=".BuildNewProgramAboutYou"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_build_new_program_about_you" />
+            android:label="@string/title_activity_build_new_program_about_you"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".BuildNewProgramTypeSelect"
             android:label="@string/title_activity_build_new_program_type_select" />
         <activity
             android:name=".BuildNewProgramEquipment"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_build_new_program_equipment" />
+            android:label="@string/title_activity_build_new_program_equipment"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".BuildNewProgramStartDate"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_build_new_program_details" />
+            android:label="@string/title_activity_build_new_program_details"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".BuildNewProgramEndDate"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_build_new_program_end_date" />
+            android:label="@string/title_activity_build_new_program_end_date"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".BuildNewProgramReview"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_build_new_program_review" />
+            android:label="@string/title_activity_build_new_program_review"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AboutTheAuthor"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_about_the_author" />
+            android:label="@string/title_activity_about_the_author"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".RemoveAds"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_remove_ads" />
+            android:label="@string/title_activity_remove_ads"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".TrainingTips"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_training_tips" />
+            android:label="@string/title_activity_training_tips"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ExerciseList"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_exercises" />
+            android:label="@string/title_activity_exercises"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LoadProgram"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_load_program" />
+            android:label="@string/title_activity_load_program"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ViewExercise"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_view_exercise" />
+            android:label="@string/title_activity_view_exercise"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ViewTip"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_view_tip"></activity>
+            android:label="@string/title_activity_view_tip"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".BuildNewProgramRoot"
+            android:label="@string/title_activity_build_new_program_root"></activity>
     </application>
 
 </manifest>

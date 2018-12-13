@@ -73,7 +73,7 @@ public class BuildNewProgramAboutYou extends AppCompatActivity {
                             programBuilder.setCommitmentLevel(commitmentStrings[spinnerCommitment.getSelectedItemPosition()]);
                             programBuilder.setCurrentGrade(gradeStrings[spinnerGrades.getSelectedItemPosition()]);
                             programBuilder.setDaysOfWeek(boxesToArray());
-                            startActivity(new Intent(BuildNewProgramAboutYou.this, BuildNewProgramEquipment.class));
+                            startActivity(new Intent(BuildNewProgramAboutYou.this, BuildNewProgramRoot.class));
                         }
                     }
                 }

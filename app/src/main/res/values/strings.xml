@@ -7,7 +7,7 @@
     <string name="continue_to_start_date">Continue to Program Date Selection</string>
     <string name="accept_start_date">Accept Start Date</string>
     <string name="accept_end_date">Accept End Date</string>
-
+    <string name="done">Done</string>
     <string name="reps">Reps: </string>
     <string name="sets">Sets: </string>
     <string name="equip">Equipment: </string>
@@ -15,6 +15,7 @@
     <string name="rest">Rest: </string>
     <string name="type">Drill Type: </string>
     <string name="time">Time Allotted: </string>
+    <string name="home">Cancel and Return to Home</string>
 
     <string name="help_message_title">Help Message</string>
     <string name="welcome">Welcome!</string>
@@ -241,7 +242,7 @@
         This is an ad unit ID for an interstitial test ad. Replace with your own interstitial ad unit id.
         For more information, see https://support.google.com/admob/answer/3052638
     <!- -->
-    
+
     <string name="title_activity_remove_ads">Remove Ads</string>
     <string name="title_activity_training_tips">Training Tips</string>
     <string name="interstitial_ad_sample">Interstitial Ad Sample</string>
@@ -261,4 +262,5 @@
     <string name="title_activity_load_program">Load Program</string>
     <string name="title_activity_view_exercise">View Exercise</string>
     <string name="title_activity_view_tip">View Tip</string>
+    <string name="title_activity_build_new_program_root">Build New Program</string>
 </resources>

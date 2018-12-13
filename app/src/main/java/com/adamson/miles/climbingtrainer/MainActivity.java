@@ -63,14 +63,14 @@ public class MainActivity extends AppCompatActivity {
         imageRemoveAds = (ImageButton)findViewById(R.id.imageRemoveAds);
 
 
-        buttonBuildNewProgram.setOnClickListener(navigateTo(BuildNewProgramTypeSelect.class));
+        buttonBuildNewProgram.setOnClickListener(navigateTo(BuildNewProgramRoot.class));
         buttonAboutTheAuthor.setOnClickListener(navigateTo(AboutTheAuthor.class));
         buttonRemoveAds.setOnClickListener(navigateTo(RemoveAds.class));
         buttonTrainingTips.setOnClickListener(navigateTo(TrainingTips.class));
         buttonExercises.setOnClickListener(navigateTo(ExerciseList.class));
         buttonLoadProgram.setOnClickListener(navigateTo(LoadProgram.class));
 
-        imageBuildNewProgram.setOnClickListener(navigateTo(BuildNewProgramTypeSelect.class));
+        imageBuildNewProgram.setOnClickListener(navigateTo(BuildNewProgramRoot.class));
         imageAboutTheAuthor.setOnClickListener(navigateTo(AboutTheAuthor.class));
         imageRemoveAds.setOnClickListener(navigateTo(RemoveAds.class));
         imageTips.setOnClickListener(navigateTo(TrainingTips.class));

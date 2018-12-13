@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    tools:context=".BuildNewProgramRoot">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/polygon_red"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/LayoutHorizontalTransparent"
+            android:layout_width="match_parent">
+
+            <Button
+                android:id="@+id/buttonToProgramType"
+                style="@style/ButtonWhite"
+                android:layout_marginRight="1dp"
+                android:text="@string/title_activity_build_new_program_type_duration" />
+
+            <CheckBox
+                android:id="@+id/checkBoxType"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="1dp"
+                android:background="@android:color/white"
+                android:text="@string/done" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/LayoutHorizontalTransparent"
+            android:layout_width="match_parent">
+
+            <Button
+                android:id="@+id/buttonToAboutYou"
+                style="@style/ButtonWhite"
+                android:layout_marginRight="1dp"
+                android:text="@string/title_activity_build_new_program_about_you" />
+
+            <CheckBox
+                android:id="@+id/checkBoxAboutYou"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="1dp"
+                android:background="@android:color/white"
+                android:text="@string/done" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/LayoutHorizontalTransparent"
+            android:layout_width="match_parent">
+
+            <Button
+                android:id="@+id/buttonToEquipment"
+                style="@style/ButtonWhite"
+                android:layout_marginRight="1dp"
+                android:text="@string/title_activity_build_new_program_equipment" />
+
+            <CheckBox
+                android:id="@+id/checkBoxEquipment"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="1dp"
+                android:background="@android:color/white"
+                android:text="@string/done" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/LayoutHorizontalTransparent"
+            android:layout_width="match_parent">
+
+            <Button
+                android:id="@+id/buttonToStartDate"
+                style="@style/ButtonWhite"
+                android:layout_marginRight="1dp"
+                android:text="@string/title_activity_build_new_program_details" />
+
+            <CheckBox
+                android:id="@+id/checkBoxDates"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="1dp"
+                android:background="@android:color/white"
+                android:text="@string/done" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/LayoutHorizontalTransparent"
+            android:layout_width="match_parent">
+
+            <Button
+                android:id="@+id/buttonToReview"
+                style="@style/ButtonWhite"
+                android:background="@drawable/gradient_yellow"
+                android:text="@string/title_activity_build_new_program_review" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/LayoutHorizontalTransparent"
+            android:layout_width="match_parent">
+
+            <Button
+                android:id="@+id/buttonHome"
+                style="@style/ButtonWhite"
+                android:background="@drawable/gradient_red"
+                android:text="@string/home" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- view for AdMob Banner Ad -->
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id" />
+
+</RelativeLayout>
