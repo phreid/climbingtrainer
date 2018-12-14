@@ -209,6 +209,19 @@
                     android:text="@string/tip_alcohol_name" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/layoutMetolius"
+                style="@style/LayoutHorizontalTransparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonTipMetolius"
+                    style="@style/ButtonWhite"
+                    android:layout_width="match_parent"
+                    android:text="@string/tip_metolius_name" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

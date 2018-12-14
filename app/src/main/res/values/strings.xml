@@ -237,6 +237,9 @@
     <string name="tip_alcohol_name">Alcohol and its Effects on Training</string>
     <string name="tip_alcohol">Alcohol has been linked to both the magnitude of injuries and their timeline for recovery.  It is extremely important not to train the day after a night of drinking, even light drinking. If you do, your risk for tendon/muscle tears will increase drastically.\n\nAlcohol also inhibits how well you recover after a training session. If you drink after training, you will see decreases in muscle strength and recovery time. While certainly not as destructive as training after a night of drinking, drinking after training will increase the amount of time you have to rest before you can train again.\n\nFun fact – Alex Megos did not accept a send beer after his first ascent Fight Club - 5.15b, even though it was also near his birthday! He declined the free beer sitting right in front of him, and instead ate a carrot as a reward for his climb.</string>
 
+    <string name="tip_metolius_name">Training Boards - Metolius Climbing</string>
+    <string name="tip_metolius">The Metolius Climbing hangboard routines are from their training guide. They are listed with the following instructions:\n\n\"Begin and complete the task or tasks within the one minute intervals. Use the remaining time to rest. Hang a watch from the bottom of the board or mount a wall clock so that you can look straight at it while training.\"\n\nTheir hangboards can viewed online with the link below.</string>
+    <string name="tip_metolius_link"><a href="https://www.metoliusclimbing.com/training-boards.html">https://www.metoliusclimbing.com/training-boards.html</a></string>
 
     <!-- -
         This is an ad unit ID for an interstitial test ad. Replace with your own interstitial ad unit id.

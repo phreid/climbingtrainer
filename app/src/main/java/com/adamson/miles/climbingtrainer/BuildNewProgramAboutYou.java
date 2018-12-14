@@ -202,6 +202,8 @@ public class BuildNewProgramAboutYou extends AppCompatActivity {
         return false;
     }
 
+    // Step through the CheckBoxes array and create a boolean
+    // array from whether they are checked
     boolean[] boxesToArray(){
         boolean[] array = new boolean[checkBoxes.length];
         for(int i = 0; i < checkBoxes.length; i++){

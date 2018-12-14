@@ -5,9 +5,11 @@ import com.google.android.gms.ads.AdView;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.LinkMovementMethod;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +17,7 @@ public class ViewTip extends AppCompatActivity {
 
     TextView textViewTip;
     TextView textViewTitle;
+    TextView textViewLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,14 @@ public class ViewTip extends AppCompatActivity {
 
         textViewTitle = (TextView)findViewById(R.id.textViewTipTitle);
         textViewTitle.setText(getIntent().getStringExtra("title"));
+        textViewLink = (TextView)findViewById(R.id.textViewLink);
+
+        if(getIntent().getStringExtra("link")!=null){
+            textViewLink.setMovementMethod(LinkMovementMethod.getInstance());
+            textViewLink.setText(getIntent().getStringExtra("link"));
+        } else {
+            ((ViewManager)textViewLink.getParent()).removeView(textViewLink);
+        }
     }
 
 
