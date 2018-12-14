@@ -79,6 +79,15 @@ public class ExerciseBuilder {
         insertVolumeStickGame();
         insertTimeOnRoutes();
         insertTimeOnBoulders();
+        insertPowerProject();
+        insertMaxThrow();
+        insertLockUps();
+        insertDyno();
+        insertSwingControl();
+        insertTimeOnEnduranceBoulders();
+        insertCircuitLinkUps();
+        insertHoverBoulderStrength();
+        insertHoverBoulderEndurance();
     }
 
     void insertFourByFour(){
@@ -118,7 +127,7 @@ public class ExerciseBuilder {
                 .setEquip(equip[LEADTR])
                 .setReps("2")
                 .setTime(times[THIRTY_M])
-                .setRest("Rest for the time amount of time it takes to climb. If your partner is also doing this drill, simply alternate after each set.")
+                .setRest("Rest for 10-15 minutes between sets.")
                 .setDiff(grades[TEN]);
         db.insertExercise(e);
     }
@@ -521,12 +530,12 @@ public class ExerciseBuilder {
     void insertVolumeStickGame() {
         Exercise e = new Exercise()
                 .setName("Volume Circuits")
-                .setDesc("Do four 60-move circuits. If your gym has graded circuits, choose one which doesn't get you pumped. If not, either climb for 60 moves or have a partner choose a path with a stick brush. Do not choose moves which result in a pump or a fall.")
+                .setDesc("Do three 60-move circuits. If your gym has graded circuits, choose one which doesn't get you pumped. If not, either climb for 60 moves or have a partner choose a path with a stick brush. Do not choose moves which result in a pump or a fall.")
                 .setType(types[VOLUME])
-                .setSets("4")
+                .setSets("3")
                 .setEquip(equip[FILLWALL])
                 .setReps("60 Moves")
-                .setRest("Rest equal to the time you spent on the wall. If climbing with a partner, simply alternate.")
+                .setRest("Rest equal to the time you spent on the wall. Resting a couple minutes more is ok if you feel the need. If climbing with a partner, simply alternate.")
                 .setDiff(grades[TEN])
                 .setTime(times[SIXTY_M]);
         db.insertExercise(e);
@@ -535,12 +544,12 @@ public class ExerciseBuilder {
     void insertTimeOnRoutes(){
         Exercise e = new Exercise()
                 .setName("Time on the Wall - Lead/TR")
-                .setDesc("Choose a route which doesn't get you pumped or normally cause a fall. Lap it continuously for 10 minutes.")
+                .setDesc("Choose a route which doesn't get you pumped or normally cause a fall. Lap it continuously for 6 minutes.")
                 .setType(types[VOLUME])
                 .setSets("2")
                 .setEquip(equip[LEADTR])
-                .setReps("10 Minutes")
-                .setRest("Rest equal to the time you spent on the wall. If training with a partner, simply alternate.")
+                .setReps("6 Minutes")
+                .setRest("Rest for 10-15 minutes between sets.")
                 .setDiff(grades[TEN])
                 .setTime(times[SIXTY_M]);
         db.insertExercise(e);
@@ -549,16 +558,144 @@ public class ExerciseBuilder {
     void insertTimeOnBoulders(){
         Exercise e = new Exercise()
                 .setName("Time on the Wall - Boulders")
-                .setDesc("If your gym has graded circuits, choose one which doesn't get you pumped. If not, either climb randomly or have a partner choose a path with a stick brush. Climb continuously for 10 minutes.")
+                .setDesc("If your gym has graded circuits, choose one which doesn't get you pumped. If not, either climb randomly or have a partner choose a path with a stick brush. Climb continuously for 6 minutes.")
                 .setType(types[VOLUME])
                 .setSets("2")
-                .setEquip(equip[LEADTR])
-                .setReps("10 Minutes")
-                .setRest("Rest equal to the time you spent on the wall. If training with a partner, simply alternate.")
+                .setEquip("None")
+                .setReps("6 Minutes")
+                .setRest("Rest for 10-15 minutes between sets.")
                 .setDiff(grades[TEN])
                 .setTime(times[SIXTY_M]);
         db.insertExercise(e);
     }
+
+    void insertPowerProject(){
+        Exercise e = new Exercise()
+                .setName("Power Move Projects")
+                .setDesc("Find or set a massive dynamic move, really close to your limit. Project it for 10 minutes. Do this four times (twice moving with each arm).")
+                .setType(types[POWER])
+                .setSets("4")
+                .setEquip("None")
+                .setReps("Attempt each move for 10 minutes (4 moves in total)")
+                .setRest("Rest fully between attempts.")
+                .setDiff(grades[TEN])
+                .setTime(times[FOUTYFIVE_M]);
+        db.insertExercise(e);
+    }
+
+    void insertMaxThrow(){
+        Exercise e = new Exercise()
+                .setName("Power Move Projects")
+                .setDesc("Find or set a body position which is hard to generate dynamically from. Choose a direction to move, and attempt to touch the wall as far away as you can in that direction (you will fall after tagging the wall).\n\nDo not aim for a specific hold, measure progress by improving the furthest distance you can touch on the wall. Find two moves for each arm.")
+                .setType(types[POWER])
+                .setSets("4")
+                .setEquip("None")
+                .setReps("Attempt each move for 6 minutes (4 moves in total)")
+                .setRest("Rest fully between attempts.")
+                .setDiff(grades[TEN])
+                .setTime(times[THIRTY_M]);
+        db.insertExercise(e);
+    }
+
+    void insertLockUps(){
+        Exercise e = new Exercise()
+                .setName("Lock-Ups")
+                .setDesc("The starting position for a rep is fully locked off on a bar. By kipping with your knees and core, move dynamically above the bar. Attempt to get the bar down to chest or even belly button height. Catch yourself on the way down at fully locked off again.")
+                .setType(types[POWER])
+                .setSets("3")
+                .setEquip(equip[PULLUPBAR])
+                .setReps("5")
+                .setRest("Rest 2 minutes between sets")
+                .setDiff(grades[ELEVEN])
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+    void insertDyno(){
+        Exercise e = new Exercise()
+                .setName("Dyno Projects")
+                .setDesc("Project dyno's for 15 minutes. Find dyno's which require your upper body to generate, opposed to a run-jump competition style dyno on volumes.")
+                .setType(types[POWER])
+                .setSets("1")
+                .setEquip("None")
+                .setReps("15 minutes of projecting")
+                .setRest("Rest fully between attempts.")
+                .setDiff(grades[ELEVEN])
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+    void insertSwingControl(){
+        Exercise e = new Exercise()
+                .setName("Swing Control")
+                .setDesc("Jump to holds off of the ground which are slightly out of reach, on a relatively steep wall (30-50 degrees). Choose holds which are difficult to grab, and attempt to control the swing jumping to them creates. Find three of these, and try them each for 5 minutes.\n\nProgressively stand closer to the wall, jumping at a larger angle for a larger swing.")
+                .setType(types[POWER])
+                .setSets("1")
+                .setEquip("None")
+                .setReps("5 minutes of attempts. Stand closer to the wall if you stick a move.")
+                .setRest("Rest fully between attempts.")
+                .setDiff(grades[TEN])
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+    void insertTimeOnEnduranceBoulders(){
+        Exercise e = new Exercise()
+                .setName("Endurance Time on the Wall - Boulders")
+                .setDesc("If your gym has graded circuits, choose one which gets you pumped but you can succeed on. If not, either climb randomly or have a partner choose a path with a stick brush. Climb continuously for 5 minutes on pumpy terrain.\n\nIf you fall, hop right back on a jug and shake out briefly.")
+                .setType(types[ENDURANCE])
+                .setSets("3")
+                .setEquip("None")
+                .setReps("5 Minutes")
+                .setRest("Rest for 10-15 minutes between sets.")
+                .setDiff(grades[TEN])
+                .setTime(times[SIXTY_M]);
+        db.insertExercise(e);
+    }
+
+    void insertCircuitLinkUps(){
+        Exercise e = new Exercise()
+                .setName("Circuit Link-Ups")
+                .setDesc("Choose two circuits, one which gets you slightly pumped and one which is relatively easy. Ideally they should be close together.\n\nClimb the easier one first, and then either traverse or hop off and run to the start of the harder. Climb as far as you can into that circuit.")
+                .setType(types[ENDURANCE])
+                .setSets("3")
+                .setEquip(equip[FILLWALL])
+                .setReps("One link up is one set.")
+                .setRest("Rest for 10-15 minutes between sets.")
+                .setDiff(grades[TEN])
+                .setTime(times[SIXTY_M]);
+        db.insertExercise(e);
+    }
+
+    void insertHoverBoulderStrength(){
+        Exercise e = new Exercise()
+                .setName("Hover-Hands: Bouldering")
+                .setDesc("Choose four boulders. Avoid boulders with moves that are extremely dynamic. When climbing, touch the bolt-hole of each hold before you grab it for 3 seconds. If it's too far, lock-off and point in the holds direction and hold that position before moving to it normally. Climb each boulder 3 times.")
+                .setType(types[STRENGTH])
+                .setSets("4")
+                .setEquip("None")
+                .setReps("3")
+                .setRest("Rest 5 minutes between boulders. Rest 1 minute between attempts.")
+                .setDiff(grades[TEN])
+                .setTime(times[FOUTYFIVE_M]);
+        db.insertExercise(e);
+    }
+
+    void insertHoverBoulderEndurance(){
+        Exercise e = new Exercise()
+                .setName("Hover-Hands: Endurance Circuits")
+                .setDesc("Choose a circuit which is well below your redpoint level. When climbing, touch the bolt-hole of each hold before you grab it for 3 seconds. If it's too far, lock-off and point in the holds direction and hold that position before moving to it normally. Climb the circuit 3 times.")
+                .setType(types[ENDURANCE])
+                .setSets("3")
+                .setEquip(equip[FILLWALL])
+                .setReps("One circuit is one set.")
+                .setRest("Rest 5 minutes between sets.")
+                .setDiff(grades[TEN])
+                .setTime(times[FOUTYFIVE_M]);
+        db.insertExercise(e);
+    }
+
+
 }
 
 /*

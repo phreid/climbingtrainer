@@ -111,8 +111,6 @@ public class BuildNewProgramReview extends AppCompatActivity {
 
         for(int i = 0; i < programDates.length; i++){
             if(programDates[i] != null){
-                //dates += format_EEEE.format(programDates[i])+ ", " + format_yyyymmdd.format(programDates[i]);
-                //dates += "..." + trainingDays[i].type + "\n";
                 dates += format_yyyymmdd.format(programDates[i]) + "\n";
                 days += format_EEEE.format(programDates[i]) + "\n";
                 types += trainingDays[i].type + "\n";
