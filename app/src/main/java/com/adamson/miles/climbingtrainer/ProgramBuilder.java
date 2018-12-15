@@ -232,45 +232,51 @@ public class ProgramBuilder {
     // To be called after buildTrainingDays, this method populates all the training day
     // objects with exercises based on the user, equipment, and training day type
     public TrainingDay[] populateTrainingDays(Context context){
-        Exercise[] exercises = new Exercise[10]; // No day will have more than 10 exercises.
         DatabaseHelper db = new DatabaseHelper(context);
         for (int dayIndex = 0; dayIndex <trainingDays.length; dayIndex++){
 
-            // Every day of every program begins with a warm up
-            trainingDays[dayIndex].exercises[0] = ExerciseBuilder.warmUp;
+            // Check if this day is a training day to be built. Rest days are null
+            if(trainingDatesInProgram[dayIndex] != null) {
 
-            switch (trainingDays[dayIndex].type){
-                case "Volume":
-                    Exercise[] volumeExercises = db.selectAllExerciseByType("Volume");
-                    boolean foundExercise = false;
-                    // Try to find an exercise where the user has the equipment needed
-                    while (!foundExercise) {
-                        int randomIndex = new Random().nextInt(volumeExercises.length);
-                        if(checkEquipment(context, volumeExercises[randomIndex].equip)) {
-                            foundExercise = true;
-                            trainingDays[dayIndex].exercises[1] = volumeExercises[randomIndex];
+                // No day will have more than 10 exercises
+                trainingDays[dayIndex].exercises = new Exercise[10];
+
+                // Every day of every program begins with a warm up
+                trainingDays[dayIndex].exercises[0] = ExerciseBuilder.warmUp;
+
+                switch (trainingDays[dayIndex].type) {
+                    case "Volume":
+                        Exercise[] volumeExercises = db.selectAllExerciseByType("Volume");
+                        boolean foundExercise = false;
+                        // Try to find an exercise where the user has the equipment needed
+                        while (!foundExercise) {
+                            int randomIndex = new Random().nextInt(volumeExercises.length);
+                            if (checkEquipment(context, volumeExercises[randomIndex].equip)) {
+                                foundExercise = true;
+                                trainingDays[dayIndex].exercises[1] = volumeExercises[randomIndex];
+                            }
                         }
-                    }
-                    // All volume days end with free time.
-                    trainingDays[dayIndex].exercises[2] = ExerciseBuilder.freeTime;
-                    break;
+                        // All volume days end with free time.
+                        trainingDays[dayIndex].exercises[2] = ExerciseBuilder.freeTime;
+                        break;
 
-                case "Strength":
+                    case "Strength":
 
-                    break;
+                        break;
 
-                case "Power":
+                    case "Power":
 
 
-                    break;
+                        break;
 
-                case "Power Endurance":
+                    case "Power Endurance":
 
-                    break;
+                        break;
 
-                case "Endurance":
+                    case "Endurance":
 
-                    break;
+                        break;
+                }
             }
 
 

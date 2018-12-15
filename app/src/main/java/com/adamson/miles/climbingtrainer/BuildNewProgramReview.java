@@ -100,6 +100,7 @@ public class BuildNewProgramReview extends AppCompatActivity {
         ProgramBuilder.getInstance().buildTrainingDays();
 
         Date[] programDates = ProgramBuilder.getInstance().getTrainingDatesInProgram();
+        ProgramBuilder.getInstance().populateTrainingDays(BuildNewProgramReview.this);
         TrainingDay[] trainingDays = ProgramBuilder.getInstance().getTrainingDays();
 
         String dates = "";
@@ -119,6 +120,7 @@ public class BuildNewProgramReview extends AppCompatActivity {
         textViewDate.setText(dates);
         textViewDayOfWeek.setText(days);
         textViewType.setText(types);
+
     }
 
 }

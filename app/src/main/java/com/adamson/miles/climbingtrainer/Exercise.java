@@ -15,6 +15,19 @@ public class Exercise implements Serializable {
     String time;
 
     public Exercise(){}
+    
+    public Exercise(Exercise e){
+        name = e.name;
+        desc = e.desc;
+        type = e.type;
+        sets = e.sets;
+        reps = e.reps;
+        rest = e.rest;
+        diff = e.diff;
+        equip = e.equip;
+        time = e.time;
+    }
+
     public Exercise setName(String n) {this.name = n; return this;}
     public Exercise setDesc(String d) {this.desc = d; return this;}
     public Exercise setType(String t) {this.type = t; return this;}
