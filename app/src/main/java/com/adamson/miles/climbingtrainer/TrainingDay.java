@@ -16,32 +16,4 @@ public class TrainingDay {
         commitment = c;
     }
 
-    public void generateDay(String t){
-        type = t;
-        switch (type) {
-            case "Volume":
-
-                break;
-
-            case "Strength":
-
-                break;
-
-            case "Power":
-
-                break;
-
-            case "Power Endurance":
-
-                break;
-
-            case "Endurance":
-
-                break;
-        }
-
-    }
-
-
-
 }

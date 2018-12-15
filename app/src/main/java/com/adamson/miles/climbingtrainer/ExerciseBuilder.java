@@ -43,11 +43,41 @@ public class ExerciseBuilder {
     public static int FOUTYFIVE_M = 2;
     public static int SIXTY_M = 3;
 
+    public static Exercise warmUp;
+    public static Exercise freeTime;
+
     ExerciseBuilder(Context c){
         types = c.getResources().getStringArray(R.array.types_strings);
         equip = c.getResources().getStringArray(R.array.equipment);
         grades = c.getResources().getStringArray(R.array.grades);
         times = c.getResources().getStringArray(R.array.time_strings);
+
+        // Warm Up is the same for each day and every person.
+        // It does not need to be in the database and is instead a static variable
+        warmUp = new Exercise()
+                .setName("Warm Up")
+                .setDesc("Get your heart rate up through skipping, running in place, cycling, or extremely easy boulders\\n\\n2.\tDo any injury specific warm ups which a physio has recommended\\n\\n3.\tClimb progressively harder boulders, avoiding pockets, crimps and shoulder-intensive moves\\n\\n4.\tRest briefly and then climb some boulders which are harder but still well under your limit. Ease into crimps and pockets at this time\\n\\n5.\tClimb a short circuit, or a long boulder slowly. Get slightly pumped, but DO NOT get flash pumped\\n\\n6.\tRest until you are no longer pumped what so ever. This prevents a flash pump later\\n\\n7.\t Climb some boulders or individual moves near your redpoint limit. Just a couple, don’t tire yourself out\\n\\n8.\tClimb a longer circuit which gets you fairly pumped. Stop if you are feeling flash pumped instead of a normal pump, and go back to step 6\\n\\n9.\tRest for around 10 minutes, keeping warm with either a jacket or light cardio if it is cold in the gym or outside\\n\\n10.\tIf you time this properly, 45 minutes to an hour after you start you should be able to attempt a very hard redpoint or onsight. You should not be getting flash pumped or feel too cold to pull as hard as you can.")
+                .setType("Warm Up")
+                .setSets("N/A")
+                .setEquip("none")
+                .setReps("N/A")
+                .setRest("Rest if you feel like you are getting pumped during a stage you should not be.")
+                .setDiff(grades[TEN])
+                .setTime(times[SIXTY_M]);
+
+        // Free time is one hour long
+        // It does not need to be in the database and is instead a static variable
+        freeTime = new Exercise()
+                    .setName("60 Minutes of Free Time")
+                    .setDesc("Climb whatever you feel like. If this is scheduled for the end of the day, you could go home early instead.")
+                    .setType("Free Time")
+                    .setSets("N/A")
+                    .setEquip("none")
+                    .setReps("N/A")
+                    .setRest("N/A")
+                    .setDiff(grades[TEN])
+                    .setTime(times[SIXTY_M]);
+
         context = c;
         db = new DatabaseHelper(context);
         insertFourByFour();
@@ -694,7 +724,6 @@ public class ExerciseBuilder {
                 .setTime(times[FOUTYFIVE_M]);
         db.insertExercise(e);
     }
-
 
 }
 
