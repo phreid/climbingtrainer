@@ -14,10 +14,20 @@
         <LinearLayout
             android:id="@+id/layoutEquipment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:background="@drawable/polygon_red"
             android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:background="@android:color/white"
+                android:ems="10"
+                android:hint="@string/name_prompt"
+                android:inputType="textPersonName"
+                android:padding="15dp" />
 
             <TextView
                 android:id="@+id/textViewReview"
@@ -34,18 +44,22 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|center"
+                android:gravity="center_vertical|center"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textViewDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_vertical|center_horizontal|center"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="1dp"
+                    android:layout_marginBottom="15dp"
                     android:layout_weight="1"
                     android:background="@android:color/white"
+                    android:gravity="center"
                     android:padding="10dp"
                     android:textColor="@android:color/black"
                     android:textStyle="normal"
@@ -59,6 +73,7 @@
                     android:layout_marginLeft="1dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="1dp"
+                    android:layout_marginBottom="15dp"
                     android:layout_weight="1"
                     android:background="@android:color/white"
                     android:padding="10dp"
@@ -70,17 +85,25 @@
                     android:id="@+id/textViewType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_vertical|center_horizontal|center"
                     android:layout_marginLeft="1dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="15dp"
+                    android:layout_marginBottom="15dp"
                     android:layout_weight="2"
                     android:background="@android:color/white"
+                    android:gravity="center"
                     android:padding="10dp"
                     android:textColor="@android:color/black"
                     android:textStyle="normal"
                     android:typeface="normal" />
             </LinearLayout>
+
+            <Button
+                android:id="@+id/buttonGenerateProgram"
+                style="@style/ButtonMargin"
+                android:layout_width="match_parent"
+                android:text="@string/create_program" />
 
         </LinearLayout>
     </ScrollView>

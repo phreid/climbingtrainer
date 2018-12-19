@@ -4,10 +4,16 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,6 +24,8 @@ public class BuildNewProgramReview extends AppCompatActivity {
     TextView textViewDate;
     TextView textViewDayOfWeek;
     TextView textViewType;
+    Button buttonGenerate;
+    EditText editTextName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +37,19 @@ public class BuildNewProgramReview extends AppCompatActivity {
         AdRequest adRequest = new AdRequest.Builder()
                 .setRequestAgent("android_studio:ad_template").build();
         adView.loadAd(adRequest);
-
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         initReviewText();
-
+        editTextName = (EditText)findViewById(R.id.editTextName);
+        buttonGenerate = (Button)findViewById(R.id.buttonGenerateProgram);
+        buttonGenerate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               if(checkName()){
+                   DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+                   db.insertProgram(ProgramBuilder.getInstance().getTrainingDays(), editTextName.getText().toString());
+               }
+            }
+        });
     }
 
 
@@ -69,7 +87,7 @@ public class BuildNewProgramReview extends AppCompatActivity {
         s = s + reviewSegments[5] + " " +  programBuilder.getStartDateString() + "\n\n";
         s = s + reviewSegments[6] + " " +  programBuilder.getEndDateString() + "\n\n";
         s = s + "Program Length: " + Long.toString(programBuilder.getProgramLength()) + " Days\n\n";
-        s = s + reviewSegments[7] + "\n\n";
+        s = s + reviewSegments[7] + "\n";
 
         String[] equipment = getResources().getStringArray(R.array.equipment);
         boolean[] equipmentArray = programBuilder.getEquipmentAvailable();
@@ -121,6 +139,28 @@ public class BuildNewProgramReview extends AppCompatActivity {
         textViewDayOfWeek.setText(days);
         textViewType.setText(types);
 
+    }
+
+    // Program names must be only letters and no more than 12 chars.
+    // It also can't be empty.
+    boolean checkName() {
+        char[] chars = editTextName.getText().toString().toCharArray();
+        String error = getResources().getString(R.string.name_error);
+
+        // Cannot be longer than 12 or blank
+        if(chars.length > 12 || editTextName.getText().toString().matches("")){
+            Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        // Must contain only letters and spaces
+        for (char c : chars) {
+            if (!Character.isLetter(c) && c != " ".charAt(0)) {
+                Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+        return true;
     }
 
 }

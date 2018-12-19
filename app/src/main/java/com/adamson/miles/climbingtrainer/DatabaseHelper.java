@@ -6,16 +6,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.ArrayList;
-
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "database.db";
 
     private static final int DATABASE_VERSION = 1;
 
+    // The exercise table saves all exercises with their details
     private static final String T1 = "exercises";
-
     private static final String T1_name = "name";
     private static final String T1_desc = "description"; // cannot be desc because that is SQL code
     private static final String T1_type = "type";
@@ -26,15 +24,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String T1_equip = "equip";
     private static final String T1_time = "time";
 
-    private static final String T2_C1 = "activity";
-    private static final String T2_C2 = "duration";
-
-    private static final String T3 = "logbook";
-    private static final String T3_C1 = "workout";
-    private static final String T3_C2 = "date";
+    // A user-created program is saved as every exercise supposed to be done, all
+    // in order from start to finish, with the date to do it.
+    private static final String T2_date = "day";
+    private static final String T2_exercise = "exercise";
 
     private static final String TEXT = " TEXT";
-    private static final String KEY = " _ID INTEGER PRIMARY KEY AUTOINCREMENT, ";
     private static final String UNIQUE = " UNIQUE";
     private static final String END = ");";
 
@@ -65,18 +60,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 T1_equip + TEXT + ", " +
                 T1_time + TEXT +
                 END);
-        /*
-            private static final String T1_name = "name";
-            private static final String T1_desc = "description"; // cannot be desc because that is SQL code
-            private static final String T1_type = "type";
-            private static final String T1_sets = "sets";
-            private static final String T1_reps = "reps";
-            private static final String T1_rest = "rest";
-            private static final String T1_diff = "diff";
-            private static final String T1_equip = "equip";
-            private static final String T1_time = "time";
-         */
-        //database.execSQL("CREATE TABLE " + T3 + " (" + KEY + T3_C1 + TEXT + ", " + T3_C2 + TEXT + END);
     }
 
     @Override
@@ -146,7 +129,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return exercises;
     }
 
-    // Returns all exercises in an array
+    // Returns all exercises of a type in an array
     public Exercise[] selectAllExerciseByType(String type) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM "+T1+" WHERE "+T1_type+ " = '"+type+"';", null);
@@ -173,7 +156,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return exercises;
     }
 
-    // Returns all exercises which are less than or equal to a given grade range
+    // Returns all exercises which are less than or equal to a given grade range and type
     public Exercise[] selectByTypeGradeMaximum(String type, String grade){
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -222,6 +205,83 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cursor.close();
         }
         return exercises;
+    }
+
+
+    // With an array of trainingDays objects, save the program in sql.
+    // If a program by that name already exists, return false
+    public boolean insertProgram(TrainingDay[] trainingDays, String name){
+        String nameNoSpaces = removeSpaces(name);
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='"
+                + nameNoSpaces + "';)", null);
+
+        // If a program by that name doesn't already exist
+        if(cursor.getCount() == 0) {
+            db.execSQL("CREATE TABLE IF NOT EXISTS " + nameNoSpaces + " (" +
+                    T2_date + TEXT + ", " +
+                    T2_exercise + TEXT +
+                    END);
+
+                cursor.close();
+        } else {
+            cursor.close();
+            return false;
+        }
+
+        // Insert all the exercises and their dates into the table
+        for(int i = 0; i < trainingDays.length; i++){
+            // null days are rest days. Skip them.
+            if(trainingDays[i] != null) {
+                // Insert a row for every exercise provided, and the date to do it on.
+                for (int k = 0; k < trainingDays[i].exercises.length; k++) {
+                    // Exercise array is not of known length, check for end which is null
+                    if(trainingDays[i].exercises[k] != null) {
+                        ContentValues myCV = new ContentValues();
+                        myCV.put(T2_date, trainingDays[i].dateString);
+                        myCV.put(T2_exercise, trainingDays[i].exercises[k].name);
+                        if (db.insert(nameNoSpaces, null, myCV) == -1) {
+                            return false;
+                        }
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+        // creation and inserting all succeeded.
+        return true;
+    }
+
+    // Replaces underscores with spaces again for the text user sees
+    private String replaceUnderscores(String input){
+        String space = " ";
+        String underscore = "_";
+        char[] result = new char[input.length()];
+        for (int i = 0; i < input.length(); i++){
+            if (input.charAt(i) == underscore.charAt(0)){
+                result[i] = space.charAt(0);
+            } else {
+                result[i] = input.charAt(i);
+            }
+        }
+        return new String(result);
+    }
+
+    // Removes spaces and puts underscores instead, since table names cannot
+    // have spaces in them.
+    private String removeSpaces(String input){
+        String space = " ";
+        String underscore = "_";
+        char[] result = new char[input.length()];
+        for (int i = 0; i < input.length(); i++){
+            if (input.charAt(i) == space.charAt(0)){
+                result[i] = underscore.charAt(0);
+            } else {
+                result[i] = input.charAt(i);
+            }
+        }
+        return new String(result);
     }
 
 }

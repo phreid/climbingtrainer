@@ -278,12 +278,7 @@ public class ProgramBuilder {
                         break;
                 }
             }
-
-
-
         }
-
-
         return trainingDays;
     }
 }

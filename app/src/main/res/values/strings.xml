@@ -16,6 +16,9 @@
     <string name="type">Drill Type: </string>
     <string name="time">Time Allotted: </string>
     <string name="home">Cancel and Return to Home</string>
+    <string name="create_program">Generate your Program</string>
+    <string name="name_prompt">Name your training program...</string>
+    <string name="name_error">Letters and spaces only, up to 12 characters</string>
 
     <string name="help_message_title">Help Message</string>
     <string name="welcome">Welcome!</string>
