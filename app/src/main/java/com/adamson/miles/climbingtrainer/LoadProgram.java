@@ -60,7 +60,7 @@ public class LoadProgram extends AppCompatActivity {
                 scrollLayoutChild.addView(layoutHorizontal);
             }
         } else {
-            // There were no programs.
+            // There were no programs. Let user know they will be here once they make one.
             Toast.makeText(getApplicationContext(), getResources().getString(R.string.program_error), Toast.LENGTH_LONG).show();
         }
     }
