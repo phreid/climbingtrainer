@@ -29,6 +29,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String T2_date = "day";
     private static final String T2_exercise = "exercise";
 
+    private static final String T3 = "programs";
+    private static final String T3_name = "name";
+
     private static final String TEXT = " TEXT";
     private static final String UNIQUE = " UNIQUE";
     private static final String END = ");";
@@ -60,6 +63,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 T1_equip + TEXT + ", " +
                 T1_time + TEXT +
                 END);
+
+        database.execSQL("CREATE TABLE " + T3 + " (" + T1_name + TEXT + UNIQUE + END);
     }
 
     @Override
@@ -127,6 +132,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cursor.close();
         }
         return exercises;
+    }
+
+    // Returns all programs in a string array. Returns null if there are none
+    public String[] selectAllPrograms() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM "+T3+";", null);
+        String[] names = new String[cursor.getCount()];
+
+        // if there are any program names, return them
+        if (cursor.moveToFirst()) {
+            for (int i = 0; i < names.length; i++) {
+                names[i] = cursor.getString(0);
+                cursor.moveToNext();
+            }
+            cursor.close();
+            return names;
+        } else {
+            return null;
+        }
     }
 
     // Returns all exercises of a type in an array
@@ -213,19 +237,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean insertProgram(TrainingDay[] trainingDays, String name){
         String nameNoSpaces = removeSpaces(name);
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='"
-                + nameNoSpaces + "';)", null);
 
         // If a program by that name doesn't already exist
-        if(cursor.getCount() == 0) {
+        if(insertProgramName(nameNoSpaces)) {
             db.execSQL("CREATE TABLE IF NOT EXISTS " + nameNoSpaces + " (" +
                     T2_date + TEXT + ", " +
                     T2_exercise + TEXT +
                     END);
-
-                cursor.close();
         } else {
-            cursor.close();
             return false;
         }
 
@@ -282,6 +301,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
         }
         return new String(result);
+    }
+
+    // Inserts a program. Returns true if succeeded.
+    // Since name is UNIQUE, it should fail with duplicates.
+    private boolean insertProgramName(String name) {
+        String nameNoSpaces = removeSpaces(name);
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM "+T3+" WHERE "+T3_name+" = '"+nameNoSpaces+"'", null);
+        // If cursor fails move to first, the cursor is empty, so we can
+        // insert and the exercise will be unique
+        if(!c.moveToFirst()) {
+            ContentValues myCV = new ContentValues();
+            myCV.put(T3_name, nameNoSpaces);
+
+            long result = db.insert(T3, null, myCV);
+
+            // -1 is an error
+            if (result == -1) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
     }
 
 }

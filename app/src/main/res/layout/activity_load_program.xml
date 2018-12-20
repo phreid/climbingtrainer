@@ -9,12 +9,14 @@
 
     <!-- view for AdMob Banner Ad -->
     <ScrollView
+        android:id="@+id/scrollViewPrograms"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="50dp"
         android:background="@drawable/polygon_purple">
 
         <LinearLayout
+            android:id="@+id/scrollViewProgramsChild"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />

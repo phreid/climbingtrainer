@@ -3,17 +3,23 @@ package com.adamson.miles.climbingtrainer;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ContextThemeWrapper;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 public class LoadProgram extends AppCompatActivity {
-    // Remove the below line after defining your own ad unit ID.
-    private static final String TOAST_TEXT = "Test ads are being shown. "
-            + "To show live ads, replace the ad unit ID in res/values/strings.xml with your own ad unit ID.";
 
+    String[] names;
+    ScrollView scrollView;
+    LinearLayout scrollLayoutChild;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +32,37 @@ public class LoadProgram extends AppCompatActivity {
                 .setRequestAgent("android_studio:ad_template").build();
         adView.loadAd(adRequest);
 
-        // Toasts the test ad message on the screen. Remove this after defining your own ad unit ID.
-        Toast.makeText(this, TOAST_TEXT, Toast.LENGTH_LONG).show();
+        DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+        names = db.selectAllPrograms();
+        scrollView = (ScrollView)findViewById(R.id.scrollViewPrograms);
+        scrollLayoutChild = (LinearLayout)findViewById(R.id.scrollViewProgramsChild);
+
+        // If there are programs, creates button for each one
+        if(names != null) {
+            for (int i = 0; i < names.length; i++) {
+                LinearLayout layoutHorizontal = new LinearLayout(new ContextThemeWrapper(this, R.style.LayoutHorizontalTransparent), null, 0);
+                Button button = new Button(new ContextThemeWrapper(this, R.style.ButtonWhite), null, 0);
+                float pixels = 40 * getApplicationContext().getResources().getDisplayMetrics().density;
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) pixels);
+                button.setLayoutParams(lp);
+                button.setText(names[i]);
+
+                final int index = i;
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //Intent intent = new Intent(LoadProgram.this, ViewExercise.class);
+                        //intent.putExtra("exercise", exercises[index]);
+                        //startActivity(intent);
+                    }
+                });
+                layoutHorizontal.addView(button);
+                scrollLayoutChild.addView(layoutHorizontal);
+            }
+        } else {
+            // There were no programs.
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.program_error), Toast.LENGTH_LONG).show();
+        }
     }
 
 
