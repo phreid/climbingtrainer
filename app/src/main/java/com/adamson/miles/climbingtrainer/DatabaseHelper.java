@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "database.db";
@@ -180,6 +182,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return exercises;
     }
 
+    // Returns an exercises by its name. Returns null if it doesn't exist.
+    public Exercise selectExerciseByName(String name) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM "+T1+" WHERE "+T1_name+ " = '"+name+"';", null);
+
+        // if there are any exercises, return them
+        if (cursor.moveToFirst()) {
+            Exercise exercise = new Exercise()
+                    .setName(cursor.getString(0))
+                    .setDesc(cursor.getString(1))
+                    .setType(cursor.getString(2))
+                    .setSets(cursor.getString(3))
+                    .setReps(cursor.getString(4))
+                    .setRest(cursor.getString(5))
+                    .setDiff(cursor.getString(6))
+                    .setEquip(cursor.getString(7))
+                    .setTime(cursor.getString(8));
+            cursor.close();
+            return exercise;
+        } else {
+            return null;
+        }
+    }
+
     // Returns all exercises which are less than or equal to a given grade range and type
     public Exercise[] selectByTypeGradeMaximum(String type, String grade){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -327,5 +353,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+
+    // Selects a program and it's returned in a ExerciseAndDate class
+    // object, which is a list if every exercise, its name, and date to do it on.
+    public ExerciseAndDate selectProgram(String name) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + name + ";", null);
+        String[] exerciseNames = new String[cursor.getCount()];
+        String[] dates = new String[cursor.getCount()];
+        Exercise[] exercises = new Exercise[cursor.getCount()];
+
+        // put all exercise names into string array
+        if (cursor.moveToFirst()) {
+            for (int i = 0; i < exerciseNames.length; i++) {
+                dates[i] = cursor.getString(0);
+                exerciseNames[i] = cursor.getString(1);
+                exercises[i] = selectExerciseByName(exerciseNames[i]);
+            }
+            cursor.close();
+        }
+        return new ExerciseAndDate(dates, exerciseNames, exercises);
+    }
+
 
 }

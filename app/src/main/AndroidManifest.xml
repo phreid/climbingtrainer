@@ -89,7 +89,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".BuildNewProgramRoot"
-            android:label="@string/title_activity_build_new_program_root"></activity>
+            android:label="@string/title_activity_build_new_program_root" />
+        <activity
+            android:name=".ViewProgramByDate"
+            android:label="@string/title_activity_view_program_by_date"></activity>
     </application>
 
 </manifest>

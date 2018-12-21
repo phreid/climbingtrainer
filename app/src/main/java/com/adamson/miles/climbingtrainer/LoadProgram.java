@@ -41,19 +41,18 @@ public class LoadProgram extends AppCompatActivity {
         if(names != null) {
             for (int i = 0; i < names.length; i++) {
                 LinearLayout layoutHorizontal = new LinearLayout(new ContextThemeWrapper(this, R.style.LayoutHorizontalTransparent), null, 0);
-                Button button = new Button(new ContextThemeWrapper(this, R.style.ButtonWhite), null, 0);
+                final Button button = new Button(new ContextThemeWrapper(this, R.style.ButtonWhite), null, 0);
                 float pixels = 40 * getApplicationContext().getResources().getDisplayMetrics().density;
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) pixels);
                 button.setLayoutParams(lp);
                 button.setText(names[i]);
 
-                final int index = i;
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //Intent intent = new Intent(LoadProgram.this, ViewExercise.class);
-                        //intent.putExtra("exercise", exercises[index]);
-                        //startActivity(intent);
+                        Intent intent = new Intent(LoadProgram.this, ViewProgramByDate.class);
+                        intent.putExtra("programName", button.getText().toString());
+                        startActivity(intent);
                     }
                 });
                 layoutHorizontal.addView(button);
