@@ -208,6 +208,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public ExerciseAndDate selectFromProgramByDate(String program, String dateString) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM "+removeSpaces(program)+" WHERE "+T2_date+ " = '"+dateString+"';", null);
+
+        String[] exerciseNames = new String[cursor.getCount()];
+        String[] dateStrings = new String[cursor.getCount()];
+        String[] typeStrings = new String[cursor.getCount()];
+        String[] daysOfWeekStrings = new String[cursor.getCount()];
+        Exercise[] exercises = new Exercise[cursor.getCount()];
+
+        // put all exercise names into string array
+        if (cursor.moveToFirst()) {
+            for (int i = 0; i < exerciseNames.length; i++) {
+                dateStrings[i] = cursor.getString(0);
+                exerciseNames[i] = cursor.getString(1);
+                typeStrings[i] = cursor.getString(2);
+                daysOfWeekStrings[i] = cursor.getString(3);
+                exercises[i] = selectExerciseByName(exerciseNames[i]);
+                cursor.moveToNext();
+            }
+            cursor.close();
+            return new ExerciseAndDate(dateStrings, exerciseNames, daysOfWeekStrings, typeStrings, exercises);
+        } else {
+            return null;
+        }
+
+    }
+
     // Returns all exercises which are less than or equal to a given grade range and type
     public Exercise[] selectByTypeGradeMaximum(String type, String grade){
         SQLiteDatabase db = this.getWritableDatabase();

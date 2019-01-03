@@ -20,6 +20,7 @@ public class ViewProgramByDate extends AppCompatActivity {
 
     ScrollView scrollView;
     LinearLayout scrollLayoutChild;
+    String programName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +36,9 @@ public class ViewProgramByDate extends AppCompatActivity {
 
         scrollView = (ScrollView)findViewById(R.id.scrollViewDates);
         scrollLayoutChild = (LinearLayout)findViewById(R.id.scrollViewDatesChild);
-
+        programName = getIntent().getStringExtra("programName");
         DatabaseHelper db = new DatabaseHelper(getApplicationContext());
-        ExerciseAndDate exerciseAndDate = db.selectProgram(getIntent().getStringExtra("programName"));
+        ExerciseAndDate exerciseAndDate = db.selectProgram(programName);
 
         // creates button for each exercise depending on the type given to the
         // activity's intent. Selects all if no type given
@@ -49,11 +50,14 @@ public class ViewProgramByDate extends AppCompatActivity {
             button.setLayoutParams(lp);
             String s = exerciseAndDate.uniqueDatesDayOfWeek[i] + ", " + exerciseAndDate.uniqueDates[i] + ". " + exerciseAndDate.uniqueDatesType[i];
             button.setText(s);
-            final int index = i;
+            final String dateString = exerciseAndDate.uniqueDates[i];
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Intent intent = new Intent(ViewProgramByDate.this, ViewDatesExercises.class);
+                    intent.putExtra("programName", programName);
+                    intent.putExtra("dateString", dateString);
+                    startActivity(intent);
                 }
             });
             layoutHorizontal.addView(button);

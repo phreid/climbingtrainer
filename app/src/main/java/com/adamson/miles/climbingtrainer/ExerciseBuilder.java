@@ -80,6 +80,8 @@ public class ExerciseBuilder {
 
         context = c;
         db = new DatabaseHelper(context);
+        db.insertExercise(freeTime);
+        db.insertExercise(warmUp);
         insertFourByFour();
         insertPullUps();
         insertTwoOnOne();
