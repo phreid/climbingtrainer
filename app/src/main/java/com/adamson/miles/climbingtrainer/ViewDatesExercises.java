@@ -48,16 +48,15 @@ public class ViewDatesExercises extends AppCompatActivity {
             float pixels =  40 * getApplicationContext().getResources().getDisplayMetrics().density;
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) pixels);
             button.setLayoutParams(lp);
-            button.setText(exerciseAndDate.exerciseNames[i]);
+            final String exerciseString = exerciseAndDate.exerciseNames[i];
+            final Exercise exercise = db.selectExerciseByName(exerciseString);
+            button.setText(exerciseString);
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    /*
-                    Intent intent = new Intent(ViewProgramByDate.this, ViewDatesExercises.class);
-                    intent.putExtra("programName", programName);
-                    intent.putExtra("dateString", dateString);
+                    Intent intent = new Intent(ViewDatesExercises.this, ViewExercise.class);
+                    intent.putExtra("exercise", exercise);
                     startActivity(intent);
-                    */
                 }
             });
             layoutHorizontal.addView(button);
