@@ -7,10 +7,11 @@
     tools:context=".ViewProgramByDate">
 
     <!-- view for AdMob Banner Ad -->
+
     <ScrollView
         android:id="@+id/scrollViewDates"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
         android:background="@drawable/polygon_purple">
 
@@ -18,7 +19,17 @@
             android:id="@+id/scrollViewDatesChild"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textViewTester"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:text="TextView"
+                tools:text="qwewqewq" />
+        </LinearLayout>
     </ScrollView>
 
     <com.google.android.gms.ads.AdView

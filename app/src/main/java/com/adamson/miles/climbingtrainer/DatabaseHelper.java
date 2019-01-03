@@ -6,8 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.ArrayList;
-
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "database.db";
@@ -360,20 +358,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + name + ";", null);
         String[] exerciseNames = new String[cursor.getCount()];
-        String[] dates = new String[cursor.getCount()];
+        String[] dateStrings = new String[cursor.getCount()];
         Exercise[] exercises = new Exercise[cursor.getCount()];
 
         // put all exercise names into string array
         if (cursor.moveToFirst()) {
             for (int i = 0; i < exerciseNames.length; i++) {
-                dates[i] = cursor.getString(0);
+                dateStrings[i] = cursor.getString(0);
                 exerciseNames[i] = cursor.getString(1);
                 exercises[i] = selectExerciseByName(exerciseNames[i]);
+                cursor.moveToNext();
             }
             cursor.close();
         }
-        return new ExerciseAndDate(dates, exerciseNames, exercises);
+        return new ExerciseAndDate(dateStrings, exerciseNames, exercises);
     }
+
+    // TODO: Add a column to the program tables for whether the user has completed that
+    // exercise. Add a way for user to update table to say they finihsed exercise.
+    // Add a way to check if a row of the table is completed.
+    // Add a way to tell whether an entire week has been completed? Or maybe ExerciseAndDate
+    // should do that
 
 
 }

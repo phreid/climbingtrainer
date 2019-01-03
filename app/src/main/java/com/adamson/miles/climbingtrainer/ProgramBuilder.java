@@ -231,8 +231,10 @@ public class ProgramBuilder {
 
     // To be called after buildTrainingDays, this method populates all the training day
     // objects with exercises based on the user, equipment, and training day type
-    public TrainingDay[] populateTrainingDays(Context context){
+    public void populateTrainingDays(Context context){
         DatabaseHelper db = new DatabaseHelper(context);
+
+        // loop through each day
         for (int dayIndex = 0; dayIndex <trainingDays.length; dayIndex++){
 
             // Check if this day is a training day to be built. Rest days are null
@@ -261,24 +263,31 @@ public class ProgramBuilder {
                         break;
 
                     case "Strength":
-
+                        trainingDays[dayIndex].exercises[1] = ExerciseBuilder.freeTime;
+                        trainingDays[dayIndex].exercises[2] = ExerciseBuilder.freeTime;
+                        trainingDays[dayIndex].exercises[3] = ExerciseBuilder.freeTime;
                         break;
 
                     case "Power":
-
+                        trainingDays[dayIndex].exercises[1] = ExerciseBuilder.freeTime;
+                        trainingDays[dayIndex].exercises[2] = ExerciseBuilder.freeTime;
+                        trainingDays[dayIndex].exercises[3] = ExerciseBuilder.freeTime;
 
                         break;
 
                     case "Power Endurance":
-
+                        trainingDays[dayIndex].exercises[1] = ExerciseBuilder.freeTime;
+                        trainingDays[dayIndex].exercises[2] = ExerciseBuilder.freeTime;
+                        trainingDays[dayIndex].exercises[3] = ExerciseBuilder.freeTime;
                         break;
 
                     case "Endurance":
-
+                        trainingDays[dayIndex].exercises[1] = ExerciseBuilder.freeTime;
+                        trainingDays[dayIndex].exercises[2] = ExerciseBuilder.freeTime;
+                        trainingDays[dayIndex].exercises[3] = ExerciseBuilder.freeTime;
                         break;
                 }
             }
         }
-        return trainingDays;
     }
 }

@@ -46,7 +46,10 @@ public class BuildNewProgramReview extends AppCompatActivity {
             public void onClick(View v) {
                if(checkName()){
                    DatabaseHelper db = new DatabaseHelper(getApplicationContext());
-                   db.insertProgram(ProgramBuilder.getInstance().getTrainingDays(), editTextName.getText().toString());
+                   Boolean result = db.insertProgram(ProgramBuilder.getInstance().getTrainingDays(), editTextName.getText().toString());
+                   if(!result){
+                       Toast.makeText(getApplicationContext(), "Program Creation Failed", Toast.LENGTH_SHORT).show();
+                   }
                }
             }
         });
@@ -130,7 +133,7 @@ public class BuildNewProgramReview extends AppCompatActivity {
 
         for(int i = 0; i < programDates.length; i++){
             if(programDates[i] != null){
-                dates += format_yyyymmdd.format(programDates[i]) + "\n";
+                dates += trainingDays[i].dateString + "\n";
                 days += format_EEEE.format(programDates[i]) + "\n";
                 types += trainingDays[i].type + "\n";
             }
