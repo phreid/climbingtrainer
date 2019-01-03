@@ -14,11 +14,14 @@ public class TrainingDay {
     public String grade;
     public String commitment;
     public Exercise[] exercises;
+    public String dayOfWeek;
     public SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat format_EEEE = new SimpleDateFormat("EEEE");
 
     public TrainingDay(Date d, String g, String c){
         date = d;
         dateString = format.format(date);
+        dayOfWeek = format_EEEE.format(date);
         grade = g;
         commitment = c;
     }

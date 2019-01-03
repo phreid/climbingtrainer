@@ -47,7 +47,8 @@ public class ViewProgramByDate extends AppCompatActivity {
             float pixels =  40 * getApplicationContext().getResources().getDisplayMetrics().density;
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) pixels);
             button.setLayoutParams(lp);
-            button.setText(exerciseAndDate.uniqueDates[i]);
+            String s = exerciseAndDate.uniqueDatesDayOfWeek[i] + ", " + exerciseAndDate.uniqueDates[i] + ". " + exerciseAndDate.uniqueDatesType[i];
+            button.setText(s);
             final int index = i;
             button.setOnClickListener(new View.OnClickListener() {
                 @Override

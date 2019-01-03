@@ -41,6 +41,10 @@ public class ProgramBuilder {
 
     private ProgramBuilder() {}
 
+    public void destroyInstance(){
+        ourInstance = null;
+    }
+
     public void setProgramType(String s){programType = s;}
     public void setCommitmentLevel(String s){commitmentLevel = s;}
     public void setCurrentGrade(String s){currentGrade = s;}

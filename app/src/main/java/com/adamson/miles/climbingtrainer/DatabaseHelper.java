@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.text.SimpleDateFormat;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "database.db";
@@ -28,6 +30,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // in order from start to finish, with the date to do it.
     private static final String T2_date = "day";
     private static final String T2_exercise = "exercise";
+    private static final String T2_type = "type";
+    private static final String T2_dayOfWeek = "dayOfWeek";
 
     private static final String T3 = "programs";
     private static final String T3_name = "name";
@@ -143,7 +147,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // if there are any program names, return them
         if (cursor.moveToFirst()) {
             for (int i = 0; i < names.length; i++) {
-                names[i] = cursor.getString(0);
+                names[i] = replaceUnderscores(cursor.getString(0));
                 cursor.moveToNext();
             }
             cursor.close();
@@ -261,12 +265,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean insertProgram(TrainingDay[] trainingDays, String name){
         String nameNoSpaces = removeSpaces(name);
         SQLiteDatabase db = this.getWritableDatabase();
-
+        SimpleDateFormat format_EEEE = new SimpleDateFormat("EEEE");
         // If a program by that name doesn't already exist
         if(insertProgramName(nameNoSpaces)) {
             db.execSQL("CREATE TABLE IF NOT EXISTS " + nameNoSpaces + " (" +
                     T2_date + TEXT + ", " +
-                    T2_exercise + TEXT +
+                    T2_exercise + TEXT + ", " +
+                    T2_type + TEXT + ", " +
+                    T2_dayOfWeek + TEXT +
                     END);
         } else {
             return false;
@@ -283,6 +289,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         ContentValues myCV = new ContentValues();
                         myCV.put(T2_date, trainingDays[i].dateString);
                         myCV.put(T2_exercise, trainingDays[i].exercises[k].name);
+                        myCV.put(T2_type, trainingDays[i].type);
+                        myCV.put(T2_dayOfWeek, format_EEEE.format(trainingDays[i].date));
+
                         if (db.insert(nameNoSpaces, null, myCV) == -1) {
                             return false;
                         }
@@ -356,22 +365,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // object, which is a list if every exercise, its name, and date to do it on.
     public ExerciseAndDate selectProgram(String name) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + name + ";", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + removeSpaces(name) + ";", null);
         String[] exerciseNames = new String[cursor.getCount()];
         String[] dateStrings = new String[cursor.getCount()];
+        String[] typeStrings = new String[cursor.getCount()];
+        String[] daysOfWeekStrings = new String[cursor.getCount()];
         Exercise[] exercises = new Exercise[cursor.getCount()];
+
 
         // put all exercise names into string array
         if (cursor.moveToFirst()) {
             for (int i = 0; i < exerciseNames.length; i++) {
                 dateStrings[i] = cursor.getString(0);
                 exerciseNames[i] = cursor.getString(1);
+                typeStrings[i] = cursor.getString(2);
+                daysOfWeekStrings[i] = cursor.getString(3);
                 exercises[i] = selectExerciseByName(exerciseNames[i]);
                 cursor.moveToNext();
             }
             cursor.close();
         }
-        return new ExerciseAndDate(dateStrings, exerciseNames, exercises);
+        return new ExerciseAndDate(dateStrings, exerciseNames, daysOfWeekStrings, typeStrings, exercises);
     }
 
     // TODO: Add a column to the program tables for whether the user has completed that

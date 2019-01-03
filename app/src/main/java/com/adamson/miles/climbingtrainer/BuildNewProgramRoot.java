@@ -75,7 +75,14 @@ public class BuildNewProgramRoot extends AppCompatActivity {
                 }
             });
         }
-        buttonHome.setOnClickListener(navigateTo(MainActivity.class));
+        buttonHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProgramBuilder.getInstance().destroyInstance();
+                Intent intent = new Intent(BuildNewProgramRoot.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

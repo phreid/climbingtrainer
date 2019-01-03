@@ -4,27 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
-    tools:context=".ViewProgramByDate">
+    tools:context=".ViewDatesExercises">
 
     <!-- view for AdMob Banner Ad -->
-
-    <ScrollView
-        android:id="@+id/scrollViewDates"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
-        android:background="@drawable/polygon_purple">
-
-        <LinearLayout
-            android:id="@+id/scrollViewDatesChild"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-        </LinearLayout>
-    </ScrollView>
-
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         android:layout_width="wrap_content"

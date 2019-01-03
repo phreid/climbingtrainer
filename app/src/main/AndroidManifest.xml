@@ -92,7 +92,10 @@
             android:label="@string/title_activity_build_new_program_root" />
         <activity
             android:name=".ViewProgramByDate"
-            android:label="@string/title_activity_view_program_by_date"></activity>
+            android:label="@string/title_activity_view_program_by_date" />
+        <activity
+            android:name=".ViewDatesExercises"
+            android:label="@string/title_activity_view_dates_exercises"></activity>
     </application>
 
 </manifest>

@@ -3,6 +3,7 @@ package com.adamson.miles.climbingtrainer;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
@@ -49,6 +50,8 @@ public class BuildNewProgramReview extends AppCompatActivity {
                    Boolean result = db.insertProgram(ProgramBuilder.getInstance().getTrainingDays(), editTextName.getText().toString());
                    if(!result){
                        Toast.makeText(getApplicationContext(), "Program Creation Failed", Toast.LENGTH_SHORT).show();
+                   } else {
+                       startActivity(new Intent(BuildNewProgramReview.this, LoadProgram.class));
                    }
                }
             }
@@ -128,7 +131,6 @@ public class BuildNewProgramReview extends AppCompatActivity {
         String days = "";
         String types = "";
 
-        SimpleDateFormat format_yyyymmdd = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat format_EEEE = new SimpleDateFormat("EEEE");
 
         for(int i = 0; i < programDates.length; i++){
