@@ -269,6 +269,6 @@
     <string name="title_activity_view_exercise">View Exercise</string>
     <string name="title_activity_view_tip">View Tip</string>
     <string name="title_activity_build_new_program_root">Build New Program</string>
-    <string name="title_activity_view_program_by_date">ViewProgramByDate</string>
-    <string name="title_activity_view_dates_exercises">ViewDatesExercises</string>
+    <string name="title_activity_view_program_by_date">View Program By Date</string>
+    <string name="title_activity_view_dates_exercises">View a Days Exercises</string>
 </resources>

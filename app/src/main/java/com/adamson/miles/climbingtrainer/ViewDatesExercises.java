@@ -45,11 +45,11 @@ public class ViewDatesExercises extends AppCompatActivity {
         for(int i = 0; i < exerciseAndDate.exerciseNames.length; i++){
             LinearLayout layoutHorizontal = new LinearLayout(new ContextThemeWrapper(this, R.style.LayoutHorizontalTransparent),null, 0);
             Button button = new Button(new ContextThemeWrapper(this, R.style.ButtonWhite), null, 0);
-            float pixels =  40 * getApplicationContext().getResources().getDisplayMetrics().density;
+            float pixels =  80 * getApplicationContext().getResources().getDisplayMetrics().density;
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) pixels);
             button.setLayoutParams(lp);
-            final String exerciseString = exerciseAndDate.exerciseNames[i] + " (" + exerciseAndDate.exercises[i].time + ")";
-            final Exercise exercise = db.selectExerciseByName(exerciseString);
+            final String exerciseString = exerciseAndDate.exerciseNames[i] + "\n(" + exerciseAndDate.exercises[i].time + ")";
+            final Exercise exercise = db.selectExerciseByName(exerciseAndDate.exerciseNames[i]);
             button.setText(exerciseString);
             button.setOnClickListener(new View.OnClickListener() {
                 @Override

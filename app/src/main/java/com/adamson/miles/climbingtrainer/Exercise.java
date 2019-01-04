@@ -13,6 +13,7 @@ public class Exercise implements Serializable {
     String diff;  // difficulty minimum
     String equip; // required equipment
     String time;
+    int timeInt;
 
     public Exercise(){}
     
@@ -26,6 +27,7 @@ public class Exercise implements Serializable {
         diff = e.diff;
         equip = e.equip;
         time = e.time;
+        setTimeInt();
     }
 
     public Exercise setName(String n) {this.name = n; return this;}
@@ -36,7 +38,27 @@ public class Exercise implements Serializable {
     public Exercise setRest(String r) {this.rest = r; return this;}
     public Exercise setDiff(String d) {this.diff = d; return this;}
     public Exercise setEquip(String e) {this.equip = e; return this;}
-    public Exercise setTime(String t) {this.time = t; return this;}
 
+    public Exercise setTime(String t) {
+        this.time = t;
+        setTimeInt();
+        return this;}
+
+    private void setTimeInt(){
+        switch (time){
+            case "15 Minutes":
+                timeInt = 15;
+                break;
+            case "30 Minutes":
+                timeInt = 30;
+                break;
+            case "45 Minutes":
+                timeInt = 45;
+                break;
+            case "60 Minutes":
+                timeInt = 60;
+                break;
+        }
+    }
 }
 

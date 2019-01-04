@@ -1,7 +1,6 @@
 package com.adamson.miles.climbingtrainer;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -241,7 +240,7 @@ public class ProgramBuilder {
 
                 switch (trainingDays[dayIndex].type) {
                     case "Volume":
-                        Exercise[] volumeExercises = filterExerciseArray(db.selectAllExerciseByType("Volume"));
+                        Exercise[] volumeExercises = filterExercisesByEquipment(db.selectAllExerciseByType("Volume"));
                         int randomIndex = new Random().nextInt(volumeExercises.length);
                         trainingDays[dayIndex].exercises[1] = volumeExercises[randomIndex];
                         // If dedicated, add a second volume exercise, which is NOT already the one
@@ -255,9 +254,25 @@ public class ProgramBuilder {
                         break;
 
                     case "Strength":
-                        trainingDays[dayIndex].exercises[1] = ExerciseBuilder.freeTime;
-                        trainingDays[dayIndex].exercises[2] = ExerciseBuilder.freeTime;
-                        trainingDays[dayIndex].exercises[3] = ExerciseBuilder.freeTime;
+                        Exercise[] strengthExercises = filterExercisesByEquipment(db.selectAllExerciseByType("Strength"));
+                        Exercise[] longExercises = filterExercisesByOverTime(strengthExercises, 30);
+                        Exercise[] shortExercises = filterExercisesByExactTime(strengthExercises, 15);
+                        // If dedicated, give two long exercises. Fill in the rest with 15 minute
+                        // drills until the session is three hours.
+                        if(commitmentLevel.equals(DEDICATED)){
+                            randomIndex = randomInt(longExercises.length);
+                            int randomIndexTwo = randomIntNew(longExercises.length, new int[]{randomIndex});
+                            trainingDays[dayIndex].exercises[1] = longExercises[randomIndex];
+                            trainingDays[dayIndex].exercises[2] = longExercises[randomIndexTwo];
+                            trainingDays[dayIndex].exercises[3] = shortExercises[randomInt(shortExercises.length)];
+                        } else {
+                            // if not dedicated, give a long exercise and a short one
+                            randomIndex = randomInt(longExercises.length);
+                            int randomIndexTwo = randomIntNew(longExercises.length, new int[]{randomIndex});
+                            trainingDays[dayIndex].exercises[1] = longExercises[randomIndex];
+                            trainingDays[dayIndex].exercises[2] = shortExercises[randomIndexTwo];
+                        }
+
                         break;
 
                     case "Power":
@@ -285,11 +300,61 @@ public class ProgramBuilder {
 
     // Takes an exercise array and returns another exercise array where every
     // exercise where the user doesn't have the equipment is removed.
-    Exercise[] filterExerciseArray(Exercise[] e){
+    Exercise[] filterExercisesByEquipment(Exercise[] e){
         boolean[] valid = new boolean[e.length];
         int count = 0;
         for(int i = 0; i < e.length; i++){
             if(checkExerciseEquipment(e[i])){
+                valid[i] = true;
+                count++;
+            } else {
+                valid[i] = false;
+            }
+        }
+
+        Exercise[] validExercises = new Exercise[count];
+        count = 0;
+        for(int i = 0; i < e.length; i++){
+            if(valid[i]){
+                validExercises[count] = e[i];
+                count++;
+            }
+        }
+        return validExercises;
+    }
+
+    // Takes an exercise array and returns another exercise array where every
+    // exercise is equal to or over the duration given
+    Exercise[] filterExercisesByOverTime(Exercise[] e, int t){
+        boolean[] valid = new boolean[e.length];
+        int count = 0;
+        for(int i = 0; i < e.length; i++){
+            if(e[i].timeInt >= t){
+                valid[i] = true;
+                count++;
+            } else {
+                valid[i] = false;
+            }
+        }
+
+        Exercise[] validExercises = new Exercise[count];
+        count = 0;
+        for(int i = 0; i < e.length; i++){
+            if(valid[i]){
+                validExercises[count] = e[i];
+                count++;
+            }
+        }
+        return validExercises;
+    }
+
+    // Takes an exercise array and returns another exercise array where every
+    // exercise is equal to the duration given
+    Exercise[] filterExercisesByExactTime(Exercise[] e, int t){
+        boolean[] valid = new boolean[e.length];
+        int count = 0;
+        for(int i = 0; i < e.length; i++){
+            if(e[i].timeInt == t){
                 valid[i] = true;
                 count++;
             } else {
@@ -333,7 +398,6 @@ public class ProgramBuilder {
     // returns a random integer that is NOT in the "old" array
     // attempts 100 times to do so and returns 0 if it fails
     int randomIntNew(int maxExclusive, int[] old){
-        boolean foundNew = false;
         // If the int already exists in the array, this flag is set.
         boolean existsFlag = false;
         int r;
