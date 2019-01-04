@@ -338,7 +338,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Insert all the exercises and their dates into the table
         for(int i = 0; i < trainingDays.length; i++){
             // null days are rest days. Skip them.
-            if(trainingDays[i] != null || i == 0) {
+            if(trainingDays[i] != null) {
                 // Insert a row for every exercise provided, and the date to do it on.
                 for (int k = 0; k < trainingDays[i].exercises.length; k++) {
                     // Exercise array is not of known length, check for end which is null
@@ -353,6 +353,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                             return false;
                         }
                     } else {
+                        // If there is a null exercise we can break out of the loop and go to
+                        // the next day
                         break;
                     }
                 }

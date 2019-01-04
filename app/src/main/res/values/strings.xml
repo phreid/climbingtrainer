@@ -103,7 +103,6 @@
 
     <string-array name="commitment_levels">
         <item>Select Commitment Level...</item>
-        <item>Casual</item>
         <item>Moderate</item>
         <item>Dedicated</item>
     </string-array>

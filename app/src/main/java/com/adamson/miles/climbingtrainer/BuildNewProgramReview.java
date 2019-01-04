@@ -53,6 +53,7 @@ public class BuildNewProgramReview extends AppCompatActivity {
                    if(!result){
                        Toast.makeText(getApplicationContext(), "Program Creation Failed", Toast.LENGTH_SHORT).show();
                    } else {
+                       pB.destroyInstance();
                        startActivity(new Intent(BuildNewProgramReview.this, LoadProgram.class));
                    }
                }
@@ -126,6 +127,8 @@ public class BuildNewProgramReview extends AppCompatActivity {
         pB.buildTrainingDays();
 
         Date[] programDates = pB.getTrainingDatesInProgram();
+
+        // fill the trainingDays in with exercises
         pB.populateTrainingDays(BuildNewProgramReview.this);
         TrainingDay[] trainingDays = pB.getTrainingDays();
 
@@ -145,7 +148,6 @@ public class BuildNewProgramReview extends AppCompatActivity {
         textViewDate.setText(dates);
         textViewDayOfWeek.setText(days);
         textViewType.setText(types);
-
     }
 
     // Program names must be only letters and no more than 12 chars.

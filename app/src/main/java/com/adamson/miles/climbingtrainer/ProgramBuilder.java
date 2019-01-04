@@ -1,6 +1,7 @@
 package com.adamson.miles.climbingtrainer;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -104,20 +105,6 @@ public class ProgramBuilder {
                 break;
         }
         return result;
-    }
-
-    boolean checkEquipment(Context context, String equipment){
-        String[] allEquipment = context.getResources().getStringArray(R.array.equipment);
-        for (int i = 0; i < allEquipment.length; i++){
-            // Check if this is the peice of equipment in question
-            if(equipment.equals(allEquipment[i])){
-                // Check if the user selected that they have the equipment
-                if(equipmentAvailable[i]){
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 
     // Fills the trainingDatesInProgram array with Date objects
@@ -237,6 +224,8 @@ public class ProgramBuilder {
     // objects with exercises based on the user, equipment, and training day type
     public void populateTrainingDays(Context context){
         DatabaseHelper db = new DatabaseHelper(context);
+        String[] commitments = context.getResources().getStringArray(R.array.commitment_levels);
+        String DEDICATED = commitments[2];
 
         // loop through each day
         for (int dayIndex = 0; dayIndex <trainingDays.length; dayIndex++){
@@ -252,18 +241,17 @@ public class ProgramBuilder {
 
                 switch (trainingDays[dayIndex].type) {
                     case "Volume":
-                        Exercise[] volumeExercises = db.selectAllExerciseByType("Volume");
-                        boolean foundExercise = false;
-                        // Try to find an exercise where the user has the equipment needed
-                        while (!foundExercise) {
-                            int randomIndex = new Random().nextInt(volumeExercises.length);
-                            if (checkEquipment(context, volumeExercises[randomIndex].equip)) {
-                                foundExercise = true;
-                                trainingDays[dayIndex].exercises[1] = volumeExercises[randomIndex];
-                            }
+                        Exercise[] volumeExercises = filterExerciseArray(db.selectAllExerciseByType("Volume"));
+                        int randomIndex = new Random().nextInt(volumeExercises.length);
+                        trainingDays[dayIndex].exercises[1] = volumeExercises[randomIndex];
+                        // If dedicated, add a second volume exercise, which is NOT already the one
+                        // selected as the first exercise.
+                        if(commitmentLevel.equals(DEDICATED)){
+                            int randomIndexTwo = randomIntNew(volumeExercises.length, new int[]{randomIndex});
+                            trainingDays[dayIndex].exercises[2] = volumeExercises[randomIndexTwo];
+                        } else {
+                            trainingDays[dayIndex].exercises[2] = ExerciseBuilder.freeTime;
                         }
-                        // All volume days end with free time.
-                        trainingDays[dayIndex].exercises[2] = ExerciseBuilder.freeTime;
                         break;
 
                     case "Strength":
@@ -294,4 +282,78 @@ public class ProgramBuilder {
             }
         }
     }
+
+    // Takes an exercise array and returns another exercise array where every
+    // exercise where the user doesn't have the equipment is removed.
+    Exercise[] filterExerciseArray(Exercise[] e){
+        boolean[] valid = new boolean[e.length];
+        int count = 0;
+        for(int i = 0; i < e.length; i++){
+            if(checkExerciseEquipment(e[i])){
+                valid[i] = true;
+                count++;
+            } else {
+                valid[i] = false;
+            }
+        }
+
+        Exercise[] validExercises = new Exercise[count];
+        count = 0;
+        for(int i = 0; i < e.length; i++){
+            if(valid[i]){
+                validExercises[count] = e[i];
+                count++;
+            }
+        }
+        return validExercises;
+    }
+
+    // Returns true if the user has selected they have the equipment necessary
+    // for an exercise.
+    Boolean checkExerciseEquipment(Exercise e){
+        String[] equipment = ExerciseBuilder.equip;
+        // exercises which require no equipment always return true
+        if(e.equip.equals(ExerciseBuilder.none)) {
+            return true;
+        }
+        // loop through and see if we have the equipment available
+        for (int i = 0; i < equipment.length; i++) {
+            if ((equipment[i].equals(e.equip)) && equipmentAvailable[i]) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // returns a random integer from [0:max-1]
+    int randomInt(int maxExclusive){
+        return new Random().nextInt(maxExclusive);
+    }
+
+    // returns a random integer that is NOT in the "old" array
+    // attempts 100 times to do so and returns 0 if it fails
+    int randomIntNew(int maxExclusive, int[] old){
+        boolean foundNew = false;
+        // If the int already exists in the array, this flag is set.
+        boolean existsFlag = false;
+        int r;
+        for(int attempts = 0; attempts < 100; attempts++) {
+            r = randomInt(maxExclusive);
+
+            // Step through each existing number and see if this is new
+            for (int i = 0; i < old.length; i++) {
+                if (r == old[i]){
+                    existsFlag = true;
+                }
+            }
+
+            // If the number is new, return it. Otherwise, tries again
+            if(!existsFlag){
+                return r;
+            }
+        }
+        // returns zero if after 100 tries no new int can be found
+        return 0;
+    }
+
 }
