@@ -309,7 +309,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Insert all the exercises and their dates into the table
         for(int i = 0; i < trainingDays.length; i++){
             // null days are rest days. Skip them.
-            if(trainingDays[i] != null) {
+            if(trainingDays[i] != null || i == 0) {
                 // Insert a row for every exercise provided, and the date to do it on.
                 for (int k = 0; k < trainingDays[i].exercises.length; k++) {
                     // Exercise array is not of known length, check for end which is null

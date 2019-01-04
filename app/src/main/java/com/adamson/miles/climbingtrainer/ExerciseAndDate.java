@@ -30,6 +30,8 @@ public class ExerciseAndDate {
 
         String lastDate = dateStrings[0];
         uniqueDatesPadded[0] = dateStrings[0];
+        uniqueDatesDayOfWeekPadded[0] = daysOfWeek[0];
+        uniqueDatesTypePadded[0] = types[0];
 
         // Every time the date changes, add it to uniqueDatesPadded
         for(int i = 1; i < dateStrings.length; i++){

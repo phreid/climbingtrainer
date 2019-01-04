@@ -156,7 +156,7 @@ public class ProgramBuilder {
 
         switch (programType){
             case "Bouldering Program":
-                volumeDays = 7;
+                volumeDays = 5;
                 int boulderSegmentLength = ((int)programLength - volumeDays) / 2;
                 strPowDays = boulderSegmentLength;
                 powerEndDays = boulderSegmentLength;
@@ -169,7 +169,7 @@ public class ProgramBuilder {
                 break;
 
             case "Routes Program":
-                volumeDays = 14;
+                volumeDays = 10;
                 int routeSegmentLength = ((int)programLength - volumeDays) / 3;
                 strPowDays = routeSegmentLength;
                 powerEndDays = routeSegmentLength;

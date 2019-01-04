@@ -27,6 +27,7 @@ public class BuildNewProgramReview extends AppCompatActivity {
     TextView textViewType;
     Button buttonGenerate;
     EditText editTextName;
+    ProgramBuilder pB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class BuildNewProgramReview extends AppCompatActivity {
                 .setRequestAgent("android_studio:ad_template").build();
         adView.loadAd(adRequest);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        pB = ProgramBuilder.getInstance();
         initReviewText();
         editTextName = (EditText)findViewById(R.id.editTextName);
         buttonGenerate = (Button)findViewById(R.id.buttonGenerateProgram);
@@ -47,7 +49,7 @@ public class BuildNewProgramReview extends AppCompatActivity {
             public void onClick(View v) {
                if(checkName()){
                    DatabaseHelper db = new DatabaseHelper(getApplicationContext());
-                   Boolean result = db.insertProgram(ProgramBuilder.getInstance().getTrainingDays(), editTextName.getText().toString());
+                   Boolean result = db.insertProgram(pB.getTrainingDays(), editTextName.getText().toString());
                    if(!result){
                        Toast.makeText(getApplicationContext(), "Program Creation Failed", Toast.LENGTH_SHORT).show();
                    } else {
@@ -85,18 +87,18 @@ public class BuildNewProgramReview extends AppCompatActivity {
         String[] reviewSegments = getResources().getStringArray(R.array.review_segments);
         ProgramBuilder programBuilder = ProgramBuilder.getInstance();
 
-        String s = reviewSegments[0] + " " + programBuilder.getProgramType() + "\n\n";
-      //  s = s + reviewSegments[1] + " " +  programBuilder.getSessionDuration() + "\n\n";
-       // s = s + reviewSegments[2] + " " +  programBuilder.getSessionsPerWeek() + "\n\n";
-        s = s + reviewSegments[3] + " " +  programBuilder.getCommitmentLevel() + "\n\n";
-        s = s + reviewSegments[4] + " " +  programBuilder.getCurrentGrade() + "\n\n";
-        s = s + reviewSegments[5] + " " +  programBuilder.getStartDateString() + "\n\n";
-        s = s + reviewSegments[6] + " " +  programBuilder.getEndDateString() + "\n\n";
-        s = s + "Program Length: " + Long.toString(programBuilder.getProgramLength()) + " Days\n\n";
+        String s = reviewSegments[0] + " " + pB.getProgramType() + "\n\n";
+      //  s = s + reviewSegments[1] + " " +  pB.getSessionDuration() + "\n\n";
+       // s = s + reviewSegments[2] + " " +  pB.getSessionsPerWeek() + "\n\n";
+        s = s + reviewSegments[3] + " " +  pB.getCommitmentLevel() + "\n\n";
+        s = s + reviewSegments[4] + " " +  pB.getCurrentGrade() + "\n\n";
+        s = s + reviewSegments[5] + " " +  pB.getStartDateString() + "\n\n";
+        s = s + reviewSegments[6] + " " +  pB.getEndDateString() + "\n\n";
+        s = s + "Program Length: " + Long.toString(pB.getProgramLength()) + " Days\n\n";
         s = s + reviewSegments[7] + "\n";
 
         String[] equipment = getResources().getStringArray(R.array.equipment);
-        boolean[] equipmentArray = programBuilder.getEquipmentAvailable();
+        boolean[] equipmentArray = pB.getEquipmentAvailable();
         for(int i = 0; i < equipment.length; i++){
             if(equipmentArray[i]){
                 s = s + equipment[i];
@@ -120,12 +122,12 @@ public class BuildNewProgramReview extends AppCompatActivity {
         textViewDayOfWeek = (TextView)findViewById(R.id.textViewDayOfWeek);
         textViewType = (TextView)findViewById(R.id.textViewType);
 
-        ProgramBuilder.getInstance().buildDatesInProgram();
-        ProgramBuilder.getInstance().buildTrainingDays();
+        pB.buildDatesInProgram();
+        pB.buildTrainingDays();
 
-        Date[] programDates = ProgramBuilder.getInstance().getTrainingDatesInProgram();
-        ProgramBuilder.getInstance().populateTrainingDays(BuildNewProgramReview.this);
-        TrainingDay[] trainingDays = ProgramBuilder.getInstance().getTrainingDays();
+        Date[] programDates = pB.getTrainingDatesInProgram();
+        pB.populateTrainingDays(BuildNewProgramReview.this);
+        TrainingDay[] trainingDays = pB.getTrainingDays();
 
         String dates = "";
         String days = "";
