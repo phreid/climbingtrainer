@@ -48,7 +48,7 @@ public class ViewDatesExercises extends AppCompatActivity {
             float pixels =  40 * getApplicationContext().getResources().getDisplayMetrics().density;
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) pixels);
             button.setLayoutParams(lp);
-            final String exerciseString = exerciseAndDate.exerciseNames[i];
+            final String exerciseString = exerciseAndDate.exerciseNames[i] + " (" + exerciseAndDate.exercises[i].time + ")";
             final Exercise exercise = db.selectExerciseByName(exerciseString);
             button.setText(exerciseString);
             button.setOnClickListener(new View.OnClickListener() {

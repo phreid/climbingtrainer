@@ -287,6 +287,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return exercises;
     }
 
+    // Returns all exercises given a grade and type
+    public Exercise[] selectByTypeGrade(String type, String grade){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String query = "SELECT * FROM "+T1+" WHERE "+T1_type+ " = '"+type+"' AND "+T1_diff+ " = '"+grade+"';";
+
+        Cursor cursor = db.rawQuery(query, null);
+        Exercise[] exercises = new Exercise[cursor.getCount()];
+        // if there are any exercises, return them
+        if (cursor.moveToFirst()) {
+            for (int i = 0; i < exercises.length; i++) {
+                Exercise row = new Exercise()
+                        .setName(cursor.getString(0))
+                        .setDesc(cursor.getString(1))
+                        .setType(cursor.getString(2))
+                        .setSets(cursor.getString(3))
+                        .setReps(cursor.getString(4))
+                        .setRest(cursor.getString(5))
+                        .setDiff(cursor.getString(6))
+                        .setEquip(cursor.getString(7))
+                        .setTime(cursor.getString(8));
+                exercises[i] = row;
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+        return exercises;
+    }
+
 
     // With an array of trainingDays objects, save the program in sql.
     // If a program by that name already exists, return false

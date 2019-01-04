@@ -28,7 +28,6 @@ public class ExerciseAndDate {
         String[] uniqueDatesDayOfWeekPadded = new String[dateStrings.length];
         String[] uniqueDatesTypePadded = new String[dateStrings.length];
 
-        String lastDate = dateStrings[0];
         uniqueDatesPadded[0] = dateStrings[0];
         uniqueDatesDayOfWeekPadded[0] = daysOfWeek[0];
         uniqueDatesTypePadded[0] = types[0];
