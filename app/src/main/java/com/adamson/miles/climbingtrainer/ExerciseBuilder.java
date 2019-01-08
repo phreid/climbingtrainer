@@ -159,6 +159,16 @@ public class ExerciseBuilder {
         insertHangboardTenTwo();
         insertHangboardTenThree();
         insertHangboardTenFour();
+        insertARCthirty();
+        insertARCfortyfive();
+        insertARCsixty();
+        insertRestEffectiveness();
+        insertOneEnduranceIntervals();
+        insertTwoEnduranceIntervals();
+        insertRopedEnduranceIntervals();
+        insertDoubleLapProject();
+        insertRestOnRoute();
+        insertRestOnCircuit();
     }
 
     void insertFourByFour(){
@@ -261,7 +271,7 @@ public class ExerciseBuilder {
 
     void insertBoulderLink(){
         Exercise e = new Exercise()
-                .setName("Boulder Linkup")
+                .setName("Traverse into a Boulder")
                 .setDesc("Set or choose a four to six move problem which is near your redpoint level. Then, set a ten to fifteen move traverse into the starting holds. The traverse can have open feet, the boulder should have set feet. Attempt to link the traverse into the boulder four times.")
                 .setType(types[POWEND])
                 .setSets("1")
@@ -1409,6 +1419,155 @@ public class ExerciseBuilder {
                 .setRest("Rest completely between attempts.")
                 .setDiff(ANY)
                 .setTime(times[THIRTY_M]);
+        db.insertExercise(e);
+    }
+
+    void insertARCthirty(){
+        Exercise e = new Exercise()
+                .setName("30 Minute ARC Drill")
+                .setDesc("Climb on a vertical wall or slight overhang for 5-10 minutes continuously, depending on your current endurance. The climbing should get you lightly pumped (fairly easy). At the end of the timer, hop off the wall and rest for 30 seconds. Then, attempt a long boulder problem which is around the grade you normally flash.\n\n" +
+                        "Rest until the 15 minute mark, and repeat this again.")
+                .setType(types[ENDURANCE])
+                .setSets("2")
+                .setEquip(none)
+                .setReps("N/A")
+                .setRest("Rest until the 15 minute mark, after the first set.")
+                .setDiff(ANY)
+                .setTime(times[THIRTY_M]);
+        db.insertExercise(e);
+    }
+
+    void insertARCfortyfive(){
+        Exercise e = new Exercise()
+                .setName("45 Minute ARC Drill")
+                .setDesc("Climb on a vertical wall or slight overhang for 5-10 minutes continuously, depending on your current endurance. The climbing should get you lightly pumped (fairly easy). At the end of the timer, hop off the wall and rest for 30 seconds. Then, attempt a long boulder problem which is around the grade you normally flash.\n\n" +
+                        "Rest until the 15th minute of the drill, and repeat this again. Do 3 sets for a total of 45 minutes.")
+                .setType(types[ENDURANCE])
+                .setSets("4")
+                .setEquip(none)
+                .setReps("N/A")
+                .setRest("Rest with any remaining time between sets.")
+                .setDiff(ANY)
+                .setTime(times[FORTYFIVE_M]);
+        db.insertExercise(e);
+    }
+
+    void insertARCsixty(){
+        Exercise e = new Exercise()
+                .setName("60 Minute ARC Drill")
+                .setDesc("Climb on a vertical wall or slight overhang for 5-10 minutes continuously, depending on your current endurance. The climbing should get you lightly pumped (fairly easy). At the end of the timer, hop off the wall and rest for 30 seconds. Then, attempt a long boulder problem which is around the grade you normally flash.\n\n" +
+                        "Rest until the 15th minute of the set, then repeat again 4 times. This makes for four sets, taking 1 hour total.")
+                .setType(types[ENDURANCE])
+                .setSets("4")
+                .setEquip(none)
+                .setReps("N/A")
+                .setRest("Rest with any remaining time between sets.")
+                .setDiff(ANY)
+                .setTime(times[SIXTY_M]);
+        db.insertExercise(e);
+    }
+
+    void insertRestEffectiveness(){
+        Exercise e = new Exercise()
+                .setName("Rest Effectiveness")
+                .setDesc("Climb continuously until failure due to pump. Ramp the difficulty up such that you get at least 40 moves in before failure.\n\n" +
+                        "Once you fail, go to a chosen rest position to attempt to recover. Shake out on it and attempt to recover as long as you can, until you fail again. Attempt to find holds to rest on which are mediocre, but you can still hold on for over a minute.\n\n" +
+                        "Do this drill three times. You climb at the first, 15th and 30th minute. Rest until the next set.")
+                .setType(types[ENDURANCE])
+                .setSets("3")
+                .setEquip(none)
+                .setReps("N/A")
+                .setRest("Rest with any remaining time between sets.")
+                .setDiff(ANY)
+                .setTime(times[FORTYFIVE_M]);
+        db.insertExercise(e);
+    }
+
+    void insertTwoEnduranceIntervals(){
+        Exercise e = new Exercise()
+                .setName("Two Endurance Bouldering Intervals")
+                .setDesc("Climb for 1 minute on, and then rest for 1 minute. Do this 10 times, for a total of 20 minutes. Rest 10 minutes, then do it again.")
+                .setType(types[ENDURANCE])
+                .setSets("2")
+                .setEquip(none)
+                .setReps("10")
+                .setRest("Rest 1 minute in intervals and 10 minutes between sets.")
+                .setDiff(ANY)
+                .setTime(times[SIXTY_M]);
+        db.insertExercise(e);
+    }
+
+    void insertOneEnduranceIntervals(){
+        Exercise e = new Exercise()
+                .setName("One Endurance Bouldering Interval")
+                .setDesc("Climb for 1 minute on, and then rest for 1 minute. Do this 12 times, for a total of 24 minutes.")
+                .setType(types[ENDURANCE])
+                .setSets("1")
+                .setEquip(none)
+                .setReps("12")
+                .setRest("Rest 1 minute in intervals and for 6 minutes after the drill.")
+                .setDiff(ANY)
+                .setTime(times[THIRTY_M]);
+        db.insertExercise(e);
+    }
+
+    void insertRopedEnduranceIntervals(){
+        Exercise e = new Exercise()
+                .setName("Endurance Roped Interval")
+                .setDesc("Climb for 5 minutes on, climbing up and down the same route. On lead, un-clip on your way down. After, belay your parner for 5 minutes as your rest. Attempt to switch quickly. Repeat this 2 times each/\n\n" +
+                        "Unlike time on the wall for volume drills, the difficulty of the route should be higher and getting you extremely pumped. Swap to an easier route if you cannot climb for more than a minute without falling.")
+                .setType(types[ENDURANCE])
+                .setSets("2")
+                .setEquip(equip[LEADTR])
+                .setReps("5 min")
+                .setRest("Rest 5 minutes between intervals.")
+                .setDiff(ANY)
+                .setTime(times[FORTYFIVE_M]);
+        db.insertExercise(e);
+    }
+
+    void insertDoubleLapProject(){
+        Exercise e = new Exercise()
+                .setName("Double Lap Endurance Project")
+                .setDesc("Find a route which is near your redpoint limit. Attempt to climb it twice in a row. Treat this like a project and come back to the same routefor this drill in the future (until you send).\n\n" +
+                        "Attempt your project twice within 30 minutes, the remainder of the time is resting.")
+                .setType(types[ENDURANCE])
+                .setSets("N/A")
+                .setEquip(equip[LEADTR])
+                .setReps("N/A")
+                .setRest("See Description")
+                .setDiff(ANY)
+                .setTime(times[THIRTY_M]);
+        db.insertExercise(e);
+    }
+
+    void insertRestOnRoute(){
+        Exercise e = new Exercise()
+                .setName("Rest on Route")
+                .setDesc("Find a route which is near your redpoint limit. Start by shaking out on the starting holds for 2 minutes before you climb. Once the time is up, attempt to redpoint the route.\n\n" +
+                        "Do this three times within 45 minutes. Spread out resting evenly between attempts.")
+                .setType(types[ENDURANCE])
+                .setSets("N/A")
+                .setEquip(equip[LEADTR])
+                .setReps("N/A")
+                .setRest("See Description")
+                .setDiff(ANY)
+                .setTime(times[FORTYFIVE_M]);
+        db.insertExercise(e);
+    }
+
+    void insertRestOnCircuit(){
+        Exercise e = new Exercise()
+                .setName("Rest on Circuit")
+                .setDesc("Find a circuit which is near your redpoint limit. Start by shaking out on the starting holds for 2 minutes before you climb. Once the time is up, attempt to redpoint the route.\n\n" +
+                        "Do this three times within 45 minutes. Spread out resting evenly between attempts.")
+                .setType(types[ENDURANCE])
+                .setSets("N/A")
+                .setEquip(none)
+                .setReps("N/A")
+                .setRest("See Description")
+                .setDiff(ANY)
+                .setTime(times[FORTYFIVE_M]);
         db.insertExercise(e);
     }
 

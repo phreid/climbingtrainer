@@ -376,15 +376,178 @@ public class ProgramBuilder {
                         break;
 
                     case "Power Endurance":
-                        trainingDays[dayIndex].exercises[1] = ExerciseBuilder.freeTime;
-                        trainingDays[dayIndex].exercises[2] = ExerciseBuilder.freeTime;
-                        trainingDays[dayIndex].exercises[3] = ExerciseBuilder.freeTime;
+                        // All power endurance drills are of "any" grade
+                        Exercise[] powEndExercises = filterByEquipment(db.selectAllExerciseByType("Power Endurance"));
+                        longExercises = filterMinimumTime(powEndExercises, 30);
+                        fifteenMinExercises = filterByExactTime(powEndExercises, 15);
+                        thirtyMinExercises = filterByExactTime(powEndExercises, 30);
+                        fifteenMinConditioning = filterByEquipment(db.selectAllExerciseByType("Conditioning"));
+                        Exercise[] fifteenMinStr = filterByGrade(filterByExactTime(filterByEquipment(db.selectAllExerciseByType("Strength")), 15), currentGrade);
+                        Exercise[] fifteenMinPow = filterByGrade(filterByExactTime(filterByEquipment(db.selectAllExerciseByType("Power")), 15), currentGrade);
+
+                        // If dedicated, give two long exercises. Fill in the rest with 15 minute
+                        // drills until the session is three hours.
+                        if(commitmentLevel.equals(DEDICATED)){
+                            // Add two long exercises. If they are the exact same, try again
+                            trainingDays[dayIndex].exercises[1] = randomFrom(longExercises);
+                            do {
+                                trainingDays[dayIndex].exercises[2] = randomFrom(longExercises);
+                            } while (!uniqueExercises(trainingDays[dayIndex].exercises[1], trainingDays[dayIndex].exercises[2], null));
+                            // Fill in the rest of the day based on how much time is left
+                            int time = trainingDays[dayIndex].exercises[1].timeInt + trainingDays[dayIndex].exercises[2].timeInt;
+                            switch (time){
+                                // Two half hour exercises picked
+                                case 60:
+                                    do {
+                                        // Add a third 30 minute exercise
+                                        trainingDays[dayIndex].exercises[3] = thirtyMinExercises[randomInt(thirtyMinExercises.length)];
+                                    } while (!uniqueExercises(trainingDays[dayIndex].exercises[1], trainingDays[dayIndex].exercises[2], trainingDays[dayIndex].exercises[3]));
+                                    // Add 15 minute drill of either strength or power
+                                    int strOrPow = randomInt(1);
+                                    switch (strOrPow){
+                                        case 0:
+                                            trainingDays[dayIndex].exercises[4] = fifteenMinStr[randomInt(fifteenMinStr.length)];
+                                            break;
+                                        case 1:
+                                            trainingDays[dayIndex].exercises[4] = fifteenMinPow[randomInt(fifteenMinPow.length)];
+                                            break;
+                                    }
+                                    // finish with conditioning
+                                    trainingDays[dayIndex].exercises[5] = randomFrom(fifteenMinConditioning);
+                                    break;
+                                // Half hour and 45min exercises picked
+                                case 75:
+                                    // Add three 15 minute drills, pow, str then con
+                                    trainingDays[dayIndex].exercises[3] = fifteenMinPow[randomInt(fifteenMinPow.length)];
+                                    trainingDays[dayIndex].exercises[4] = fifteenMinStr[randomInt(fifteenMinStr.length)];
+                                    trainingDays[dayIndex].exercises[5] = randomFrom(fifteenMinConditioning);
+                                    break;
+                                // Two 45min exercises picked, or 30 min and a 1h
+                                case 90:
+                                    strOrPow = randomInt(1);
+                                    switch (strOrPow){
+                                        case 0:
+                                            trainingDays[dayIndex].exercises[4] = fifteenMinStr[randomInt(fifteenMinStr.length)];
+                                            break;
+                                        case 1:
+                                            trainingDays[dayIndex].exercises[4] = fifteenMinPow[randomInt(fifteenMinPow.length)];
+                                            break;
+                                    }
+                                    trainingDays[dayIndex].exercises[4] = randomFrom(fifteenMinConditioning);
+                                    break;
+
+                                // 45min and 1h exercises picked
+                                case 105:
+                                    trainingDays[dayIndex].exercises[3] = randomFrom(fifteenMinConditioning);
+                                    break;
+
+                                // Two 1h exercises picked
+                                default:
+                                    // Day is already 3h, add nothing more
+                                    break;
+                            }
+                        } else {
+                            // if not dedicated, give a long + short str/pow exercise
+                            trainingDays[dayIndex].exercises[1] = longExercises[randomInt(longExercises.length)];
+                            int strOrPow = randomInt(1);
+                            switch (strOrPow){
+                                case 0:
+                                    trainingDays[dayIndex].exercises[4] = fifteenMinStr[randomInt(fifteenMinStr.length)];
+                                    break;
+                                case 1:
+                                    trainingDays[dayIndex].exercises[4] = fifteenMinPow[randomInt(fifteenMinPow.length)];
+                                    break;
+                            }
+                            // finish with conditioning
+                            trainingDays[dayIndex].exercises[3] = randomFrom(fifteenMinConditioning);
+                        }
                         break;
 
                     case "Endurance":
-                        trainingDays[dayIndex].exercises[1] = ExerciseBuilder.freeTime;
-                        trainingDays[dayIndex].exercises[2] = ExerciseBuilder.freeTime;
-                        trainingDays[dayIndex].exercises[3] = ExerciseBuilder.freeTime;
+                        // All power endurance drills are of "any" grade
+                        Exercise[] endExercises = filterByEquipment(db.selectAllExerciseByType("Endurance"));
+                        longExercises = filterMinimumTime(endExercises, 30);
+                        thirtyMinExercises = filterByExactTime(endExercises, 30);
+                        fifteenMinConditioning = filterByEquipment(db.selectAllExerciseByType("Conditioning"));
+                        fifteenMinStr = filterByGrade(filterByExactTime(filterByEquipment(db.selectAllExerciseByType("Strength")), 15), currentGrade);
+                        fifteenMinPow = filterByGrade(filterByExactTime(filterByEquipment(db.selectAllExerciseByType("Power")), 15), currentGrade);
+
+                        // If dedicated, give two long exercises. Fill in the rest with 15 minute
+                        // drills until the session is three hours.
+                        if(commitmentLevel.equals(DEDICATED)){
+                            // Add two long exercises. If they are the exact same, try again
+                            trainingDays[dayIndex].exercises[1] = randomFrom(longExercises);
+                            do {
+                                trainingDays[dayIndex].exercises[2] = randomFrom(longExercises);
+                            } while (!uniqueExercises(trainingDays[dayIndex].exercises[1], trainingDays[dayIndex].exercises[2], null));
+                            // Fill in the rest of the day based on how much time is left
+                            int time = trainingDays[dayIndex].exercises[1].timeInt + trainingDays[dayIndex].exercises[2].timeInt;
+                            switch (time){
+                                // Two half hour exercises picked
+                                case 60:
+                                    do {
+                                        // Add a third 30 minute exercise
+                                        trainingDays[dayIndex].exercises[3] = thirtyMinExercises[randomInt(thirtyMinExercises.length)];
+                                    } while (!uniqueExercises(trainingDays[dayIndex].exercises[1], trainingDays[dayIndex].exercises[2], trainingDays[dayIndex].exercises[3]));
+                                    // Add 15 minute drill of either strength or power
+                                    int strOrPow = randomInt(1);
+                                    switch (strOrPow){
+                                        case 0:
+                                            trainingDays[dayIndex].exercises[4] = fifteenMinStr[randomInt(fifteenMinStr.length)];
+                                            break;
+                                        case 1:
+                                            trainingDays[dayIndex].exercises[4] = fifteenMinPow[randomInt(fifteenMinPow.length)];
+                                            break;
+                                    }
+                                    // finish with conditioning
+                                    trainingDays[dayIndex].exercises[5] = randomFrom(fifteenMinConditioning);
+                                    break;
+                                // Half hour and 45min exercises picked
+                                case 75:
+                                    // Add three 15 minute drills, pow, str then con
+                                    trainingDays[dayIndex].exercises[3] = fifteenMinPow[randomInt(fifteenMinPow.length)];
+                                    trainingDays[dayIndex].exercises[4] = fifteenMinStr[randomInt(fifteenMinStr.length)];
+                                    trainingDays[dayIndex].exercises[5] = randomFrom(fifteenMinConditioning);
+                                    break;
+                                // Two 45min exercises picked, or 30 min and a 1h
+                                case 90:
+                                    strOrPow = randomInt(1);
+                                    switch (strOrPow){
+                                        case 0:
+                                            trainingDays[dayIndex].exercises[4] = fifteenMinStr[randomInt(fifteenMinStr.length)];
+                                            break;
+                                        case 1:
+                                            trainingDays[dayIndex].exercises[4] = fifteenMinPow[randomInt(fifteenMinPow.length)];
+                                            break;
+                                    }
+                                    trainingDays[dayIndex].exercises[4] = randomFrom(fifteenMinConditioning);
+                                    break;
+
+                                // 45min and 1h exercises picked
+                                case 105:
+                                    trainingDays[dayIndex].exercises[3] = randomFrom(fifteenMinConditioning);
+                                    break;
+
+                                // Two 1h exercises picked
+                                default:
+                                    // Day is already 3h, add nothing more
+                                    break;
+                            }
+                        } else {
+                            // if not dedicated, give a long + short str/pow exercise
+                            trainingDays[dayIndex].exercises[1] = longExercises[randomInt(longExercises.length)];
+                            int strOrPow = randomInt(1);
+                            switch (strOrPow){
+                                case 0:
+                                    trainingDays[dayIndex].exercises[4] = fifteenMinStr[randomInt(fifteenMinStr.length)];
+                                    break;
+                                case 1:
+                                    trainingDays[dayIndex].exercises[4] = fifteenMinPow[randomInt(fifteenMinPow.length)];
+                                    break;
+                            }
+                            // finish with conditioning
+                            trainingDays[dayIndex].exercises[3] = randomFrom(fifteenMinConditioning);
+                        }
                         break;
                 }
             }
