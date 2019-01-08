@@ -219,7 +219,6 @@ public class ProgramBuilder {
         }
     }
 
-
     // To be called after buildTrainingDays, this method populates all the training day
     // objects with exercises based on the user, equipment, and training day type
     public void populateTrainingDays(Context context){
@@ -284,9 +283,9 @@ public class ProgramBuilder {
                                     trainingDays[dayIndex].exercises[3] = randomFrom(fifteenMinExercises);
                                     do {
                                         trainingDays[dayIndex].exercises[4] = randomFrom(fifteenMinExercises);
-                                        // If they are both hangboard routines, try again. Only 1 hangboard per day
-                                        if(checkIfBothHangboard(trainingDays[dayIndex].exercises[3], trainingDays[dayIndex].exercises[4])){
-                                            trainingDays[dayIndex].exercises[4] = null;
+                                        // If they are both hangboard routines, force it try again. Only 1 hangboard per day
+                                        if(bothHangboard(trainingDays[dayIndex].exercises[3], trainingDays[dayIndex].exercises[4])){
+                                            trainingDays[dayIndex].exercises[4] = trainingDays[dayIndex].exercises[3];
                                         }
                                     } while (!uniqueExercises(trainingDays[dayIndex].exercises[3], trainingDays[dayIndex].exercises[4], null));
                                     // Finish with 15 minutes of conditioning
@@ -431,10 +430,10 @@ public class ProgramBuilder {
                                     strOrPow = randomInt(1);
                                     switch (strOrPow){
                                         case 0:
-                                            trainingDays[dayIndex].exercises[4] = fifteenMinStr[randomInt(fifteenMinStr.length)];
+                                            trainingDays[dayIndex].exercises[3] = fifteenMinStr[randomInt(fifteenMinStr.length)];
                                             break;
                                         case 1:
-                                            trainingDays[dayIndex].exercises[4] = fifteenMinPow[randomInt(fifteenMinPow.length)];
+                                            trainingDays[dayIndex].exercises[3] = fifteenMinPow[randomInt(fifteenMinPow.length)];
                                             break;
                                     }
                                     trainingDays[dayIndex].exercises[4] = randomFrom(fifteenMinConditioning);
@@ -456,10 +455,10 @@ public class ProgramBuilder {
                             int strOrPow = randomInt(1);
                             switch (strOrPow){
                                 case 0:
-                                    trainingDays[dayIndex].exercises[4] = fifteenMinStr[randomInt(fifteenMinStr.length)];
+                                    trainingDays[dayIndex].exercises[2] = fifteenMinStr[randomInt(fifteenMinStr.length)];
                                     break;
                                 case 1:
-                                    trainingDays[dayIndex].exercises[4] = fifteenMinPow[randomInt(fifteenMinPow.length)];
+                                    trainingDays[dayIndex].exercises[2] = fifteenMinPow[randomInt(fifteenMinPow.length)];
                                     break;
                             }
                             // finish with conditioning
@@ -518,10 +517,10 @@ public class ProgramBuilder {
                                     strOrPow = randomInt(1);
                                     switch (strOrPow){
                                         case 0:
-                                            trainingDays[dayIndex].exercises[4] = fifteenMinStr[randomInt(fifteenMinStr.length)];
+                                            trainingDays[dayIndex].exercises[3] = fifteenMinStr[randomInt(fifteenMinStr.length)];
                                             break;
                                         case 1:
-                                            trainingDays[dayIndex].exercises[4] = fifteenMinPow[randomInt(fifteenMinPow.length)];
+                                            trainingDays[dayIndex].exercises[3] = fifteenMinPow[randomInt(fifteenMinPow.length)];
                                             break;
                                     }
                                     trainingDays[dayIndex].exercises[4] = randomFrom(fifteenMinConditioning);
@@ -543,10 +542,10 @@ public class ProgramBuilder {
                             int strOrPow = randomInt(1);
                             switch (strOrPow){
                                 case 0:
-                                    trainingDays[dayIndex].exercises[4] = fifteenMinStr[randomInt(fifteenMinStr.length)];
+                                    trainingDays[dayIndex].exercises[2] = fifteenMinStr[randomInt(fifteenMinStr.length)];
                                     break;
                                 case 1:
-                                    trainingDays[dayIndex].exercises[4] = fifteenMinPow[randomInt(fifteenMinPow.length)];
+                                    trainingDays[dayIndex].exercises[2] = fifteenMinPow[randomInt(fifteenMinPow.length)];
                                     break;
                             }
                             // finish with conditioning
@@ -741,7 +740,7 @@ public class ProgramBuilder {
 
     // Returns true if both exercises contain "Hangboard" in the name
     // and false if only one or neither do
-    boolean checkIfBothHangboard(Exercise e, Exercise q){
+    boolean bothHangboard(Exercise e, Exercise q){
         if(e.name.contains("Hangboard")){
             if(q.name.contains("Hangboard")){
                 return true;
