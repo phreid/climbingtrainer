@@ -280,10 +280,14 @@ public class ProgramBuilder {
                                     break;
                                 // Half hour and 45min exercises picked
                                 case 75:
-                                    // Add two 15 minute drills
+                                    // Add two 15 minute drills, which aren't both hangboard
                                     trainingDays[dayIndex].exercises[3] = randomFrom(fifteenMinExercises);
                                     do {
                                         trainingDays[dayIndex].exercises[4] = randomFrom(fifteenMinExercises);
+                                        // If they are both hangboard routines, try again. Only 1 hangboard per day
+                                        if(checkIfBothHangboard(trainingDays[dayIndex].exercises[3], trainingDays[dayIndex].exercises[4])){
+                                            trainingDays[dayIndex].exercises[4] = null;
+                                        }
                                     } while (!uniqueExercises(trainingDays[dayIndex].exercises[3], trainingDays[dayIndex].exercises[4], null));
                                     // Finish with 15 minutes of conditioning
                                     trainingDays[dayIndex].exercises[5] = randomFrom(fifteenMinConditioning);
@@ -733,6 +737,17 @@ public class ProgramBuilder {
         }
         // returns zero if after 100 tries no new int can be found
         return 0;
+    }
+
+    // Returns true if both exercises contain "Hangboard" in the name
+    // and false if only one or neither do
+    boolean checkIfBothHangboard(Exercise e, Exercise q){
+        if(e.name.contains("Hangboard")){
+            if(q.name.contains("Hangboard")){
+                return true;
+            }
+        }
+        return false;
     }
 
 }
