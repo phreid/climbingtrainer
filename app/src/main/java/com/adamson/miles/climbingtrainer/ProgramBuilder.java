@@ -31,6 +31,7 @@ public class ProgramBuilder {
     private Date[] trainingDatesInProgram;
     private long programLength;
     private TrainingDay[] trainingDays;
+    private Random random;
 
     public static ProgramBuilder getInstance() {
         if(null == ourInstance){
@@ -240,7 +241,7 @@ public class ProgramBuilder {
 
                 switch (trainingDays[dayIndex].type) {
                     case "Volume":
-                        Exercise[] volumeExercises = filterExercisesByEquipment(db.selectAllExerciseByType("Volume"));
+                        Exercise[] volumeExercises = filterByEquipment(db.selectAllExerciseByType("Volume"));
                         trainingDays[dayIndex].exercises[1] = volumeExercises[randomInt(volumeExercises.length)];
                         // If dedicated, add a second volume exercise, which is NOT the same
                         if(commitmentLevel.equals(DEDICATED)){
@@ -251,18 +252,18 @@ public class ProgramBuilder {
                         break;
 
                     case "Strength":
-                        Exercise[] strengthExercises = filterExercisesByEquipment(db.selectAllExerciseByType("Strength"));
-                        Exercise[] longExercises = filterExercisesByOverTime(strengthExercises, 30);
-                        Exercise[] fifteenMinExercises = filterExercisesByGrade(filterExercisesByExactTime(strengthExercises, 15), currentGrade);
-                        Exercise[] thirtyMinExercises =  filterExercisesByExactTime(strengthExercises, 30);
-                        Exercise[] fifteenMinConditioning = filterExercisesByExactTime(filterExercisesByEquipment(db.selectAllExerciseByType("Conditioning")), 15);
+                        Exercise[] strengthExercises = filterByGrade(filterByEquipment(db.selectAllExerciseByType("Strength")), currentGrade);
+                        Exercise[] longExercises = filterMinimumTime(strengthExercises, 30);
+                        Exercise[] fifteenMinExercises = filterByExactTime(strengthExercises, 15);
+                        Exercise[] thirtyMinExercises =  filterByExactTime(strengthExercises, 30);
+                        Exercise[] fifteenMinConditioning = filterByEquipment(db.selectAllExerciseByType("Conditioning"));
 
                         // If dedicated, give two long exercises. Fill in the rest with 15 minute
                         // drills until the session is three hours.
                         if(commitmentLevel.equals(DEDICATED)){
                             // Add two long exercises. If they are the exact same, try again
+                            trainingDays[dayIndex].exercises[1] = randomFrom(longExercises);
                             do {
-                                trainingDays[dayIndex].exercises[1] = randomFrom(longExercises);
                                 trainingDays[dayIndex].exercises[2] = randomFrom(longExercises);
                             } while (!uniqueExercises(trainingDays[dayIndex].exercises[1], trainingDays[dayIndex].exercises[2], null));
                             // Fill in the rest of the day based on how much time is left
@@ -279,9 +280,9 @@ public class ProgramBuilder {
                                     break;
                                 // Half hour and 45min exercises picked
                                 case 75:
+                                    // Add two 15 minute drills
+                                    trainingDays[dayIndex].exercises[3] = randomFrom(fifteenMinExercises);
                                     do {
-                                        // Add two 15 minute drills
-                                        trainingDays[dayIndex].exercises[3] = randomFrom(fifteenMinExercises);
                                         trainingDays[dayIndex].exercises[4] = randomFrom(fifteenMinExercises);
                                     } while (!uniqueExercises(trainingDays[dayIndex].exercises[3], trainingDays[dayIndex].exercises[4], null));
                                     // Finish with 15 minutes of conditioning
@@ -313,18 +314,18 @@ public class ProgramBuilder {
 
                     // Identical to strength except it chooses power exercises
                     case "Power":
-                        Exercise[] powerExercises = filterExercisesByEquipment(db.selectAllExerciseByType("Power"));
-                        longExercises = filterExercisesByOverTime(powerExercises, 30);
-                        fifteenMinExercises = filterExercisesByGrade(filterExercisesByExactTime(powerExercises, 15), currentGrade);
-                        thirtyMinExercises =  filterExercisesByExactTime(powerExercises, 30);
-                        fifteenMinConditioning = filterExercisesByExactTime(filterExercisesByEquipment(db.selectAllExerciseByType("Conditioning")), 15);
+                        Exercise[] powerExercises = filterByGrade(filterByEquipment(db.selectAllExerciseByType("Power")), currentGrade);
+                        longExercises = filterMinimumTime(powerExercises, 30);
+                        fifteenMinExercises = filterByExactTime(powerExercises, 15);
+                        thirtyMinExercises = filterByExactTime(powerExercises, 30);
+                        fifteenMinConditioning = filterByEquipment(db.selectAllExerciseByType("Conditioning"));
 
                         // If dedicated, give two long exercises. Fill in the rest with 15 minute
                         // drills until the session is three hours.
                         if(commitmentLevel.equals(DEDICATED)){
                             // Add two long exercises. If they are the exact same, try again
+                            trainingDays[dayIndex].exercises[1] = randomFrom(longExercises);
                             do {
-                                trainingDays[dayIndex].exercises[1] = randomFrom(longExercises);
                                 trainingDays[dayIndex].exercises[2] = randomFrom(longExercises);
                             } while (!uniqueExercises(trainingDays[dayIndex].exercises[1], trainingDays[dayIndex].exercises[2], null));
                             // Fill in the rest of the day based on how much time is left
@@ -341,9 +342,9 @@ public class ProgramBuilder {
                                     break;
                                 // Half hour and 45min exercises picked
                                 case 75:
+                                    // Add two 15 minute drills
+                                    trainingDays[dayIndex].exercises[3] = randomFrom(fifteenMinExercises);
                                     do {
-                                        // Add two 15 minute drills
-                                        trainingDays[dayIndex].exercises[3] = randomFrom(fifteenMinExercises);
                                         trainingDays[dayIndex].exercises[4] = randomFrom(fifteenMinExercises);
                                     } while (!uniqueExercises(trainingDays[dayIndex].exercises[3], trainingDays[dayIndex].exercises[4], null));
                                     // Finish with 15 minutes of conditioning
@@ -366,7 +367,7 @@ public class ProgramBuilder {
                                     break;
                             }
                         } else {
-                            // if not dedicated, give a long + short exercise which aren't the same
+                            // if not dedicated, give a long + short exercise
                             trainingDays[dayIndex].exercises[1] = longExercises[randomInt(longExercises.length)];
                             trainingDays[dayIndex].exercises[2] = fifteenMinExercises[randomInt(longExercises.length)];
                             trainingDays[dayIndex].exercises[3] = randomFrom(fifteenMinConditioning);
@@ -392,7 +393,7 @@ public class ProgramBuilder {
 
     // Takes an exercise array and returns another exercise array where every
     // exercise where the user doesn't have the equipment is removed.
-    Exercise[] filterExercisesByEquipment(Exercise[] e){
+    Exercise[] filterByEquipment(Exercise[] e){
         boolean[] valid = new boolean[e.length];
         int count = 0;
         for(int i = 0; i < e.length; i++){
@@ -443,7 +444,7 @@ public class ProgramBuilder {
 
     // Takes an exercise array and returns another exercise array where every
     // exercise is equal to or over the duration given
-    Exercise[] filterExercisesByOverTime(Exercise[] e, int t){
+    Exercise[] filterMinimumTime(Exercise[] e, int t){
         boolean[] valid = new boolean[e.length];
         int count = 0;
         for(int i = 0; i < e.length; i++){
@@ -468,14 +469,11 @@ public class ProgramBuilder {
 
     // Takes an exercise array and returns another exercise array where every
     // exercise is the difficulty selected
-    Exercise[] filterExercisesByGrade(Exercise[] e, String s){
+    Exercise[] filterByGrade(Exercise[] e, String s){
         boolean[] valid = new boolean[e.length];
         int count = 0;
         for(int i = 0; i < e.length; i++){
-            if(e[i].diff.equals(s)){
-                valid[i] = true;
-                count++;
-            } else if(e[i].diff.equals(ExerciseBuilder.ANY)){
+            if(e[i].diff.equals(s) || e[i].diff.equals(ExerciseBuilder.ANY)){
                 valid[i] = true;
                 count++;
             } else {
@@ -496,7 +494,7 @@ public class ProgramBuilder {
 
     // Takes an exercise array and returns another exercise array where every
     // exercise is equal to the duration given
-    Exercise[] filterExercisesByExactTime(Exercise[] e, int t){
+    Exercise[] filterByExactTime(Exercise[] e, int t){
         boolean[] valid = new boolean[e.length];
         int count = 0;
         for(int i = 0; i < e.length; i++){
@@ -539,10 +537,13 @@ public class ProgramBuilder {
     // returns a random integer from [0:max-1]
     // If given less than or equal to zero as the range, return zero
     int randomInt(int maxExclusive){
+        if(random == null){
+            random = new Random();
+        }
         if(maxExclusive <= 0){
             return 0;
         } else {
-            return new Random().nextInt(maxExclusive);
+            return random.nextInt(maxExclusive);
         }
     }
 

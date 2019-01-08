@@ -42,7 +42,7 @@ public class ExerciseBuilder {
     public static String[] times;
     public static int FIFTEEN_M = 0;
     public static int THIRTY_M = 1;
-    public static int FOUTYFIVE_M = 2;
+    public static int FORTYFIVE_M = 2;
     public static int SIXTY_M = 3;
 
     public static Exercise warmUp;
@@ -99,13 +99,14 @@ public class ExerciseBuilder {
         insertHangboardMetoliusOne();
         insertHangboardMetoliusTwo();
         insertHangboardMetoliusThree();
-        insertHangboardDWoods();
         insertHangboardREIcoop();
         insertThreeHundredAbs();
         insertRotatorCuff();
-        insertThreesBeginner();
-        insertThreesInt();
-        insertThreesAdvanced();
+        insertThreesOne();
+        insertThreesTwo();
+        insertThreesThree();
+        insertThreesFour();
+        insertThreesFive();
         insertTherabandPulls();
         insertEightMinCore();
         insertVolumeBoulderPyramid();
@@ -137,6 +138,27 @@ public class ExerciseBuilder {
         campusBoardStrTwo();
         campusBoardStrThree();
         campusBoardStrFour();
+        insertFrenchiesOne();
+        insertFrenchiesTwo();
+        insertFrenchiesThree();
+        insertFrenchiesFour();
+        insertFrenchiesFive();
+        insertFastPullUpsOne();
+        insertFastPullUpsTwo();
+        insertFastPullUpsThree();
+        insertFastPullUpsFour();
+        insertFastPullUpsFive();
+        insertPushUpPyramid();
+        staticExaggeration();
+        powerExaggeration();
+        skipMoves();
+        fingerWalk();
+        powerProjects();
+        staticProjects();
+        insertHangboardTenOne();
+        insertHangboardTenTwo();
+        insertHangboardTenThree();
+        insertHangboardTenFour();
     }
 
     void insertFourByFour(){
@@ -217,9 +239,9 @@ public class ExerciseBuilder {
                 .setSets("1")
                 .setEquip(equip[MOONBOARD])
                 .setReps("1")
-                .setTime(times[FOUTYFIVE_M])
+                .setTime(times[FORTYFIVE_M])
                 .setRest("Rest completely between attempts.")
-                .setDiff(grades[TWELVE]);
+                .setDiff(ANY);
         db.insertExercise(e);
     }
 
@@ -231,9 +253,9 @@ public class ExerciseBuilder {
                 .setSets("1")
                 .setEquip(equip[MOONBOARD])
                 .setReps("1")
-                .setTime(times[FOUTYFIVE_M])
+                .setTime(times[FORTYFIVE_M])
                 .setRest("Rest completely between attempts.")
-                .setDiff(grades[TWELVE]);
+                .setDiff(ANY);
         db.insertExercise(e);
     }
 
@@ -376,9 +398,124 @@ public class ExerciseBuilder {
         db.insertExercise(e);
     }
 
-    void insertHangboardDWoods(){
+    void insertHangboardMetoliusFour(){
         Exercise e = new Exercise()
-                .setName("Daniel Woods 10x10 Hangboard")
+                .setName("Metolius Climbing Expert Hangboard")
+                .setDesc("1st minute: 20 seconds straight arm hang, Medium Sloper + 3 pull-ups, 4-Finger Small Edge: \n\n" +
+                        "2nd minute: 20 seconds slightly bent arm hang, Medium Sloper, stay on 30 seconds L-sit or 20 hanging knee curls: \n\n" +
+                        "3rd minute: 6 pull-ups, 2-Finger Pocket, stay on 25 seconds straight arm hang: \n\n" +
+                        "4th minute: Use every hold starting at the 2-Finger Pocket and working up, staying on each for 5 seconds (don't get off to change holds). Finish on Medium Sloper with a 30 second hang: \n\n" +
+                        "5th minute: 40 seconds single arm hang, Four-Finger Medium Edge. Switch hands and repeat: \n\n" +
+                        "6th minute: 8 offset pull ups, Medium Slope (top hand) 2-Finger Pocket (bottom hand). Change hands and repeat: \n\n" +
+                        "7th minute: 40 seconds 90 degree bent arm hang, Four-Finger Incut Edge + 15 seconds straight arm hang, 2 Finger Pocket: \n\n" +
+                        "8th minute: 5 L-sit pull-ups + 5 seconds front lever or 20 seconds straight arm hang, Medium Sloper + 5 power pull-ups (use weights or helper for resistance, should just be able to do 3 pulls): \n\n" +
+                        "10th minute: maximum slightly bent arm hang, Medium Slope (go to failure) no rest + maximum straight arm hang - Medium Sloper")
+                .setType(types[STRENGTH])
+                .setSets("1")
+                .setEquip(equip[HANGBOARD])
+                .setReps("10")
+                .setRest("Rest for the remaining time until the next minute after the activity described.")
+                .setDiff(grades[FOURTEEN])
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+    void insertHangboardTenOne(){
+        Exercise e = new Exercise()
+                .setName("5x10 Hangboard One")
+                .setDesc("NOTE: This hangboard routine is especially hard. Use assistance such as foot in a theraband or a toe on the floor as needed. \n\n" +
+                        "7 Times Through \n" +
+                        "5 Sec Hang Edge \n" +
+                        "15 Sec Rest \n" +
+                        "Then immediately…\n" +
+                        "\n" +
+                        "7 Times Through \n" +
+                        "5 Sec Hang 3 Finger Pocket \n" +
+                        "15 Sec Rest \n" +
+                        "Then immediately…\n" +
+                        "\n" +
+                        "7 Times Through \n" +
+                        "5 Sec Hang Edge \n" +
+                        "15 Sec Rest \n" +
+                        "Then immediately…\n" +
+                        "\n" +
+                        "7 Times Through \n" +
+                        "10 Sec Hang Sloper")
+                .setType(types[STRENGTH])
+                .setSets("4")
+                .setEquip(equip[HANGBOARD])
+                .setReps("7")
+                .setRest("Rest 15s between hangs throughout. ALL rests are 15s in this routine.")
+                .setDiff(grades[ELEVEN])
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+    void insertHangboardTenTwo(){
+        Exercise e = new Exercise()
+                .setName("5x10 Hangboard Two")
+                .setDesc("NOTE: This hangboard routine is especially hard. Use assistance such as foot in a theraband or a toe on the floor as needed. \n\n" +
+                        "7 Times Through \n" +
+                        "5 Sec Hang Index/Middle Finger \n" +
+                        "15 Sec Rest \n" +
+                        "Then immediately…\n" +
+                        "\n" +
+                        "7 Times Through \n" +
+                        "5 Sec Hang Middle/Ring Finger \n" +
+                        "15 Sec Rest \n" +
+                        "Then immediately…\n" +
+                        "\n" +
+                        "7 Times Through \n" +
+                        "5 Sec Hang Ring/Pinkie Finger \n" +
+                        "15 Sec Rest \n" +
+                        "Then immediately…\n" +
+                        "\n" +
+                        "7 Times Through \n" +
+                        "10 Sec Hang All 4 Fingers")
+                .setType(types[STRENGTH])
+                .setSets("4")
+                .setEquip(equip[HANGBOARD])
+                .setReps("7")
+                .setRest("Rest 15s between hangs throughout. ALL rests are 15s in this routine.")
+                .setDiff(grades[TWELVE])
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+    void insertHangboardTenThree(){
+        Exercise e = new Exercise()
+                .setName("10x10 Hangboard One")
+                .setDesc("NOTE: This hangboard routine is especially hard. Use assistance such as foot in a theraband or a toe on the floor as needed. \n\n" +
+                        "7 Times Through \n" +
+                        "10 Sec Hang Index/Middle Finger \n" +
+                        "10 Sec Rest \n" +
+                        "Then immediately…\n" +
+                        "\n" +
+                        "7 Times Through \n" +
+                        "10 Sec Hang Middle/Ring Finger \n" +
+                        "10 Sec Rest \n" +
+                        "Then immediately…\n" +
+                        "\n" +
+                        "7 Times Through \n" +
+                        "10 Sec Hang Small Edge \n" +
+                        "10 Sec Rest \n" +
+                        "Then immediately…\n" +
+                        "\n" +
+                        "7 Times Through \n" +
+                        "10 Sec Hang All 4 Fingers")
+                .setType(types[STRENGTH])
+                .setSets("4")
+                .setEquip(equip[HANGBOARD])
+                .setReps("7")
+                .setRest("Rest 10s between hangs throughout. ALL rests are 10s in this routine.")
+                .setDiff(grades[THIRTEEN])
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+    void insertHangboardTenFour(){
+        Exercise e = new Exercise()
+                .setName("10x10 Hangboard Two")
                 .setDesc("NOTE: This hangboard routine is especially hard. Use assistance such as foot in a theraband or a toe on the floor as needed. \n\n" +
                         "7 Times Through \n" +
                         "10 Sec Hang Index/Middle Finger \n" +
@@ -402,7 +539,7 @@ public class ExerciseBuilder {
                 .setEquip(equip[HANGBOARD])
                 .setReps("7")
                 .setRest("Rest 10s between hangs throughout. ALL rests are 10s in this routine.")
-                .setDiff(grades[THIRTEEN])
+                .setDiff(grades[FOURTEEN])
                 .setTime(times[FIFTEEN_M]);
         db.insertExercise(e);
     }
@@ -465,23 +602,9 @@ public class ExerciseBuilder {
         db.insertExercise(e);
     }
 
-    void insertThreesAdvanced(){
+    void insertThreesOne(){
         Exercise e = new Exercise()
-                .setName("Triple Threes Advanced")
-                .setDesc("Do three pull ups, three front leavers, and three muscle ups as a set. Do three sets.")
-                .setType(types[STRENGTH])
-                .setSets("3")
-                .setEquip(equip[PULLUPBAR])
-                .setReps("9")
-                .setRest("Rest three minutes between sets. Do not let go of the bar between during a set.")
-                .setDiff(grades[THIRTEEN])
-                .setTime(times[FIFTEEN_M]);
-        db.insertExercise(e);
-    }
-
-    void insertThreesBeginner(){
-        Exercise e = new Exercise()
-                .setName("Triple Threes Beginner")
+                .setName("Triple Threes One")
                 .setDesc("Do three pull ups, three leg lifts, and three more pull ups. Do three sets.")
                 .setType(types[STRENGTH])
                 .setSets("3")
@@ -493,10 +616,10 @@ public class ExerciseBuilder {
         db.insertExercise(e);
     }
 
-    void insertThreesInt(){
+    void insertThreesTwo(){
         Exercise e = new Exercise()
-                .setName("Triple Threes Intermediate")
-                .setDesc("Do three pull ups, three modified front leavers (knees bent at 90 degrees), and three more pull ups. Do three sets.")
+                .setName("Triple Threes Two")
+                .setDesc("Do three pull ups, three pull ups with a simultaneous leg lift (legs out to 90 degrees), and three more pull ups. Do three sets.")
                 .setType(types[STRENGTH])
                 .setSets("3")
                 .setEquip(equip[PULLUPBAR])
@@ -506,6 +629,51 @@ public class ExerciseBuilder {
                 .setTime(times[FIFTEEN_M]);
         db.insertExercise(e);
     }
+
+    void insertThreesThree(){
+        Exercise e = new Exercise()
+                .setName("Triple Threes Stage Three")
+                .setDesc("Do three pull ups, three modified front leavers (knees bent at 90 degrees), and three more pull ups. Do three sets.")
+                .setType(types[STRENGTH])
+                .setSets("3")
+                .setEquip(equip[PULLUPBAR])
+                .setReps("9")
+                .setRest("Rest three minutes between sets. Do not let go of the bar between during a set.")
+                .setDiff(grades[TWELVE])
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+
+    void insertThreesFour(){
+        Exercise e = new Exercise()
+                .setName("Triple Threes Four")
+                .setDesc("Do three pull ups, three front leavers, and three muscle ups as a set. Do three sets.")
+                .setType(types[STRENGTH])
+                .setSets("3")
+                .setEquip(equip[PULLUPBAR])
+                .setReps("9")
+                .setRest("Rest three minutes between sets. Do not let go of the bar between during a set.")
+                .setDiff(grades[THIRTEEN])
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+    void insertThreesFive(){
+        Exercise e = new Exercise()
+                .setName("Triple Threes Five")
+                .setDesc("Do three muscle ups, three front leavers, and three more muscle ups as a set. Do three sets.")
+                .setType(types[STRENGTH])
+                .setSets("3")
+                .setEquip(equip[PULLUPBAR])
+                .setReps("9")
+                .setRest("Rest three minutes between sets. Do not let go of the bar between during a set.")
+                .setDiff(grades[THIRTEEN])
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+
 
     void insertTherabandPulls(){
         Exercise e = new Exercise()
@@ -628,7 +796,7 @@ public class ExerciseBuilder {
                 .setReps("N/A")
                 .setRest("Rest fully between attempts.")
                 .setDiff(ANY)
-                .setTime(times[FOUTYFIVE_M]);
+                .setTime(times[FORTYFIVE_M]);
         db.insertExercise(e);
     }
 
@@ -726,7 +894,7 @@ public class ExerciseBuilder {
                 .setReps("3")
                 .setRest("Rest 5 minutes between boulders. Rest 1 minute between attempts.")
                 .setDiff(ANY)
-                .setTime(times[FOUTYFIVE_M]);
+                .setTime(times[FORTYFIVE_M]);
         db.insertExercise(e);
     }
 
@@ -740,7 +908,7 @@ public class ExerciseBuilder {
                 .setReps("1")
                 .setRest("Rest 5 minutes between sets.")
                 .setDiff(ANY)
-                .setTime(times[FOUTYFIVE_M]);
+                .setTime(times[FORTYFIVE_M]);
         db.insertExercise(e);
     }
 
@@ -769,7 +937,7 @@ public class ExerciseBuilder {
                 .setEquip(equip[ANGLEADJUSTABLEWALL])
                 .setReps("3")
                 .setRest("Rest twice the time you were on the wall in-between each circuit.")
-                .setDiff(grades[ELEVEN])
+                .setDiff(ANY)
                 .setTime(times[SIXTY_M]);
         db.insertExercise(e);
     }
@@ -783,8 +951,8 @@ public class ExerciseBuilder {
             .setEquip(equip[ANGLEADJUSTABLEWALL])
             .setReps("3")
             .setRest("Rest three minutes between attempts.")
-            .setDiff(grades[ELEVEN])
-            .setTime(times[FOUTYFIVE_M]);
+            .setDiff(ANY)
+            .setTime(times[FORTYFIVE_M]);
         db.insertExercise(e);
     }
 
@@ -797,8 +965,8 @@ public class ExerciseBuilder {
                 .setEquip(equip[ANGLEADJUSTABLEWALL])
                 .setReps("3")
                 .setRest("Rest three minutes between attempts.")
-                .setDiff(grades[ELEVEN])
-                .setTime(times[FOUTYFIVE_M]);
+                .setDiff(ANY)
+                .setTime(times[FORTYFIVE_M]);
         db.insertExercise(e);
     }
 
@@ -811,8 +979,8 @@ public class ExerciseBuilder {
                 .setEquip(equip[ANGLEADJUSTABLEWALL])
                 .setReps("3")
                 .setRest("Rest three minutes between attempts.")
-                .setDiff(grades[ELEVEN])
-                .setTime(times[FOUTYFIVE_M]);
+                .setDiff(ANY)
+                .setTime(times[FORTYFIVE_M]);
         db.insertExercise(e);
     }
 
@@ -827,7 +995,7 @@ public class ExerciseBuilder {
                 .setReps("1")
                 .setRest("Rest four minutes between attempts.")
                 .setDiff(ANY)
-                .setTime(times[FOUTYFIVE_M]);
+                .setTime(times[FORTYFIVE_M]);
         db.insertExercise(e);
     }
 
@@ -1001,16 +1169,249 @@ public class ExerciseBuilder {
     void insertFrenchiesOne(){
         Exercise e = new Exercise()
                 .setName("Frenchies One")
-                .setDesc("")
+                .setDesc("From straight armed on a bar, pull up to a full lock off. Hold for 3 seconds. Lower completely. This is one rep. Do three sets of three.")
                 .setType(types[STRENGTH])
-                .setSets("")
+                .setSets("3")
                 .setEquip(equip[PULLUPBAR])
-                .setReps("")
-                .setRest("")
+                .setReps("3")
+                .setRest("Rest two minutes between sets")
+                .setDiff(grades[TEN])
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+    void insertFrenchiesTwo(){
+        Exercise e = new Exercise()
+                .setName("Frenchies Two")
+                .setDesc("From straight armed on a bar, pull up to a full lock off. Hold for 3 seconds. Lower completely. Pull up fully, but this time lower to a 90 degree lock off. Hold this for 3 seconds, then lower. This is one rep. Do three sets of three.")
+                .setType(types[STRENGTH])
+                .setSets("3")
+                .setEquip(equip[PULLUPBAR])
+                .setReps("3")
+                .setRest("Rest two minutes between sets")
+                .setDiff(grades[ELEVEN])
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+    void insertFrenchiesThree(){
+        Exercise e = new Exercise()
+                .setName("Frenchies Three")
+                .setDesc("From straight armed on a bar, pull up fully. From here you will lower, but at every 45 degrees (full lock off, 45, 90, 135), you hold that position for 3 seconds. This is one rep. Do three sets of three.")
+                .setType(types[STRENGTH])
+                .setSets("3")
+                .setEquip(equip[PULLUPBAR])
+                .setReps("3")
+                .setRest("Rest two minutes between sets")
+                .setDiff(grades[TWELVE])
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+    void insertFrenchiesFour(){
+        Exercise e = new Exercise()
+                .setName("Frenchies Four")
+                .setDesc("From straight armed on a bar, pull up fully. From here you will lower, but at every 45 degrees (full lock off, 45, 90, 135), you hold that position for 4 seconds. This is one rep. Do three sets of three.")
+                .setType(types[STRENGTH])
+                .setSets("3")
+                .setEquip(equip[PULLUPBAR])
+                .setReps("3")
+                .setRest("Rest two minutes between sets")
+                .setDiff(grades[THIRTEEN])
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+    void insertFrenchiesFive(){
+        Exercise e = new Exercise()
+                .setName("Frenchies Five")
+                .setDesc("From straight armed on a bar, pull up fully. From here you will lower, but at every 45 degrees (full lock off, 45, 90, 135), you hold that position for 5 seconds. This is one rep. Do five sets of three.")
+                .setType(types[STRENGTH])
+                .setSets("5")
+                .setEquip(equip[PULLUPBAR])
+                .setReps("3")
+                .setRest("Rest two minutes between sets")
+                .setDiff(grades[FOURTEEN])
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+    void insertFastPullUpsOne(){
+        Exercise e = new Exercise()
+                .setName("Fast Pull Ups One")
+                .setDesc("Do 5 pull ups as fast as possible. Do not allow your elbows to lock or shoulders to come out of their sockets on the way down (stop and go up again just before this happens).")
+                .setType(types[POWER])
+                .setSets("3")
+                .setEquip(equip[PULLUPBAR])
+                .setReps("5")
+                .setRest("Rest 3 minutes between sets")
+                .setDiff(grades[TEN])
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+    void insertFastPullUpsTwo(){
+        Exercise e = new Exercise()
+                .setName("Fast Pull Ups Two")
+                .setDesc("Do 7 pull ups as fast as possible. Do not allow your elbows to lock or shoulders to come out of their sockets on the way down (stop and go up again just before this happens).")
+                .setType(types[POWER])
+                .setSets("3")
+                .setEquip(equip[PULLUPBAR])
+                .setReps("7")
+                .setRest("Rest 3 minutes between sets")
+                .setDiff(grades[ELEVEN])
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+    void insertFastPullUpsThree(){
+        Exercise e = new Exercise()
+                .setName("Fast Pull Ups Three")
+                .setDesc("Do 10 pull ups as fast as possible. Do not allow your elbows to lock or shoulders to come out of their sockets on the way down (stop and go up again just before this happens).")
+                .setType(types[POWER])
+                .setSets("3")
+                .setEquip(equip[PULLUPBAR])
+                .setReps("10")
+                .setRest("Rest 3 minutes between sets")
+                .setDiff(grades[TWELVE])
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+    void insertFastPullUpsFour(){
+        Exercise e = new Exercise()
+                .setName("Fast Pull Ups Four")
+                .setDesc("Do 10 pull ups as fast as possible. Add a small amount of weight, either with a weight vest or a freeweight held by your legs. Do not allow your elbows to lock or shoulders to come out of their sockets on the way down (stop and go up again just before this happens).")
+                .setType(types[POWER])
+                .setSets("3")
+                .setEquip(equip[PULLUPBAR])
+                .setReps("10")
+                .setRest("Rest 3 minutes between sets")
+                .setDiff(grades[THIRTEEN])
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+    void insertFastPullUpsFive(){
+        Exercise e = new Exercise()
+                .setName("Fast Pull Ups Four")
+                .setDesc("Do 10 pull ups as fast as possible. Add a moderate amount of weight, either with a weight vest or a freeweight held by your legs. Do not allow your elbows to lock or shoulders to come out of their sockets on the way down (stop and go up again just before this happens).")
+                .setType(types[POWER])
+                .setSets("3")
+                .setEquip(equip[PULLUPBAR])
+                .setReps("10")
+                .setRest("Rest 3 minutes between sets")
+                .setDiff(grades[FOURTEEN])
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+    void insertPushUpPyramid(){
+        Exercise e = new Exercise()
+                .setName("Push Up Pyramid")
+                .setDesc("10 Push Ups\n"+
+                        "Rest 10 seconds\n"+
+                        "9 Push-Ups\n"+
+                        "Rest 9 seconds\n"+
+                        "Repeat until you are at 1 push up (the last one)")
+                .setType(types[CONDITIONING])
+                .setSets("2")
+                .setEquip(none)
+                .setReps("55")
+                .setRest("Rest 10 seconds between pyramid levels and three minutes between sets.")
                 .setDiff(ANY)
                 .setTime(times[FIFTEEN_M]);
         db.insertExercise(e);
     }
+
+    void powerExaggeration(){
+        Exercise e = new Exercise()
+                .setName("Power Exaggeration")
+                .setDesc("Find four moderate boulders which are relatively steep. On each move, purposely cut your feet and hold the swing. Attempt to return your foot to a hold on the first swing back into the wall.\n\n" +
+                        "Climb each boulder 2 times.")
+                .setType(types[POWER])
+                .setSets("4")
+                .setEquip(none)
+                .setReps("2")
+                .setRest("Rest four minutes between boulders, and briefly between attempts.")
+                .setDiff(ANY)
+                .setTime(times[THIRTY_M]);
+        db.insertExercise(e);
+    }
+
+    void staticExaggeration(){
+        Exercise e = new Exercise()
+                .setName("Static Exaggeration")
+                .setDesc("Find four moderate boulders which are between vertical and 30 degrees overhanging. Try to move as slowly and perfectly as possible up the problem. Attempt to move youe feet without making any noise. Try to make every move take at least 2 seconds of gradually reaching and locking off further.\n\n" +
+                        "Climb each boulder 2 times.")
+                .setType(types[STRENGTH])
+                .setSets("4")
+                .setEquip(none)
+                .setReps("2")
+                .setRest("Rest four minutes between boulders, and briefly between attempts.")
+                .setDiff(ANY)
+                .setTime(times[THIRTY_M]);
+        db.insertExercise(e);
+    }
+
+    void skipMoves(){
+        Exercise e = new Exercise()
+                .setName("Skip Moves")
+                .setDesc("Find two moderate boulders. Climb them repeatedly. Every time you complete it, remove a hand hold.\n\n" +
+                        "Once the boulder feels impossible (try for 15 minutes total) move to the next.")
+                .setType(types[POWER])
+                .setSets("2")
+                .setEquip(none)
+                .setReps("N/A")
+                .setRest("Rest completely between attempts and boulders.")
+                .setDiff(ANY)
+                .setTime(times[THIRTY_M]);
+        db.insertExercise(e);
+    }
+
+    void fingerWalk(){
+        Exercise e = new Exercise()
+                .setName("Finger Walk Boulders")
+                .setDesc("Find four moderate boulders. On every move, 'walk' your fingers on the wall between the holds. Try to move very slowly and fluidly.\n\n" +
+                        "Climb each boulder twice.")
+                .setType(types[POWER])
+                .setSets("4")
+                .setEquip(none)
+                .setReps("2")
+                .setRest("Rest briefly between attempts and for three minutes between boulders.")
+                .setDiff(ANY)
+                .setTime(times[THIRTY_M]);
+        db.insertExercise(e);
+    }
+
+    void powerProjects(){
+        Exercise e = new Exercise()
+                .setName("Power Projects")
+                .setDesc("Simply project a powerful and dynamic boulder. You can use this to measure progress. Once send a project, try another harder problem.")
+                .setType(types[POWER])
+                .setSets("N/A")
+                .setEquip(none)
+                .setReps("N/A")
+                .setRest("Rest completely between attempts.")
+                .setDiff(ANY)
+                .setTime(times[THIRTY_M]);
+        db.insertExercise(e);
+    }
+
+    void staticProjects(){
+        Exercise e = new Exercise()
+                .setName("Static Projects")
+                .setDesc("Simply project a static boulder. You can use this to measure progress. Once send a project, try another harder problem.")
+                .setType(types[STRENGTH])
+                .setSets("N/A")
+                .setEquip(none)
+                .setReps("N/A")
+                .setRest("Rest completely between attempts.")
+                .setDiff(ANY)
+                .setTime(times[THIRTY_M]);
+        db.insertExercise(e);
+    }
+
 
 }
 
