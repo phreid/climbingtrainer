@@ -169,6 +169,9 @@ public class ExerciseBuilder {
         insertDoubleLapProject();
         insertRestOnRoute();
         insertRestOnCircuit();
+        powerPullUps();
+        campusProject();
+        oneFiveNine();
     }
 
     void insertFourByFour(){
@@ -1568,6 +1571,50 @@ public class ExerciseBuilder {
                 .setRest("See Description")
                 .setDiff(ANY)
                 .setTime(times[FORTYFIVE_M]);
+        db.insertExercise(e);
+    }
+
+    void campusProject(){
+        Exercise e = new Exercise()
+                .setName("Campus Project")
+                .setDesc("Find or set a boulder conducive to campusing. Avoid jerky/violent movements, such as trying to campus a compression boulder. This can lead to elbow tendinitis. Project it for 15 minutes.")
+                .setType(types[POWER])
+                .setSets("N/A")
+                .setEquip(none)
+                .setReps("N/A")
+                .setRest("Rest completely between attempts.")
+                .setDiff(ANY)
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+    void powerPullUps(){
+        Exercise e = new Exercise()
+                .setName("Bar to Chest Pull Ups")
+                .setDesc("Do three sets of bar to chest pull ups until failure. A bar to chest pull up is dynamic and powerful. Attempt to generate enough momentum to touch the bar to your chest, with your upper body leaned back slightly.\n\n" +
+                        "Failure is when you lose the dynamic power to get the bar to your chest, even if you could do more static pull ups, stop at this point.")
+                .setType(types[POWER])
+                .setSets("3")
+                .setEquip(equip[PULLUPBAR])
+                .setReps("N/A")
+                .setRest("Rest such that this drill takes 15 minutes.")
+                .setDiff(ANY)
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+    void oneFiveNine(){
+        Exercise e = new Exercise()
+                .setName("One Five Nine Progression")
+                .setDesc("The elite campus board benchmark is to start matched on rung one, then go to 5, and without matching, move to 9. Do the same sequence, but suit the size of moves to yourself and treat it like a project.\n\n" +
+                        "For example, if you complete 1-3-5 on both arms, then try either 1-4-5 or 1-3-6. Make sure to alternate which hand you are starting with for each attempt.")
+                .setType(types[POWER])
+                .setSets("N/A")
+                .setEquip(equip[CAMPUSBOARD])
+                .setReps("N/A")
+                .setRest("Rest completely between attempts.")
+                .setDiff(ANY)
+                .setTime(times[FIFTEEN_M]);
         db.insertExercise(e);
     }
 
