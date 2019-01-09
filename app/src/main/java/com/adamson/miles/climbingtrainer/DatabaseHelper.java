@@ -38,7 +38,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String T3_name = "name";
 
     private static final String TEXT = " TEXT";
-    private static final String BOOLEAN = "BOOLEAN NOT NULL DEFAULT FASLSE";
     private static final String UNIQUE = " UNIQUE";
     private static final String END = ");";
 
@@ -251,7 +250,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     T2_exercise + TEXT + ", " +
                     T2_type + TEXT + ", " +
                     T2_dayOfWeek + TEXT + ", " +
-                    T2_completed + BOOLEAN +
+                    T2_completed + TEXT +
                     END);
         } else {
             return false;
@@ -270,6 +269,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         myCV.put(T2_exercise, trainingDays[i].exercises[k].name);
                         myCV.put(T2_type, trainingDays[i].type);
                         myCV.put(T2_dayOfWeek, format_EEEE.format(trainingDays[i].date));
+                        myCV.put(T2_completed, "0");
 
                         if (db.insert(nameNoSpaces, null, myCV) == -1) {
                             return false;
@@ -369,11 +369,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return new ExerciseAndDate(dateStrings, exerciseNames, daysOfWeekStrings, typeStrings, exercises);
     }
 
-    // TODO: Add a column to the program tables for whether the user has completed that
-    // exercise. Add a way for user to update table to say they finihsed exercise.
-    // Add a way to check if a row of the table is completed.
-    // Add a way to tell whether an entire week has been completed? Or maybe ExerciseAndDate
-    // should do that
+    // Updates the completed column of a program "name" on a given date and exercise to being true
+    public void completeExercise(String date, String e, String name){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(T2_completed,"1");
+        db.update(removeSpaces(name), cv, T2_date+"='"+date+"' AND "+T2_exercise+"='"+e+"'", null);
+    }
 
+    // Updates the completed column of a program "name" on a given date and exercise to being false
+    public void uncompleteExercise(String date, String e, String name){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(T2_completed,"0");
+        db.update(removeSpaces(name), cv, T2_date+"='"+date+"' AND "+T2_exercise+"='"+e+"'", null);
+    }
+
+    // Returns true if an exercise on a given date is completed
+    // Returns false if not completed or that row didn't exist
+    public boolean isCompleted(String date, String e, String name){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM "+removeSpaces(name)+" WHERE ("+T2_date+"='"+date+"' AND "+T2_exercise+"='"+e+"');", null);
+        if(cursor.moveToFirst()){
+            if(cursor.getString(4).equals("1")){
+                cursor.close();
+                return true;
+            }
+        }
+        cursor.close();
+        return false;
+    }
+
+    // Returns value of string 4 for debugging
+    public String debug(String date, String e, String name){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM "+removeSpaces(name)+" WHERE ("+T2_date+"='"+date+"' AND "+T2_exercise+"='"+e+"');", null);
+        cursor.moveToFirst();
+        String s = cursor.getString(4);
+        cursor.close();
+        return s;
+    }
 
 }
