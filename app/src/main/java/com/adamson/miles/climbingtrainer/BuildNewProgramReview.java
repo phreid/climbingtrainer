@@ -157,7 +157,7 @@ public class BuildNewProgramReview extends AppCompatActivity {
         String error = getResources().getString(R.string.name_error);
 
         // Cannot be longer than 12 or blank
-        if(chars.length > 12 || editTextName.getText().toString().matches("")){
+        if(chars.length > 20 || editTextName.getText().toString().matches("")){
             Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show();
             return false;
         }

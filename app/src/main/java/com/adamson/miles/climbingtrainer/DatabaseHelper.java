@@ -32,11 +32,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String T2_exercise = "exercise";
     private static final String T2_type = "type";
     private static final String T2_dayOfWeek = "dayOfWeek";
+    private static final String T2_completed = "completed";
 
     private static final String T3 = "programs";
     private static final String T3_name = "name";
 
     private static final String TEXT = " TEXT";
+    private static final String BOOLEAN = "BOOLEAN NOT NULL DEFAULT FASLSE";
     private static final String UNIQUE = " UNIQUE";
     private static final String END = ");";
 
@@ -236,87 +238,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    // Returns all exercises which are less than or equal to a given grade range and type
-    public Exercise[] selectByTypeGradeMaximum(String type, String grade){
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        String query = "SELECT * FROM "+T1+" WHERE "+T1_type+ " = '"+type+"'";
-        switch (grade){
-            case "[5.10d or V0 and below]":
-                query += " AND "+T1_diff+ " = '"+grade+"'";
-                break;
-
-            case "[5.11a to 5.11d] or [V1 to V3]":
-                query += " AND ("+T1_diff+ " = '"+grade+"' OR "+T1_diff+" = '[5.10d or V0 and below]')";
-                break;
-
-            case "[5.12a to 5.12d] or [V4 to V6]":
-                query += " AND ("+T1_diff+ " = '"+grade+"' OR "+T1_diff+" = '[5.10d or V0 and below]' OR "+T1_diff+" = '[5.11a to 5.11d] or [V1 to V3]')";
-                break;
-
-            case "[5.13a to 5.13d] or [V7 to V9]":
-                query += " AND ("+T1_diff+ " = '"+grade+"' OR "+T1_diff+" = '[5.10d or V0 and below]' OR "+T1_diff+" = '[5.11a to 5.11d] or [V1 to V3]' OR "+T1_diff+" = '[5.12a to 5.12d] or [V4 to V6]')";
-                break;
-
-            case "[5.14a or V10 and above]":
-                // no need to change query as this is the same as select all by type
-                break;
-        }
-        query += ";";
-
-        Cursor cursor = db.rawQuery(query, null);
-        Exercise[] exercises = new Exercise[cursor.getCount()];
-        // if there are any exercises, return them
-        if (cursor.moveToFirst()) {
-            for (int i = 0; i < exercises.length; i++) {
-                Exercise row = new Exercise()
-                        .setName(cursor.getString(0))
-                        .setDesc(cursor.getString(1))
-                        .setType(cursor.getString(2))
-                        .setSets(cursor.getString(3))
-                        .setReps(cursor.getString(4))
-                        .setRest(cursor.getString(5))
-                        .setDiff(cursor.getString(6))
-                        .setEquip(cursor.getString(7))
-                        .setTime(cursor.getString(8));
-                exercises[i] = row;
-                cursor.moveToNext();
-            }
-            cursor.close();
-        }
-        return exercises;
-    }
-
-    // Returns all exercises given a grade and type
-    public Exercise[] selectByTypeGrade(String type, String grade){
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        String query = "SELECT * FROM "+T1+" WHERE "+T1_type+ " = '"+type+"' AND "+T1_diff+ " = '"+grade+"';";
-
-        Cursor cursor = db.rawQuery(query, null);
-        Exercise[] exercises = new Exercise[cursor.getCount()];
-        // if there are any exercises, return them
-        if (cursor.moveToFirst()) {
-            for (int i = 0; i < exercises.length; i++) {
-                Exercise row = new Exercise()
-                        .setName(cursor.getString(0))
-                        .setDesc(cursor.getString(1))
-                        .setType(cursor.getString(2))
-                        .setSets(cursor.getString(3))
-                        .setReps(cursor.getString(4))
-                        .setRest(cursor.getString(5))
-                        .setDiff(cursor.getString(6))
-                        .setEquip(cursor.getString(7))
-                        .setTime(cursor.getString(8));
-                exercises[i] = row;
-                cursor.moveToNext();
-            }
-            cursor.close();
-        }
-        return exercises;
-    }
-
-
     // With an array of trainingDays objects, save the program in sql.
     // If a program by that name already exists, return false
     public boolean insertProgram(TrainingDay[] trainingDays, String name){
@@ -329,7 +250,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     T2_date + TEXT + ", " +
                     T2_exercise + TEXT + ", " +
                     T2_type + TEXT + ", " +
-                    T2_dayOfWeek + TEXT +
+                    T2_dayOfWeek + TEXT + ", " +
+                    T2_completed + BOOLEAN +
                     END);
         } else {
             return false;
