@@ -400,14 +400,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return false;
     }
 
-    // Returns value of string 4 for debugging
-    public String debug(String date, String e, String name){
+    // Deletes a program
+    public void deleteProgram(String name){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM "+removeSpaces(name)+" WHERE ("+T2_date+"='"+date+"' AND "+T2_exercise+"='"+e+"');", null);
-        cursor.moveToFirst();
-        String s = cursor.getString(4);
-        cursor.close();
-        return s;
+        db.execSQL("DELETE FROM "+T3+" WHERE "+T3_name+"='"+removeSpaces(name)+"';");
+        db.execSQL("DROP TABLE '"+removeSpaces(name)+"';");
     }
 
 }

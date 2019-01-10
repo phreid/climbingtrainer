@@ -25,6 +25,7 @@ public class ViewProgramByDate extends AppCompatActivity {
     LinearLayout scrollLayoutChild;
     String programName;
     boolean onPauseCalled = false;
+    boolean reminded = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -20,6 +20,7 @@
     <string name="name_prompt">Name your training program...</string>
     <string name="name_error">Letters and spaces only, up to 20 characters</string>
     <string name="program_error">Once you create a program, it will appear here.</string>
+    <string name="checkBox_help">Once you check every exercise on a day, this will be checked off too.</string>
 
     <string name="help_message_title">Help Message</string>
     <string name="welcome">Welcome!</string>
@@ -225,8 +226,8 @@
     <string name="tip_overtraining">It is incredibly important to listen to your body to avoid overtraining. Err on the side of caution whenever you are more tired than normal. Slight differences in your normal sleep schedule, stress and diet can leave you susceptible to injury. It is important to find the balance of training as hard as you can while always being confident you are safe from injury.\n\nSince this is such a personal thing, it is hard to give a simple way to determine. Losing a day of your training schedule is nothing in the context of an entire season. Injuries are! This is especially true because tired, low quality training days will be very effective anyways. </string>
     <string name="tip_overtraining_name">Overtraining</string>
 
-    <string name="tip_minimum_grade">All exercises have a minimum grade range. This controls which drills can be put into which programs. For example, if you select the [10d or V0 and Below] grade range, you will not have drills with muscle-ups and front leavers included in your program.\n\nTo be clear, this is not necessarily the grade of routes or boulders you should be doing within the drill.\n\nIt is the minimum grade range to have the drill included in a program. There are plenty of drills where a 5.13 climber will be on a 5.12 or 5.11. </string>
-    <string name="tip_minimum_grade_name">Minimum Grade for Exercises</string>
+    <string name="tip_minimum_grade">Many exercises have a grade range associated with them. This controls which drills can be put into which programs. For example, if you select the [10d or V0 and Below] grade range, you will not have drills with muscle-ups and front leavers included in your program.\n\nTo be clear, this is not necessarily the grade of routes or boulders you should be doing within the drill.\n\nIt is the minimum grade range to have the drill included in a program. There are plenty of drills where a 5.13 climber will be on a 5.12 or 5.11. </string>
+    <string name="tip_minimum_grade_name">Grades Ranged of Exercises</string>
 
     <string name="tip_boulder_for_routes">Bouldering is essential for route climbing. Don’t let any 5.10 alpine climber tell you otherwise. When the hardest boulder you can do goes up, all moves below it in grade feel easier than before. If the hardest move you can possibly do is V3, how can you climb a V3 boulder at the end of a long route? What if every move is V3? You cannot possibly do fifty max-difficulty moves in a row. Now think, what if the hardest move you can do is V8 and you warm up on V3? By increasing your bouldering strength, you will very directly become a better route climber too.</string>
     <string name="tip_boulder_for_routes_name">Bouldering for Route Climbing?</string>

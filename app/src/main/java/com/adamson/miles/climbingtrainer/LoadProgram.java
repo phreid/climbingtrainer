@@ -3,8 +3,10 @@ package com.adamson.miles.climbingtrainer;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextThemeWrapper;
 import android.view.Menu;
@@ -57,6 +59,35 @@ public class LoadProgram extends AppCompatActivity {
                 });
                 layoutHorizontal.addView(button);
                 scrollLayoutChild.addView(layoutHorizontal);
+
+                button.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(LoadProgram.this);
+                        builder.setTitle("Delete " + button.getText().toString() + "? This cannot be undone.");
+
+                        builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+                                db.deleteProgram(button.getText().toString());
+                                dialog.dismiss();
+                                finish();
+                                startActivity(getIntent());
+                            }
+                        });
+
+                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                        return false;
+                    }
+                });
             }
         } else {
             // There were no programs. Let user know they will be here once they make one.
