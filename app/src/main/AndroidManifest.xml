@@ -3,11 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.adamson.miles.climbingtrainer">
 
-    <!-- Include required permissions for Google Mobile Ads to run. -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="com.android.vending.BILLING" />
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo7"
@@ -15,11 +10,6 @@
         android:roundIcon="@drawable/logo7"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <!-- This meta-data tag is required to use Google Play Services. -->
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713" />
 
         <activity
             android:name=".MainActivity"
@@ -30,19 +20,16 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- Include the AdActivity configChanges and theme. -->
-        <activity
-            android:name="com.google.android.gms.ads.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-            android:theme="@style/AppTheme"
-            tools:replace="android:theme" />
+        </activity>
+
         <activity
             android:name=".BuildNewProgramAboutYou"
             android:label="@string/title_activity_build_new_program_about_you"
             android:screenOrientation="portrait" />
         <activity
             android:name=".BuildNewProgramTypeSelect"
-            android:label="@string/title_activity_build_new_program_type_select" />
+            android:label="@string/title_activity_build_new_program_type_select"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".BuildNewProgramEquipment"
             android:label="@string/title_activity_build_new_program_equipment"
@@ -85,13 +72,17 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".BuildNewProgramRoot"
-            android:label="@string/title_activity_build_new_program_root" />
+            android:label="@string/title_activity_build_new_program_root"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ViewProgramByDate"
-            android:label="@string/title_activity_view_program_by_date" />
+            android:label="@string/title_activity_view_program_by_date"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ViewDatesExercises"
-            android:label="@string/title_activity_view_dates_exercises"></activity>
+            android:label="@string/title_activity_view_dates_exercises"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>
