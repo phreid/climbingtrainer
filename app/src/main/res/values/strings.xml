@@ -20,12 +20,14 @@
     <string name="name_prompt">Name your training program...</string>
     <string name="name_error">Letters and spaces only, up to 20 characters</string>
     <string name="program_error">Once you create a program, it will appear here.</string>
-    <string name="checkBox_help">Once you check every exercise on a day, this will be checked off too.</string>
+    <string name="check_box_help">Once you check every exercise on a day, this will be checked off too.</string>
 
     <string name="help_message_title">Help Message</string>
     <string name="welcome">Welcome!</string>
 
     <string name="action_settings">Settings</string>
+    <string name="action_hideCompleted">Hide/Show Completed</string>
+
     <string name="exercise_database">View Exercises</string>
     <string name="load_program">Load Program </string>
     <string name="training_tips">Training Tips</string>
@@ -41,6 +43,8 @@
     <string name="full_programs">Complete Programs</string>
     <string name="bouldering_program">Bouldering Program</string>
     <string name="routes_program">Routes Program</string>
+
+    <string name="hide_completed">Hide Completed Days</string>
 
     <string name="filter_text">Filter Exercises:</string>
 

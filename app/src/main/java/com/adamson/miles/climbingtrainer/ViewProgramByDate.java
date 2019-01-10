@@ -14,10 +14,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
 
 public class ViewProgramByDate extends AppCompatActivity {
 
@@ -25,7 +21,7 @@ public class ViewProgramByDate extends AppCompatActivity {
     LinearLayout scrollLayoutChild;
     String programName;
     boolean onPauseCalled = false;
-    boolean reminded = false;
+    boolean hideCompleted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +34,7 @@ public class ViewProgramByDate extends AppCompatActivity {
                 .setRequestAgent("android_studio:ad_template").build();
         adView.loadAd(adRequest);
 
-
+        hideCompleted = getIntent().getBooleanExtra("hideCompleted", false);
         scrollView = (ScrollView)findViewById(R.id.scrollViewDates);
         scrollLayoutChild = (LinearLayout)findViewById(R.id.scrollViewDatesChild);
         programName = getIntent().getStringExtra("programName");
@@ -48,53 +44,59 @@ public class ViewProgramByDate extends AppCompatActivity {
 
         // creates button for each exercise depending on the type given to the
         // activity's intent. Selects all if no type given
-        for(int i = 0; i < exerciseAndDate.uniqueDates.length; i++){
+        for(int i = 0; i < exerciseAndDate.uniqueDates.length; i++) {
 
-            LinearLayout layoutHorizontal = new LinearLayout(new ContextThemeWrapper(this, R.style.LayoutHorizontalTransparent),null, 0);
-
-            Button button = new Button(new ContextThemeWrapper(this, R.style.ButtonWhite), null, 0);
-            final CheckBox checkBox = new CheckBox(getApplicationContext());
-            checkBox.setClickable(false);
-
-            checkBox.setBackground(getApplicationContext().getDrawable(R.drawable.gradient_blue));
-            float pixels =  40 * getApplicationContext().getResources().getDisplayMetrics().density;
-
-            LinearLayout.LayoutParams lpButton = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (int) pixels, 1.0f);
-            LinearLayout.LayoutParams lpCheckbox = new LinearLayout.LayoutParams((int) pixels, (int) pixels);
-
-            button.setLayoutParams(lpButton);
-            checkBox.setLayoutParams(lpCheckbox);
-
-            String s = exerciseAndDate.uniqueDatesDayOfWeek[i] + ", " + exerciseAndDate.uniqueDates[i] + ". " + exerciseAndDate.uniqueDatesType[i];
-            button.setText(s);
+            // Check if this days exercises are all done. If so, check the checkbox
             final String dateString = exerciseAndDate.uniqueDates[i];
-            final int index = i;
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(ViewProgramByDate.this, ViewDatesExercises.class);
-                    intent.putExtra("programName", programName);
-                    intent.putExtra("dateString", dateString);
-                    startActivity(intent);
-                }
-            });
-
-            // Check is this days exercises are all done. If so, check the checkbox
             ExerciseAndDate e = db.selectFromProgramByDate(programName, dateString);
             boolean doneAll = true;
-            for(int j = 0; j < e.exercises.length; j++){
-                if(!db.isCompleted(dateString, e.exerciseNames[j], programName)){
+            for (int j = 0; j < e.exercises.length; j++) {
+                if (!db.isCompleted(dateString, e.exerciseNames[j], programName)) {
                     doneAll = false;
                 }
             }
-            if(doneAll){
-                checkBox.setChecked(true);
+
+            // If hideCompleted is true and this day is done, do not create a layout for the day
+            if (hideCompleted && doneAll) {
+
+            } else {
+                LinearLayout layoutHorizontal = new LinearLayout(new ContextThemeWrapper(this, R.style.LayoutHorizontalTransparent), null, 0);
+
+                Button button = new Button(new ContextThemeWrapper(this, R.style.ButtonWhite), null, 0);
+                final CheckBox checkBox = new CheckBox(getApplicationContext());
+                checkBox.setClickable(false);
+
+                checkBox.setBackground(getApplicationContext().getDrawable(R.drawable.gradient_blue));
+                float pixels = 40 * getApplicationContext().getResources().getDisplayMetrics().density;
+
+                LinearLayout.LayoutParams lpButton = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (int) pixels, 1.0f);
+                LinearLayout.LayoutParams lpCheckbox = new LinearLayout.LayoutParams((int) pixels, (int) pixels);
+
+                button.setLayoutParams(lpButton);
+                checkBox.setLayoutParams(lpCheckbox);
+
+                String s = exerciseAndDate.uniqueDatesDayOfWeek[i] + ", " + exerciseAndDate.uniqueDates[i] + ". " + exerciseAndDate.uniqueDatesType[i];
+                button.setText(s);
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(ViewProgramByDate.this, ViewDatesExercises.class);
+                        intent.putExtra("programName", programName);
+                        intent.putExtra("dateString", dateString);
+                        startActivity(intent);
+                    }
+                });
+
+                if (doneAll) {
+                    checkBox.setChecked(true);
+                }
+
+                // Add the views to the layout
+                layoutHorizontal.addView(button);
+                layoutHorizontal.addView(checkBox);
+                scrollLayoutChild.addView(layoutHorizontal);
             }
 
-             // Add the views to the layout
-            layoutHorizontal.addView(button);
-            layoutHorizontal.addView(checkBox);
-            scrollLayoutChild.addView(layoutHorizontal);
 
         }
 
@@ -133,11 +135,21 @@ public class ViewProgramByDate extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_hideCompleted) {
+            if(hideCompleted){
+                getIntent().putExtra("hideCompleted", false);
+                finish();
+                startActivity(getIntent());
+            } else {
+                getIntent().putExtra("hideCompleted", true);
+                finish();
+                startActivity(getIntent());
+            }
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
 
 }
