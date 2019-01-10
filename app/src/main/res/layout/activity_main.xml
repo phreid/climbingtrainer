@@ -11,29 +11,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
         android:background="@drawable/polygon_grey"
         android:orientation="vertical">
 
-        <LinearLayout
-            style="@style/LayoutHorizontalTransparent">
+        <LinearLayout style="@style/LayoutHorizontalTransparent">
 
             <Button
                 android:id="@+id/buttonBuildNewProgram"
                 style="@style/ButtonWhite"
                 android:background="@drawable/gradient_red"
-                android:text="@string/new_program"/>
+                android:text="@string/new_program" />
 
             <ImageButton
-                style="@style/ButtonImageSmall"
                 android:id="@+id/imageBuildNewProgram"
+                style="@style/ButtonImageSmall"
                 android:background="@drawable/gradient_red"
                 ads:srcCompat="@drawable/ic_new_program" />
 
         </LinearLayout>
 
-        <LinearLayout
-            style="@style/LayoutHorizontalTransparent">
+        <LinearLayout style="@style/LayoutHorizontalTransparent">
 
             <Button
                 android:id="@+id/buttonLoadProgram"
@@ -49,8 +46,7 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            style="@style/LayoutHorizontalTransparent">
+        <LinearLayout style="@style/LayoutHorizontalTransparent">
 
             <Button
                 android:id="@+id/buttonAboutTheAuthor"
@@ -66,8 +62,7 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            style="@style/LayoutHorizontalTransparent">
+        <LinearLayout style="@style/LayoutHorizontalTransparent">
 
             <Button
                 android:id="@+id/buttonTrainingTips"
@@ -83,8 +78,7 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            style="@style/LayoutHorizontalTransparent">
+        <LinearLayout style="@style/LayoutHorizontalTransparent">
 
             <Button
                 android:id="@+id/buttonExercises"
@@ -99,34 +93,7 @@
                 ads:srcCompat="@drawable/ic_exercises" />
 
         </LinearLayout>
-        <LinearLayout
-            style="@style/LayoutHorizontalTransparent">
-
-            <Button
-                android:id="@+id/buttonRemoveAds"
-                style="@style/ButtonWhite"
-                android:background="@drawable/gradient_green"
-                android:text="@string/remove_ads" />
-
-            <ImageButton
-                android:id="@+id/imageRemoveAds"
-                style="@style/ButtonImageSmall"
-                android:background="@drawable/gradient_green"
-                ads:srcCompat="@drawable/ic_remove_ads" />
-
-        </LinearLayout>
 
     </LinearLayout>
-
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="bottom"
-        android:layout_weight="1"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/banner_ad_unit_id" />
 
 </RelativeLayout>

@@ -1,8 +1,5 @@
 package com.adamson.miles.climbingtrainer;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -18,10 +15,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BuildNewProgramEndDate extends AppCompatActivity {
-    // Remove the below line after defining your own ad unit ID.
-    private static final String TOAST_TEXT = "Test ads are being shown. "
-            + "To show live ads, replace the ad unit ID in res/values/strings.xml with your own ad unit ID.";
-
 
     Button buttonToReview;
     DatePicker datePicker;
@@ -30,12 +23,6 @@ public class BuildNewProgramEndDate extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_build_new_program_end_date);
-
-        // Load an ad into the AdMob banner view.
-        AdView adView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder()
-                .setRequestAgent("android_studio:ad_template").build();
-        adView.loadAd(adRequest);
 
         datePicker = (DatePicker)findViewById(R.id.datePickerEndDate);
 

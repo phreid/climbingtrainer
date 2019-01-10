@@ -64,10 +64,6 @@
             android:label="@string/title_activity_about_the_author"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".RemoveAds"
-            android:label="@string/title_activity_remove_ads"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".TrainingTips"
             android:label="@string/title_activity_training_tips"
             android:screenOrientation="portrait" />

@@ -1,10 +1,5 @@
 package com.adamson.miles.climbingtrainer;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -31,22 +26,10 @@ public class TrainingTips extends AppCompatActivity {
     Button buttonTipAlcohol;
     Button buttonTipMetolius;
 
-    private InterstitialAd mInterstitialAd;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_training_tips);
-
-        // Create the InterstitialAd and set the adUnitId (defined in values/strings.xml).
-        mInterstitialAd = newInterstitialAd();
-        loadInterstitial();
-
-        // Load an ad into the AdMob banner view.
-        AdView adView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder()
-                .setRequestAgent("android_studio:ad_template").build();
-        adView.loadAd(adRequest);
 
         buttonTipGrades = (Button)findViewById(R.id.buttonTipGrades);
         buttonTipGrades.setOnClickListener(onClick(buttonTipGrades, getString(R.string.tip_minimum_grade), null));
@@ -113,49 +96,6 @@ public class TrainingTips extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private InterstitialAd newInterstitialAd() {
-        InterstitialAd interstitialAd = new InterstitialAd(this);
-        interstitialAd.setAdUnitId(getString(R.string.interstitial_ad_unit_id));
-        interstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-
-            }
-
-            @Override
-            public void onAdFailedToLoad(int errorCode) {
-
-            }
-
-            @Override
-            public void onAdClosed() {
-
-            }
-        });
-        return interstitialAd;
-    }
-
-    private void showInterstitial() {
-        // Show the ad if it's ready. Otherwise toast and reload the ad.
-        if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
-        } else {
-            Toast.makeText(this, "Ad did not load", Toast.LENGTH_SHORT).show();
-            goToNextLevel();
-        }
-    }
-
-    private void loadInterstitial() {
-        AdRequest adRequest = new AdRequest.Builder()
-                .setRequestAgent("android_studio:ad_template").build();
-        mInterstitialAd.loadAd(adRequest);
-    }
-
-    private void goToNextLevel() {
-        mInterstitialAd = newInterstitialAd();
-        loadInterstitial();
     }
 
     View.OnClickListener onClick(final Button button, final String tip, final String link){

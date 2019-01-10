@@ -1,15 +1,16 @@
 package com.adamson.miles.climbingtrainer;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.LinkMovementMethod;
 import android.text.method.ScrollingMovementMethod;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.view.ViewManager;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,12 +25,6 @@ public class ViewTip extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_tip);
 
-        // Load an ad into the AdMob banner view.
-        AdView adView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder()
-                .setRequestAgent("android_studio:ad_template").build();
-        adView.loadAd(adRequest);
-
         textViewTip = (TextView)findViewById(R.id.textViewTip);
         textViewTip.setText(getIntent().getStringExtra("tip"));
         textViewTip.setMovementMethod(new ScrollingMovementMethod());
@@ -43,6 +38,18 @@ public class ViewTip extends AppCompatActivity {
             textViewLink.setText(getIntent().getStringExtra("link"));
         } else {
             ((ViewManager)textViewLink.getParent()).removeView(textViewLink);
+            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) textViewTip.getLayoutParams();
+
+            // Set TextView layout margin 15dip
+            DisplayMetrics metrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+            float logicalDensity = metrics.density;
+            int px = (int) Math.ceil(15 * logicalDensity);
+            // (Left Top Right Bottom)
+            lp.setMargins(px, 0, px, px);
+
+            // Apply the updated layout parameters to TextView
+            textViewTip.setLayoutParams(lp);
         }
     }
 

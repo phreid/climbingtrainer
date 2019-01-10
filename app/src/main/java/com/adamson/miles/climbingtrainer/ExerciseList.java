@@ -1,8 +1,5 @@
 package com.adamson.miles.climbingtrainer;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -32,12 +29,6 @@ public class ExerciseList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercises);
-
-        // Load an ad into the AdMob banner view.
-        AdView adView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder()
-                .setRequestAgent("android_studio:ad_template").build();
-        adView.loadAd(adRequest);
 
         scrollView = (ScrollView)findViewById(R.id.scrollViewExercises);
         scrollLayoutChild = (LinearLayout)findViewById(R.id.layoutExercises);
