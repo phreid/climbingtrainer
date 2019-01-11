@@ -17,6 +17,22 @@
         <LinearLayout style="@style/LayoutHorizontalTransparent">
 
             <Button
+                android:id="@+id/buttonBuildNewProgram"
+                style="@style/ButtonWhite"
+                android:background="@drawable/gradient_red"
+                android:text="@string/new_program" />
+
+            <ImageButton
+                android:id="@+id/imageBuildNewProgram"
+                style="@style/ButtonImageSmall"
+                android:background="@drawable/gradient_red"
+                ads:srcCompat="@drawable/ic_new_program" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+            <Button
                 android:id="@+id/buttonLoadProgram"
                 style="@style/ButtonWhite"
                 android:background="@drawable/gradient_indigo"
@@ -72,22 +88,6 @@
                 style="@style/ButtonImageSmall"
                 android:background="@drawable/gradient_orange"
                 ads:srcCompat="@drawable/ic_about" />
-        </LinearLayout>
-
-        <LinearLayout style="@style/LayoutHorizontalTransparent">
-
-            <Button
-                android:id="@+id/buttonBuildNewProgram"
-                style="@style/ButtonWhite"
-                android:background="@drawable/gradient_red"
-                android:text="@string/new_program" />
-
-            <ImageButton
-                android:id="@+id/imageBuildNewProgram"
-                style="@style/ButtonImageSmall"
-                android:background="@drawable/gradient_red"
-                ads:srcCompat="@drawable/ic_new_program" />
-
         </LinearLayout>
 
         <LinearLayout

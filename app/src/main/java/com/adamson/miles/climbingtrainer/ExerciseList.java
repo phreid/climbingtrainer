@@ -1,8 +1,10 @@
 package com.adamson.miles.climbingtrainer;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextThemeWrapper;
 import android.view.Menu;
@@ -24,6 +26,8 @@ public class ExerciseList extends AppCompatActivity {
     LinearLayout scrollLayoutChild;
     Spinner spinnerFilterType;
     Boolean firstCall = true;
+    Boolean replacingExercise = false;
+    Exercise oldExercise;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,13 @@ public class ExerciseList extends AppCompatActivity {
 
         DatabaseHelper db = new DatabaseHelper(this);
 
+        oldExercise = (Exercise) getIntent().getSerializableExtra("exercise");
+        if(oldExercise != null){
+            replacingExercise = true;
+        }
+
+
+
         // If selected all types, select all. Also select All by default.
         String intentType = getIntent().getStringExtra("type");
         if(intentType == null || intentType.equals(ExerciseBuilder.types[ExerciseBuilder.ALL])) {
@@ -69,9 +80,34 @@ public class ExerciseList extends AppCompatActivity {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(ExerciseList.this, ViewExercise.class);
-                    intent.putExtra("exercise", exercises[index]);
-                    startActivity(intent);
+                    // If not replacing an exercise from a program, view the exercises details
+                    if(!replacingExercise) {
+                        Intent intent = new Intent(ExerciseList.this, ViewExercise.class);
+                        intent.putExtra("exercise", exercises[index]);
+                        startActivity(intent);
+                    } else {
+                        // Ask the user for confirmation to replace that exercise
+                        AlertDialog.Builder builder = new AlertDialog.Builder(ExerciseList.this);
+                        builder.setMessage("Replace "+oldExercise.name+" with "+exercises[index].name+"?");
+                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                String programName = getIntent().getStringExtra("programName");
+                                DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+                                db.updateProgram(oldExercise, exercises[index], programName);
+                                Intent intent = new Intent(ExerciseList.this, ViewProgramByDate.class);
+                                intent.putExtra("programName", programName);
+                                startActivity(intent);
+                            }
+                        });
+                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        AlertDialog alert = builder.create();
+                        alert.show();builder.show();
+                    }
                 }
             });
             layoutHorizontal.addView(button);
@@ -93,6 +129,9 @@ public class ExerciseList extends AppCompatActivity {
                     Intent intent = getIntent();
                     intent.putExtra("type", types[position]);
                     intent.putExtra("position", position);
+                    if(replacingExercise){
+                        intent.putExtra("exercise", oldExercise);
+                    }
                     finish();
                     startActivity(intent);
                 } else {

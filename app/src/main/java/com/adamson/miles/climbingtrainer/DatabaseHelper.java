@@ -407,4 +407,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE '"+removeSpaces(name)+"';");
     }
 
+    // Replaces all exercises in a program with a different one
+    public void updateProgram(Exercise oldExercise, Exercise newExercise, String name){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(T2_exercise, newExercise.name);
+        cv.put(T2_completed,"0");
+        db.update(removeSpaces(name), cv, T2_exercise+"='"+oldExercise.name+"' AND "+T2_completed+"='0'", null);
+    }
+
 }

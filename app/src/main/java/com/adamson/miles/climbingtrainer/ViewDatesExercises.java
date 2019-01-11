@@ -1,8 +1,10 @@
 package com.adamson.miles.climbingtrainer;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextThemeWrapper;
 import android.view.Menu;
@@ -66,6 +68,33 @@ public class ViewDatesExercises extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+            if(exerciseName != "Warm Up") {
+                button.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(ViewDatesExercises.this);
+                        builder.setMessage(getResources().getString(R.string.replace_warning));
+                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(ViewDatesExercises.this, ExerciseList.class);
+                                intent.putExtra("exercise", exercise);
+                                intent.putExtra("programName", programName);
+                                dialog.dismiss();
+                                startActivity(intent);
+                            }
+                        });
+                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                        return false;
+                    }
+                });
+            }
             layoutHorizontal.addView(button);
 
             // Check from the database if this exercise is done, and set the checkbox accordingly

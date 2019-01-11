@@ -30,7 +30,12 @@
     <string name="Start">Start</string>
     <string name="zero_time">00:00:0</string>
     <string name="na">N/A</string>
-    <string name="empty_description">When you view an exercise, you can navigate to here with the clock button on the action bar. The description and goals for sets/reps will be filled in with that exercises information.</string>
+    <string name="empty_description">When you view an exercise, you can navigate to here with the clock button on the action bar.
+        The description and goals for sets/reps will be filled in with that exercises information.</string>
+
+    <string name="replace_warning">"Replace EVERY instance of this exercise with another?\n\n" +
+                                "Warning: You have the freedom to select any exercise. This may cause your training sessions to be of a " +
+                                "different length. You may also have the exercise twice in one day, if it was already selected."</string>
 
     <string name="help_message_title">Help Message</string>
     <string name="welcome">Welcome!</string>
