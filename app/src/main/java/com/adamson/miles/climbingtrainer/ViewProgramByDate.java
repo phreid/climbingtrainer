@@ -142,11 +142,16 @@ public class ViewProgramByDate extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    // Only allow back button to navigate to load program screen
+    // Only allow back button to navigate to load program screen if overrideBack set
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(ViewProgramByDate.this, LoadProgram.class);
-        startActivity(intent);
+        if(getIntent().getBooleanExtra("overrideBack", false)){
+            Intent intent = new Intent(ViewProgramByDate.this, LoadProgram.class);
+            intent.putExtra("overrideBack", true);
+            startActivity(intent);
+        } else {
+            ViewProgramByDate.super.onBackPressed();
+        }
     }
 
 }

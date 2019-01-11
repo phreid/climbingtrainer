@@ -106,4 +106,15 @@ public class LoadProgram extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // Only allow back button to navigate to home screen if overrideBack set
+    @Override
+    public void onBackPressed() {
+        if(getIntent().getBooleanExtra("overrideBack", false)){
+            Intent intent = new Intent(LoadProgram.this, MainActivity.class);
+            startActivity(intent);
+        } else {
+            LoadProgram.super.onBackPressed();
+        }
+    }
+
 }

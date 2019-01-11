@@ -131,7 +131,8 @@ public class ViewDatesExercises extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_help) {
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.help_view_dates_exercises), Toast.LENGTH_LONG).show();
             return true;
         }
 

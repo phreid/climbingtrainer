@@ -96,6 +96,7 @@ public class ExerciseList extends AppCompatActivity {
                                 db.updateProgram(oldExercise, exercises[index], programName);
                                 Intent intent = new Intent(ExerciseList.this, ViewProgramByDate.class);
                                 intent.putExtra("programName", programName);
+                                intent.putExtra("overrideBack", true);
                                 startActivity(intent);
                             }
                         });

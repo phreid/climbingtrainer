@@ -105,7 +105,7 @@
                 android:id="@+id/imageTimerCounter"
                 style="@style/ButtonImageSmall"
                 android:background="@drawable/gradient_green"
-                ads:srcCompat="@drawable/ic_about" />
+                ads:srcCompat="@drawable/ic_action_run_black" />
         </LinearLayout>
 
     </LinearLayout>
