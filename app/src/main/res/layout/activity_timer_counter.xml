@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TimerCounter">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBlack"
+        tools:context="com.adamson.miles.climbingtrainer.ExerciseList">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/polygon_grey"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.adamson.miles.climbingtrainer.ChronometerMilli
+                    android:id="@+id/textViewTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:background="@android:color/white"
+                    android:gravity="center"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:text="@string/zero_time"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="50sp"
+                    android:textStyle="normal"
+                    android:typeface="normal" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:gravity="top"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/buttonStart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/gradient_green"
+                        android:text="@string/Start"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        android:typeface="normal" />
+
+                    <Button
+                        android:id="@+id/buttonPause"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/gradient_yellow"
+                        android:text="@string/pause"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        android:typeface="normal" />
+
+                    <Button
+                        android:id="@+id/buttonReset"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/gradient_red"
+                        android:text="@string/reset"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        android:typeface="normal" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                android:gravity="top"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textViewRepGoal"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/white"
+                    android:gravity="left|center"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="0dp"
+                    android:text="@string/reps"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    android:typeface="normal" />
+
+                <TextView
+                    android:id="@+id/textViewSetGoal"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/white"
+                    android:gravity="left|center"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="0dp"
+                    android:text="@string/sets"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    android:typeface="normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:gravity="top"
+                android:orientation="horizontal"
+                android:padding="1dp">
+
+                <Button
+                    android:id="@+id/buttonRep"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@android:color/white"
+                    android:gravity="center"
+                    android:text="@string/plus_rep"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    android:typeface="normal" />
+
+                <TextView
+                    android:id="@+id/textViewRepCurrent"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="1dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/gradient_white"
+                    android:gravity="center"
+                    android:text="@string/zero"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    android:typeface="normal" />
+
+                <Button
+                    android:id="@+id/buttonSet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="1dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/white"
+                    android:gravity="center"
+                    android:text="@string/plus_set"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    android:typeface="normal" />
+
+                <TextView
+                    android:id="@+id/textViewSetCurrent"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="2"
+                    android:background="@drawable/gradient_white"
+                    android:gravity="center"
+                    android:text="@string/zero"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    android:typeface="normal" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textViewDescription"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:background="@android:color/white"
+                android:padding="10dp"
+                android:scrollbars="vertical"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:typeface="normal" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

@@ -10,7 +10,6 @@
         android:roundIcon="@drawable/logo7"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -21,7 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".BuildNewProgramAboutYou"
             android:label="@string/title_activity_build_new_program_about_you"
@@ -81,8 +79,8 @@
         <activity
             android:name=".ViewDatesExercises"
             android:label="@string/title_activity_view_dates_exercises"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".TimerCounter"></activity>
     </application>
 
 </manifest>

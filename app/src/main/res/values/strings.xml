@@ -22,6 +22,14 @@
     <string name="program_error">Once you create a program, it will appear here.</string>
     <string name="check_box_help">Once you check every exercise on a day, this will be checked off too.</string>
 
+    <string name="plus_rep">+rep</string>
+    <string name="plus_set">+set</string>
+    <string name="zero">0</string>
+    <string name="pause">Pause</string>
+    <string name="reset">Reset</string>
+    <string name="Start">Start</string>
+    <string name="zero_time">00:00:0</string>
+
     <string name="help_message_title">Help Message</string>
     <string name="welcome">Welcome!</string>
 

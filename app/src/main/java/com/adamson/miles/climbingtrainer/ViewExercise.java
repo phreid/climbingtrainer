@@ -1,5 +1,6 @@
 package com.adamson.miles.climbingtrainer;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ public class ViewExercise extends AppCompatActivity {
     TextView textViewReps;
     TextView textViewGrade;
     TextView textViewType;
+    Exercise exercise;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,7 @@ public class ViewExercise extends AppCompatActivity {
         textViewName = (TextView)findViewById(R.id.textViewName);
         textViewDesc = (TextView)findViewById(R.id.textViewDesc);
 
-        Exercise exercise = (Exercise) getIntent().getSerializableExtra("exercise");
+        exercise = (Exercise) getIntent().getSerializableExtra("exercise");
 
         String rest = getResources().getString(R.string.rest) + "\n"  + exercise.rest;
         textViewRest.setText(rest);
@@ -76,7 +78,10 @@ public class ViewExercise extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_run) {
+            Intent intent = new Intent(ViewExercise.this, TimerCounter.class);
+            intent.putExtra("exercise", exercise);
+            startActivity(intent);
             return true;
         }
 
