@@ -237,9 +237,60 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    // Creates a program of a given name
+    public boolean createProgram(String name) {
+        String nameNoSpaces = removeSpaces(name);
+        SQLiteDatabase db = this.getWritableDatabase();
+        SimpleDateFormat format_EEEE = new SimpleDateFormat("EEEE");
+        // If a program by that name doesn't already exist
+        if (insertProgramName(nameNoSpaces)) {
+            db.execSQL("CREATE TABLE IF NOT EXISTS " + nameNoSpaces + " (" +
+                    T2_date + TEXT + ", " +
+                    T2_exercise + TEXT + ", " +
+                    T2_type + TEXT + ", " +
+                    T2_dayOfWeek + TEXT + ", " +
+                    T2_completed + TEXT +
+                    END);
+        } else {
+            return false;
+        }
+        return true;
+    }
+
     // With an array of trainingDays objects, save the program in sql.
     // If a program by that name already exists, return false
     public boolean insertProgram(TrainingDay[] trainingDays, String name){
+        String nameNoSpaces = removeSpaces(name);
+        SQLiteDatabase db = this.getWritableDatabase();
+        SimpleDateFormat format_EEEE = new SimpleDateFormat("EEEE");
+        if(createProgram(name)){
+            // Insert all the exercises and their dates into the table
+            for (int i = 0; i < trainingDays.length; i++) {
+                // null days are rest days. Skip them.
+                if (trainingDays[i] != null) {
+                    // Insert a row for every exercise provided, and the date to do it on.
+                    for (int k = 0; k < trainingDays[i].exerciseCount; k++) {
+                        ContentValues myCV = new ContentValues();
+                        myCV.put(T2_date, trainingDays[i].dateString);
+                        myCV.put(T2_exercise, trainingDays[i].exercises[k].name);
+                        myCV.put(T2_type, trainingDays[i].type);
+                        myCV.put(T2_dayOfWeek, format_EEEE.format(trainingDays[i].date));
+                        myCV.put(T2_completed, "0");
+                        if (db.insert(nameNoSpaces, null, myCV) == -1) {
+                            return false;
+                        }
+                    }
+                }
+            }
+            // creation and inserting all succeeded.
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Insert a single trainingDay into a program
+    public boolean insertProgramRow(TrainingDay trainingDay, String name){
         String nameNoSpaces = removeSpaces(name);
         SQLiteDatabase db = this.getWritableDatabase();
         SimpleDateFormat format_EEEE = new SimpleDateFormat("EEEE");
@@ -256,29 +307,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         }
 
-        // Insert all the exercises and their dates into the table
-        for(int i = 0; i < trainingDays.length; i++){
-            // null days are rest days. Skip them.
-            if(trainingDays[i] != null) {
-                // Insert a row for every exercise provided, and the date to do it on.
-                for (int k = 0; k < trainingDays[i].exercises.length; k++) {
-                    // Exercise array is not of known length, check for end which is null
-                    if(trainingDays[i].exercises[k] != null) {
-                        ContentValues myCV = new ContentValues();
-                        myCV.put(T2_date, trainingDays[i].dateString);
-                        myCV.put(T2_exercise, trainingDays[i].exercises[k].name);
-                        myCV.put(T2_type, trainingDays[i].type);
-                        myCV.put(T2_dayOfWeek, format_EEEE.format(trainingDays[i].date));
-                        myCV.put(T2_completed, "0");
+        for(int k = 0; k < trainingDay.exercises.length; k++) {
+            // Exercise array is not of known length, check for end which is null
+            if (trainingDay.exercises[k] != null) {
+                ContentValues myCV = new ContentValues();
+                myCV.put(T2_date, trainingDay.dateString);
+                myCV.put(T2_exercise, trainingDay.exercises[k].name);
+                myCV.put(T2_type, trainingDay.type);
+                myCV.put(T2_dayOfWeek, format_EEEE.format(trainingDay.date));
+                myCV.put(T2_completed, "0");
 
-                        if (db.insert(nameNoSpaces, null, myCV) == -1) {
-                            return false;
-                        }
-                    } else {
-                        // If there is a null exercise we can break out of the loop and go to
-                        // the next day
-                        break;
-                    }
+                if (db.insert(nameNoSpaces, null, myCV) == -1) {
+                    return false;
                 }
             }
         }

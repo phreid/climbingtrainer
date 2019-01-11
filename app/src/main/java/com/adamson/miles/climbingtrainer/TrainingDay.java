@@ -14,6 +14,7 @@ public class TrainingDay {
     public String grade;
     public String commitment;
     public Exercise[] exercises;
+    public int exerciseCount;
     public String dayOfWeek;
     public SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat format_EEEE = new SimpleDateFormat("EEEE");
@@ -26,15 +27,18 @@ public class TrainingDay {
         commitment = c;
     }
 
-    public TrainingDay(String d, String g, String c){
-        dateString = d;
-        try{
-            date = format.parse(d);
-        } catch(ParseException e){
-            // TODO: catch something
+    // Sets the exercises array with another exercise array, which might have nulls
+    // at the end
+    public void setExercises(Exercise[] e){
+        for(int i = 0; i < e.length; i++){
+            if(e[i]!=null){
+                exerciseCount++;
+            }
         }
-        grade = g;
-        commitment = c;
+        exercises = new Exercise[exerciseCount];
+        for(int i = 0; i < exerciseCount; i++){
+            exercises[i] = e[i];
+        }
     }
 
 }
