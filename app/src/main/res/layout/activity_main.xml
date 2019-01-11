@@ -15,25 +15,13 @@
         android:orientation="vertical">
 
         <LinearLayout style="@style/LayoutHorizontalTransparent">
-            <Button
-                android:id="@+id/buttonBuildNewProgram"
-                style="@style/ButtonWhite"
-                android:background="@drawable/gradient_red"
-                android:text="@string/new_program" />
-            <ImageButton
-                android:id="@+id/imageBuildNewProgram"
-                style="@style/ButtonImageSmall"
-                android:background="@drawable/gradient_red"
-                ads:srcCompat="@drawable/ic_new_program" />
 
-        </LinearLayout>
-
-        <LinearLayout style="@style/LayoutHorizontalTransparent">
             <Button
                 android:id="@+id/buttonLoadProgram"
                 style="@style/ButtonWhite"
                 android:background="@drawable/gradient_indigo"
                 android:text="@string/load_program" />
+
             <ImageButton
                 android:id="@+id/imageLoadProgram"
                 style="@style/ButtonImageSmall"
@@ -42,11 +30,13 @@
         </LinearLayout>
 
         <LinearLayout style="@style/LayoutHorizontalTransparent">
+
             <Button
                 android:id="@+id/buttonExercises"
                 style="@style/ButtonWhite"
                 android:background="@drawable/gradient_yellow"
                 android:text="@string/exercise_database" />
+
             <ImageButton
                 android:id="@+id/imageExercises"
                 style="@style/ButtonImageSmall"
@@ -55,11 +45,13 @@
         </LinearLayout>
 
         <LinearLayout style="@style/LayoutHorizontalTransparent">
+
             <Button
                 android:id="@+id/buttonTrainingTips"
                 style="@style/ButtonWhite"
                 android:background="@drawable/gradient_blue"
                 android:text="@string/training_tips" />
+
             <ImageButton
                 android:id="@+id/imageTips"
                 style="@style/ButtonImageSmall"
@@ -68,15 +60,51 @@
         </LinearLayout>
 
         <LinearLayout style="@style/LayoutHorizontalTransparent">
+
             <Button
                 android:id="@+id/buttonAboutTheAuthor"
                 style="@style/ButtonWhite"
                 android:background="@drawable/gradient_orange"
                 android:text="@string/about_the_author" />
+
             <ImageButton
                 android:id="@+id/imageAboutTheAuthor"
                 style="@style/ButtonImageSmall"
                 android:background="@drawable/gradient_orange"
+                ads:srcCompat="@drawable/ic_about" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+            <Button
+                android:id="@+id/buttonBuildNewProgram"
+                style="@style/ButtonWhite"
+                android:background="@drawable/gradient_red"
+                android:text="@string/new_program" />
+
+            <ImageButton
+                android:id="@+id/imageBuildNewProgram"
+                style="@style/ButtonImageSmall"
+                android:background="@drawable/gradient_red"
+                ads:srcCompat="@drawable/ic_new_program" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/LayoutHorizontalTransparent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/buttonTimerCounter"
+                style="@style/ButtonWhite"
+                android:background="@drawable/gradient_green"
+                android:text="@string/title_activity_timer_counter" />
+
+            <ImageButton
+                android:id="@+id/imageTimerCounter"
+                style="@style/ButtonImageSmall"
+                android:background="@drawable/gradient_green"
                 ads:srcCompat="@drawable/ic_about" />
         </LinearLayout>
 

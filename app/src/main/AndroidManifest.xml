@@ -79,8 +79,10 @@
         <activity
             android:name=".ViewDatesExercises"
             android:label="@string/title_activity_view_dates_exercises"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".TimerCounter"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".TimerCounter"
+            android:label="@string/title_activity_timer_counter"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

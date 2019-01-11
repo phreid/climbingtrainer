@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CLMBR</string>
+    <string name="app_name">Climbing Coach</string>
     <string name="hello_world">Hello World</string>
     <string name="next">Next</string>
     <string name="ok">Ok</string>
@@ -29,6 +29,8 @@
     <string name="reset">Reset</string>
     <string name="Start">Start</string>
     <string name="zero_time">00:00:0</string>
+    <string name="na">N/A</string>
+    <string name="empty_description">When you view an exercise, you can navigate to here with the clock button on the action bar. The description and goals for sets/reps will be filled in with that exercises information.</string>
 
     <string name="help_message_title">Help Message</string>
     <string name="welcome">Welcome!</string>
@@ -257,16 +259,8 @@
     <string name="tip_metolius">The Metolius Climbing hangboard routines are from their training guide. They are listed with the following instructions:\n\n\"Begin and complete the task or tasks within the one minute intervals. Use the remaining time to rest. Hang a watch from the bottom of the board or mount a wall clock so that you can look straight at it while training.\"\n\nTheir hangboards can viewed online with the link below.</string>
     <string name="tip_metolius_link"><a href="https://www.metoliusclimbing.com/training-boards.html">https://www.metoliusclimbing.com/training-boards.html</a></string>
 
-    <!-- -
-        This is an ad unit ID for an interstitial test ad. Replace with your own interstitial ad unit id.
-        For more information, see https://support.google.com/admob/answer/3052638
-    <!- -->
 
-    <string name="title_activity_remove_ads">Remove Ads</string>
     <string name="title_activity_training_tips">Training Tips</string>
-    <string name="interstitial_ad_sample">Interstitial Ad Sample</string>
-    <string name="start_level">Level 1</string>
-    <string name="next_level">Next Level</string>
     <string name="interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
     <string name="title_activity_build_new_program_type_duration">Program Type</string>
     <string name="title_activity_build_new_program_grade_commitment">Commitment and Climbing Level</string>
@@ -284,4 +278,5 @@
     <string name="title_activity_build_new_program_root">Build New Program</string>
     <string name="title_activity_view_program_by_date">View Program By Date</string>
     <string name="title_activity_view_dates_exercises">View a Days Exercises</string>
+    <string name="title_activity_timer_counter">Timer and Counter</string>
 </resources>

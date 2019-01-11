@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -36,6 +37,9 @@ public class TimerCounter extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer_counter);
 
+        // Don't let their phone sleep while using the timer
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
         exercise = (Exercise) getIntent().getSerializableExtra("exercise");
 
         textViewRepGoal = findViewById(R.id.textViewRepGoal);
@@ -45,9 +49,15 @@ public class TimerCounter extends AppCompatActivity {
         textViewDescription = findViewById(R.id.textViewDescription);
         textViewDescription.setMovementMethod(new ScrollingMovementMethod());
 
-        textViewRepGoal.setText(textViewRepGoal.getText().toString() + " " + exercise.reps);
-        textViewSetGoal.setText(textViewSetGoal.getText().toString() + " " + exercise.sets);
-        textViewDescription.setText(exercise.desc);
+        if(exercise != null) {
+            textViewRepGoal.setText(textViewRepGoal.getText().toString() + " " + exercise.reps);
+            textViewSetGoal.setText(textViewSetGoal.getText().toString() + " " + exercise.sets);
+            textViewDescription.setText(exercise.desc);
+        } else {
+            textViewRepGoal.setText(getResources().getString(R.string.na));
+            textViewSetGoal.setText(getResources().getString(R.string.na));
+            textViewDescription.setText(getResources().getString(R.string.empty_description));
+        }
 
         buttonStart = findViewById(R.id.buttonStart);
         buttonPause = findViewById(R.id.buttonPause);

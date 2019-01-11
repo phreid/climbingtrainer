@@ -17,14 +17,14 @@ public class MainActivity extends AppCompatActivity {
     Button buttonTrainingTips;
     Button buttonAboutTheAuthor;
     Button buttonExercises;
-    Button buttonRemoveAds;
+    Button buttonTimerCounter;
 
     ImageButton imageBuildNewProgram;
     ImageButton imageLoadProgram;
     ImageButton imageTips;
     ImageButton imageAboutTheAuthor;
     ImageButton imageExercises;
-    ImageButton imageRemoveAds;
+    ImageButton imageTimerCounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,31 +33,33 @@ public class MainActivity extends AppCompatActivity {
 
         ExerciseBuilder e = new ExerciseBuilder(this);
 
-        buttonBuildNewProgram = (Button) findViewById(R.id.buttonBuildNewProgram);
-        buttonLoadProgram = (Button) findViewById(R.id.buttonLoadProgram);
-        buttonTrainingTips = (Button) findViewById(R.id.buttonTrainingTips);
-        buttonAboutTheAuthor = (Button) findViewById(R.id.buttonAboutTheAuthor);
-        buttonExercises = (Button)findViewById(R.id.buttonExercises);
+        buttonBuildNewProgram = findViewById(R.id.buttonBuildNewProgram);
+        buttonLoadProgram = findViewById(R.id.buttonLoadProgram);
+        buttonTrainingTips = findViewById(R.id.buttonTrainingTips);
+        buttonAboutTheAuthor = findViewById(R.id.buttonAboutTheAuthor);
+        buttonExercises = findViewById(R.id.buttonExercises);
+        buttonTimerCounter = findViewById(R.id.buttonTimerCounter);
 
-        imageBuildNewProgram = (ImageButton)findViewById(R.id.imageBuildNewProgram);
-        imageLoadProgram = (ImageButton)findViewById(R.id.imageLoadProgram);
-        imageTips = (ImageButton)findViewById(R.id.imageTips);
-        imageAboutTheAuthor = (ImageButton)findViewById(R.id.imageAboutTheAuthor);
-        imageExercises = (ImageButton)findViewById(R.id.imageExercises);
-
+        imageBuildNewProgram = findViewById(R.id.imageBuildNewProgram);
+        imageLoadProgram = findViewById(R.id.imageLoadProgram);
+        imageTips = findViewById(R.id.imageTips);
+        imageAboutTheAuthor = findViewById(R.id.imageAboutTheAuthor);
+        imageExercises = findViewById(R.id.imageExercises);
+        imageTimerCounter = findViewById(R.id.imageTimerCounter);
 
         buttonBuildNewProgram.setOnClickListener(navigateTo(BuildNewProgramRoot.class));
         buttonAboutTheAuthor.setOnClickListener(navigateTo(AboutTheAuthor.class));
         buttonTrainingTips.setOnClickListener(navigateTo(TrainingTips.class));
         buttonExercises.setOnClickListener(navigateTo(ExerciseList.class));
         buttonLoadProgram.setOnClickListener(navigateTo(LoadProgram.class));
+        buttonTimerCounter.setOnClickListener(navigateTo(TimerCounter.class));
 
         imageBuildNewProgram.setOnClickListener(navigateTo(BuildNewProgramRoot.class));
         imageAboutTheAuthor.setOnClickListener(navigateTo(AboutTheAuthor.class));
         imageTips.setOnClickListener(navigateTo(TrainingTips.class));
         imageExercises.setOnClickListener(navigateTo(ExerciseList.class));
         imageLoadProgram.setOnClickListener(navigateTo(LoadProgram.class));
-
+        imageTimerCounter.setOnClickListener(navigateTo(TimerCounter.class));
     }
 
 
