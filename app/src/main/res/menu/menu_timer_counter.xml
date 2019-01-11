@@ -3,4 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.adamson.miles.climbingtrainer.TimerCounter">
 
+    <item
+        android:id="@+id/action_home"
+        android:icon="@drawable/ic_action_home"
+        android:orderInCategory="100"
+        android:title="@string/action_home"
+        app:showAsAction="always" />
 </menu>

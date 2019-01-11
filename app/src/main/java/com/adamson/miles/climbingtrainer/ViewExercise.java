@@ -85,6 +85,11 @@ public class ViewExercise extends AppCompatActivity {
             return true;
         }
 
+        if (id == R.id.action_home) {
+            startActivity(new Intent(ViewExercise.this, MainActivity.class));
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 

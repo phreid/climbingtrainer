@@ -91,7 +91,8 @@ public class TrainingTips extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_home) {
+            startActivity(new Intent(TrainingTips.this, MainActivity.class));
             return true;
         }
 

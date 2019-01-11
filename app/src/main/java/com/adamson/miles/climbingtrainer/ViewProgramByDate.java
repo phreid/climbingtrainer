@@ -139,6 +139,11 @@ public class ViewProgramByDate extends AppCompatActivity {
             return true;
         }
 
+        if (id == R.id.action_home) {
+            startActivity(new Intent(ViewProgramByDate.this, MainActivity.class));
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 

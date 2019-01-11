@@ -2,9 +2,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.adamson.miles.climbingtrainer.ViewProgramByDate">
+
     <item
         android:id="@+id/action_hideCompleted"
-        android:orderInCategory="100"
+        android:icon="@drawable/ic_action_hide_completed"
+        android:orderInCategory="1"
         android:title="@string/action_hideCompleted"
-        app:showAsAction="never" />
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_home"
+        android:icon="@drawable/ic_action_home"
+        android:orderInCategory="2"
+        android:title="@string/action_home"
+        app:showAsAction="always" />
+
+
 </menu>

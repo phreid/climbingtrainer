@@ -136,6 +136,11 @@ public class ViewDatesExercises extends AppCompatActivity {
             return true;
         }
 
+        if (id == R.id.action_home) {
+            startActivity(new Intent(ViewDatesExercises.this, MainActivity.class));
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
