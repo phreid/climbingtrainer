@@ -1,14 +1,18 @@
 package com.adamson.miles.climbingtrainer;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class BuildNewProgramRoot extends AppCompatActivity {
 
@@ -29,21 +33,26 @@ public class BuildNewProgramRoot extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_build_new_program_root);
 
-        buttonToReview = (Button)findViewById(R.id.buttonToReview);
-        buttonToProgramType = (Button)findViewById(R.id.buttonToProgramType);
-        buttonToAboutYou = (Button)findViewById(R.id.buttonToAboutYou);
-        buttonToEquipment = (Button)findViewById(R.id.buttonToEquipment);
-        buttonToStartDate = (Button)findViewById(R.id.buttonToStartDate);
-        buttonHome = (Button)findViewById(R.id.buttonHome);
+        buttonToReview = (Button) findViewById(R.id.buttonToReview);
+        buttonToProgramType = (Button) findViewById(R.id.buttonToProgramType);
+        buttonToAboutYou = (Button) findViewById(R.id.buttonToAboutYou);
+        buttonToEquipment = (Button) findViewById(R.id.buttonToEquipment);
+        buttonToStartDate = (Button) findViewById(R.id.buttonToStartDate);
+        buttonHome = (Button) findViewById(R.id.buttonHome);
 
         buttonToProgramType.setOnClickListener(navigateTo(BuildNewProgramTypeSelect.class));
         buttonToAboutYou.setOnClickListener(navigateTo(BuildNewProgramAboutYou.class));
         buttonToEquipment.setOnClickListener(navigateTo(BuildNewProgramEquipment.class));
 
         // boxesAreChecked initializes CheckBoxes then returns true if user is done
-        if(boxesAreChecked()){
-            buttonToReview.setOnClickListener(navigateTo(BuildNewProgramReview.class));
-            buttonToReview.setBackgroundResource(R.drawable.gradient_green);
+        if (boxesAreChecked()) {
+                buttonToReview.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        checkName();
+                    }
+                });
+                buttonToReview.setBackgroundResource(R.drawable.gradient_green);
         } else {
             buttonToReview.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -55,7 +64,7 @@ public class BuildNewProgramRoot extends AppCompatActivity {
             });
         }
 
-        if(checkBoxType.isChecked()) {
+        if (checkBoxType.isChecked()) {
             buttonToStartDate.setOnClickListener(navigateTo(BuildNewProgramStartDate.class));
         } else {
             buttonToStartDate.setOnClickListener(new View.OnClickListener() {
@@ -104,30 +113,30 @@ public class BuildNewProgramRoot extends AppCompatActivity {
     // init CheckBoxes. Disable the user from clicking them.
     // check them if that portion of the program is built.
     // returns true if everything is done
-    boolean boxesAreChecked(){
+    boolean boxesAreChecked() {
         boolean allChecked = true;
 
-        checkBoxType = (CheckBox)findViewById(R.id.checkBoxType);
+        checkBoxType = (CheckBox) findViewById(R.id.checkBoxType);
         checkBoxType.setClickable(false);
-        checkBoxAboutYou = (CheckBox)findViewById(R.id.checkBoxAboutYou);
+        checkBoxAboutYou = (CheckBox) findViewById(R.id.checkBoxAboutYou);
         checkBoxAboutYou.setClickable(false);
-        checkBoxEquipment = (CheckBox)findViewById(R.id.checkBoxEquipment);
+        checkBoxEquipment = (CheckBox) findViewById(R.id.checkBoxEquipment);
         checkBoxEquipment.setClickable(false);
-        checkBoxDates = (CheckBox)findViewById(R.id.checkBoxDates);
+        checkBoxDates = (CheckBox) findViewById(R.id.checkBoxDates);
         checkBoxDates.setClickable(false);
 
         ProgramBuilder programBuilder = ProgramBuilder.getInstance();
 
         // Check if the ProgramBuilder has all the information
         // it needs to build a program
-        if(programBuilder.getProgramType() != null){
+        if (programBuilder.getProgramType() != null) {
             checkBoxType.setChecked(true);
         } else {
             checkBoxType.setChecked(false);
             allChecked = false;
         }
 
-        if(programBuilder.getCommitmentLevel() != null){
+        if (programBuilder.getCommitmentLevel() != null) {
             checkBoxAboutYou.setChecked(true);
         } else {
             checkBoxAboutYou.setChecked(false);
@@ -137,7 +146,7 @@ public class BuildNewProgramRoot extends AppCompatActivity {
         boolean[] equip = programBuilder.getEquipmentAvailable();
         boolean anyEquipment = false;
         for (int i = 0; i < equip.length; i++) {
-            if(equip[i]){
+            if (equip[i]) {
                 anyEquipment = true;
             }
         }
@@ -148,7 +157,7 @@ public class BuildNewProgramRoot extends AppCompatActivity {
             allChecked = false;
         }
 
-        if(programBuilder.getEndDateString() != null){
+        if (programBuilder.getEndDateString() != null) {
             checkBoxDates.setChecked(true);
         } else {
             checkBoxDates.setChecked(false);
@@ -158,7 +167,7 @@ public class BuildNewProgramRoot extends AppCompatActivity {
         return allChecked;
     }
 
-    View.OnClickListener navigateTo(Class<?> destination){
+    View.OnClickListener navigateTo(Class<?> destination) {
         final Intent intent = new Intent(BuildNewProgramRoot.this, destination);
         return new View.OnClickListener() {
             @Override
@@ -167,5 +176,60 @@ public class BuildNewProgramRoot extends AppCompatActivity {
             }
         };
     }
+
+    // Program names must be only letters and no more than 12 chars.
+    // It also can't be empty.
+    void checkName() {
+        final EditText editText = new EditText(getApplicationContext());
+        editText.setTextColor(getResources().getColor(R.color.colorBlack));
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Enter Program Name");
+
+        alert.setView(editText);
+
+        alert.setPositiveButton("Finish", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                String programName = editText.getText().toString();
+                char[] chars = editText.getText().toString().toCharArray();
+                String error = getResources().getString(R.string.name_error);
+                boolean failed = false;
+                // Cannot be longer than 12 or blank
+                if (chars.length > 20 || editText.getText().toString().matches("")) {
+                    Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show();
+                    failed = true;
+                    dialog.dismiss();
+                }
+
+                // Must contain only letters and spaces
+                for (char c : chars) {
+                    if (!Character.isLetter(c) && c != " ".charAt(0)) {
+                        Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show();
+                        failed = true;
+                        dialog.dismiss();
+                    }
+                }
+                // Name past, enter program and navigate to view it
+                if (!failed) {
+                    ProgramBuilder programBuilder = ProgramBuilder.getInstance();
+                    programBuilder.setProgramName(programName);
+                    programBuilder.buildTrainingDays(getApplicationContext());
+                    Intent intent = new Intent(BuildNewProgramRoot.this, LoadProgram.class);
+                    intent.putExtra("programName", programName);
+                    programBuilder.destroyInstance();
+                    startActivity(intent);
+                    dialog.dismiss();
+                }
+            }
+        });
+
+        alert.setNegativeButton("Back", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.dismiss();
+            }
+        });
+
+        alert.show();
+    }
+
 
 }

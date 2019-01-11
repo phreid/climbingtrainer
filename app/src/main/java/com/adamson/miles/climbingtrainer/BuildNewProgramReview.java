@@ -34,7 +34,7 @@ public class BuildNewProgramReview extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         pB = ProgramBuilder.getInstance();
         initReviewText();
-        editTextName = (EditText)findViewById(R.id.editTextName);
+        //editTextName = (EditText)findViewById(R.id.editTextName);
         buttonGenerate = (Button)findViewById(R.id.buttonGenerateProgram);
         buttonGenerate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,13 +116,12 @@ public class BuildNewProgramReview extends AppCompatActivity {
         textViewDayOfWeek = (TextView)findViewById(R.id.textViewDayOfWeek);
         textViewType = (TextView)findViewById(R.id.textViewType);
 
-        pB.buildDatesInProgram();
-        pB.buildTrainingDays();
+        pB.buildTrainingDays(getApplicationContext());
 
         Date[] programDates = pB.getTrainingDatesInProgram();
 
         // fill the trainingDays in with exercises
-        pB.populateTrainingDays(BuildNewProgramReview.this);
+        //pB.populateTrainingDays(BuildNewProgramReview.this);
         TrainingDay[] trainingDays = pB.getTrainingDays();
 
         String dates = "";

@@ -17,17 +17,6 @@
             android:background="@drawable/polygon_red"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/editTextName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:background="@android:color/white"
-                android:ems="10"
-                android:hint="@string/name_prompt"
-                android:inputType="textPersonName"
-                android:padding="15dp" />
-
             <TextView
                 android:id="@+id/textViewReview"
                 android:layout_width="match_parent"

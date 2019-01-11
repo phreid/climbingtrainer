@@ -294,18 +294,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String nameNoSpaces = removeSpaces(name);
         SQLiteDatabase db = this.getWritableDatabase();
         SimpleDateFormat format_EEEE = new SimpleDateFormat("EEEE");
-        // If a program by that name doesn't already exist
-        if(insertProgramName(nameNoSpaces)) {
-            db.execSQL("CREATE TABLE IF NOT EXISTS " + nameNoSpaces + " (" +
-                    T2_date + TEXT + ", " +
-                    T2_exercise + TEXT + ", " +
-                    T2_type + TEXT + ", " +
-                    T2_dayOfWeek + TEXT + ", " +
-                    T2_completed + TEXT +
-                    END);
-        } else {
-            return false;
-        }
 
         for(int k = 0; k < trainingDay.exercises.length; k++) {
             // Exercise array is not of known length, check for end which is null

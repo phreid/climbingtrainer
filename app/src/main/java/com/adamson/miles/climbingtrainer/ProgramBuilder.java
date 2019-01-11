@@ -32,6 +32,7 @@ public class ProgramBuilder {
     private long programLength;
     private TrainingDay[] trainingDays;
     private Random random;
+    private String programName;
 
     public static ProgramBuilder getInstance() {
         if(null == ourInstance){
@@ -53,6 +54,8 @@ public class ProgramBuilder {
     public void setStartDateString(String date){ startDateString = date;}
     public void setEndDateString(String date){ endDateString = date;}
     public void setDaysOfWeek(boolean[] b){daysOfWeek = b;}
+    public void setProgramName(String a){programName = a;}
+
 
     public String getProgramType(){return programType;}
     public String getCommitmentLevel(){return commitmentLevel;}
@@ -64,6 +67,14 @@ public class ProgramBuilder {
     public Date[] getTrainingDatesInProgram(){return trainingDatesInProgram;}
     public long getProgramLength(){return programLength;}
     public TrainingDay[] getTrainingDays(){return trainingDays;}
+
+    public boolean nameNull(){
+        if(programName==null){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     // Returns false if the dates fail the minimum length requirements.
     public boolean checkDates(){
@@ -110,7 +121,7 @@ public class ProgramBuilder {
     // Fills the trainingDatesInProgram array with Date objects
     // if that day is a selected training day. If it's not a selected
     // training day, that element will be null.
-    public void buildDatesInProgram(){
+    private void buildDatesInProgram(){
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         trainingDatesInProgram = new Date[(int)programLength];
         // step through every day of the program. If it matches the day the user
@@ -133,7 +144,12 @@ public class ProgramBuilder {
 
     }
 
-    public void buildTrainingDays(){
+    public void buildTrainingDays(Context context){
+        buildDatesInProgram();
+        DatabaseHelper db = new DatabaseHelper(context);
+        db.createProgram(programName);
+        String[] commitments = context.getResources().getStringArray(R.array.commitment_levels);
+        String DEDICATED = commitments[2];
         // First, decide how many days of each segment the users program will have.
         // A bouldering program has 1 week of volume at the start. A route program has 2.
         int volumeDays = 0;
@@ -187,50 +203,32 @@ public class ProgramBuilder {
                 break;
         }
 
-        boolean lastWasPower = false;
-
         // For each non-null day in the dates array,
         // create a corresponding training day in its array
+        boolean lastWasPower = false;
         trainingDays = new TrainingDay[(int)programLength];
+
         for(int i = 0; i < programLength; i++){
+            // Rest days are null, skip them
             if(trainingDatesInProgram[i] != null){
-                trainingDays[i] = new TrainingDay(trainingDatesInProgram[i], currentGrade, commitmentLevel);
-           }
-            // Step through days and assign a type based on the numbers found above.
-            // A "null" day is a rest day which doesn't have a type.
-            if(trainingDays[i] != null) {
+                TrainingDay trainingDay = new TrainingDay(trainingDatesInProgram[i], currentGrade, commitmentLevel);
+                // Set trainingDay Type
                 if (i < volumeDays) {
-                    trainingDays[i].type = ExerciseBuilder.types[ExerciseBuilder.VOLUME];
+                    trainingDay.type = ExerciseBuilder.types[ExerciseBuilder.VOLUME];
                 } else if (i <= strPowDays + volumeDays) {
                     // Strength and power alternate.
                     if (lastWasPower) {
-                        trainingDays[i].type = ExerciseBuilder.types[ExerciseBuilder.STRENGTH];
+                        trainingDay.type = ExerciseBuilder.types[ExerciseBuilder.STRENGTH];
                         lastWasPower = false;
                     } else {
-                        trainingDays[i].type = ExerciseBuilder.types[ExerciseBuilder.POWER];
+                        trainingDay.type = ExerciseBuilder.types[ExerciseBuilder.POWER];
                         lastWasPower = true;
                     }
                 } else if (i <= powerEndDays + volumeDays + strPowDays) {
-                    trainingDays[i].type = ExerciseBuilder.types[ExerciseBuilder.POWEND];
+                    trainingDay.type = ExerciseBuilder.types[ExerciseBuilder.POWEND];
                 } else if (i <= enduranceDays + powerEndDays + volumeDays + strPowDays) {
-                    trainingDays[i].type = ExerciseBuilder.types[ExerciseBuilder.ENDURANCE];
+                    trainingDay.type = ExerciseBuilder.types[ExerciseBuilder.ENDURANCE];
                 }
-            }
-        }
-    }
-
-    // To be called after buildTrainingDays, this method populates all the training day
-    // objects with exercises based on the user, equipment, and training day type
-    public void populateTrainingDays(Context context){
-        DatabaseHelper db = new DatabaseHelper(context);
-        String[] commitments = context.getResources().getStringArray(R.array.commitment_levels);
-        String DEDICATED = commitments[2];
-
-        // loop through each day
-        for (int dayIndex = 0; dayIndex <trainingDays.length; dayIndex++){
-
-            // Check if this day is a training day to be built. Rest days are null
-            if(trainingDatesInProgram[dayIndex] != null) {
 
                 // No day will have more than 10 exercises
                 Exercise[] e = new Exercise[10];
@@ -238,7 +236,7 @@ public class ProgramBuilder {
                 // Every day of every program begins with a warm up
                 e[0] = ExerciseBuilder.warmUp;
 
-                switch (trainingDays[dayIndex].type) {
+                switch (trainingDay.type) {
                     case "Volume":
                         Exercise[] volumeExercises = filterByEquipment(db.selectAllExerciseByType("Volume"));
                         e[1] = randomFrom(volumeExercises);
@@ -553,8 +551,9 @@ public class ProgramBuilder {
                         }
                         break;
                 }
-                trainingDays[dayIndex].setExercises(e);
-            }
+                trainingDay.setExercises(e);
+                db.insertProgramRow(trainingDay, programName);
+           }
         }
     }
 
