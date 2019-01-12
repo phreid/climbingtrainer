@@ -6,31 +6,30 @@
     tools:context="com.adamson.miles.climbingtrainer.BuildNewProgramReview">
 
     <!-- view for AdMob Banner Ad -->
-    <ScrollView
+
+    <LinearLayout
+        android:id="@+id/layoutEquipment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/polygon_red"
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/layoutEquipment"
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="1dp"
+            android:background="@android:color/white" />
+
+        <Button
+            android:id="@+id/buttonGo"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/polygon_red"
-            android:orientation="vertical">
+            android:background="@android:color/white"
+            android:text="@string/generate"
+            android:textAllCaps="false" />
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/white" />
-
-            <Button
-                android:id="@+id/buttonGo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-        </LinearLayout>
-    </ScrollView>
-
+    </LinearLayout>
 </RelativeLayout>

@@ -172,6 +172,10 @@ public class ExerciseBuilder {
         powerPullUps();
         campusProject();
         oneFiveNine();
+        limitPowerBoulders();
+        limitStaticBoulders();
+        longCampusProject();
+        longBoulderProject();
     }
 
     void insertFourByFour(){
@@ -1001,7 +1005,7 @@ public class ExerciseBuilder {
         Exercise e = new Exercise()
                 .setName("Boulder Linkups")
                 .setDesc("Find a boulder which is moderate. Look for an easier climb which finishes in a similar area. Climb the moderate boulder, then traverse to the finish of the easier boulder and downclimb it. If possible, traverse back into the start of the moderate boulder. Or, run from the start of one to the other. Climb the moderate boulder again.\n\n" +
-                        "Do this four times, ideally on different boulders. However it can be hard to find suitable boulders, so repeating the same set is ok if it's easier.")
+                        "Do this four times, ideally on different boulders. However it can be hard to find suitable boulders, so repeating the same set is ok.")
                 .setType(types[POWEND])
                 .setSets("3")
                 .setEquip(none)
@@ -1016,14 +1020,14 @@ public class ExerciseBuilder {
         Exercise e = new Exercise()
                 .setName("Up/Down Boulder Laps")
                 .setDesc("Find a boulder which you can downclimb (avoid massive moves). Climb up the first move, then down to the start. Then to the second move, and back down to the start. Repeat this process until you get to the finish, then downclimb to the start.\n\n" +
-                        "Repeat this on five boulders.")
+                        "Repeat this on three boulders.")
                 .setType(types[POWEND])
-                .setSets("5")
+                .setSets("3")
                 .setEquip(none)
                 .setReps("1")
                 .setRest("Rest five minutes between boulders.")
                 .setDiff(ANY)
-                .setTime(times[SIXTY_M]);
+                .setTime(times[THIRTY_M]);
         db.insertExercise(e);
     }
 
@@ -1618,6 +1622,63 @@ public class ExerciseBuilder {
         db.insertExercise(e);
     }
 
+    void limitStaticBoulders(){
+        Exercise e = new Exercise()
+                .setName("Static Limit Bouldering")
+                .setDesc("Find or set three short (3-5 move) static sequences which you can complete, but are near your limit. Attempt each five times.\n\n" +
+                        "Time your attempts such that you get on the wall at the start of every even minute (minute 0, 2, 4, ... 26, 28). This will make for 15 attempts total within 30 minutes.")
+                .setType(types[STRENGTH])
+                .setSets("3")
+                .setEquip(none)
+                .setReps("5")
+                .setRest("Rest after the attempt until the next even minute.")
+                .setDiff(ANY)
+                .setTime(times[THIRTY_M]);
+        db.insertExercise(e);
+    }
+
+    void limitPowerBoulders(){
+        Exercise e = new Exercise()
+                .setName("Powerful Limit Bouldering")
+                .setDesc("Find or set three short (3-5 move) powerful sequences which you can complete, but are near your limit. Attempt each five times.\n\n" +
+                        "Time your attempts such that you get on the wall at the start of every even minute (minute 0, 2, 4, ... 26, 28). This will make for 15 attempts total within 30 minutes.")
+                .setType(types[POWER])
+                .setSets("3")
+                .setEquip(none)
+                .setReps("5")
+                .setRest("Rest after the attempt until the next even minute.")
+                .setDiff(ANY)
+                .setTime(times[THIRTY_M]);
+        db.insertExercise(e);
+    }
+
+    void longBoulderProject(){
+        Exercise e = new Exercise()
+                .setName("Power Endurance Project")
+                .setDesc("Find or set a boulder which is at least ten moves, with the crux in the upper half. Project it.")
+                .setType(types[POWEND])
+                .setSets("N/A")
+                .setEquip(none)
+                .setReps("N/A")
+                .setRest("Rest completely between attempts.")
+                .setDiff(ANY)
+                .setTime(times[THIRTY_M]);
+        db.insertExercise(e);
+    }
+
+    void longCampusProject() {
+        Exercise e = new Exercise()
+                .setName("Power Endurance Campus Project")
+                .setDesc("Find or set a footless boulder which is at least ten moves, with the crux in the upper half. Project it.")
+                .setType(types[POWEND])
+                .setSets("N/A")
+                .setEquip(none)
+                .setReps("N/A")
+                .setRest("Rest completely between attempts.")
+                .setDiff(ANY)
+                .setTime(times[THIRTY_M]);
+        db.insertExercise(e);
+    }
 
 }
 

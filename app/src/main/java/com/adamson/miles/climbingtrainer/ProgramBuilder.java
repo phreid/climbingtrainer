@@ -205,6 +205,7 @@ public class ProgramBuilder {
     // is finished being built.
     public int buildTrainingDays(final Context context){
         DatabaseHelper db = new DatabaseHelper(context);
+        attempts = 0;
         // For each non-null day in the dates array, create a corresponding training day
         // Rest days are null, skip them
         if(trainingDatesInProgram[i] != null){
@@ -553,8 +554,8 @@ public class ProgramBuilder {
                 trainingDay.type = "ERROR";
             }
             db.insertProgramRow(trainingDay, programName);
-            i++;
        }
+       i++;
        if(i == programLength){
             done = true;
        }
@@ -588,6 +589,7 @@ public class ProgramBuilder {
 
     // Returns a random exercise from an exercise array
     Exercise randomFrom(Exercise[] e){
+
         return e[randomInt(e.length)];
     }
 
@@ -730,7 +732,7 @@ public class ProgramBuilder {
 
     boolean toManyTries(){
         attempts++;
-        if(attempts > 10000){
+        if(attempts > 100000){
             return true;
         } else {
             return false;
