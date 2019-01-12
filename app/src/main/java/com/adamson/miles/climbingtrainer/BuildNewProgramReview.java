@@ -22,10 +22,9 @@ public class BuildNewProgramReview extends AppCompatActivity {
 
     private ProgressBar progressBar;
     private int progressStatus = 0;
+    Button button;
 
-    static TextView textViewCounter;
     ProgramBuilder pB;
-    Button buttonGo;
     private Handler handler = new Handler();
 
     @Override
@@ -38,25 +37,25 @@ public class BuildNewProgramReview extends AppCompatActivity {
 
         progressBar = findViewById(R.id.progressBar);
         progressBar.setMax((int)pB.getProgramLength());
+        progressBar.setScaleY(1.5f);
+        button = findViewById(R.id.buttonGo);
+        button.setClickable(false);
 
-        buttonGo = findViewById(R.id.buttonGo);
-        buttonGo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new Thread(new Runnable() {
-                    public void run() {
-                        while(!pB.isDone()) {
-                            progressStatus = pB.buildTrainingDays(getApplicationContext());
-                            handler.post(new Runnable() {
-                                public void run() {
-                                    progressBar.setProgress(progressStatus);
-                                }
-                            });
+        new Thread(new Runnable() {
+            public void run() {
+                while(!pB.isDone()) {
+                    progressStatus = pB.buildTrainingDays(getApplicationContext());
+                    handler.post(new Runnable() {
+                        public void run() {
+                            progressBar.setProgress(progressStatus);
                         }
-                    }
-                }).start();
+                    });
+                }
+                if(pB.isDone()){
+                    startActivity(new Intent(BuildNewProgramReview.this, LoadProgram.class));
+                }
             }
-        });
+        }).start();
     }
 
 
@@ -68,22 +67,10 @@ public class BuildNewProgramReview extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        if (id == R.id.action_home) {
-            startActivity(new Intent(BuildNewProgramReview.this, MainActivity.class));
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    public void onBackPressed() {
+        // Do not allow the user to go back before the program creation is finished
     }
 
-    public static void showCount(int num){
-        textViewCounter.setText("Inserting Exercise #" + Integer.toString(num));
-    }
+
 
 }

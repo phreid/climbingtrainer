@@ -41,6 +41,9 @@ public class ProgramBuilder {
     private String DEDICATED = "Dedicated";
     private boolean lastWasPower = false;
     private int i = 0;
+    int dayNumber = 0;
+    int weekNumber = 0;
+    private int sessionsPerWeek = 0;
     private int attempts = 0;
     private boolean done = false;
 
@@ -124,6 +127,11 @@ public class ProgramBuilder {
     // if that day is a selected training day. If it's not a selected
     // training day, that element will be null.
     public void buildDatesInProgram(Context context){
+        for(int i = 0; i < daysOfWeek.length; i++){
+            if(daysOfWeek[i]){
+                sessionsPerWeek++;
+            }
+        }
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         trainingDatesInProgram = new Date[(int)programLength];
         attempts = 0;
@@ -198,7 +206,6 @@ public class ProgramBuilder {
                 enduranceDays = (int)programLength;
                 break;
         }
-
     }
 
     // Call this to insert one training day. Call until isDone() is true, that's when program
@@ -210,6 +217,14 @@ public class ProgramBuilder {
         // Rest days are null, skip them
         if(trainingDatesInProgram[i] != null){
             TrainingDay trainingDay = new TrainingDay(trainingDatesInProgram[i], currentGrade, commitmentLevel);
+            // set the week number. Every time dayNumber is incremented to equal sessionsPerWeek,
+            // the week number increases
+            dayNumber++;
+            if(sessionsPerWeek == dayNumber){
+                dayNumber = 0;
+                weekNumber++;
+            }
+
             // Set trainingDay Type
             if (i < volumeDays) {
                 trainingDay.type = ExerciseBuilder.types[ExerciseBuilder.VOLUME];
@@ -553,7 +568,7 @@ public class ProgramBuilder {
             if(toManyTries()){
                 trainingDay.type = "ERROR";
             }
-            db.insertProgramRow(trainingDay, programName);
+            db.insertProgramRow(trainingDay, Integer.toString(weekNumber), programName);
        }
        i++;
        if(i == programLength){

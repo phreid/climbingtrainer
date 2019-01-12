@@ -33,6 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String T2_type = "type";
     private static final String T2_dayOfWeek = "dayOfWeek";
     private static final String T2_completed = "completed";
+    private static final String T2_week = "week";
 
     private static final String T3 = "programs";
     private static final String T3_name = "name";
@@ -145,7 +146,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM "+T3+";", null);
         String[] names = new String[cursor.getCount()];
 
-        // if there are any program names, return them
+        // if there are any program weeks, return them
         if (cursor.moveToFirst()) {
             for (int i = 0; i < names.length; i++) {
                 names[i] = replaceUnderscores(cursor.getString(0));
@@ -209,9 +210,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public ExerciseAndDate selectFromProgramByDate(String program, String dateString) {
+    public ExerciseAndDate selectFromProgramByWeek(String program, String week) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM "+removeSpaces(program)+" WHERE "+T2_date+ " = '"+dateString+"';", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM "+removeSpaces(program)+" WHERE "+T2_week+ " = '"+week+"';", null);
 
         String[] exerciseNames = new String[cursor.getCount()];
         String[] dateStrings = new String[cursor.getCount()];
@@ -219,7 +220,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] daysOfWeekStrings = new String[cursor.getCount()];
         Exercise[] exercises = new Exercise[cursor.getCount()];
 
-        // put all exercise names into string array
+        // put all exercise weeks into string array
         if (cursor.moveToFirst()) {
             for (int i = 0; i < exerciseNames.length; i++) {
                 dateStrings[i] = cursor.getString(0);
@@ -234,14 +235,71 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } else {
             return null;
         }
+    }
 
+    public String selectTypeByWeek(String program, String week) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT DISTINCT "+T2_type+" FROM "+removeSpaces(program)+" WHERE "+T2_week+ " = '"+week+"';", null);
+        // Return the type
+        if (cursor.moveToFirst()) {
+            String s = cursor.getString(0);
+            cursor.close();
+            return s;
+        } else {
+            return null;
+        }
+    }
+
+    public ExerciseAndDate selectFromProgramByDate(String program, String date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM "+removeSpaces(program)+" WHERE "+T2_date+ " = '"+date+"';", null);
+
+        String[] exerciseNames = new String[cursor.getCount()];
+        String[] dateStrings = new String[cursor.getCount()];
+        String[] typeStrings = new String[cursor.getCount()];
+        String[] daysOfWeekStrings = new String[cursor.getCount()];
+        Exercise[] exercises = new Exercise[cursor.getCount()];
+
+        // put all exercise weeks into string array
+        if (cursor.moveToFirst()) {
+            for (int i = 0; i < exerciseNames.length; i++) {
+                dateStrings[i] = cursor.getString(0);
+                exerciseNames[i] = cursor.getString(1);
+                typeStrings[i] = cursor.getString(2);
+                daysOfWeekStrings[i] = cursor.getString(3);
+                exercises[i] = selectExerciseByName(exerciseNames[i]);
+                cursor.moveToNext();
+            }
+            cursor.close();
+            return new ExerciseAndDate(dateStrings, exerciseNames, daysOfWeekStrings, typeStrings, exercises);
+        } else {
+            return null;
+        }
+    }
+
+    public String[] selectProgramWeeks(String program) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT DISTINCT "+T2_week+" FROM "+removeSpaces(program)+";", null);
+
+        String[] dateStrings = new String[cursor.getCount()];
+
+        // put all exercise weeks into string array
+        if (cursor.moveToFirst()) {
+            for (int i = 0; i < dateStrings.length; i++) {
+                dateStrings[i] = cursor.getString(0);
+                cursor.moveToNext();
+            }
+            cursor.close();
+            return dateStrings;
+        } else {
+            return null;
+        }
     }
 
     // Creates a program of a given name
     public boolean createProgram(String name) {
         String nameNoSpaces = removeSpaces(name);
         SQLiteDatabase db = this.getWritableDatabase();
-        SimpleDateFormat format_EEEE = new SimpleDateFormat("EEEE");
         // If a program by that name doesn't already exist
         if (insertProgramName(nameNoSpaces)) {
             db.execSQL("CREATE TABLE IF NOT EXISTS " + nameNoSpaces + " (" +
@@ -249,7 +307,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     T2_exercise + TEXT + ", " +
                     T2_type + TEXT + ", " +
                     T2_dayOfWeek + TEXT + ", " +
-                    T2_completed + TEXT +
+                    T2_completed + TEXT + ", " +
+                    T2_week + TEXT +
                     END);
         } else {
             return false;
@@ -290,7 +349,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Insert a single trainingDay into a program
-    public boolean insertProgramRow(TrainingDay trainingDay, String name){
+    public boolean insertProgramRow(TrainingDay trainingDay, String week, String name){
         String nameNoSpaces = removeSpaces(name);
         SQLiteDatabase db = this.getWritableDatabase();
         SimpleDateFormat format_EEEE = new SimpleDateFormat("EEEE");
@@ -304,6 +363,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 myCV.put(T2_type, trainingDay.type);
                 myCV.put(T2_dayOfWeek, format_EEEE.format(trainingDay.date));
                 myCV.put(T2_completed, "0");
+                myCV.put(T2_week, week);
 
                 if (db.insert(nameNoSpaces, null, myCV) == -1) {
                     return false;
@@ -329,7 +389,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return new String(result);
     }
 
-    // Removes spaces and puts underscores instead, since table names cannot
+    // Removes spaces and puts underscores instead, since table weeks cannot
     // have spaces in them.
     private String removeSpaces(String input){
         String space = " ";
@@ -382,7 +442,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Exercise[] exercises = new Exercise[cursor.getCount()];
 
 
-        // put all exercise names into string array
+        // put all exercise weeks into string array
         if (cursor.moveToFirst()) {
             for (int i = 0; i < exerciseNames.length; i++) {
                 dateStrings[i] = cursor.getString(0);

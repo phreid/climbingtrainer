@@ -3,6 +3,7 @@ package com.adamson.miles.climbingtrainer;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextThemeWrapper;
@@ -14,38 +15,42 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+public class ViewProgramByWeek extends AppCompatActivity {
 
-public class LoadProgram extends AppCompatActivity {
-
-    String[] names;
+    String[] weeks;
+    String programName;
     ScrollView scrollView;
     LinearLayout scrollLayoutChild;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_load_program);
+        setContentView(R.layout.activity_view_program_by_week);
 
         DatabaseHelper db = new DatabaseHelper(getApplicationContext());
-        names = db.selectAllPrograms();
-        scrollView = (ScrollView)findViewById(R.id.scrollViewPrograms);
-        scrollLayoutChild = (LinearLayout)findViewById(R.id.scrollViewProgramsChild);
+        programName = getIntent().getStringExtra("programName");
+        weeks = db.selectProgramWeeks(programName);
+        scrollView = findViewById(R.id.scrollViewWeeks);
+        scrollLayoutChild = findViewById(R.id.scrollViewWeeksChild);
 
         // If there are programs, creates button for each one
-        if(names != null) {
-            for (int i = 0; i < names.length; i++) {
+        if(weeks != null) {
+            for (int i = 0; i < weeks.length; i++) {
                 LinearLayout layoutHorizontal = new LinearLayout(new ContextThemeWrapper(this, R.style.LayoutHorizontalTransparent), null, 0);
                 final Button button = new Button(new ContextThemeWrapper(this, R.style.ButtonWhite), null, 0);
                 float pixels = 40 * getApplicationContext().getResources().getDisplayMetrics().density;
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) pixels);
                 button.setLayoutParams(lp);
-                button.setText(names[i]);
-
+                String type = db.selectTypeByWeek(programName, weeks[i]);
+                String buttonText = "Week " + weeks[i] +", " + type;
+                button.setText(buttonText);
+                final int index = i;
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(LoadProgram.this, ViewProgramByWeek.class);
-                        intent.putExtra("programName", button.getText().toString());
+                        Intent intent = new Intent(ViewProgramByWeek.this, ViewProgramByDate.class);
+                        intent.putExtra("weekName", weeks[index]);
+                        intent.putExtra("programName", programName);
                         startActivity(intent);
                     }
                 });
@@ -55,7 +60,7 @@ public class LoadProgram extends AppCompatActivity {
                 button.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(LoadProgram.this);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(ViewProgramByWeek.this);
                         builder.setTitle("Delete " + button.getText().toString() + "? This cannot be undone.");
 
                         builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
@@ -87,11 +92,10 @@ public class LoadProgram extends AppCompatActivity {
         }
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_load_program, menu);
+        getMenuInflater().inflate(R.menu.menu_view_program_by_week, menu);
         return true;
     }
 
@@ -102,21 +106,10 @@ public class LoadProgram extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_home) {
-            startActivity(new Intent(LoadProgram.this, MainActivity.class));
+            startActivity(new Intent(ViewProgramByWeek.this, MainActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    // Only allow back button to navigate to home screen if overrideBack set
-    @Override
-    public void onBackPressed() {
-        if(getIntent().getBooleanExtra("overrideBack", false)){
-            Intent intent = new Intent(LoadProgram.this, MainActivity.class);
-            startActivity(intent);
-        } else {
-            LoadProgram.super.onBackPressed();
-        }
     }
 
 }

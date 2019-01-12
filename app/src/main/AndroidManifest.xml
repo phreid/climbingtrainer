@@ -80,9 +80,14 @@
             android:name=".ViewDatesExercises"
             android:label="@string/title_activity_view_dates_exercises"
             android:screenOrientation="portrait" />
-        <activity android:name=".TimerCounter"
+        <activity
+            android:name=".TimerCounter"
             android:label="@string/title_activity_timer_counter"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ViewProgramByWeek"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_view_program_by_week"/>
     </application>
 
 </manifest>

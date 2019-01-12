@@ -11,12 +11,14 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 public class ViewProgramByDate extends AppCompatActivity {
 
     ScrollView scrollView;
     LinearLayout scrollLayoutChild;
     String programName;
+    String weekName;
     boolean onPauseCalled = false;
     boolean hideCompleted;
 
@@ -26,16 +28,18 @@ public class ViewProgramByDate extends AppCompatActivity {
         setContentView(R.layout.activity_view_program_by_date);
 
         hideCompleted = getIntent().getBooleanExtra("hideCompleted", false);
-        scrollView = (ScrollView)findViewById(R.id.scrollViewDates);
-        scrollLayoutChild = (LinearLayout)findViewById(R.id.scrollViewDatesChild);
+        scrollView = findViewById(R.id.scrollViewDates);
+        scrollLayoutChild = findViewById(R.id.scrollViewDatesChild);
         programName = getIntent().getStringExtra("programName");
+        weekName = getIntent().getStringExtra("weekName");
 
         DatabaseHelper db = new DatabaseHelper(getApplicationContext());
-        ExerciseAndDate exerciseAndDate = db.selectProgram(programName);
+        ExerciseAndDate exerciseAndDate = db.selectFromProgramByWeek(programName, weekName);
 
         // creates button for each exercise depending on the type given to the
         // activity's intent. Selects all if no type given
         for(int i = 0; i < exerciseAndDate.uniqueDates.length; i++) {
+
 
             // Check if this days exercises are all done. If so, check the checkbox
             final String dateString = exerciseAndDate.uniqueDates[i];
@@ -90,6 +94,7 @@ public class ViewProgramByDate extends AppCompatActivity {
 
 
         }
+
 
     }
 

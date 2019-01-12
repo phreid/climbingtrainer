@@ -21,7 +21,7 @@
     <string name="name_error">Letters and spaces only, up to 20 characters</string>
     <string name="program_error">Once you create a program, it will appear here.</string>
     <string name="check_box_help">Once you check every exercise on a day, this will be checked off too.</string>
-    <string name="generate">Generate Your Program!</string>
+    <string name="generate">Generating Your Program!</string>
     <string name="action_home">Home</string>
 
     <string name="plus_rep">+rep</string>
@@ -284,4 +284,5 @@
     <string name="title_activity_view_program_by_date">View Program By Date</string>
     <string name="title_activity_view_dates_exercises">View a Days Exercises</string>
     <string name="title_activity_timer_counter">Timer and Counter</string>
+    <string name="title_activity_view_program_by_week">View Program By Week</string>
 </resources>

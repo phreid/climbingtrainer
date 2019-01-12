@@ -177,7 +177,7 @@ public class BuildNewProgramRoot extends AppCompatActivity {
         };
     }
 
-    // Program names must be only letters and no more than 12 chars.
+    // Program weeks must be only letters and no more than 12 chars.
     // It also can't be empty.
     void checkName() {
         final EditText editText = new EditText(getApplicationContext());
