@@ -175,6 +175,8 @@ public class ExerciseBuilder {
         limitStaticBoulders();
         longCampusProject();
         longBoulderProject();
+        enduranceIntervals();
+        hangboardIntroduction();
     }
 
     void insertFourByFour(){
@@ -1679,6 +1681,44 @@ public class ExerciseBuilder {
         db.insertExercise(e);
     }
 
+    void enduranceIntervals() {
+        Exercise e = new Exercise()
+                .setName("Short Rest Endurance Intervals")
+                .setDesc("Find or set a circuit which is moderately hard. Climb three minutes on, one minute off, ten times.")
+                .setType(types[ENDURANCE])
+                .setSets("1")
+                .setEquip(none)
+                .setReps("10")
+                .setRest("One minute")
+                .setDiff(ANY)
+                .setTime(times[THIRTY_M]);
+        db.insertExercise(e);
+    }
+
+    void hangboardIntroduction(){
+        Exercise e = new Exercise()
+                .setName("Hangboard Introduction")
+                .setDesc("Read the training tip on hangboard posture before trying to hangboard. As a light introduction, exercise should not cause you to fail at any point. If it does, use better holds." +
+                        "\n\nStart: Jug for 15 seconds" +
+                        "\nMinute 1: Large edge for 10 seconds" +
+                        "\nMinute 2: Jug for 15 seconds" +
+                        "\nMinute 3: Medium edge for 6 seconds" +
+                        "\nMinute 4: Jug for 15 seconds" +
+                        "\nMinute 5: Medium edge for 6 seconds" +
+                        "\nMinute 6: Large edge for 10 seconds" +
+                        "\nMinute 7: Jug for 15 seconds" +
+                        "\nMinute 8: Medium edge for 6 seconds" +
+                        "\nMinute 9: Jug for 15 seconds" +
+                        "\nMinute 10: Large edge for 10 seconds")
+                .setType(types[STRENGTH])
+                .setSets("1")
+                .setEquip(none)
+                .setReps("10")
+                .setRest("Rest until the next minute after the hang")
+                .setDiff(grades[TEN])
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
 }
 
 /*

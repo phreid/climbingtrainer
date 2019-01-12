@@ -87,7 +87,6 @@ public class BuildNewProgramEquipment extends AppCompatActivity {
         // Required equipment
         forced(checkBoxBar);
         forced(checkBoxHangboard);
-        forced(checkBoxCampusBoard);
 
         boxes = new CheckBox[]{checkBoxBar,
                 checkBoxHangboard,
