@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class BuildNewProgramEquipment extends AppCompatActivity {
 
@@ -18,12 +19,12 @@ public class BuildNewProgramEquipment extends AppCompatActivity {
     CheckBox checkBoxRings;
     CheckBox checkBoxCampusBoard;
     CheckBox checkBoxMedicineBalls;
-    CheckBox checkBoxFillWall;
     CheckBox checkBoxMoonboard;
     CheckBox checkBoxHangboard;
     CheckBox checkBoxKettleBells;
     CheckBox checkBoxLeadTR;
     CheckBox checkBoxAdjustableWall;
+    CheckBox checkBoxTherabands;
     CheckBox[] boxes;
 
     @Override
@@ -31,7 +32,7 @@ public class BuildNewProgramEquipment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_build_new_program_equipment);
 
-        buttonToStartDate = (Button)findViewById(R.id.buttonToStartDate);
+        buttonToStartDate = findViewById(R.id.buttonToStartDate);
         buttonToStartDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,6 +45,7 @@ public class BuildNewProgramEquipment extends AppCompatActivity {
         });
 
         initCheckBoxes();
+        Toast.makeText(getApplicationContext(), getResources().getString(R.string.equipment_toast), Toast.LENGTH_LONG).show();
     }
 
 
@@ -70,36 +72,45 @@ public class BuildNewProgramEquipment extends AppCompatActivity {
     }
 
     void initCheckBoxes(){
-        checkBoxBar = (CheckBox)findViewById(R.id.checkBoxBar);
-        checkBoxFreeweights = (CheckBox)findViewById(R.id.checkBoxFreeweights);
-        checkBoxRings = (CheckBox)findViewById(R.id.checkBoxRings);
-        checkBoxCampusBoard = (CheckBox)findViewById(R.id.checkBoxCampusBoard);
-        checkBoxMedicineBalls = (CheckBox)findViewById(R.id.checkBoxMedicineBalls);
-        checkBoxFillWall = (CheckBox)findViewById(R.id.checkBoxFillWall);
-        checkBoxMoonboard = (CheckBox)findViewById(R.id.checkBoxMoonboard);
-        checkBoxHangboard = (CheckBox)findViewById(R.id.checkBoxHangboard);
-        checkBoxKettleBells = (CheckBox)findViewById(R.id.checkBoxKettleBells);
-        checkBoxLeadTR = (CheckBox)findViewById(R.id.checkBoxLeadTR);
-        checkBoxAdjustableWall = (CheckBox)findViewById(R.id.checkBoxAdjustableWall);
+        checkBoxBar = findViewById(R.id.checkBoxBar);
+        checkBoxFreeweights = findViewById(R.id.checkBoxFreeweights);
+        checkBoxRings = findViewById(R.id.checkBoxRings);
+        checkBoxCampusBoard = findViewById(R.id.checkBoxCampusBoard);
+        checkBoxMedicineBalls = findViewById(R.id.checkBoxMedicineBalls);
+        checkBoxMoonboard = findViewById(R.id.checkBoxMoonboard);
+        checkBoxHangboard = findViewById(R.id.checkBoxHangboard);
+        checkBoxKettleBells = findViewById(R.id.checkBoxKettleBells);
+        checkBoxLeadTR = findViewById(R.id.checkBoxLeadTR);
+        checkBoxAdjustableWall = findViewById(R.id.checkBoxAdjustableWall);
+        checkBoxTherabands = findViewById(R.id.checkBoxTherabands);
+
+        // Required equipment
+        forced(checkBoxBar);
+        forced(checkBoxHangboard);
+        forced(checkBoxCampusBoard);
 
         boxes = new CheckBox[]{checkBoxBar,
-                checkBoxFreeweights,
-                checkBoxRings,
-                checkBoxRings,
-                checkBoxCampusBoard,
-                checkBoxMedicineBalls,
-                checkBoxFillWall,
-                checkBoxMoonboard,
                 checkBoxHangboard,
-                checkBoxKettleBells,
+                checkBoxCampusBoard,
                 checkBoxLeadTR,
-                checkBoxAdjustableWall
+                checkBoxFreeweights,
+                checkBoxKettleBells,
+                checkBoxRings,
+                checkBoxMoonboard,
+                checkBoxMedicineBalls,
+                checkBoxAdjustableWall,
+                checkBoxTherabands
         };
 
         String[] texts = getResources().getStringArray(R.array.equipment);
         for(int i = 0; i < boxes.length; i++){
             boxes[i].setText(texts[i]);
         }
+    }
+
+    void forced(CheckBox checkBox){
+        checkBox.setChecked(true);
+        checkBox.setClickable(false);
     }
 
 }

@@ -162,14 +162,14 @@
     <string name="select_sessions_per_week">Current Sessions Per Week</string>
     <string name="select_session_length">Typical Session Duration</string>
     <string name="select_equipment">Equipment You Have Access To</string>
+    <string name="equipment_toast">A pull-up bar, campusboard and hangboard are the minimum required for program creation.</string>
 
     <string-array name="equipment">
+        <item>Pull Up Bar</item>
         <item>Hangboard</item>
         <item>Campus Board</item>
-        <item>Fill Wall</item>
         <item>Lead or Toprope</item>
         <item>Small Freeweights</item>
-        <item>Pull Up Bar</item>
         <item>Kettle Bells</item>
         <item>Rings</item>
         <item>Moonboard</item>

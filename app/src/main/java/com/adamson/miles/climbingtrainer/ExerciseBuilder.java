@@ -19,16 +19,15 @@ public class ExerciseBuilder {
     public static String[] equip;
     public static int HANGBOARD = 0;
     public static int CAMPUSBOARD = 1;
-    public static int FILLWALL = 2;
-    public static int LEADTR = 3;
-    public static int FREEWEIGHTS = 4;
-    public static int PULLUPBAR = 5;
-    public static int KETTLEBELLS = 6;
-    public static int RINGS = 7;
-    public static int MOONBOARD = 8;
-    public static int MEDICINEBALLS = 9;
-    public static int THERABANDS = 10;
-    public static int ANGLEADJUSTABLEWALL = 11;
+    public static int LEADTR = 2;
+    public static int FREEWEIGHTS = 3;
+    public static int PULLUPBAR = 4;
+    public static int KETTLEBELLS = 5;
+    public static int RINGS = 6;
+    public static int MOONBOARD = 7;
+    public static int MEDICINEBALLS = 8;
+    public static int THERABANDS = 9;
+    public static int ANGLEADJUSTABLEWALL = 10;
     public static String none = "none";
 
     public static String[] grades;
@@ -282,7 +281,7 @@ public class ExerciseBuilder {
                 .setDesc("Set or choose a four to six move problem which is near your redpoint level. Then, set a ten to fifteen move traverse into the starting holds. The traverse can have open feet, the boulder should have set feet. Attempt to link the traverse into the boulder four times.")
                 .setType(types[POWEND])
                 .setSets("1")
-                .setEquip(equip[FILLWALL])
+                .setEquip(none)
                 .setReps("4")
                 .setTime(times[THIRTY_M])
                 .setRest("Rest three minutes between attempts.")
@@ -767,7 +766,7 @@ public class ExerciseBuilder {
                 .setDesc("Do three 60-move circuits. If your gym has graded circuits, choose one which doesn't get you pumped. If not, either climb for 60 moves or have a partner choose a path with a stick brush. Do not choose moves which result in a pump or a fall.")
                 .setType(types[VOLUME])
                 .setSets("3")
-                .setEquip(equip[FILLWALL])
+                .setEquip(none)
                 .setReps("60 Moves")
                 .setRest("Rest equal to the time you spent on the wall. Resting a couple minutes more is ok if you feel the need. If climbing with a partner, simply alternate.")
                 .setDiff(ANY)
@@ -893,7 +892,7 @@ public class ExerciseBuilder {
                 .setDesc("Choose two circuits, one which gets you slightly pumped and one which is relatively easy. Ideally they should be close together.\n\nClimb the easier one first, and then either traverse or hop off and run to the start of the harder. Climb as far as you can into that circuit.")
                 .setType(types[ENDURANCE])
                 .setSets("3")
-                .setEquip(equip[FILLWALL])
+                .setEquip(none)
                 .setReps("1")
                 .setRest("Rest for 10-15 minutes between sets.")
                 .setDiff(ANY)
@@ -921,7 +920,7 @@ public class ExerciseBuilder {
                 .setDesc("Choose a circuit which is well below your redpoint level. When climbing, touch the bolt-hole of each hold before you grab it for 3 seconds. If it's too far, lock-off and point in the holds direction and hold that position before moving to it normally. Climb the circuit 3 times.")
                 .setType(types[ENDURANCE])
                 .setSets("3")
-                .setEquip(equip[FILLWALL])
+                .setEquip(none)
                 .setReps("1")
                 .setRest("Rest 5 minutes between sets.")
                 .setDiff(ANY)

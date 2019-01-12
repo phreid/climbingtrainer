@@ -48,27 +48,29 @@ public class BuildNewProgramAboutYou extends AppCompatActivity {
         initSpinners();
         initHelp();
         initCheckBoxes();
-        buttonContinue = (Button)findViewById(R.id.buttonToEquipment);
+        buttonContinue = findViewById(R.id.buttonToEquipment);
         buttonContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Boolean passed = false;
+                boolean selectionFail = true;
                 if(spinnerGrades.getSelectedItemPosition()!=0){
                     if(spinnerCommitment.getSelectedItemPosition()!=0) {
                         if(checkBoxesClicked()) {
-                            passed = true;
-                            ProgramBuilder programBuilder = ProgramBuilder.getInstance();
-                            programBuilder.setCommitmentLevel(commitmentStrings[spinnerCommitment.getSelectedItemPosition()]);
-                            programBuilder.setCurrentGrade(gradeStrings[spinnerGrades.getSelectedItemPosition()]);
-                            programBuilder.setDaysOfWeek(boxesToArray());
-                            startActivity(new Intent(BuildNewProgramAboutYou.this, BuildNewProgramRoot.class));
+                            selectionFail = false;
+                            if(commitmentStrings[spinnerCommitment.getSelectedItemPosition()].equals("Dedicated") && gradeStrings[spinnerGrades.getSelectedItemPosition()].equals("[5.10d or V0 and below]")){
+                                Toast.makeText(getApplicationContext(), "You may not create a 'Dedicated' program for [5.10d or V0 and below], only 'Moderate'", Toast.LENGTH_LONG).show();
+                            } else {
+                                ProgramBuilder programBuilder = ProgramBuilder.getInstance();
+                                programBuilder.setCommitmentLevel(commitmentStrings[spinnerCommitment.getSelectedItemPosition()]);
+                                programBuilder.setCurrentGrade(gradeStrings[spinnerGrades.getSelectedItemPosition()]);
+                                programBuilder.setDaysOfWeek(boxesToArray());
+                                startActivity(new Intent(BuildNewProgramAboutYou.this, BuildNewProgramRoot.class));
+                            }
                         }
                     }
                 }
-                if (!passed) {
-                    String text = "You must make a selection before continuing.";
-                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildNewProgramAboutYou.this);
-                    builder.setMessage(text).setCancelable(true).show();
+                if(selectionFail) {
+                    Toast.makeText(getApplicationContext(), "You must make a selection before continuing.", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -126,7 +128,7 @@ public class BuildNewProgramAboutYou extends AppCompatActivity {
         imageHelpGrades.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text = "Select the grade range you fit into best. This controls what drills are allowed to be put into your program.\n\nFor example, you must select at least [5.11a to 5.11d] or [V1 to V3] for hangboard drills to be selected.";
+                String text = "Select the grade range you fit into best. This controls what drills are allowed to be put into your program.\n\nFor example, you must select at least [5.12a to 5.12d] or [V4 to V6] to use the Moonboard.";
                 AlertDialog.Builder builder = new AlertDialog.Builder(BuildNewProgramAboutYou.this);
                 builder.setMessage(text).setCancelable(true).show();
             }
@@ -136,9 +138,8 @@ public class BuildNewProgramAboutYou extends AppCompatActivity {
         imageHelpCommitment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text = "Casual will generate 45 minutes of planned activites per day. Select this if you still wish to have lots of free time at the gym.\n\n" +
-                        "Moderate will generate 1.5 hours of planned activites per day. You will have some free time.\n\n" +
-                        "Dedicated will generate completely planned days. You should not climb outside of the drills listed, as it could lead to overtraining.";
+                String text = "Moderate will generate around an hour of planned activites per day. Select this if you want free time to climb, or if your sessions are shorter.\n\n" +
+                        "Dedicated will generate completely planned days, all of which are three hours. You should not climb outside of the drills listed, as it could lead to overtraining.";
                 AlertDialog.Builder builder = new AlertDialog.Builder(BuildNewProgramAboutYou.this);
                 builder.setMessage(text).setCancelable(true).show();
             }
