@@ -212,12 +212,9 @@ public class BuildNewProgramRoot extends AppCompatActivity {
                 if (!failed) {
                     ProgramBuilder programBuilder = ProgramBuilder.getInstance();
                     programBuilder.setProgramName(programName);
-                    programBuilder.buildTrainingDays(getApplicationContext());
-                    Intent intent = new Intent(BuildNewProgramRoot.this, LoadProgram.class);
-                    intent.putExtra("programName", programName);
-                    programBuilder.destroyInstance();
-                    startActivity(intent);
+                    Intent intent = new Intent(BuildNewProgramRoot.this, BuildNewProgramReview.class);
                     dialog.dismiss();
+                    startActivity(intent);
                 }
             }
         });
