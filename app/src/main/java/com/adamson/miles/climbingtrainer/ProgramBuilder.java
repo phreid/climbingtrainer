@@ -82,7 +82,7 @@ public class ProgramBuilder {
     public boolean isDone() { return done; }
 
     // Returns false if the dates fail the minimum length requirements.
-    public boolean checkDates(){
+    public String checkDates(){
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         try {
             startDate = format.parse(startDateString);
@@ -93,34 +93,43 @@ public class ProgramBuilder {
         long msDiff = endDate.getTime() - startDate.getTime();
         programLength = TimeUnit.MILLISECONDS.toDays(msDiff);
 
-        // Program can't have zero or negative length
         if(programLength <=0){
-            return false;
+            return "The end date must be after the start date.";
+        }
+
+        // segment max length is 3 months
+        if(programLength > 84){
+            if(!programType.equals("Bouldering Program") && !programType.equals("Routes Program")){
+                return "Program segments cannot be longer than 12 weeks. Your selection is "+Integer.toString((int)programLength/7)+" weeks.";
+            }
+        }
+
+        if(programLength > 273){
+            return "No program can be longer than 9 months.";
         }
 
         // Route and boulder programs have minimum lengths.
         // Segments must be 1 week long.
-        boolean result = false;
         switch (programType){
             case "Bouldering Program":
-                if(programLength >= minimumBoulder){
-                    result = true;
+                if(programLength < minimumBoulder) {
+                    return "Bouldering programs must be at least 4 weeks long. Your selection is "+Integer.toString((int)programLength/7)+" weeks.";
                 }
                 break;
 
             case "Routes Program":
-                if(programLength >= minimumRoutes){
-                    result = true;
+                if(programLength < minimumRoutes){
+                    return "Routes programs must be at least 6 weeks long. Your selection is "+Integer.toString((int)programLength/7)+" weeks.";
                 }
                 break;
 
             default:
-                if(programLength >= minimumSegment){
-                    result = true;
+                if(programLength < minimumSegment){
+                    return "Program segments must be at least 1 week long. Your selection is "+Integer.toString((int)programLength)+" days.";
                 }
                 break;
         }
-        return result;
+        return null;
     }
 
     // Fills the trainingDatesInProgram array with Date objects

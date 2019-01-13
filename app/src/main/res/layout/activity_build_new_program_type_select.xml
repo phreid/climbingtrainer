@@ -6,110 +6,133 @@
     android:background="@color/colorBlack"
     tools:context="com.adamson.miles.climbingtrainer.BuildNewProgramTypeSelect">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/polygon_red"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:background="@drawable/polygon_red">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <LinearLayout style="@style/LayoutHorizontalTransparent">
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
 
-            <Button
-                android:id="@+id/buttonBoulderingProgram"
-                style="@style/ButtonWhite"
-                android:background="@drawable/gradient_green"
-                android:text="@string/bouldering_program" />
+                <TextView
+                    android:id="@+id/textViewCompleteProgram"
+                    style="@style/TextViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/gradient_green"
+                    android:gravity="center"
+                    android:text="@string/full_programs" />
+            </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/imageHelpBoulderingProgram"
-                style="@style/ButtonImageSmall"
-                android:background="@drawable/gradient_green"
-                ads:srcCompat="@drawable/ic_help" />
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+                <Button
+                    android:id="@+id/buttonBoulderingProgram"
+                    style="@style/ButtonWhite"
+                    android:background="@android:color/white"
+                    android:text="@string/bouldering_program" />
+
+                <ImageButton
+                    android:id="@+id/imageHelpBoulderingProgram"
+                    style="@style/ButtonImageSmall"
+                    android:background="@android:color/white"
+                    ads:srcCompat="@drawable/ic_help" />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+                <Button
+                    android:id="@+id/buttonRoutesProgram"
+                    style="@style/ButtonWhite"
+                    android:background="@android:color/white"
+                    android:text="@string/routes_program" />
+
+                <ImageButton
+                    android:id="@+id/imageHelpRoutesProgram"
+                    style="@style/ButtonImageSmall"
+                    android:background="@android:color/white"
+                    ads:srcCompat="@drawable/ic_help" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+                <TextView
+                    android:id="@+id/textViewSegments"
+                    style="@style/TextViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/gradient_yellow"
+                    android:gravity="center"
+                    android:text="@string/program_segments" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+                <Button
+                    android:id="@+id/buttonVolume"
+                    style="@style/ButtonWhite"
+                    android:background="@android:color/white"
+                    android:text="@string/volume_only" />
+
+                <ImageButton
+                    android:id="@+id/imageHelpVolume"
+                    style="@style/ButtonImageSmall"
+                    android:background="@android:color/white"
+                    ads:srcCompat="@drawable/ic_help" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+                <Button
+                    android:id="@+id/buttonStrPow"
+                    style="@style/ButtonWhite"
+                    android:background="@android:color/white"
+                    android:text="@string/strpow_only" />
+
+                <ImageButton
+                    android:id="@+id/imageHelpStrPow"
+                    style="@style/ButtonImageSmall"
+                    android:background="@android:color/white"
+                    ads:srcCompat="@drawable/ic_help" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+                <Button
+                    android:id="@+id/buttonPowEnd"
+                    style="@style/ButtonWhite"
+                    android:background="@android:color/white"
+                    android:text="@string/powend_only" />
+
+                <ImageButton
+                    android:id="@+id/imageHelpPowEnd"
+                    style="@style/ButtonImageSmall"
+                    android:background="@android:color/white"
+                    ads:srcCompat="@drawable/ic_help" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+                <Button
+                    android:id="@+id/buttonEnd"
+                    style="@style/ButtonWhite"
+                    android:background="@android:color/white"
+                    android:text="@string/end_only" />
+
+                <ImageButton
+                    android:id="@+id/imageHelpEnd"
+                    style="@style/ButtonImageSmall"
+                    android:background="@android:color/white"
+                    ads:srcCompat="@drawable/ic_help" />
+            </LinearLayout>
 
         </LinearLayout>
-
-        <LinearLayout style="@style/LayoutHorizontalTransparent">
-
-            <Button
-                android:id="@+id/buttonRoutesProgram"
-                style="@style/ButtonWhite"
-                android:background="@drawable/gradient_green"
-                android:text="@string/routes_program" />
-
-            <ImageButton
-                android:id="@+id/imageHelpRoutesProgram"
-                style="@style/ButtonImageSmall"
-                android:background="@drawable/gradient_green"
-                ads:srcCompat="@drawable/ic_help" />
-
-        </LinearLayout>
-
-        <LinearLayout style="@style/LayoutHorizontalTransparent">
-
-            <Button
-                android:id="@+id/buttonVolume"
-                style="@style/ButtonWhite"
-                android:background="@android:color/white"
-                android:text="@string/volume_only" />
-
-            <ImageButton
-                android:id="@+id/imageHelpVolume"
-                style="@style/ButtonImageSmall"
-                android:background="@android:color/white"
-                ads:srcCompat="@drawable/ic_help" />
-
-        </LinearLayout>
-
-        <LinearLayout style="@style/LayoutHorizontalTransparent">
-
-            <Button
-                android:id="@+id/buttonStrPow"
-                style="@style/ButtonWhite"
-                android:background="@android:color/white"
-                android:text="@string/strpow_only" />
-
-            <ImageButton
-                android:id="@+id/imageHelpStrPow"
-                style="@style/ButtonImageSmall"
-                android:background="@android:color/white"
-                ads:srcCompat="@drawable/ic_help" />
-
-        </LinearLayout>
-
-        <LinearLayout style="@style/LayoutHorizontalTransparent">
-
-            <Button
-                android:id="@+id/buttonPowEnd"
-                style="@style/ButtonWhite"
-                android:background="@android:color/white"
-                android:text="@string/powend_only" />
-
-            <ImageButton
-                android:id="@+id/imageHelpPowEnd"
-                style="@style/ButtonImageSmall"
-                android:background="@android:color/white"
-                ads:srcCompat="@drawable/ic_help" />
-
-        </LinearLayout>
-
-        <LinearLayout style="@style/LayoutHorizontalTransparent">
-
-            <Button
-                android:id="@+id/buttonEnd"
-                style="@style/ButtonWhite"
-                android:background="@android:color/white"
-                android:text="@string/end_only" />
-
-            <ImageButton
-                android:id="@+id/imageHelpEnd"
-                style="@style/ButtonImageSmall"
-                android:background="@android:color/white"
-                ads:srcCompat="@drawable/ic_help" />
-
-        </LinearLayout>
-
-    </LinearLayout>
+    </ScrollView>
 
     <!-- view for AdMob Banner Ad -->
 

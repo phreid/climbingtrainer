@@ -24,9 +24,9 @@ public class BuildNewProgramEndDate extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_build_new_program_end_date);
 
-        datePicker = (DatePicker)findViewById(R.id.datePickerEndDate);
+        datePicker = findViewById(R.id.datePickerEndDate);
 
-        buttonToReview = (Button)findViewById(R.id.buttonToReview);
+        buttonToReview = findViewById(R.id.buttonToReview);
         buttonToReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,25 +34,33 @@ public class BuildNewProgramEndDate extends AppCompatActivity {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 ProgramBuilder.getInstance().setEndDateString(sdf.format(endDate));
                 // Check if their selection was valid and continue if so and alert if not
-                if(ProgramBuilder.getInstance().checkDates()){
+                String response = ProgramBuilder.getInstance().checkDates();
+                if(response == null){
                     startActivity(new Intent(BuildNewProgramEndDate.this, BuildNewProgramRoot.class));
                 } else {
-                    String text = "Route climbing programs must be at least 6 weeks long.\n\n" +
-                            "Bouldering programs must be at least 4 weeks long.\n\n" +
-                            "Program segments must be at least 1 week long.";
-                    AlertDialog.Builder builder = new AlertDialog.Builder(BuildNewProgramEndDate.this);
-                    builder.setMessage(text).setCancelable(true).show();
+                    Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
                 }
 
             }
         });
 
         // Upon entry, remind user how long a program must be.
-        String text = "Route climbing programs must be at least 6 weeks long.\n\n" +
-                "Bouldering programs must be at least 4 weeks long.\n\n" +
-                "Program segments must be at least 1 week long.";
-        AlertDialog.Builder builder = new AlertDialog.Builder(BuildNewProgramEndDate.this);
-        builder.setMessage(text).setCancelable(true).show();
+        String s;
+        switch (ProgramBuilder.getInstance().getProgramType()){
+            case "Routes Program":
+                s = "Route climbing programs must be at least 6 weeks long.";
+                break;
+
+            case "Bouldering Program":
+                s = "Bouldering programs must be at least 4 weeks long.";
+                break;
+
+            default:
+                s = "Program segments must be between 1 week and 12 weeks long.";
+                break;
+        }
+
+        Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
     }
 
 
