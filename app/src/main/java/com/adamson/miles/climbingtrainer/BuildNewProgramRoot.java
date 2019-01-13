@@ -3,6 +3,7 @@ package com.adamson.miles.climbingtrainer;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -190,31 +191,36 @@ public class BuildNewProgramRoot extends AppCompatActivity {
         alert.setPositiveButton("Finish", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 String programName = editText.getText().toString();
-                char[] chars = editText.getText().toString().toCharArray();
-                String error = getResources().getString(R.string.name_error);
-                boolean failed = false;
-                // Cannot be longer than 12 or blank
-                if (chars.length > 20 || editText.getText().toString().matches("")) {
-                    Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show();
-                    failed = true;
-                    dialog.dismiss();
-                }
-
-                // Must contain only letters and spaces
-                for (char c : chars) {
-                    if (!Character.isLetter(c) && c != " ".charAt(0)) {
+                DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+                if(db.programExists(programName)){
+                    Toast.makeText(getApplicationContext(), "A program by this name already exists.", Toast.LENGTH_SHORT).show();
+                } else {
+                    char[] chars = editText.getText().toString().toCharArray();
+                    String error = getResources().getString(R.string.name_error);
+                    boolean failed = false;
+                    // Cannot be longer than 12 or blank
+                    if (chars.length > 20 || editText.getText().toString().matches("")) {
                         Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show();
                         failed = true;
                         dialog.dismiss();
                     }
-                }
-                // Name past, enter program and navigate to view it
-                if (!failed) {
-                    ProgramBuilder programBuilder = ProgramBuilder.getInstance();
-                    programBuilder.setProgramName(programName);
-                    Intent intent = new Intent(BuildNewProgramRoot.this, BuildNewProgramReview.class);
-                    dialog.dismiss();
-                    startActivity(intent);
+
+                    // Must contain only letters and spaces
+                    for (char c : chars) {
+                        if (!Character.isLetter(c) && c != " ".charAt(0)) {
+                            Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show();
+                            failed = true;
+                            dialog.dismiss();
+                        }
+                    }
+                    // Name past, enter program and navigate to view it
+                    if (!failed) {
+                        ProgramBuilder programBuilder = ProgramBuilder.getInstance();
+                        programBuilder.setProgramName(programName);
+                        Intent intent = new Intent(BuildNewProgramRoot.this, BuildNewProgramReview.class);
+                        dialog.dismiss();
+                        startActivity(intent);
+                    }
                 }
             }
         });

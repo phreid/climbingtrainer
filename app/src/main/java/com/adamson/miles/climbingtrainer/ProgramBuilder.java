@@ -1,8 +1,6 @@
 package com.adamson.miles.climbingtrainer;
 
 import android.content.Context;
-import android.provider.ContactsContract;
-import android.widget.TextView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -42,7 +40,7 @@ public class ProgramBuilder {
     private boolean lastWasPower = false;
     private int i = 0;
     int dayNumber = 0;
-    int weekNumber = 0;
+    int weekNumber = 1;
     private int sessionsPerWeek = 0;
     private int attempts = 0;
     private boolean done = false;
@@ -718,7 +716,7 @@ public class ProgramBuilder {
     Boolean checkExerciseEquipment(Exercise e){
         String[] equipment = ExerciseBuilder.equip;
         // exercises which require no equipment always return true
-        if(e.equip.equals(ExerciseBuilder.none)) {
+        if(e.equip.equals(ExerciseBuilder.NONE)) {
             return true;
         }
         // loop through and see if we have the equipment available

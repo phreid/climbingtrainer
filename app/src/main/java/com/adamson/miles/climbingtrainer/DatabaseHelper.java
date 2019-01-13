@@ -140,7 +140,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return exercises;
     }
 
-    // Returns all programs in a string array. Returns null if there are none
+    // Returns all programs in a string array. Returns null if there are NONE
     public String[] selectAllPrograms() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM "+T3+";", null);
@@ -158,6 +158,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return null;
         }
     }
+
+    // Returns all programs in a string array. Returns null if there are NONE
+    public boolean programExists(String name) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM "+T3+" WHERE "+T3_name+"='"+removeSpaces(name)+"';", null);
+
+        // if there is a program of this name, return true
+        if (cursor.moveToFirst()) {
+            cursor.close();
+            return true;
+        } else {
+            cursor.close();
+            return false;
+        }
+    }
+
 
     // Returns all exercises of a type in an array
     public Exercise[] selectAllExerciseByType(String type) {

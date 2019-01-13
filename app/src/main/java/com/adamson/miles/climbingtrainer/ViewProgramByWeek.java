@@ -42,6 +42,9 @@ public class ViewProgramByWeek extends AppCompatActivity {
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) pixels);
                 button.setLayoutParams(lp);
                 String type = db.selectTypeByWeek(programName, weeks[i]);
+                if(type.equals("power")){
+                    type = "Strength and Power";
+                }
                 String buttonText = "Week " + weeks[i] +", " + type;
                 button.setText(buttonText);
                 final int index = i;

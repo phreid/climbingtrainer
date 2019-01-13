@@ -28,7 +28,7 @@ public class ExerciseBuilder {
     public static int MEDICINEBALLS = 8;
     public static int THERABANDS = 9;
     public static int ANGLEADJUSTABLEWALL = 10;
-    public static String none = "none";
+    public static String NONE = "NONE";
 
     public static String[] grades;
     public static int TEN = 1;
@@ -60,7 +60,7 @@ public class ExerciseBuilder {
                 .setDesc("Get your heart rate up through skipping, running in place, cycling, or extremely easy boulders\n\n2.\tDo any injury specific warm ups which a physio has recommended\n\n3.\tClimb progressively harder boulders, avoiding pockets, crimps and shoulder-intensive moves\n\n4.\tRest briefly and then climb some boulders which are harder but still well under your limit. Ease into crimps and pockets at this time\n\n5.\tClimb a short circuit, or a long boulder slowly. Get slightly pumped, but DO NOT get flash pumped\n\n6.\tRest until you are no longer pumped what so ever. This prevents a flash pump later\n\n7.\t Climb some boulders or individual moves near your redpoint limit. Just a couple, don’t tire yourself out\n\n8.\tClimb a longer circuit which gets you fairly pumped. Stop if you are feeling flash pumped instead of a normal pump, and go back to step 6\n\n9.\tRest for around 10 minutes, keeping warm with either a jacket or light cardio if it is cold in the gym or outside\n\n10.\tIf you time this properly, 45 minutes to an hour after you start you should be able to attempt a very hard redpoint or onsight. You should not be getting flash pumped or feel too cold to pull as hard as you can.")
                 .setType("Warm Up")
                 .setSets("N/A")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("N/A")
                 .setRest("Rest if you feel like you are getting pumped during a stage you should not be.")
                 .setDiff(ANY)
@@ -73,7 +73,7 @@ public class ExerciseBuilder {
                     .setDesc("Climb whatever you feel like. If this is scheduled for the end of the day, you could go home early instead.")
                     .setType("Free Time")
                     .setSets("N/A")
-                    .setEquip(none)
+                    .setEquip(NONE)
                     .setReps("N/A")
                     .setRest("N/A")
                     .setDiff(ANY)
@@ -177,6 +177,11 @@ public class ExerciseBuilder {
         longBoulderProject();
         enduranceIntervals();
         hangboardIntroduction();
+        rings();
+        hangboardIntroductionTwo();
+        medBall();
+        strengthPyramid();
+        maxLock();
     }
 
     void insertFourByFour(){
@@ -283,7 +288,7 @@ public class ExerciseBuilder {
                 .setDesc("Set or choose a four to six move problem which is near your redpoint level. Then, set a ten to fifteen move traverse into the starting holds. The traverse can have open feet, the boulder should have set feet. Attempt to link the traverse into the boulder four times.")
                 .setType(types[POWEND])
                 .setSets("1")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("4")
                 .setTime(times[THIRTY_M])
                 .setRest("Rest three minutes between attempts.")
@@ -596,7 +601,7 @@ public class ExerciseBuilder {
                         "20 Reverse Crunches")
                 .setType(types[CONDITIONING])
                 .setSets("1")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("300")
                 .setRest("Rest minimally throughout. Ideally zero rest.")
                 .setDiff(ANY)
@@ -740,7 +745,7 @@ public class ExerciseBuilder {
                 .setDesc("Choose 3 boulders: one is very easy, one is easy, one is moderate. Climb the first 8 times, the second 4 times, and the last twice. Then the second 4 more times, and the first 8 more times.")
                 .setType(types[VOLUME])
                 .setSets("5")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("8, 4, 2, 4, 8")
                 .setRest("Rest no more than 20 seconds between attempts and boulders. If you are getting pumped or falling, choose easier boulders.")
                 .setDiff(ANY)
@@ -754,7 +759,7 @@ public class ExerciseBuilder {
                 .setDesc("Choose 5 boulders: All easy. Climb each up AND down 5 times.")
                 .setType(types[VOLUME])
                 .setSets("5")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("5 up+down")
                 .setRest("Rest no more than 20 seconds between attempts and boulders. If you are getting pumped or falling, choose easier boulders.")
                 .setDiff(ANY)
@@ -768,7 +773,7 @@ public class ExerciseBuilder {
                 .setDesc("Do three 60-move circuits. If your gym has graded circuits, choose one which doesn't get you pumped. If not, either climb for 60 moves or have a partner choose a path with a stick brush. Do not choose moves which result in a pump or a fall.")
                 .setType(types[VOLUME])
                 .setSets("3")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("60 Moves")
                 .setRest("Rest equal to the time you spent on the wall. Resting a couple minutes more is ok if you feel the need. If climbing with a partner, simply alternate.")
                 .setDiff(ANY)
@@ -796,7 +801,7 @@ public class ExerciseBuilder {
                 .setDesc("If your gym has graded circuits, choose one which doesn't get you pumped. If not, either climb randomly or have a partner choose a path with a stick brush. Climb continuously for 6 minutes.")
                 .setType(types[VOLUME])
                 .setSets("2")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("N/A")
                 .setRest("Rest for 10-15 minutes between sets.")
                 .setDiff(ANY)
@@ -810,7 +815,7 @@ public class ExerciseBuilder {
                 .setDesc("Find or set a massive dynamic move, really close to your limit. Project it for 10 minutes. Do this four times (twice moving with each arm).")
                 .setType(types[POWER])
                 .setSets("4")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("N/A")
                 .setRest("Rest fully between attempts.")
                 .setDiff(ANY)
@@ -824,7 +829,7 @@ public class ExerciseBuilder {
                 .setDesc("Find or set a body position which is hard to generate dynamically from. Choose a direction to move, and attempt to touch the wall as far away as you can in that direction (you will fall after tagging the wall).\n\nDo not aim for a specific hold, measure progress by improving the furthest distance you can touch on the wall. Find two moves for each arm.")
                 .setType(types[POWER])
                 .setSets("4")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("N/A")
                 .setRest("Rest fully between attempts.")
                 .setDiff(ANY)
@@ -852,7 +857,7 @@ public class ExerciseBuilder {
                 .setDesc("Project dyno's for 15 minutes. Find dyno's which require your upper body to generate, opposed to a run-jump competition style dyno on volumes.")
                 .setType(types[POWER])
                 .setSets("1")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("N/A")
                 .setRest("Rest fully between attempts.")
                 .setDiff(grades[ELEVEN])
@@ -866,7 +871,7 @@ public class ExerciseBuilder {
                 .setDesc("Jump to holds off of the ground which are slightly out of reach, on a relatively steep wall (30-50 degrees). Choose holds which are difficult to grab, and attempt to control the swing jumping to them creates. Find three of these, and try them each for 5 minutes.\n\nProgressively stand closer to the wall, jumping at a larger angle for a larger swing.")
                 .setType(types[POWER])
                 .setSets("1")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("N/A")
                 .setRest("Rest fully between attempts.")
                 .setDiff(ANY)
@@ -880,7 +885,7 @@ public class ExerciseBuilder {
                 .setDesc("If your gym has graded circuits, choose one which gets you pumped but you can succeed on. If not, either climb randomly or have a partner choose a path with a stick brush. Climb continuously for 5 minutes on pumpy terrain.\n\nIf you fall, hop right back on a jug and shake out briefly.")
                 .setType(types[ENDURANCE])
                 .setSets("3")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("1")
                 .setRest("Rest for 10-15 minutes between sets.")
                 .setDiff(ANY)
@@ -894,7 +899,7 @@ public class ExerciseBuilder {
                 .setDesc("Choose two circuits, one which gets you slightly pumped and one which is relatively easy. Ideally they should be close together.\n\nClimb the easier one first, and then either traverse or hop off and run to the start of the harder. Climb as far as you can into that circuit.")
                 .setType(types[ENDURANCE])
                 .setSets("3")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("1")
                 .setRest("Rest for 10-15 minutes between sets.")
                 .setDiff(ANY)
@@ -908,7 +913,7 @@ public class ExerciseBuilder {
                 .setDesc("Choose four boulders. Avoid boulders with moves that are extremely dynamic. When climbing, touch the bolt-hole of each hold before you grab it for 3 seconds. If it's too far, lock-off and point in the holds direction and hold that position before moving to it normally. Climb each boulder 3 times.")
                 .setType(types[STRENGTH])
                 .setSets("4")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("3")
                 .setRest("Rest 5 minutes between boulders. Rest 1 minute between attempts.")
                 .setDiff(ANY)
@@ -922,7 +927,7 @@ public class ExerciseBuilder {
                 .setDesc("Choose a circuit which is well below your redpoint level. When climbing, touch the bolt-hole of each hold before you grab it for 3 seconds. If it's too far, lock-off and point in the holds direction and hold that position before moving to it normally. Climb the circuit 3 times.")
                 .setType(types[ENDURANCE])
                 .setSets("3")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("1")
                 .setRest("Rest 5 minutes between sets.")
                 .setDiff(ANY)
@@ -1009,7 +1014,7 @@ public class ExerciseBuilder {
                         "Do this four times, ideally on different boulders. However it can be hard to find suitable boulders, so repeating the same set is ok.")
                 .setType(types[POWEND])
                 .setSets("3")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("1")
                 .setRest("Rest four minutes between attempts.")
                 .setDiff(ANY)
@@ -1024,7 +1029,7 @@ public class ExerciseBuilder {
                         "Repeat this on three boulders.")
                 .setType(types[POWEND])
                 .setSets("3")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("1")
                 .setRest("Rest five minutes between boulders.")
                 .setDiff(ANY)
@@ -1334,7 +1339,7 @@ public class ExerciseBuilder {
                         "Repeat until you are at 1 push up (the last one)")
                 .setType(types[CONDITIONING])
                 .setSets("2")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("55")
                 .setRest("Rest 10 seconds between pyramid levels and three minutes between sets.")
                 .setDiff(ANY)
@@ -1349,7 +1354,7 @@ public class ExerciseBuilder {
                         "Climb each boulder 2 times.")
                 .setType(types[POWER])
                 .setSets("4")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("2")
                 .setRest("Rest four minutes between boulders, and briefly between attempts.")
                 .setDiff(ANY)
@@ -1364,7 +1369,7 @@ public class ExerciseBuilder {
                         "Climb each boulder 2 times.")
                 .setType(types[STRENGTH])
                 .setSets("4")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("2")
                 .setRest("Rest four minutes between boulders, and briefly between attempts.")
                 .setDiff(ANY)
@@ -1379,7 +1384,7 @@ public class ExerciseBuilder {
                         "Once the boulder feels impossible (try for 15 minutes total) move to the next.")
                 .setType(types[POWER])
                 .setSets("2")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("N/A")
                 .setRest("Rest completely between attempts and boulders.")
                 .setDiff(ANY)
@@ -1394,7 +1399,7 @@ public class ExerciseBuilder {
                         "Climb each boulder twice.")
                 .setType(types[POWER])
                 .setSets("4")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("2")
                 .setRest("Rest briefly between attempts and for three minutes between boulders.")
                 .setDiff(ANY)
@@ -1408,7 +1413,7 @@ public class ExerciseBuilder {
                 .setDesc("Simply project a powerful and dynamic boulder. You can use this to measure progress. Once send a project, try another harder problem.")
                 .setType(types[POWER])
                 .setSets("N/A")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("N/A")
                 .setRest("Rest completely between attempts.")
                 .setDiff(ANY)
@@ -1422,7 +1427,7 @@ public class ExerciseBuilder {
                 .setDesc("Simply project a static boulder. You can use this to measure progress. Once send a project, try another harder problem.")
                 .setType(types[STRENGTH])
                 .setSets("N/A")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("N/A")
                 .setRest("Rest completely between attempts.")
                 .setDiff(ANY)
@@ -1437,7 +1442,7 @@ public class ExerciseBuilder {
                         "Rest until the 15 minute mark, and repeat this again.")
                 .setType(types[ENDURANCE])
                 .setSets("2")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("N/A")
                 .setRest("Rest until the 15 minute mark, after the first set.")
                 .setDiff(ANY)
@@ -1452,7 +1457,7 @@ public class ExerciseBuilder {
                         "Rest until the 15th minute of the drill, and repeat this again. Do 3 sets for a total of 45 minutes.")
                 .setType(types[ENDURANCE])
                 .setSets("4")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("N/A")
                 .setRest("Rest with any remaining time between sets.")
                 .setDiff(ANY)
@@ -1467,7 +1472,7 @@ public class ExerciseBuilder {
                         "Rest until the 15th minute of the set, then repeat again 4 times. This makes for four sets, taking 1 hour total.")
                 .setType(types[ENDURANCE])
                 .setSets("4")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("N/A")
                 .setRest("Rest with any remaining time between sets.")
                 .setDiff(ANY)
@@ -1483,7 +1488,7 @@ public class ExerciseBuilder {
                         "Do this drill three times. You climb at the first, 15th and 30th minute. Rest until the next set.")
                 .setType(types[ENDURANCE])
                 .setSets("3")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("N/A")
                 .setRest("Rest with any remaining time between sets.")
                 .setDiff(ANY)
@@ -1497,7 +1502,7 @@ public class ExerciseBuilder {
                 .setDesc("Climb for 1 minute on, and then rest for 1 minute. Do this 10 times, for a total of 20 minutes. Rest 10 minutes, then do it again.")
                 .setType(types[ENDURANCE])
                 .setSets("2")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("10")
                 .setRest("Rest 1 minute in intervals and 10 minutes between sets.")
                 .setDiff(ANY)
@@ -1511,7 +1516,7 @@ public class ExerciseBuilder {
                 .setDesc("Climb for 1 minute on, and then rest for 1 minute. Do this 12 times, for a total of 24 minutes.")
                 .setType(types[ENDURANCE])
                 .setSets("1")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("12")
                 .setRest("Rest 1 minute in intervals and for 6 minutes after the drill.")
                 .setDiff(ANY)
@@ -1571,7 +1576,7 @@ public class ExerciseBuilder {
                         "Do this three times within 45 minutes. Spread out resting evenly between attempts.")
                 .setType(types[ENDURANCE])
                 .setSets("N/A")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("N/A")
                 .setRest("See Description")
                 .setDiff(ANY)
@@ -1585,7 +1590,7 @@ public class ExerciseBuilder {
                 .setDesc("Find or set a boulder conducive to campusing. Avoid jerky/violent movements, such as trying to campus a compression boulder. This can lead to elbow tendinitis. Project it for 15 minutes.")
                 .setType(types[POWER])
                 .setSets("N/A")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("N/A")
                 .setRest("Rest completely between attempts.")
                 .setDiff(ANY)
@@ -1630,7 +1635,7 @@ public class ExerciseBuilder {
                         "Time your attempts such that you get on the wall at the start of every even minute (minute 0, 2, 4, ... 26, 28). This will make for 15 attempts total within 30 minutes.")
                 .setType(types[STRENGTH])
                 .setSets("3")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("5")
                 .setRest("Rest after the attempt until the next even minute.")
                 .setDiff(ANY)
@@ -1645,7 +1650,7 @@ public class ExerciseBuilder {
                         "Time your attempts such that you get on the wall at the start of every even minute (minute 0, 2, 4, ... 26, 28). This will make for 15 attempts total within 30 minutes.")
                 .setType(types[POWER])
                 .setSets("3")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("5")
                 .setRest("Rest after the attempt until the next even minute.")
                 .setDiff(ANY)
@@ -1659,7 +1664,7 @@ public class ExerciseBuilder {
                 .setDesc("Find or set a boulder which is at least ten moves, with the crux in the upper half. Project it.")
                 .setType(types[POWEND])
                 .setSets("N/A")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("N/A")
                 .setRest("Rest completely between attempts.")
                 .setDiff(ANY)
@@ -1673,7 +1678,7 @@ public class ExerciseBuilder {
                 .setDesc("Find or set a footless boulder which is at least ten moves, with the crux in the upper half. Project it.")
                 .setType(types[POWEND])
                 .setSets("N/A")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("N/A")
                 .setRest("Rest completely between attempts.")
                 .setDiff(ANY)
@@ -1687,7 +1692,7 @@ public class ExerciseBuilder {
                 .setDesc("Find or set a circuit which is moderately hard. Climb three minutes on, one minute off, ten times.")
                 .setType(types[ENDURANCE])
                 .setSets("1")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("10")
                 .setRest("One minute")
                 .setDiff(ANY)
@@ -1712,13 +1717,110 @@ public class ExerciseBuilder {
                         "\nMinute 10: Large edge for 10 seconds")
                 .setType(types[STRENGTH])
                 .setSets("1")
-                .setEquip(none)
+                .setEquip(NONE)
                 .setReps("10")
                 .setRest("Rest until the next minute after the hang")
                 .setDiff(grades[TEN])
                 .setTime(times[FIFTEEN_M]);
         db.insertExercise(e);
     }
+
+    void hangboardIntroductionTwo(){
+        Exercise e = new Exercise()
+                .setName("Hangboard Introduction Two")
+                .setDesc("Read the training tip on hangboard posture before trying to hangboard. As a light introduction, exercise should not cause you to fail at any point. If it does, use better holds." +
+                        "\n\nStart: Jug for 15 seconds" +
+                        "\nMinute 1: Large edge for 12 seconds" +
+                        "\nMinute 2: Jug for 15 seconds" +
+                        "\nMinute 3: Medium edge for 12 seconds" +
+                        "\nMinute 4: Jug for 15 seconds" +
+                        "\nMinute 5: Medium edge for 10 seconds" +
+                        "\nMinute 6: Large edge for 12 seconds" +
+                        "\nMinute 7: Jug for 15 seconds" +
+                        "\nMinute 8: Medium edge for 10 seconds" +
+                        "\nMinute 9: Jug for 15 seconds" +
+                        "\nMinute 10: Large edge for 12 seconds")
+                .setType(types[STRENGTH])
+                .setSets("1")
+                .setEquip(NONE)
+                .setReps("10")
+                .setRest("Rest until the next minute after the hang")
+                .setDiff(grades[ELEVEN])
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+    void rings(){
+        Exercise e = new Exercise()
+                .setName("Conditioning on Rings")
+                .setDesc("Complete the following three times, with 30 seconds rest in between steps." +
+                        "1. Hold plank position for 10 seconds\n" +
+                        "2. 10 push ups on the rings\n" +
+                        "3. 5 dips\n" +
+                        "4. One typewriter on each arm, as slowly as possible\n" +
+                        "5. 8 fly's (From plank position, extend both arms out to the side")
+                .setType(types[STRENGTH])
+                .setSets("1")
+                .setEquip(equip[RINGS])
+                .setReps("10")
+                .setRest("Rest 30 seconds between steps.")
+                .setDiff(ANY)
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+    void medBall(){
+        Exercise e = new Exercise()
+                .setName("Medicine Ball Core")
+                .setDesc("Do each exercise for 45 seconds, then rest for 15 seconds. Then repeat again.\n\n" +
+                        "1. Med Ball Crunch\n\n" +
+                        "2. Russian Twist (extend the ball out to the side)\n\n" +
+                        "3. Med Ball Plank (plank position, but with your hands on the top/sides of a med ball)\n\n" +
+                        "4. Reverse Med Ball Plank (feet are on the ball)\n\n" +
+                        "5. Med Ball Toe Touch (lie on your back with legs straight up. Touch the ball to toes)")
+                .setType(types[CONDITIONING])
+                .setSets("10")
+                .setEquip(equip[MEDICINEBALLS])
+                .setReps("N/A")
+                .setRest("Rest 15 seconds between steps")
+                .setDiff(ANY)
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+    void strengthPyramid(){
+        Exercise e = new Exercise()
+                        .setName("Strength Pyramid")
+                .setDesc("Start by doing 10 pull ups, and then 1 push up. Next do 9 pull ups and 2 push ups. Repeat until you do 1 pull up and 10 push ups.\n\n" +
+                        "Rest for three minutes, then do the same in reverse.\n\n" +
+                        "Use assistance for the pull ups as necessary, such as stepping in a theraband attached to the bar.")
+                .setType(types[STRENGTH])
+                .setSets("20")
+                .setEquip(equip[PULLUPBAR])
+                .setReps("11")
+                .setRest("Rest for 3 minutes at the halfway point.")
+                .setDiff(ANY)
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+    void maxLock(){
+        Exercise e = new Exercise()
+                .setName("Max Lock Off")
+                .setDesc("Find a comfortable body position on a steep wall. Lock off on the holds as high as possible, attempting to get your chest into the wall. Hold this position for 10 seconds.\n\n" +
+                        "Do this five times, on two different positions. Rest one minute between reps, and two minutes between positions." +
+                        "Choose holds and positions such that you are fighting for 4 seconds later into the drill.")
+                .setType(types[STRENGTH])
+                .setSets("2")
+                .setEquip(NONE)
+                .setReps("5")
+                .setRest("Rest one minute between reps, and two minutes between positions.")
+                .setDiff(ANY)
+                .setTime(times[FIFTEEN_M]);
+        db.insertExercise(e);
+    }
+
+
 }
 
 /*

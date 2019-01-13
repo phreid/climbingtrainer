@@ -182,7 +182,7 @@ public class BuildNewProgramAboutYou extends AppCompatActivity {
     }
 
     // Returns true if any check box is checked,
-    // false if none are
+    // false if NONE are
     boolean checkBoxesClicked(){
         for(int i = 0; i < checkBoxes.length; i++){
             if(checkBoxes[i].isChecked()){
