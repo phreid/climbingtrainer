@@ -17,11 +17,11 @@ public class ExerciseBuilder {
     public static int ALL = 6;
 
     public static String[] equip;
-    public static int HANGBOARD = 0;
-    public static int CAMPUSBOARD = 1;
-    public static int LEADTR = 2;
-    public static int FREEWEIGHTS = 3;
-    public static int PULLUPBAR = 4;
+    public static int PULLUPBAR = 0;
+    public static int HANGBOARD = 1;
+    public static int CAMPUSBOARD = 2;
+    public static int LEADTR = 3;
+    public static int FREEWEIGHTS = 4;
     public static int KETTLEBELLS = 5;
     public static int RINGS = 6;
     public static int MOONBOARD = 7;
@@ -65,19 +65,6 @@ public class ExerciseBuilder {
                 .setRest("Rest if you feel like you are getting pumped during a stage you should not be.")
                 .setDiff(ANY)
                 .setTime(times[SIXTY_M]);
-
-        // Free time is one hour long
-        // It does not need to be in the database and is instead a static variable
-        freeTime = new Exercise()
-                    .setName("60 Minutes of Free Time")
-                    .setDesc("Climb whatever you feel like. If this is scheduled for the end of the day, you could go home early instead.")
-                    .setType("Free Time")
-                    .setSets("N/A")
-                    .setEquip(NONE)
-                    .setReps("N/A")
-                    .setRest("N/A")
-                    .setDiff(ANY)
-                    .setTime(times[SIXTY_M]);
 
         context = c;
         db = new DatabaseHelper(context);

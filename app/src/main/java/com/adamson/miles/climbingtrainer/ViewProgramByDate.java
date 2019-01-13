@@ -39,8 +39,6 @@ public class ViewProgramByDate extends AppCompatActivity {
         // creates button for each exercise depending on the type given to the
         // activity's intent. Selects all if no type given
         for(int i = 0; i < exerciseAndDate.uniqueDates.length; i++) {
-
-
             // Check if this days exercises are all done. If so, check the checkbox
             final String dateString = exerciseAndDate.uniqueDates[i];
             ExerciseAndDate e = db.selectFromProgramByDate(programName, dateString);
@@ -50,10 +48,8 @@ public class ViewProgramByDate extends AppCompatActivity {
                     doneAll = false;
                 }
             }
-
-            // If hideCompleted is true and this day is done, do not create a layout for the day
             if (hideCompleted && doneAll) {
-
+                // If hideCompleted is true and this day is done, do not create a layout for the day
             } else {
                 LinearLayout layoutHorizontal = new LinearLayout(new ContextThemeWrapper(this, R.style.LayoutHorizontalTransparent), null, 0);
 

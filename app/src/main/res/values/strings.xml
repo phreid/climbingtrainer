@@ -189,13 +189,6 @@
         <item>Equipment Available: </item>
     </string-array>
 
-
-    <!-- -
-        This is an ad unit ID for a banner test ad. Replace with your own banner ad unit id.
-        For more information, see https://support.google.com/admob/answer/3052638
-    <!- -->
-    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
-
     <string name="bio_goes_here">bio goes here</string>
 
     <string name="about_the_author_text">My name is Miles Adamson. I started climbing when I was 6 years old,
@@ -210,12 +203,11 @@
         the classic lines. I had been to every area so many times that I started to explore more remote and obscure areas.
         I found many new highball lines, some of which are on the "Top 25 Highballs" list. The highball list
         I wrote for the 3rd edition of Squamish Bouldering.\n\nAfter my degree, I moved back to Edmonton to work as an Engineer.
-        Edmonton is relatively close to Canmore, Alberta. There was Canada\'s hardest sport climb, Honour and Glory. At the time, it was graded 5.15a, and I
-        began to project it. During that summer, Adam Ondra came to try to flash the route. He reached out to me for beta, and his
-        attempt was featured in Reel Rock 13. I was very happy to have a brief cameo in the film, and later send the route myself. Adam
-        had (appropriately) downgraded the route to 5.14d, but still it was my hardest redpoint to date. During the long hiked to the Colisseum,
-        I had a ton of time to talk to Adam about training, projecting and climbing.\n\nMuch of what I learned is applied to this app,
-        which I help you find useful in your journey!
+        Edmonton is relatively close to Canmore, Alberta. There is one of Canada\'s hardest sport climbs, Honour and Glory 14d.
+        During that summer, Adam Ondra came to try to flash the route. He reached out to me for beta, and his
+        attempt was featured in Reel Rock 13. I was very happy to have a brief cameo in the film, and later send the route myself.
+        During the long hike to the Colisseum, I had a ton of time to talk to Adam about training, projecting and climbing.\n\n
+        Much of what I learned is applied to this app, which I help you find useful in your journey!
     </string>
 
     <string name="tip_volume">Volume training is done at the start of any program. The goal is to ready your body for the amount of climbing you will be doing later.\n\nBy climbing at a high volume and low difficulty, you work towards climbing at both a high volume and high quality. Volume training is so straightforward that it lacks a bit in variety and interest. You simply do a ton of easy/moderate moves in a day, without getting pumped. If you fail on a climb during volume training, it should be due to fatigue. Avoid moves which are hard for you, and climbs sustained enough to get you pumped.</string>

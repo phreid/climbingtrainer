@@ -253,6 +253,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    // Returns true if a week is completed
+    public boolean programWeekCompleted(String program, String week) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM "+removeSpaces(program)+" WHERE "+T2_week+ " = '"+week+"' AND "+T2_completed+"='0';", null);
+        if(cursor.getCount() == 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public String selectTypeByWeek(String program, String week) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT DISTINCT "+T2_type+" FROM "+removeSpaces(program)+" WHERE "+T2_week+ " = '"+week+"';", null);

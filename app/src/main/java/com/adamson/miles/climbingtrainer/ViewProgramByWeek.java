@@ -11,13 +11,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class ViewProgramByWeek extends AppCompatActivity {
 
     String[] weeks;
+    ArrayList<CheckBox> checkBoxes;
     String programName;
     ScrollView scrollView;
     LinearLayout scrollLayoutChild;
@@ -26,73 +30,57 @@ public class ViewProgramByWeek extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_program_by_week);
-
+        checkBoxes = new ArrayList<>();
         DatabaseHelper db = new DatabaseHelper(getApplicationContext());
         programName = getIntent().getStringExtra("programName");
         weeks = db.selectProgramWeeks(programName);
         scrollView = findViewById(R.id.scrollViewWeeks);
         scrollLayoutChild = findViewById(R.id.scrollViewWeeksChild);
 
-        // If there are programs, creates button for each one
-        if(weeks != null) {
-            for (int i = 0; i < weeks.length; i++) {
-                LinearLayout layoutHorizontal = new LinearLayout(new ContextThemeWrapper(this, R.style.LayoutHorizontalTransparent), null, 0);
-                final Button button = new Button(new ContextThemeWrapper(this, R.style.ButtonWhite), null, 0);
-                float pixels = 40 * getApplicationContext().getResources().getDisplayMetrics().density;
-                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) pixels);
-                button.setLayoutParams(lp);
-                String type = db.selectTypeByWeek(programName, weeks[i]);
-                if(type.equals("power")){
-                    type = "Strength and Power";
-                }
-                String buttonText = "Week " + weeks[i] +", " + type;
-                button.setText(buttonText);
-                final int index = i;
-                button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(ViewProgramByWeek.this, ViewProgramByDate.class);
-                        intent.putExtra("weekName", weeks[index]);
-                        intent.putExtra("programName", programName);
-                        startActivity(intent);
-                    }
-                });
-                layoutHorizontal.addView(button);
-                scrollLayoutChild.addView(layoutHorizontal);
+        // create button and checkbox for each week
+        for (int i = 0; i < weeks.length; i++) {
+            LinearLayout layoutHorizontal = new LinearLayout(new ContextThemeWrapper(this, R.style.LayoutHorizontalTransparent), null, 0);
+            final Button button = new Button(new ContextThemeWrapper(this, R.style.ButtonWhite), null, 0);
+            final CheckBox checkBox = new CheckBox(getApplicationContext());
 
-                button.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View v) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(ViewProgramByWeek.this);
-                        builder.setTitle("Delete " + button.getText().toString() + "? This cannot be undone.");
+            checkBox.setClickable(false);
+            checkBox.setBackground(getApplicationContext().getDrawable(R.drawable.gradient_blue));
 
-                        builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                DatabaseHelper db = new DatabaseHelper(getApplicationContext());
-                                db.deleteProgram(button.getText().toString());
-                                dialog.dismiss();
-                                finish();
-                                startActivity(getIntent());
-                            }
-                        });
+            float pixels = 40 * getApplicationContext().getResources().getDisplayMetrics().density;
 
-                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (int) pixels, 1.0f);
+            LinearLayout.LayoutParams lpCheckbox = new LinearLayout.LayoutParams((int) pixels, (int) pixels);
 
-                        AlertDialog alert = builder.create();
-                        alert.show();
-                        return false;
-                    }
-                });
+            checkBox.setLayoutParams(lpCheckbox);
+            button.setLayoutParams(lp);
+
+            String type = db.selectTypeByWeek(programName, weeks[i]);
+            if(type.equals("power")){
+                type = "Strength and Power";
             }
-        } else {
-            // There were no programs. Let user know they will be here once they make one.
-            Toast.makeText(getApplicationContext(), getResources().getString(R.string.program_error), Toast.LENGTH_LONG).show();
-        }
+
+            if(db.programWeekCompleted(programName, weeks[i])){
+                checkBox.setChecked(true);
+            }
+
+            String buttonText = "Week " + weeks[i] +", " + type;
+            button.setText(buttonText);
+            final int index = i;
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(ViewProgramByWeek.this, ViewProgramByDate.class);
+                    intent.putExtra("weekName", weeks[index]);
+                    intent.putExtra("programName", programName);
+                    startActivity(intent);
+                }
+            });
+
+            layoutHorizontal.addView(button);
+            layoutHorizontal.addView(checkBox);
+            checkBoxes.add(checkBox);
+            scrollLayoutChild.addView(layoutHorizontal);
+            }
     }
 
     @Override
@@ -113,6 +101,18 @@ public class ViewProgramByWeek extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    // Update checkboxes when user navigates back and forth
+    @Override
+    public void onResume(){
+        super.onResume();
+        DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+        for(int i = 0; i < weeks.length; i++){
+            if(db.programWeekCompleted(programName, weeks[i])){
+                checkBoxes.get(i).setChecked(true);
+            }
+        }
     }
 
 }
