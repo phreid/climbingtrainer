@@ -25,11 +25,10 @@
 
             <CheckBox
                 android:id="@+id/checkBoxType"
-                android:layout_width="100dp"
+                android:layout_width="50dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="1dp"
-                android:background="@android:color/white"
-                android:text="@string/done" />
+                android:background="@android:color/white" />
         </LinearLayout>
 
         <LinearLayout
@@ -44,11 +43,10 @@
 
             <CheckBox
                 android:id="@+id/checkBoxAboutYou"
-                android:layout_width="100dp"
+                android:layout_width="50dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="1dp"
-                android:background="@android:color/white"
-                android:text="@string/done" />
+                android:background="@android:color/white" />
         </LinearLayout>
 
         <LinearLayout
@@ -63,11 +61,10 @@
 
             <CheckBox
                 android:id="@+id/checkBoxEquipment"
-                android:layout_width="100dp"
+                android:layout_width="50dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="1dp"
-                android:background="@android:color/white"
-                android:text="@string/done" />
+                android:background="@android:color/white" />
         </LinearLayout>
 
         <LinearLayout
@@ -82,11 +79,10 @@
 
             <CheckBox
                 android:id="@+id/checkBoxDates"
-                android:layout_width="100dp"
+                android:layout_width="50dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="1dp"
-                android:background="@android:color/white"
-                android:text="@string/done" />
+                android:background="@android:color/white" />
         </LinearLayout>
 
         <LinearLayout

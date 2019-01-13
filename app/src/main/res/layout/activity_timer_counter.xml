@@ -270,7 +270,7 @@
                 android:padding="10dp"
                 android:scrollbars="vertical"
                 android:textColor="@color/colorBlack"
-                android:textSize="24sp"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 android:typeface="normal" />
         </LinearLayout>
