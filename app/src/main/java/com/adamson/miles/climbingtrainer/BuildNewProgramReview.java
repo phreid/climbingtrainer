@@ -53,7 +53,9 @@ public class BuildNewProgramReview extends AppCompatActivity {
                 }
                 if(pB.isDone()){
                     pB.destroyInstance();
-                    startActivity(new Intent(BuildNewProgramReview.this, LoadProgram.class));
+                    Intent intent = new Intent(BuildNewProgramReview.this, LoadProgram.class);
+                    intent.putExtra("overrideBack", true);
+                    startActivity(intent);
                 }
             }
         }).start();

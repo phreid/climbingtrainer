@@ -130,7 +130,22 @@ public class AddExercise extends AppCompatActivity {
                 }
 
                 if(!sanitized(editTextName)){
-                    Toast.makeText(getApplicationContext(), "The name of the exercise must 25 or less characters, with letters and spaces only.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "The name of the exercise must 25 characters or less, with letters and spaces only.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(hasNewLines(editTextSets)){
+                    Toast.makeText(getApplicationContext(), "The sets must be a single line of text (no new line character, aka enter button)", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(hasNewLines(editTextReps)){
+                    Toast.makeText(getApplicationContext(), "The reps must be a single line of text (no new line character, aka enter button)", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(hasNewLines(editTextRest)){
+                    Toast.makeText(getApplicationContext(), "The rest must be a single line of text (no new line character, aka enter button)", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -149,7 +164,7 @@ public class AddExercise extends AppCompatActivity {
                         .setName(editTextName.getText().toString())
                         .setTime(spinnerTimes.getSelectedItem().toString())
                         .setType(spinnerTypes.getSelectedItem().toString())
-                        .setDiff(spinnerGrades.getSelectedItem().toString())
+                        .setDiff("Any")
                         .setReps(editTextReps.getText().toString())
                         .setDesc(editTextDesc.getText().toString())
                         .setEquip("None")
@@ -194,9 +209,17 @@ public class AddExercise extends AppCompatActivity {
     public boolean sanitized(EditText editText){
         char[] chars = editText.getText().toString().toCharArray();
 
+        if(hasNewLines(editText)){
+            return false;
+        }
+
+        if(chars[0] == '\n' || chars[0] == ' ' || chars[0] == '\r'){
+            return false;
+        }
+
         // Must contain only letters and spaces
         for (char c : chars) {
-            if (!Character.isLetter(c)) {
+            if (!Character.isLetter(c) && c != ' ') {
                 return false;
             }
         }
@@ -204,6 +227,19 @@ public class AddExercise extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+    // returns true if all characters are letters
+    public boolean hasNewLines(EditText editText){
+        char[] chars = editText.getText().toString().toCharArray();
+
+        // Must contain only letters and spaces
+        for (char c : chars) {
+            if (c == '\n' || c == '\r') {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean tooLong(int length, EditText editText){

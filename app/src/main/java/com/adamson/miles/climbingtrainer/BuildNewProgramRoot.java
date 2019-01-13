@@ -197,30 +197,36 @@ public class BuildNewProgramRoot extends AppCompatActivity {
                 } else {
                     char[] chars = editText.getText().toString().toCharArray();
                     String error = getResources().getString(R.string.name_error);
-                    boolean failed = false;
+
                     // Cannot be longer than 12 or blank
                     if (chars.length > 20 || editText.getText().toString().matches("")) {
                         Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show();
-                        failed = true;
                         dialog.dismiss();
+                        return;
                     }
 
-                    // Must contain only letters and spaces
+                    // No space first
+                    if(chars[0] == ' '){
+                        Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                        return;
+                    }
+
+                    // Must contain only letters and spaces. No new Lines.
                     for (char c : chars) {
-                        if (!Character.isLetter(c) && c != " ".charAt(0)) {
+                        if ((!Character.isLetter(c) && c != ' ') || c == '\n' || c == '\r') {
                             Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show();
-                            failed = true;
                             dialog.dismiss();
+                            return;
                         }
                     }
-                    // Name past, enter program and navigate to view it
-                    if (!failed) {
-                        ProgramBuilder programBuilder = ProgramBuilder.getInstance();
-                        programBuilder.setProgramName(programName);
-                        Intent intent = new Intent(BuildNewProgramRoot.this, BuildNewProgramReview.class);
-                        dialog.dismiss();
-                        startActivity(intent);
-                    }
+                    // Name passed, enter program and navigate to view it
+                    ProgramBuilder programBuilder = ProgramBuilder.getInstance();
+                    programBuilder.setProgramName(programName);
+                    Intent intent = new Intent(BuildNewProgramRoot.this, BuildNewProgramReview.class);
+                    dialog.dismiss();
+                    startActivity(intent);
+
                 }
             }
         });

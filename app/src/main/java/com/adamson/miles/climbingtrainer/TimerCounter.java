@@ -87,6 +87,7 @@ public class TimerCounter extends AppCompatActivity {
             public void onClick(View v) {
                 if(reps > 0){
                     reps--;
+                    textViewReps.setText(Integer.toString(reps));
                 }
             }
         });
@@ -96,6 +97,7 @@ public class TimerCounter extends AppCompatActivity {
             public void onClick(View v) {
                 if(sets > 0){
                     sets--;
+                    textViewSets.setText(Integer.toString(sets));
                 }
             }
         });
