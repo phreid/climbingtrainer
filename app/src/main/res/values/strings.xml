@@ -29,6 +29,13 @@
     <string name="down_rep">-rep</string>
     <string name="down_set">-set</string>
 
+    <string name="enter_sets">Enter Sets...</string>
+    <string name="enter_reps">Enter Reps...</string>
+    <string name="enter_name">Enter Name...</string>
+    <string name="enter_description">Enter Description...</string>
+    <string name="enter_rest">Enter Rest Description...</string>
+
+
     <string name="zero">0</string>
     <string name="pause">Pause</string>
     <string name="reset">Reset</string>
@@ -261,7 +268,6 @@
 
 
     <string name="title_activity_training_tips">Training Tips</string>
-    <string name="interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
     <string name="title_activity_build_new_program_type_duration">Program Type</string>
     <string name="title_activity_build_new_program_grade_commitment">Commitment and Climbing Level</string>
     <string name="title_activity_build_new_program_about_you">About You</string>
@@ -280,4 +286,5 @@
     <string name="title_activity_view_dates_exercises">View a Days Exercises</string>
     <string name="title_activity_timer_counter">Timer and Counter</string>
     <string name="title_activity_view_program_by_week">View Program By Week</string>
+    <string name="title_activity_add_exercise">Add Exercise</string>
 </resources>

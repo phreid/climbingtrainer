@@ -86,8 +86,12 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ViewProgramByWeek"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_view_program_by_week"/>
+            android:label="@string/title_activity_view_program_by_week"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddExercise"
+            android:label="@string/title_activity_add_exercise"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

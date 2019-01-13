@@ -1,0 +1,102 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    tools:context="com.adamson.miles.climbingtrainer.AddExercise">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/polygon_yellow"
+            android:orientation="vertical">
+
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+                <EditText
+                    android:id="@+id/editTextName"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@color/colorWhite"
+                    android:hint="@string/enter_name"
+                    android:paddingStart="15dp" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+                <EditText
+                    android:id="@+id/editTextDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@color/colorWhite"
+                    android:hint="@string/enter_description"
+                    android:paddingStart="15dp" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+                <EditText
+                    android:id="@+id/editTextSets"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@color/colorWhite"
+                    android:hint="@string/enter_sets"
+                    android:paddingStart="15dp" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+                <EditText
+                    android:id="@+id/editTextReps"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@color/colorWhite"
+                    android:hint="@string/enter_reps"
+                    android:paddingStart="15dp" />
+            </LinearLayout>
+
+
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+                <EditText
+                    android:id="@+id/editTextRest"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@color/colorWhite"
+                    android:hint="@string/enter_rest"
+                    android:paddingStart="15dp" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+                <Spinner
+                    android:id="@+id/spinnerGradeSelect"
+                    style="@style/SpinnerWhite" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+                <Spinner
+                    android:id="@+id/spinnerTypeSelect"
+                    style="@style/SpinnerWhite" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+                <Spinner
+                    android:id="@+id/spinnerTimeSelect"
+                    style="@style/SpinnerWhite" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/LayoutHorizontalTransparent">
+
+                <Button
+                    android:id="@+id/buttonAdd"
+                    android:text="@string/title_activity_add_exercise"
+                    style="@style/ButtonWhite" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

@@ -28,7 +28,7 @@ public class ExerciseBuilder {
     public static int MEDICINEBALLS = 8;
     public static int THERABANDS = 9;
     public static int ANGLEADJUSTABLEWALL = 10;
-    public static String NONE = "NONE";
+    public static String NONE = "None";
 
     public static String[] grades;
     public static int TEN = 1;

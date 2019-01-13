@@ -14,21 +14,17 @@
         android:orientation="vertical">
 
         <LinearLayout style="@style/LayoutHorizontalTransparent">
-
             <Spinner
                 android:id="@+id/spinnerGrades"
                 style="@style/SpinnerWhite" />
-
             <ImageButton
                 android:id="@+id/imageHelpGrades"
                 style="@style/ButtonImageSmall"
                 android:background="@color/colorWhite"
                 ads:srcCompat="@drawable/ic_help" />
-
         </LinearLayout>
 
         <LinearLayout style="@style/LayoutHorizontalTransparent">
-
             <Spinner
                 android:id="@+id/spinnerCommitment"
                 android:layout_width="wrap_content"
@@ -36,7 +32,6 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:background="@color/colorWhite" />
-
             <ImageButton
                 android:id="@+id/imageHelpCommitment"
                 style="@style/ButtonImageSmall"

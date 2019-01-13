@@ -168,6 +168,11 @@ public class ExerciseList extends AppCompatActivity {
             return true;
         }
 
+        if(id == R.id.action_add){
+            startActivity(new Intent(ExerciseList.this, AddExercise.class));
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
