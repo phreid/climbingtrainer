@@ -29,6 +29,8 @@ public class TimerCounter extends AppCompatActivity {
     Button buttonReset;
     Button buttonRep;
     Button buttonSet;
+    Button buttonRepDown;
+    Button buttonSetDown;
 
     int reps = 0;
     int sets = 0;
@@ -67,14 +69,34 @@ public class TimerCounter extends AppCompatActivity {
         buttonReset = findViewById(R.id.buttonReset);
         buttonRep = findViewById(R.id.buttonRep);
         buttonSet = findViewById(R.id.buttonSet);
+        buttonRepDown = findViewById(R.id.buttonRepDown);
+        buttonSetDown = findViewById(R.id.buttonSetDown);
 
-        chronometerMilli = (ChronometerMilli)findViewById(R.id.textViewTime);
+        chronometerMilli = findViewById(R.id.textViewTime);
 
         buttonRep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 reps++;
                 textViewReps.setText(Integer.toString(reps));
+            }
+        });
+
+        buttonRepDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(reps > 0){
+                    reps--;
+                }
+            }
+        });
+
+        buttonSetDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(sets > 0){
+                    sets--;
+                }
             }
         });
 

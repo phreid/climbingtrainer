@@ -572,9 +572,6 @@ public class ProgramBuilder {
                     break;
             }
             trainingDay.setExercises(e);
-            if(toManyTries()){
-                trainingDay.type = "ERROR";
-            }
             db.insertProgramRow(trainingDay, Integer.toString(weekNumber), programName);
        }
        i++;

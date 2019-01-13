@@ -136,69 +136,129 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:gravity="top"
-                android:orientation="horizontal"
-                android:padding="1dp">
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/buttonRep"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:background="@android:color/white"
-                    android:gravity="center"
-                    android:text="@string/plus_rep"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    android:typeface="normal" />
-
-                <TextView
-                    android:id="@+id/textViewRepCurrent"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginEnd="1dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/gradient_white"
-                    android:gravity="center"
-                    android:text="@string/zero"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    android:typeface="normal" />
-
-                <Button
-                    android:id="@+id/buttonSet"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="1dp"
                     android:layout_weight="1"
-                    android:background="@android:color/white"
-                    android:gravity="center"
-                    android:text="@string/plus_set"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    android:typeface="normal" />
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textViewSetCurrent"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
+                        android:gravity="top"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/buttonRepDown"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="1dp"
+                            android:layout_weight="1"
+                            android:background="@android:color/white"
+                            android:gravity="center"
+                            android:text="@string/down_rep"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            android:typeface="normal" />
+
+                        <Button
+                            android:id="@+id/buttonRep"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:background="@android:color/white"
+                            android:gravity="center"
+                            android:text="@string/plus_rep"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            android:typeface="normal" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
+                        android:gravity="top"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/buttonSetDown"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="1dp"
+                            android:layout_weight="1"
+                            android:background="@android:color/white"
+                            android:gravity="center"
+                            android:text="@string/down_set"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            android:typeface="normal" />
+
+                        <Button
+                            android:id="@+id/buttonSet"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:background="@android:color/white"
+                            android:gravity="center"
+                            android:text="@string/plus_set"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            android:typeface="normal" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:background="@drawable/gradient_white"
-                    android:gravity="center"
-                    android:text="@string/zero"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="14sp"
-                    android:textStyle="normal"
-                    android:typeface="normal" />
+                    android:gravity="top"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/textViewRepCurrent"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/gradient_white"
+                        android:gravity="center"
+                        android:text="@string/zero"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        android:typeface="normal" />
+                    <TextView
+                        android:id="@+id/textViewSetCurrent"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="1dp"
+                        android:background="@drawable/gradient_white"
+                        android:gravity="center"
+                        android:text="@string/zero"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        android:typeface="normal" />
+                </LinearLayout>
+
             </LinearLayout>
 
             <TextView
@@ -210,11 +270,11 @@
                 android:padding="10dp"
                 android:scrollbars="vertical"
                 android:textColor="@color/colorBlack"
-                android:textSize="14sp"
+                android:textSize="24sp"
                 android:textStyle="normal"
                 android:typeface="normal" />
-
         </LinearLayout>
 
     </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>

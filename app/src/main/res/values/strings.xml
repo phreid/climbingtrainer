@@ -26,6 +26,9 @@
 
     <string name="plus_rep">+rep</string>
     <string name="plus_set">+set</string>
+    <string name="down_rep">-rep</string>
+    <string name="down_set">-set</string>
+
     <string name="zero">0</string>
     <string name="pause">Pause</string>
     <string name="reset">Reset</string>
@@ -266,7 +269,7 @@
     <string name="title_activity_build_new_program_equipment">Equipment Available</string>
     <string name="title_activity_build_new_program_details">Choose Start Date</string>
     <string name="title_activity_build_new_program_end_date">Choose End Date</string>
-    <string name="title_activity_build_new_program_review">Review Program</string>
+    <string name="title_activity_build_new_program_review">Create Program</string>
     <string name="title_activity_about_the_author">About The Author</string>
     <string name="title_activity_exercises">Exercises</string>
     <string name="title_activity_load_program">Load Program</string>

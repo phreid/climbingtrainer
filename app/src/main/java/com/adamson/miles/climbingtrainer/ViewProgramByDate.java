@@ -127,18 +127,6 @@ public class ViewProgramByDate extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.action_hideCompleted) {
-            if(hideCompleted){
-                getIntent().putExtra("hideCompleted", false);
-                finish();
-                startActivity(getIntent());
-            } else {
-                getIntent().putExtra("hideCompleted", true);
-                finish();
-                startActivity(getIntent());
-            }
-            return true;
-        }
 
         if (id == R.id.action_home) {
             startActivity(new Intent(ViewProgramByDate.this, MainActivity.class));

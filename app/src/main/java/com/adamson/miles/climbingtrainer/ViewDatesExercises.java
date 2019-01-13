@@ -68,7 +68,7 @@ public class ViewDatesExercises extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
-            if(exerciseName != "Warm Up") {
+            if(!exerciseName.equals("Warm Up")) {
                 button.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {

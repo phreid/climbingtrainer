@@ -228,7 +228,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public ExerciseAndDate selectFromProgramByWeek(String program, String week) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM "+removeSpaces(program)+" WHERE "+T2_week+ " = '"+week+"';", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM '"+removeSpaces(program)+"' WHERE "+T2_week+ " = '"+week+"';", null);
 
         String[] exerciseNames = new String[cursor.getCount()];
         String[] dateStrings = new String[cursor.getCount()];
@@ -256,7 +256,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Returns true if a week is completed
     public boolean programWeekCompleted(String program, String week) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM "+removeSpaces(program)+" WHERE "+T2_week+ " = '"+week+"' AND "+T2_completed+"='0';", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM '"+removeSpaces(program)+"' WHERE "+T2_week+ " = '"+week+"' AND "+T2_completed+"='0';", null);
         if(cursor.getCount() == 0){
             return true;
         } else {
@@ -266,7 +266,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public String selectTypeByWeek(String program, String week) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT DISTINCT "+T2_type+" FROM "+removeSpaces(program)+" WHERE "+T2_week+ " = '"+week+"';", null);
+        Cursor cursor = db.rawQuery("SELECT DISTINCT "+T2_type+" FROM '"+removeSpaces(program)+"' WHERE "+T2_week+ " = '"+week+"';", null);
         // Return the type
         if (cursor.moveToFirst()) {
             String s = cursor.getString(0);
@@ -279,7 +279,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public ExerciseAndDate selectFromProgramByDate(String program, String date) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM "+removeSpaces(program)+" WHERE "+T2_date+ " = '"+date+"';", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM '"+removeSpaces(program)+"' WHERE "+T2_date+ " = '"+date+"';", null);
 
         String[] exerciseNames = new String[cursor.getCount()];
         String[] dateStrings = new String[cursor.getCount()];
@@ -306,7 +306,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public String[] selectProgramWeeks(String program) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT DISTINCT "+T2_week+" FROM "+removeSpaces(program)+";", null);
+        Cursor cursor = db.rawQuery("SELECT DISTINCT "+T2_week+" FROM '"+removeSpaces(program)+"';", null);
 
         String[] dateStrings = new String[cursor.getCount()];
 
@@ -329,7 +329,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         // If a program by that name doesn't already exist
         if (insertProgramName(nameNoSpaces)) {
-            db.execSQL("CREATE TABLE IF NOT EXISTS " + nameNoSpaces + " (" +
+            db.execSQL("CREATE TABLE IF NOT EXISTS '" + nameNoSpaces + "' (" +
                     T2_date + TEXT + ", " +
                     T2_exercise + TEXT + ", " +
                     T2_type + TEXT + ", " +
@@ -349,7 +349,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String nameNoSpaces = removeSpaces(name);
         SQLiteDatabase db = this.getWritableDatabase();
         SimpleDateFormat format_EEEE = new SimpleDateFormat("EEEE");
-        if(createProgram(name)){
+        if(createProgram(nameNoSpaces)){
             // Insert all the exercises and their dates into the table
             for (int i = 0; i < trainingDays.length; i++) {
                 // null days are rest days. Skip them.
@@ -461,7 +461,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // object, which is a list if every exercise, its name, and date to do it on.
     public ExerciseAndDate selectProgram(String name) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + removeSpaces(name) + ";", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM '" + removeSpaces(name) + "';", null);
         String[] exerciseNames = new String[cursor.getCount()];
         String[] dateStrings = new String[cursor.getCount()];
         String[] typeStrings = new String[cursor.getCount()];
@@ -504,7 +504,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Returns false if not completed or that row didn't exist
     public boolean isCompleted(String date, String e, String name){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM "+removeSpaces(name)+" WHERE ("+T2_date+"='"+date+"' AND "+T2_exercise+"='"+e+"');", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM '"+removeSpaces(name)+"' WHERE ("+T2_date+"='"+date+"' AND "+T2_exercise+"='"+e+"');", null);
         if(cursor.moveToFirst()){
             if(cursor.getString(4).equals("1")){
                 cursor.close();
