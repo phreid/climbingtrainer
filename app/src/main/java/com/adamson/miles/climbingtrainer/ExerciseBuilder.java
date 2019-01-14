@@ -1383,7 +1383,7 @@ public class ExerciseBuilder {
                 .setName("Finger Walk Boulders")
                 .setDesc("Find four moderate boulders. On every move, 'walk' your fingers on the wall between the holds. Try to move very slowly and fluidly.\n\n" +
                         "Climb each boulder twice.")
-                .setType(types[POWER])
+                .setType(types[STRENGTH])
                 .setSets("4")
                 .setEquip(NONE)
                 .setReps("2")

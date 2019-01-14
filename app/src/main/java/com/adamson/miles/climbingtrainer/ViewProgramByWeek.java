@@ -112,7 +112,7 @@ public class ViewProgramByWeek extends AppCompatActivity {
             button.setLayoutParams(lp);
 
             String type = db.selectTypeByWeek(programName, weeks[i]);
-            if(type.equals("power")){
+            if(type.equals("Power") || type.equals("Strength")){
                 type = "Strength and Power";
             }
 
