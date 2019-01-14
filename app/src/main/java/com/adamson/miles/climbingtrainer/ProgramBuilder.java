@@ -170,7 +170,7 @@ public class ProgramBuilder {
 
         switch (programType){
             case "Bouldering Program":
-                volumeDays = 5;
+                volumeDays = 6;
                 int boulderSegmentLength = ((int)programLength - volumeDays) / 2;
                 strPowDays = boulderSegmentLength;
                 powerEndDays = boulderSegmentLength;
@@ -183,7 +183,7 @@ public class ProgramBuilder {
                 break;
 
             case "Routes Program":
-                volumeDays = 10;
+                volumeDays = 12;
                 int routeSegmentLength = ((int)programLength - volumeDays) / 3;
                 strPowDays = routeSegmentLength;
                 powerEndDays = routeSegmentLength;
@@ -233,21 +233,39 @@ public class ProgramBuilder {
             }
 
             // Set trainingDay Type
-            if (i < volumeDays) {
-                trainingDay.type = ExerciseBuilder.types[ExerciseBuilder.VOLUME];
-            } else if (i <= strPowDays + volumeDays) {
-                // Strength and power alternate.
-                if (lastWasPower) {
-                    trainingDay.type = ExerciseBuilder.types[ExerciseBuilder.STRENGTH];
-                    lastWasPower = false;
-                } else {
-                    trainingDay.type = ExerciseBuilder.types[ExerciseBuilder.POWER];
-                    lastWasPower = true;
-                }
-            } else if (i <= powerEndDays + volumeDays + strPowDays) {
-                trainingDay.type = ExerciseBuilder.types[ExerciseBuilder.POWEND];
-            } else if (i <= enduranceDays + powerEndDays + volumeDays + strPowDays) {
-                trainingDay.type = ExerciseBuilder.types[ExerciseBuilder.ENDURANCE];
+            switch (programType) {
+                case "Volume Only":
+                    trainingDay.type = ExerciseBuilder.types[ExerciseBuilder.VOLUME];
+                    break;
+
+                case "Power Endurance Only":
+                    trainingDay.type = ExerciseBuilder.types[ExerciseBuilder.POWEND];
+                    break;
+
+                case "Route Endurance Only":
+                    trainingDay.type = ExerciseBuilder.types[ExerciseBuilder.ENDURANCE];
+                    break;
+
+                default:
+                    if (i < volumeDays) {
+                        trainingDay.type = ExerciseBuilder.types[ExerciseBuilder.VOLUME];
+                    } else if (i <= strPowDays + volumeDays) {
+                        // Strength and power alternate.
+                        if (lastWasPower) {
+                            trainingDay.type = ExerciseBuilder.types[ExerciseBuilder.STRENGTH];
+                            lastWasPower = false;
+                        } else {
+                            if(strPowDays!= 0) {
+                                trainingDay.type = ExerciseBuilder.types[ExerciseBuilder.POWER];
+                                lastWasPower = true;
+                            }
+                        }
+                    } else if (i <= powerEndDays + volumeDays + strPowDays) {
+                        trainingDay.type = ExerciseBuilder.types[ExerciseBuilder.POWEND];
+                    } else if (i <= enduranceDays + powerEndDays + volumeDays + strPowDays) {
+                        trainingDay.type = ExerciseBuilder.types[ExerciseBuilder.ENDURANCE];
+                    }
+                    break;
             }
 
             // No day will have more than 10 exercises

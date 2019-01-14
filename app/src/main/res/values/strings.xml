@@ -211,13 +211,13 @@
         Often I would bring my school work to the boulders, to work while I rested. In Squamish, I got into highball
         bouldering. During my degree I had climbed virtually every highball in Squamish, along with the majority of
         the classic lines. I had been to every area so many times that I started to explore more remote and obscure areas.
-        I found many new highball lines, some of which are on the "Top 25 Highballs" list. The highball list
-        I wrote for the 3rd edition of Squamish Bouldering.\n\nAfter my degree, I moved back to Edmonton to work as an Engineer.
-        Edmonton is relatively close to Canmore, Alberta. There is one of Canada\'s hardest sport climbs, Honour and Glory 14d.
+        I found many new highball lines, some of which are on the "Top 25 Highballs" list. I wrote the Top 25 Highball list
+        for the 3rd edition of Squamish Bouldering.\n\nAfter my degree, I moved back to Edmonton to work as an engineer.
+        Edmonton is relatively close to Canmore, where there is one of Canada\'s hardest sport climbs, Honour and Glory 14d.
         During that summer, Adam Ondra came to try to flash the route. He reached out to me for beta, and his
         attempt was featured in Reel Rock 13. I was very happy to have a brief cameo in the film, and later send the route myself.
         During the long hike to the Colisseum, I had a ton of time to talk to Adam about training, projecting and climbing.\n\n
-        Much of what I learned is applied to this app, which I help you find useful in your journey!
+        Much of what I learned is applied in this app, which I hope you find useful in your journey!
     </string>
 
     <string name="tip_volume">Volume training is done at the start of any program. The goal is to ready your body for the amount of climbing you will be doing later.\n\nBy climbing at a high volume and low difficulty, you work towards climbing at both a high volume and high quality. Volume training is so straightforward that it lacks a bit in variety and interest. You simply do a ton of easy/moderate moves in a day, without getting pumped. If you fail on a climb during volume training, it should be due to fatigue. Avoid moves which are hard for you, and climbs sustained enough to get you pumped.</string>
@@ -248,7 +248,7 @@
     <string name="tip_overtraining_name">Overtraining</string>
 
     <string name="tip_minimum_grade">Many exercises have a grade range associated with them. This controls which drills can be put into which programs. For example, if you select the [10d or V0 and Below] grade range, you will not have drills with muscle-ups and front leavers included in your program.\n\nTo be clear, this is not necessarily the grade of routes or boulders you should be doing within the drill.\n\nIt is the minimum grade range to have the drill included in a program. There are plenty of drills where a 5.13 climber will be on a 5.12 or 5.11. </string>
-    <string name="tip_minimum_grade_name">Grades Ranged of Exercises</string>
+    <string name="tip_minimum_grade_name">Grades Ranges for Exercises</string>
 
     <string name="tip_boulder_for_routes">Bouldering is essential for route climbing. Don’t let any 5.10 alpine climber tell you otherwise. When the hardest boulder you can do goes up, all moves below it in grade feel easier than before. If the hardest move you can possibly do is V3, how can you climb a V3 boulder at the end of a long route? What if every move is V3? You cannot possibly do fifty max-difficulty moves in a row. Now think, what if the hardest move you can do is V8 and you warm up on V3? By increasing your bouldering strength, you will very directly become a better route climber too.</string>
     <string name="tip_boulder_for_routes_name">Bouldering for Route Climbing?</string>

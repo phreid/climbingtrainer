@@ -34,10 +34,10 @@ public class ExerciseList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercises);
 
-        scrollView = (ScrollView)findViewById(R.id.scrollViewExercises);
-        scrollLayoutChild = (LinearLayout)findViewById(R.id.layoutExercises);
+        scrollView = findViewById(R.id.scrollViewExercises);
+        scrollLayoutChild = findViewById(R.id.layoutExercises);
 
-        spinnerFilterType = (Spinner)findViewById(R.id.spinnerFilterType);
+        spinnerFilterType = findViewById(R.id.spinnerFilterType);
         types = getResources().getStringArray(R.array.types_strings);
         ArrayAdapter<String> typesArray = new ArrayAdapter<>(
                 ExerciseList.this,
@@ -111,6 +111,42 @@ public class ExerciseList extends AppCompatActivity {
                     }
                 }
             });
+
+            // Allow user to delete custom exercises
+            if(exercises[index].name.contains("USER - ") && !replacingExercise){
+                button.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(ExerciseList.this);
+                        builder.setMessage("Delete "+exercises[index].name+"?");
+                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+                                String response = db.deleteExercise(exercises[index].name);
+                                if(response == null) {
+                                    dialog.dismiss();
+                                    String type = getIntent().getStringExtra("type");
+                                    Intent intent = new Intent(ExerciseList.this, ExerciseList.class);
+                                    intent.putExtra("type", type);
+                                    startActivity(intent);
+                                } else {
+                                    Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
+                                }
+                            }
+                        });
+                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                        return false;
+                    }
+                });
+            }
             layoutHorizontal.addView(button);
             scrollLayoutChild.addView(layoutHorizontal);
         }
@@ -167,6 +203,12 @@ public class ExerciseList extends AppCompatActivity {
             startActivity(new Intent(ExerciseList.this, MainActivity.class));
             return true;
         }
+
+        if (id == R.id.action_help) {
+            Toast.makeText(getApplicationContext(), "Tap and hold to delete a custom exercise. Built-in exercises cannot be deleted.", Toast.LENGTH_LONG).show();
+            return true;
+        }
+
 
         if(id == R.id.action_add){
             startActivity(new Intent(ExerciseList.this, AddExercise.class));

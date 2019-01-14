@@ -67,29 +67,20 @@
                     android:paddingStart="15dp" />
             </LinearLayout>
 
-            <LinearLayout style="@style/LayoutHorizontalTransparent">
-
-                <Spinner
-                    android:id="@+id/spinnerGradeSelect"
-                    style="@style/SpinnerWhite" />
-            </LinearLayout>
 
             <LinearLayout style="@style/LayoutHorizontalTransparent">
-
                 <Spinner
                     android:id="@+id/spinnerTypeSelect"
                     style="@style/SpinnerWhite" />
             </LinearLayout>
 
             <LinearLayout style="@style/LayoutHorizontalTransparent">
-
                 <Spinner
                     android:id="@+id/spinnerTimeSelect"
                     style="@style/SpinnerWhite" />
             </LinearLayout>
 
             <LinearLayout style="@style/LayoutHorizontalTransparent">
-
                 <Button
                     android:id="@+id/buttonAdd"
                     android:text="@string/title_activity_add_exercise"

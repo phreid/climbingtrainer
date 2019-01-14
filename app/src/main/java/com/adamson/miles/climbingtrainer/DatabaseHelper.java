@@ -522,6 +522,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE '"+removeSpaces(name)+"';");
     }
 
+    // Deletes exercise
+    public String deleteExercise(String name){
+        if(!inProgram(name)) {
+            SQLiteDatabase db = this.getWritableDatabase();
+            db.execSQL("DELETE FROM " + T1 + " WHERE " + T1_name + "='" + name + "';");
+            return null;
+        } else {
+            return "This exercise is currently in one of your programs, and can't be deleted.";
+        }
+    }
+
     // Replaces all exercises in a program with a different one
     public void updateProgram(Exercise oldExercise, Exercise newExercise, String name){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -529,6 +540,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(T2_exercise, newExercise.name);
         cv.put(T2_completed,"0");
         db.update(removeSpaces(name), cv, T2_exercise+"='"+oldExercise.name+"' AND "+T2_completed+"='0'", null);
+    }
+
+    // Returns true if an exercise is in ANY program
+    // Returns false if it is not
+    public boolean inProgram(String e){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String[] programs = selectAllPrograms();
+        for(int i = 0; i < programs.length; i++){
+            Cursor cursor = db.rawQuery("SELECT * FROM '"+removeSpaces(programs[i])+"' WHERE "+T2_exercise+"='"+e+"';", null);
+            if(cursor.getCount() != 0){
+                cursor.close();
+                return true;
+            }
+            cursor.close();
+        }
+        return false;
     }
 
 }

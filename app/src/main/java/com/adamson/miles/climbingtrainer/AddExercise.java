@@ -23,7 +23,6 @@ public class AddExercise extends AppCompatActivity {
     EditText editTextReps;
 
     Spinner spinnerTypes;
-    Spinner spinnerGrades;
     Spinner spinnerTimes;
 
     String[] types;
@@ -63,21 +62,12 @@ public class AddExercise extends AppCompatActivity {
         editTextSets = findViewById(R.id.editTextSets);
         editTextReps = findViewById(R.id.editTextReps);
 
-        spinnerGrades = findViewById(R.id.spinnerGradeSelect);
-        ArrayAdapter<String> gradeArray= new ArrayAdapter<>(
-                AddExercise.this,
-                R.layout.spinner_design,
-                grades);
-        gradeArray.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        spinnerGrades.setAdapter(gradeArray);
-        spinnerGrades.setSelection(0);
-
         spinnerTypes = findViewById(R.id.spinnerTypeSelect);
         ArrayAdapter<String> typesArray = new ArrayAdapter<>(
                 AddExercise.this,
                 R.layout.spinner_design,
                 types);
-        gradeArray.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        typesArray.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinnerTypes.setAdapter(typesArray);
         spinnerTypes.setSelection(0);
 
@@ -86,7 +76,7 @@ public class AddExercise extends AppCompatActivity {
                 AddExercise.this,
                 R.layout.spinner_design,
                 times);
-        gradeArray.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        timesArray.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinnerTimes.setAdapter(timesArray);
         spinnerTimes.setSelection(0);
 
@@ -116,10 +106,6 @@ public class AddExercise extends AppCompatActivity {
                     return;
                 }
 
-                if(spinnerGrades.getSelectedItemPosition() == 0) {
-                    Toast.makeText(getApplicationContext(), "One or more selections left to do.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
                 if(spinnerTimes.getSelectedItemPosition() == 0) {
                     Toast.makeText(getApplicationContext(), "One or more selections left to do.", Toast.LENGTH_SHORT).show();
                     return;
@@ -161,7 +147,7 @@ public class AddExercise extends AppCompatActivity {
 
                 Exercise e = new Exercise();
                 e.setSets(editTextSets.getText().toString())
-                        .setName(editTextName.getText().toString())
+                        .setName("USER - " + editTextName.getText().toString())
                         .setTime(spinnerTimes.getSelectedItem().toString())
                         .setType(spinnerTypes.getSelectedItem().toString())
                         .setDiff("Any")
