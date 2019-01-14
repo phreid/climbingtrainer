@@ -558,4 +558,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return false;
     }
 
+    // Updates the completed column of a program "name" on a given date and exercise to being true
+    public void completeWeek(String week, String name){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(T2_completed,"1");
+        db.update(removeSpaces(name), cv, T2_week+"='"+week+"'", null);
+    }
+
+    // Updates the completed column of a program "name" on a given date and exercise to being false
+    public void uncompleteWeek(String week, String name){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(T2_completed,"0");
+        db.update(removeSpaces(name), cv, T2_week+"='"+week+"'", null);
+    }
+
 }

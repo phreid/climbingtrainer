@@ -39,11 +39,68 @@ public class ViewProgramByWeek extends AppCompatActivity {
 
         // create button and checkbox for each week
         for (int i = 0; i < weeks.length; i++) {
+            final int index = i;
             LinearLayout layoutHorizontal = new LinearLayout(new ContextThemeWrapper(this, R.style.LayoutHorizontalTransparent), null, 0);
             final Button button = new Button(new ContextThemeWrapper(this, R.style.ButtonWhite), null, 0);
             final CheckBox checkBox = new CheckBox(getApplicationContext());
 
-            checkBox.setClickable(false);
+            if(db.programWeekCompleted(programName, weeks[i])){
+                checkBox.setChecked(true);
+            }
+
+            final boolean previous = checkBox.isChecked();
+            checkBox.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    checkBox.setChecked(previous);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ViewProgramByWeek.this);
+                    if(!checkBox.isChecked()) {
+                        builder.setTitle("Set everything in week " + weeks[index] + " to completed?");
+                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+                                db.completeWeek(weeks[index], programName);
+                                dialog.dismiss();
+                                finish();
+                                startActivity(getIntent());
+                                return;
+                            }
+                        });
+
+                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                return;
+                            }
+                        });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    } else {
+                        builder.setTitle("Set everything in week " + weeks[index] + " to uncompleted?");
+                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+                                db.uncompleteWeek(weeks[index], programName);
+                                dialog.dismiss();
+                                finish();
+                                startActivity(getIntent());
+                                return;
+                            }
+                        });
+
+                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                return;
+                            }
+                        });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    }
+                }
+            });
             checkBox.setBackground(getApplicationContext().getDrawable(R.drawable.gradient_blue));
 
             float pixels = 40 * getApplicationContext().getResources().getDisplayMetrics().density;
@@ -59,13 +116,8 @@ public class ViewProgramByWeek extends AppCompatActivity {
                 type = "Strength and Power";
             }
 
-            if(db.programWeekCompleted(programName, weeks[i])){
-                checkBox.setChecked(true);
-            }
-
             String buttonText = "Week " + weeks[i] +", " + type;
             button.setText(buttonText);
-            final int index = i;
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
