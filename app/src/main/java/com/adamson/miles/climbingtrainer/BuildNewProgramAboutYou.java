@@ -128,7 +128,7 @@ public class BuildNewProgramAboutYou extends AppCompatActivity {
         imageHelpGrades.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text = "Select the grade range you fit into best. This controls what drills are allowed to be put into your program.\n\nFor example, you must select at least [5.12a to 5.12d] or [V4 to V6] to use the Moonboard.";
+                String text = "Select the grade range you fit into best. This controls what drills are allowed to be put into your program.\n\nIf an exercise is too easy or difficult, you can tap and hold on its button while viewing it inside your program to replace it.";
                 AlertDialog.Builder builder = new AlertDialog.Builder(BuildNewProgramAboutYou.this);
                 builder.setMessage(text).setCancelable(true).show();
             }

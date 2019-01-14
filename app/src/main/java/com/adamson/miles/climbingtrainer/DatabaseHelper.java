@@ -574,4 +574,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.update(removeSpaces(name), cv, T2_week+"='"+week+"'", null);
     }
 
+    // Updates the completed column of a program "name" on a given date and exercise to being true
+    public void completeDay(String day, String name){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(T2_completed,"1");
+        db.update(removeSpaces(name), cv, T2_date+"='"+day+"'", null);
+    }
+
+    // Updates the completed column of a program "name" on a given date and exercise to being false
+    public void uncompleteDay(String day, String name){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(T2_completed,"0");
+        db.update(removeSpaces(name), cv, T2_date+"='"+day+"'", null);
+    }
+
 }

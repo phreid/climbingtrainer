@@ -77,7 +77,7 @@ public class ViewProgramByWeek extends AppCompatActivity {
                         AlertDialog alert = builder.create();
                         alert.show();
                     } else {
-                        builder.setTitle("Set everything in week " + weeks[index] + " to uncompleted?");
+                        builder.setTitle("Set everything in week " + weeks[index] + " to incomplete?");
                         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 DatabaseHelper db = new DatabaseHelper(getApplicationContext());

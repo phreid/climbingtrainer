@@ -1,7 +1,9 @@
 package com.adamson.miles.climbingtrainer;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextThemeWrapper;
 import android.view.Menu;
@@ -81,6 +83,60 @@ public class ViewProgramByDate extends AppCompatActivity {
                 if (doneAll) {
                     checkBox.setChecked(true);
                 }
+
+                final boolean previous = checkBox.isChecked();
+                checkBox.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        checkBox.setChecked(previous);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(ViewProgramByDate.this);
+                        if (!checkBox.isChecked()) {
+                            builder.setTitle("Set everything on " + dateString + " to completed?");
+                            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+                                    db.completeDay(dateString, programName);
+                                    dialog.dismiss();
+                                    finish();
+                                    startActivity(getIntent());
+                                    return;
+                                }
+                            });
+
+                            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                    return;
+                                }
+                            });
+                            AlertDialog alert = builder.create();
+                            alert.show();
+                        } else {
+                            builder.setTitle("Set everything on " + dateString + " to incomplete?");
+                            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+                                    db.uncompleteDay(dateString, programName);
+                                    dialog.dismiss();
+                                    finish();
+                                    startActivity(getIntent());
+                                    return;
+                                }
+                            });
+
+                            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                    return;
+                                }
+                            });
+                            AlertDialog alert = builder.create();
+                            alert.show();
+                        }
+                    }
+                });
 
                 // Add the views to the layout
                 layoutHorizontal.addView(button);
