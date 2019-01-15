@@ -34,12 +34,12 @@ public class BuildNewProgramRoot extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_build_new_program_root);
 
-        buttonToReview = (Button) findViewById(R.id.buttonToReview);
-        buttonToProgramType = (Button) findViewById(R.id.buttonToProgramType);
-        buttonToAboutYou = (Button) findViewById(R.id.buttonToAboutYou);
-        buttonToEquipment = (Button) findViewById(R.id.buttonToEquipment);
-        buttonToStartDate = (Button) findViewById(R.id.buttonToStartDate);
-        buttonHome = (Button) findViewById(R.id.buttonHome);
+        buttonToReview = findViewById(R.id.buttonToReview);
+        buttonToProgramType = findViewById(R.id.buttonToProgramType);
+        buttonToAboutYou = findViewById(R.id.buttonToAboutYou);
+        buttonToEquipment = findViewById(R.id.buttonToEquipment);
+        buttonToStartDate = findViewById(R.id.buttonToStartDate);
+        buttonHome = findViewById(R.id.buttonHome);
 
         buttonToProgramType.setOnClickListener(navigateTo(BuildNewProgramTypeSelect.class));
         buttonToAboutYou.setOnClickListener(navigateTo(BuildNewProgramAboutYou.class));
@@ -117,13 +117,13 @@ public class BuildNewProgramRoot extends AppCompatActivity {
     boolean boxesAreChecked() {
         boolean allChecked = true;
 
-        checkBoxType = (CheckBox) findViewById(R.id.checkBoxType);
+        checkBoxType = findViewById(R.id.checkBoxType);
         checkBoxType.setClickable(false);
-        checkBoxAboutYou = (CheckBox) findViewById(R.id.checkBoxAboutYou);
+        checkBoxAboutYou = findViewById(R.id.checkBoxAboutYou);
         checkBoxAboutYou.setClickable(false);
-        checkBoxEquipment = (CheckBox) findViewById(R.id.checkBoxEquipment);
+        checkBoxEquipment = findViewById(R.id.checkBoxEquipment);
         checkBoxEquipment.setClickable(false);
-        checkBoxDates = (CheckBox) findViewById(R.id.checkBoxDates);
+        checkBoxDates = findViewById(R.id.checkBoxDates);
         checkBoxDates.setClickable(false);
 
         ProgramBuilder programBuilder = ProgramBuilder.getInstance();

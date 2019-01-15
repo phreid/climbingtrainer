@@ -19,6 +19,7 @@
             <Button
                 android:id="@+id/buttonBuildNewProgram"
                 style="@style/ButtonWhite"
+                android:textColor="#000000"
                 android:background="@drawable/gradient_red"
                 android:text="@string/new_program" />
 
@@ -35,6 +36,7 @@
             <Button
                 android:id="@+id/buttonLoadProgram"
                 style="@style/ButtonWhite"
+                android:textColor="#000000"
                 android:background="@drawable/gradient_indigo"
                 android:text="@string/load_program" />
 
@@ -50,6 +52,7 @@
             <Button
                 android:id="@+id/buttonExercises"
                 style="@style/ButtonWhite"
+                android:textColor="#000000"
                 android:background="@drawable/gradient_yellow"
                 android:text="@string/exercise_database" />
 
@@ -65,6 +68,7 @@
             <Button
                 android:id="@+id/buttonTrainingTips"
                 style="@style/ButtonWhite"
+                android:textColor="#000000"
                 android:background="@drawable/gradient_blue"
                 android:text="@string/training_tips" />
 
@@ -80,6 +84,7 @@
             <Button
                 android:id="@+id/buttonAboutTheAuthor"
                 style="@style/ButtonWhite"
+                android:textColor="#000000"
                 android:background="@drawable/gradient_orange"
                 android:text="@string/about_the_author" />
 
@@ -96,6 +101,7 @@
             <Button
                 android:id="@+id/buttonTimerCounter"
                 style="@style/ButtonWhite"
+                android:textColor="#000000"
                 android:background="@drawable/gradient_green"
                 android:text="@string/title_activity_timer_counter" />
 

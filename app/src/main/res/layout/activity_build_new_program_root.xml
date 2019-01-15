@@ -20,14 +20,14 @@
             <Button
                 android:id="@+id/buttonToProgramType"
                 style="@style/ButtonWhite"
-                android:layout_marginRight="1dp"
+                android:layout_marginEnd="1dp"
                 android:text="@string/title_activity_build_new_program_type_duration" />
 
             <CheckBox
                 android:id="@+id/checkBoxType"
                 android:layout_width="50dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="1dp"
+                android:layout_marginStart="1dp"
                 android:background="@android:color/white" />
         </LinearLayout>
 
@@ -38,14 +38,14 @@
             <Button
                 android:id="@+id/buttonToAboutYou"
                 style="@style/ButtonWhite"
-                android:layout_marginRight="1dp"
+                android:layout_marginEnd="1dp"
                 android:text="@string/title_activity_build_new_program_about_you" />
 
             <CheckBox
                 android:id="@+id/checkBoxAboutYou"
                 android:layout_width="50dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="1dp"
+                android:layout_marginEnd="1dp"
                 android:background="@android:color/white" />
         </LinearLayout>
 
@@ -56,14 +56,14 @@
             <Button
                 android:id="@+id/buttonToEquipment"
                 style="@style/ButtonWhite"
-                android:layout_marginRight="1dp"
+                android:layout_marginEnd="1dp"
                 android:text="@string/title_activity_build_new_program_equipment" />
 
             <CheckBox
                 android:id="@+id/checkBoxEquipment"
                 android:layout_width="50dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="1dp"
+                android:layout_marginStart="1dp"
                 android:background="@android:color/white" />
         </LinearLayout>
 
@@ -74,14 +74,14 @@
             <Button
                 android:id="@+id/buttonToStartDate"
                 style="@style/ButtonWhite"
-                android:layout_marginRight="1dp"
+                android:layout_marginEnd="1dp"
                 android:text="@string/title_activity_build_new_program_details" />
 
             <CheckBox
                 android:id="@+id/checkBoxDates"
                 android:layout_width="50dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="1dp"
+                android:layout_marginStart="1dp"
                 android:background="@android:color/white" />
         </LinearLayout>
 

@@ -77,12 +77,12 @@ public class BuildNewProgramTypeSelect extends AppCompatActivity {
     }
 
     void initButtons(){
-        buttonVolumeOnly = (Button) findViewById(R.id.buttonVolume);
-        buttonStrPowOnly = (Button) findViewById(R.id.buttonStrPow);
-        buttonPowEndOnly = (Button) findViewById(R.id.buttonPowEnd);
-        buttonEndOnly = (Button) findViewById(R.id.buttonEnd);
-        buttonBoulderingProgram = (Button) findViewById(R.id.buttonBoulderingProgram);
-        buttonRoutesProgram = (Button) findViewById(R.id.buttonRoutesProgram);
+        buttonVolumeOnly = findViewById(R.id.buttonVolume);
+        buttonStrPowOnly = findViewById(R.id.buttonStrPow);
+        buttonPowEndOnly = findViewById(R.id.buttonPowEnd);
+        buttonEndOnly = findViewById(R.id.buttonEnd);
+        buttonBoulderingProgram = findViewById(R.id.buttonBoulderingProgram);
+        buttonRoutesProgram = findViewById(R.id.buttonRoutesProgram);
 
         buttonVolumeOnly.setOnClickListener(select(buttonVolumeOnly));
         buttonStrPowOnly.setOnClickListener(select(buttonStrPowOnly));
@@ -107,7 +107,7 @@ public class BuildNewProgramTypeSelect extends AppCompatActivity {
             }
         });
 
-        imageHelpStrPow = (ImageButton) findViewById(R.id.imageHelpStrPow);
+        imageHelpStrPow =  findViewById(R.id.imageHelpStrPow);
         imageHelpStrPow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,7 +118,7 @@ public class BuildNewProgramTypeSelect extends AppCompatActivity {
             }
         });
 
-        imageHelpPowEnd = (ImageButton) findViewById(R.id.imageHelpPowEnd);
+        imageHelpPowEnd =  findViewById(R.id.imageHelpPowEnd);
         imageHelpPowEnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,7 +129,7 @@ public class BuildNewProgramTypeSelect extends AppCompatActivity {
             }
         });
 
-        imageHelpEnd = (ImageButton) findViewById(R.id.imageHelpEnd);
+        imageHelpEnd =  findViewById(R.id.imageHelpEnd);
         imageHelpEnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,7 +140,7 @@ public class BuildNewProgramTypeSelect extends AppCompatActivity {
             }
         });
 
-        imageHelpBoulderingProgram = (ImageButton) findViewById(R.id.imageHelpBoulderingProgram);
+        imageHelpBoulderingProgram =  findViewById(R.id.imageHelpBoulderingProgram);
         imageHelpBoulderingProgram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -151,7 +151,7 @@ public class BuildNewProgramTypeSelect extends AppCompatActivity {
             }
         });
 
-        imageHelpRoutesProgram = (ImageButton) findViewById(R.id.imageHelpRoutesProgram);
+        imageHelpRoutesProgram =  findViewById(R.id.imageHelpRoutesProgram);
         imageHelpRoutesProgram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

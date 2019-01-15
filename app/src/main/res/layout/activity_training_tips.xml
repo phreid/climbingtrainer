@@ -6,8 +6,6 @@
     android:background="@android:color/black"
     tools:context="com.adamson.miles.climbingtrainer.TrainingTips">
 
-    <!-- view for AdMob Interstitial Ad -->
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -30,6 +28,7 @@
                 <Button
                     android:id="@+id/buttonTipGrades"
                     style="@style/ButtonWhite"
+                    android:textColor="#000000"
                     android:layout_width="match_parent"
                     android:text="@string/tip_minimum_grade_name" />
             </LinearLayout>
@@ -44,6 +43,7 @@
                 <Button
                     android:id="@+id/buttonTipVolume"
                     style="@style/ButtonWhite"
+                    android:textColor="#000000"
                     android:layout_width="match_parent"
                     android:text="@string/tip_volume_name" />
             </LinearLayout>
@@ -58,6 +58,7 @@
                 <Button
                     android:id="@+id/buttonTipStrength"
                     style="@style/ButtonWhite"
+                    android:textColor="#000000"
                     android:layout_width="match_parent"
                     android:text="@string/tip_strength_name" />
             </LinearLayout>
@@ -72,6 +73,7 @@
                 <Button
                     android:id="@+id/buttonTipPower"
                     style="@style/ButtonWhite"
+                    android:textColor="#000000"
                     android:layout_width="match_parent"
                     android:text="@string/tip_power_name" />
             </LinearLayout>
@@ -86,6 +88,7 @@
                 <Button
                     android:id="@+id/buttonTipPowerEnd"
                     style="@style/ButtonWhite"
+                    android:textColor="#000000"
                     android:layout_width="match_parent"
                     android:text="@string/tip_powerEnd_name" />
             </LinearLayout>
@@ -100,6 +103,7 @@
                 <Button
                     android:id="@+id/buttonTipEndurance"
                     style="@style/ButtonWhite"
+                    android:textColor="#000000"
                     android:layout_width="match_parent"
                     android:text="@string/tip_endurance_name" />
             </LinearLayout>
@@ -114,6 +118,7 @@
                 <Button
                     android:id="@+id/buttonTipFastLeadLaps"
                     style="@style/ButtonWhite"
+                    android:textColor="#000000"
                     android:layout_width="match_parent"
                     android:text="@string/tip_fast_lead_laps_name" />
             </LinearLayout>
@@ -128,6 +133,7 @@
                 <Button
                     android:id="@+id/buttonTipBouldering"
                     style="@style/ButtonWhite"
+                    android:textColor="#000000"
                     android:layout_width="match_parent"
 
                     android:text="@string/tip_boulder_for_routes_name" />
@@ -143,6 +149,7 @@
                 <Button
                     android:id="@+id/buttonTipTrainingCycles"
                     style="@style/ButtonWhite"
+                    android:textColor="#000000"
                     android:layout_width="match_parent"
 
                     android:text="@string/tip_training_cycles_name" />
@@ -158,6 +165,7 @@
                 <Button
                     android:id="@+id/buttonTipOvertraining"
                     style="@style/ButtonWhite"
+                    android:textColor="#000000"
                     android:layout_width="match_parent"
 
                     android:text="@string/tip_overtraining_name" />
@@ -173,6 +181,7 @@
                 <Button
                     android:id="@+id/buttonTipWamUp"
                     style="@style/ButtonWhite"
+                    android:textColor="#000000"
                     android:layout_width="match_parent"
 
                     android:text="@string/tip_warm_up_name" />
@@ -188,6 +197,7 @@
                 <Button
                     android:id="@+id/buttonTipHangboard"
                     style="@style/ButtonWhite"
+                    android:textColor="#000000"
                     android:layout_width="match_parent"
 
                     android:text="@string/tip_hangboard_form_name" />
@@ -203,6 +213,7 @@
                 <Button
                     android:id="@+id/buttonTipAlcohol"
                     style="@style/ButtonWhite"
+                    android:textColor="#000000"
                     android:layout_width="match_parent"
 
                     android:text="@string/tip_alcohol_name" />
@@ -218,6 +229,7 @@
                 <Button
                     android:id="@+id/buttonTipMetolius"
                     style="@style/ButtonWhite"
+                    android:textColor="#000000"
                     android:layout_width="match_parent"
                     android:text="@string/tip_metolius_name" />
             </LinearLayout>

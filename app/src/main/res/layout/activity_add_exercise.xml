@@ -22,6 +22,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:background="@color/colorWhite"
+                    android:textColor="#000000"
                     android:hint="@string/enter_name"
                     android:paddingStart="15dp" />
             </LinearLayout>
@@ -32,6 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:background="@color/colorWhite"
+                    android:textColor="#000000"
                     android:hint="@string/enter_description"
                     android:paddingStart="15dp" />
             </LinearLayout>
@@ -42,6 +44,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:background="@color/colorWhite"
+                    android:textColor="#000000"
                     android:hint="@string/enter_sets"
                     android:paddingStart="15dp" />
             </LinearLayout>
@@ -52,6 +55,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:background="@color/colorWhite"
+                    android:textColor="#000000"
                     android:hint="@string/enter_reps"
                     android:paddingStart="15dp" />
             </LinearLayout>
@@ -62,6 +66,7 @@
                     android:id="@+id/editTextRest"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:textColor="#000000"
                     android:background="@color/colorWhite"
                     android:hint="@string/enter_rest"
                     android:paddingStart="15dp" />
@@ -84,6 +89,7 @@
                 <Button
                     android:id="@+id/buttonAdd"
                     android:text="@string/title_activity_add_exercise"
+                    android:textColor="#000000"
                     style="@style/ButtonWhite" />
             </LinearLayout>
 

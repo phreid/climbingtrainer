@@ -78,6 +78,7 @@ public class ProgramBuilder {
     public Date[] getTrainingDatesInProgram(){return trainingDatesInProgram;}
     public long getProgramLength(){return programLength;}
     public boolean isDone() { return done; }
+    public String getProgramName(){return programName;}
 
     // Returns false if the dates fail the minimum length requirements.
     public String checkDates(){

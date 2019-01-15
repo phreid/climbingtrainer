@@ -24,6 +24,7 @@
             <Button
                 android:id="@+id/buttonToReview"
                 style="@style/ButtonWhite"
+                android:textColor="#000000"
                 android:background="@drawable/gradient_pink"
                 android:gravity="center"
                 android:text="@string/accept_end_date" />

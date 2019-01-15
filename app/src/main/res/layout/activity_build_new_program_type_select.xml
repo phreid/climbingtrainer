@@ -33,6 +33,7 @@
                 <Button
                     android:id="@+id/buttonBoulderingProgram"
                     style="@style/ButtonWhite"
+                    android:textColor="#000000"
                     android:background="@android:color/white"
                     android:text="@string/bouldering_program" />
 
@@ -49,6 +50,7 @@
                 <Button
                     android:id="@+id/buttonRoutesProgram"
                     style="@style/ButtonWhite"
+                    android:textColor="#000000"
                     android:background="@android:color/white"
                     android:text="@string/routes_program" />
 
@@ -76,6 +78,7 @@
                 <Button
                     android:id="@+id/buttonVolume"
                     style="@style/ButtonWhite"
+                    android:textColor="#000000"
                     android:background="@android:color/white"
                     android:text="@string/volume_only" />
 
@@ -91,6 +94,7 @@
                 <Button
                     android:id="@+id/buttonStrPow"
                     style="@style/ButtonWhite"
+                    android:textColor="#000000"
                     android:background="@android:color/white"
                     android:text="@string/strpow_only" />
 
@@ -106,6 +110,7 @@
                 <Button
                     android:id="@+id/buttonPowEnd"
                     style="@style/ButtonWhite"
+                    android:textColor="#000000"
                     android:background="@android:color/white"
                     android:text="@string/powend_only" />
 
@@ -121,6 +126,7 @@
                 <Button
                     android:id="@+id/buttonEnd"
                     style="@style/ButtonWhite"
+                    android:textColor="#000000"
                     android:background="@android:color/white"
                     android:text="@string/end_only" />
 

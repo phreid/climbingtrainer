@@ -37,6 +37,7 @@
                 android:id="@+id/spinnerFilterType"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:textColor="#000000"
                 android:layout_marginRight="15dp"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -54,7 +55,8 @@
                 android:layout_height="wrap_content"
                 android:alpha="1"
                 android:background="@drawable/polygon_grey"
-                android:orientation="vertical"></LinearLayout>
+                android:orientation="vertical">
+            </LinearLayout>
         </ScrollView>
 
     </LinearLayout>
