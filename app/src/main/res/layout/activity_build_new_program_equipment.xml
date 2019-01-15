@@ -27,6 +27,7 @@
                     android:layout_weight="1"
                     android:background="@color/colorWhite"
                     android:textStyle="bold"
+                    android:textColor="@color/colorBlack"
                     android:typeface="normal" />
             </LinearLayout>
 
@@ -39,6 +40,7 @@
                     android:layout_weight="1"
                     android:background="@color/colorWhite"
                     android:textStyle="bold"
+                    android:textColor="@color/colorBlack"
                     android:typeface="normal" />
             </LinearLayout>
 
@@ -51,6 +53,7 @@
                     android:layout_weight="1"
                     android:background="@color/colorWhite"
                     android:textStyle="bold"
+                    android:textColor="@color/colorBlack"
                     android:typeface="normal" />
             </LinearLayout>
 
@@ -63,6 +66,7 @@
                     android:layout_weight="1"
                     android:background="@color/colorWhite"
                     android:textStyle="bold"
+                    android:textColor="@color/colorBlack"
                     android:typeface="normal" />
             </LinearLayout>
 
@@ -75,6 +79,7 @@
                     android:layout_weight="1"
                     android:background="@color/colorWhite"
                     android:textStyle="bold"
+                    android:textColor="@color/colorBlack"
                     android:typeface="normal" />
             </LinearLayout>
 
@@ -87,6 +92,7 @@
                     android:layout_weight="1"
                     android:background="@color/colorWhite"
                     android:textStyle="bold"
+                    android:textColor="@color/colorBlack"
                     android:typeface="normal" />
             </LinearLayout>
 
@@ -99,6 +105,7 @@
                     android:layout_weight="1"
                     android:background="@color/colorWhite"
                     android:textStyle="bold"
+                    android:textColor="@color/colorBlack"
                     android:typeface="normal" />
             </LinearLayout>
 
@@ -109,6 +116,7 @@
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_weight="1"
+                    android:textColor="@color/colorBlack"
                     android:background="@color/colorWhite"
                     android:textStyle="bold"
                     android:typeface="normal" />
@@ -120,6 +128,7 @@
                     android:id="@+id/checkBoxMedicineBalls"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
+                    android:textColor="@color/colorBlack"
                     android:layout_weight="1"
                     android:background="@color/colorWhite"
                     android:textStyle="bold"
@@ -133,6 +142,7 @@
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_weight="1"
+                    android:textColor="@color/colorBlack"
                     android:background="@color/colorWhite"
                     android:textStyle="bold"
                     android:typeface="normal" />
@@ -144,6 +154,7 @@
                     android:id="@+id/checkBoxTherabands"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
+                    android:textColor="@color/colorBlack"
                     android:layout_weight="1"
                     android:background="@color/colorWhite"
                     android:textStyle="bold"
@@ -158,6 +169,7 @@
                 <Button
                     android:id="@+id/buttonToStartDate"
                     style="@style/ButtonWhite"
+                    android:textColor="@color/colorBlack"
                     android:background="@drawable/gradient_green"
                     android:text="@string/done" />
             </LinearLayout>

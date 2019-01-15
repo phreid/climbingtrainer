@@ -19,6 +19,7 @@
 
             <Button
                 android:id="@+id/buttonToProgramType"
+                android:textColor="#000000"
                 style="@style/ButtonWhite"
                 android:layout_marginEnd="1dp"
                 android:text="@string/title_activity_build_new_program_type_duration" />
@@ -38,6 +39,7 @@
             <Button
                 android:id="@+id/buttonToAboutYou"
                 style="@style/ButtonWhite"
+                android:textColor="#000000"
                 android:layout_marginEnd="1dp"
                 android:text="@string/title_activity_build_new_program_about_you" />
 
@@ -56,6 +58,7 @@
             <Button
                 android:id="@+id/buttonToEquipment"
                 style="@style/ButtonWhite"
+                android:textColor="#000000"
                 android:layout_marginEnd="1dp"
                 android:text="@string/title_activity_build_new_program_equipment" />
 
@@ -74,6 +77,7 @@
             <Button
                 android:id="@+id/buttonToStartDate"
                 style="@style/ButtonWhite"
+                android:textColor="#000000"
                 android:layout_marginEnd="1dp"
                 android:text="@string/title_activity_build_new_program_details" />
 
@@ -92,6 +96,7 @@
             <Button
                 android:id="@+id/buttonToReview"
                 style="@style/ButtonWhite"
+                android:textColor="#000000"
                 android:background="@drawable/gradient_yellow"
                 android:text="@string/title_activity_build_new_program_review" />
         </LinearLayout>
@@ -103,6 +108,7 @@
             <Button
                 android:id="@+id/buttonHome"
                 style="@style/ButtonWhite"
+                android:textColor="#000000"
                 android:background="@android:color/white"
                 android:text="@string/home" />
         </LinearLayout>

@@ -76,12 +76,14 @@
             <LinearLayout style="@style/LayoutHorizontalTransparent">
                 <Spinner
                     android:id="@+id/spinnerTypeSelect"
+                    android:textColor="#000000"
                     style="@style/SpinnerWhite" />
             </LinearLayout>
 
             <LinearLayout style="@style/LayoutHorizontalTransparent">
                 <Spinner
                     android:id="@+id/spinnerTimeSelect"
+                    android:textColor="#000000"
                     style="@style/SpinnerWhite" />
             </LinearLayout>
 
