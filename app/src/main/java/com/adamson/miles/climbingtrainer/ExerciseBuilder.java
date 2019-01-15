@@ -175,7 +175,7 @@ public class ExerciseBuilder {
                 .setName("Four by Four")
                 .setDesc("Find or set four boulder problems which you can normally complete when fresh. Climb each boulder once as a set. Do four sets. If you fall before the halfway point on a boulder, climb up to where you fell and continue from there. If you fall above the halfway point, count it as a rep.")
                 .setType(types[POWEND])
-                .setEquip("Boulder Problems")
+                .setEquip(NONE)
                 .setSets("1")
                 .setReps("4")
                 .setRest("Do not rest between boulder attempts. Time each set and rest equal to the time it took. If you are falling too low often, rest twice as long (or select an easier problem).")
@@ -717,9 +717,9 @@ public class ExerciseBuilder {
                         "Mountain Climbers")
                 .setType(types[CONDITIONING])
                 .setSets("8")
-                .setEquip(equip[PULLUPBAR])
+                .setEquip(NONE)
                 .setReps("45s")
-                .setRest("Rest 15 seconds between actvities.")
+                .setRest("Rest 15 seconds between activities.")
                 .setDiff(ANY)
                 .setTime(times[FIFTEEN_M]);
         db.insertExercise(e);

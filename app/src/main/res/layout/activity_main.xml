@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/polygon_grey"
         android:orientation="vertical">
 
@@ -91,9 +91,7 @@
         </LinearLayout>
 
         <LinearLayout
-            style="@style/LayoutHorizontalTransparent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            style="@style/LayoutHorizontalTransparent">
 
             <Button
                 android:id="@+id/buttonTimerCounter"
