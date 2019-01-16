@@ -2,6 +2,7 @@ package com.adamson.miles.climbingtrainer;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.app.AlertDialog;
@@ -43,9 +44,10 @@ public class ViewDatesExercises extends AppCompatActivity {
             LinearLayout layoutHorizontal = new LinearLayout(new ContextThemeWrapper(this, R.style.LayoutHorizontalTransparent),null, 0);
 
             Button button = new Button(new ContextThemeWrapper(this, R.style.ButtonWhite), null, 0);
+            button.setTextColor(getResources().getColor(R.color.colorBlack));
             final CheckBox checkBox = new CheckBox(getApplicationContext());
-            checkBox.setBackground(getApplicationContext().getDrawable(R.drawable.gradient_blue));
 
+            checkBox.setBackground(getResources().getDrawable(R.drawable.gradient_blue));
             float pixels =  60 * getApplicationContext().getResources().getDisplayMetrics().density;
 
             LinearLayout.LayoutParams lpButton = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (int) pixels, 1.0f);
@@ -72,7 +74,12 @@ public class ViewDatesExercises extends AppCompatActivity {
                 button.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(ViewDatesExercises.this);
+                        AlertDialog.Builder builder;
+                        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                            builder = new AlertDialog.Builder(ViewDatesExercises.this, android.R.style.Theme_Material_Light_Dialog_Alert);
+                        } else {
+                            builder = new AlertDialog.Builder(ViewDatesExercises.this);
+                        }
                         builder.setMessage(getResources().getString(R.string.replace_warning));
                         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {

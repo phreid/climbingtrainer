@@ -2,6 +2,7 @@ package com.adamson.miles.climbingtrainer;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import android.support.v7.app.AlertDialog;
@@ -42,7 +43,9 @@ public class ViewProgramByWeek extends AppCompatActivity {
             final int index = i;
             LinearLayout layoutHorizontal = new LinearLayout(new ContextThemeWrapper(this, R.style.LayoutHorizontalTransparent), null, 0);
             final Button button = new Button(new ContextThemeWrapper(this, R.style.ButtonWhite), null, 0);
+            button.setTextColor(getResources().getColor(R.color.colorBlack));
             final CheckBox checkBox = new CheckBox(getApplicationContext());
+            checkBox.setBackground(getResources().getDrawable(R.drawable.gradient_blue));
 
             if(db.programWeekCompleted(programName, weeks[i])){
                 checkBox.setChecked(true);
@@ -53,7 +56,12 @@ public class ViewProgramByWeek extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     checkBox.setChecked(previous);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(ViewProgramByWeek.this);
+                    AlertDialog.Builder builder;
+                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                        builder = new AlertDialog.Builder(ViewProgramByWeek.this, android.R.style.Theme_Material_Light_Dialog_Alert);
+                    } else {
+                        builder = new AlertDialog.Builder(ViewProgramByWeek.this);
+                    }
                     if(!checkBox.isChecked()) {
                         builder.setTitle("Set everything in week " + weeks[index] + " to completed?");
                         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -63,7 +71,6 @@ public class ViewProgramByWeek extends AppCompatActivity {
                                 dialog.dismiss();
                                 finish();
                                 startActivity(getIntent());
-                                return;
                             }
                         });
 
@@ -71,7 +78,6 @@ public class ViewProgramByWeek extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
-                                return;
                             }
                         });
                         AlertDialog alert = builder.create();
@@ -85,7 +91,6 @@ public class ViewProgramByWeek extends AppCompatActivity {
                                 dialog.dismiss();
                                 finish();
                                 startActivity(getIntent());
-                                return;
                             }
                         });
 
@@ -93,7 +98,6 @@ public class ViewProgramByWeek extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
-                                return;
                             }
                         });
                         AlertDialog alert = builder.create();
@@ -101,7 +105,8 @@ public class ViewProgramByWeek extends AppCompatActivity {
                     }
                 }
             });
-            checkBox.setBackground(getApplicationContext().getDrawable(R.drawable.gradient_blue));
+            checkBox.setBackground(getApplicationContext().getResources().getDrawable(R.drawable.gradient_blue));
+
 
             float pixels = 40 * getApplicationContext().getResources().getDisplayMetrics().density;
 

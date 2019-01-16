@@ -12,6 +12,7 @@ import android.widget.DatePicker;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class BuildNewProgramEndDate extends AppCompatActivity {
@@ -30,7 +31,9 @@ public class BuildNewProgramEndDate extends AppCompatActivity {
         buttonToReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Date endDate = new Date(datePicker.getYear()-1900, datePicker.getMonth(), datePicker.getDayOfMonth());
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth(), 0, 0);
+                Date endDate = calendar.getTime();
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 ProgramBuilder.getInstance().setEndDateString(sdf.format(endDate));
                 // Check if their selection was valid and continue if so and alert if not

@@ -9,12 +9,10 @@ import android.widget.Button;
 import android.widget.DatePicker;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class BuildNewProgramStartDate extends AppCompatActivity {
-    // Remove the below line after defining your own ad unit ID.
-    private static final String TOAST_TEXT = "Test ads are being shown. "
-            + "To show live ads, replace the ad unit ID in res/values/strings.xml with your own ad unit ID.";
 
     Button buttonToEndDate;
     DatePicker datePicker;
@@ -30,7 +28,9 @@ public class BuildNewProgramStartDate extends AppCompatActivity {
         buttonToEndDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Date startDate = new Date(datePicker.getYear()-1900,datePicker.getMonth(), datePicker.getDayOfMonth());
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth(), 0, 0);
+                Date startDate = calendar.getTime();
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 ProgramBuilder.getInstance().setStartDateString(sdf.format(startDate));
                 startActivity(new Intent(BuildNewProgramStartDate.this, BuildNewProgramEndDate.class));

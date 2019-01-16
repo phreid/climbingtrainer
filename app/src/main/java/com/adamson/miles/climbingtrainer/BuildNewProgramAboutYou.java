@@ -58,7 +58,7 @@ public class BuildNewProgramAboutYou extends AppCompatActivity {
                         if(checkBoxesClicked()) {
                             selectionFail = false;
                             if(commitmentStrings[spinnerCommitment.getSelectedItemPosition()].equals("Dedicated") && gradeStrings[spinnerGrades.getSelectedItemPosition()].equals("[5.10d or V0 and below]")){
-                                Toast.makeText(getApplicationContext(), "You may not create a 'Dedicated' program for [5.10d or V0 and below], only 'Moderate'", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "You may not create a 'Dedicated' program for [5.10d or V0 and below], only 'Moderate'", Toast.LENGTH_SHORT).show();
                             } else {
                                 ProgramBuilder programBuilder = ProgramBuilder.getInstance();
                                 programBuilder.setCommitmentLevel(commitmentStrings[spinnerCommitment.getSelectedItemPosition()]);
@@ -103,7 +103,7 @@ public class BuildNewProgramAboutYou extends AppCompatActivity {
                 BuildNewProgramAboutYou.this,
                 R.layout.spinner_design,
                 gradeStrings);
-        gradeArray.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        gradeArray.setDropDownViewResource(R.layout.spinner_my_style);
         spinnerGrades.setAdapter(gradeArray);
         spinnerGrades.setSelection(0);
 
@@ -113,7 +113,7 @@ public class BuildNewProgramAboutYou extends AppCompatActivity {
                 BuildNewProgramAboutYou.this,
                 R.layout.spinner_design,
                 commitmentStrings);
-        gradeArray.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        gradeArray.setDropDownViewResource(R.layout.spinner_my_style);
         spinnerCommitment.setAdapter(commitmentArray);
         spinnerCommitment.setSelection(0);
     }

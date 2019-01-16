@@ -18,6 +18,7 @@
             android:id="@+id/datePickerStartDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:calendarTextColor="@color/colorBlack"
             android:background="@color/colorWhite" />
 
         <LinearLayout style="@style/LayoutHorizontalTransparent">

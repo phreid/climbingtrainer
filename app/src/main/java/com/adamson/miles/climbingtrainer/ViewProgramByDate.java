@@ -2,6 +2,7 @@ package com.adamson.miles.climbingtrainer;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -56,10 +57,11 @@ public class ViewProgramByDate extends AppCompatActivity {
                 LinearLayout layoutHorizontal = new LinearLayout(new ContextThemeWrapper(this, R.style.LayoutHorizontalTransparent), null, 0);
 
                 Button button = new Button(new ContextThemeWrapper(this, R.style.ButtonWhite), null, 0);
+                button.setTextColor(getResources().getColor(R.color.colorBlack));
                 final CheckBox checkBox = new CheckBox(getApplicationContext());
                 checkBox.setClickable(false);
+                checkBox.setBackground(getResources().getDrawable(R.drawable.gradient_blue));
 
-                checkBox.setBackground(getApplicationContext().getDrawable(R.drawable.gradient_blue));
                 float pixels = 40 * getApplicationContext().getResources().getDisplayMetrics().density;
 
                 LinearLayout.LayoutParams lpButton = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (int) pixels, 1.0f);
@@ -89,7 +91,12 @@ public class ViewProgramByDate extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         checkBox.setChecked(previous);
-                        AlertDialog.Builder builder = new AlertDialog.Builder(ViewProgramByDate.this);
+                        AlertDialog.Builder builder;
+                        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                            builder = new AlertDialog.Builder(ViewProgramByDate.this, android.R.style.Theme_Material_Light_Dialog_Alert);
+                        } else {
+                            builder = new AlertDialog.Builder(ViewProgramByDate.this);
+                        }
                         if (!checkBox.isChecked()) {
                             builder.setTitle("Set everything on " + dateString + " to completed?");
                             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {

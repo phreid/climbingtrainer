@@ -67,7 +67,7 @@ public class AddExercise extends AppCompatActivity {
                 AddExercise.this,
                 R.layout.spinner_design,
                 types);
-        typesArray.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        typesArray.setDropDownViewResource(R.layout.spinner_my_style);
         spinnerTypes.setAdapter(typesArray);
         spinnerTypes.setSelection(0);
 
@@ -76,7 +76,7 @@ public class AddExercise extends AppCompatActivity {
                 AddExercise.this,
                 R.layout.spinner_design,
                 times);
-        timesArray.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        timesArray.setDropDownViewResource(R.layout.spinner_my_style);
         spinnerTimes.setAdapter(timesArray);
         spinnerTimes.setSelection(0);
 
@@ -84,7 +84,7 @@ public class AddExercise extends AppCompatActivity {
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean insert = true;
+
                 if(editTextName.getText().toString().equals("")) {
                     Toast.makeText(getApplicationContext(), "One or more fields is blank.", Toast.LENGTH_SHORT).show();
                     return;

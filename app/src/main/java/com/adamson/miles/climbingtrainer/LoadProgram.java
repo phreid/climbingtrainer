@@ -2,6 +2,7 @@ package com.adamson.miles.climbingtrainer;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -36,6 +37,7 @@ public class LoadProgram extends AppCompatActivity {
             for (int i = 0; i < names.length; i++) {
                 LinearLayout layoutHorizontal = new LinearLayout(new ContextThemeWrapper(this, R.style.LayoutHorizontalTransparent), null, 0);
                 final Button button = new Button(new ContextThemeWrapper(this, R.style.ButtonWhite), null, 0);
+                button.setTextColor(getResources().getColor(R.color.colorBlack));
                 float pixels = 40 * getApplicationContext().getResources().getDisplayMetrics().density;
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) pixels);
                 button.setLayoutParams(lp);
@@ -55,7 +57,12 @@ public class LoadProgram extends AppCompatActivity {
                 button.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(LoadProgram.this);
+                        AlertDialog.Builder builder;
+                        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                            builder = new AlertDialog.Builder(LoadProgram.this, android.R.style.Theme_Material_Light_Dialog_Alert);
+                        } else {
+                            builder = new AlertDialog.Builder(LoadProgram.this);
+                        }
                         builder.setTitle("Delete " + button.getText().toString() + "? This cannot be undone.");
 
                         builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {

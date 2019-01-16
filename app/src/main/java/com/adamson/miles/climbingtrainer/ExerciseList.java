@@ -3,6 +3,7 @@ package com.adamson.miles.climbingtrainer;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -43,7 +44,7 @@ public class ExerciseList extends AppCompatActivity {
                 ExerciseList.this,
                 R.layout.spinner_design,
                 types);
-        typesArray.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        typesArray.setDropDownViewResource(R.layout.spinner_my_style);
         spinnerFilterType.setAdapter(typesArray);
 
         int position = getIntent().getIntExtra("position", types.length - 1);
@@ -71,6 +72,7 @@ public class ExerciseList extends AppCompatActivity {
         for(int i = 0; i < exercises.length; i++){
             LinearLayout layoutHorizontal = new LinearLayout(new ContextThemeWrapper(this, R.style.LayoutHorizontalTransparent),null, 0);
             Button button = new Button(new ContextThemeWrapper(this, R.style.ButtonWhite), null, 0);
+            button.setTextColor(getResources().getColor(R.color.colorBlack));
             float pixels =  40 * getApplicationContext().getResources().getDisplayMetrics().density;
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) pixels);
             button.setLayoutParams(lp);
@@ -86,8 +88,12 @@ public class ExerciseList extends AppCompatActivity {
                         intent.putExtra("exercise", exercises[index]);
                         startActivity(intent);
                     } else {
-                        // Ask the user for confirmation to replace that exercise
-                        AlertDialog.Builder builder = new AlertDialog.Builder(ExerciseList.this);
+                        AlertDialog.Builder builder;
+                        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                            builder = new AlertDialog.Builder(ExerciseList.this, android.R.style.Theme_Material_Light_Dialog_Alert);
+                        } else {
+                            builder = new AlertDialog.Builder(ExerciseList.this);
+                        }
                         builder.setMessage("Replace "+oldExercise.name+" with "+exercises[index].name+"?");
                         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -117,7 +123,12 @@ public class ExerciseList extends AppCompatActivity {
                 button.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(ExerciseList.this);
+                        AlertDialog.Builder builder;
+                        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                            builder = new AlertDialog.Builder(ExerciseList.this, android.R.style.Theme_Material_Light_Dialog_Alert);
+                        } else {
+                            builder = new AlertDialog.Builder(ExerciseList.this);
+                        }
                         builder.setMessage("Delete "+exercises[index].name+"?");
                         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {

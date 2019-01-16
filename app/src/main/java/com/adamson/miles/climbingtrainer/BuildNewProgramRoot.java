@@ -2,6 +2,7 @@ package com.adamson.miles.climbingtrainer;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.app.AlertDialog;
@@ -183,7 +184,13 @@ public class BuildNewProgramRoot extends AppCompatActivity {
     void checkName() {
         final EditText editText = new EditText(getApplicationContext());
         editText.setTextColor(getResources().getColor(R.color.colorBlack));
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        AlertDialog.Builder alert;
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            alert = new AlertDialog.Builder(BuildNewProgramRoot.this, android.R.style.Theme_Material_Light_Dialog_Alert);
+        } else {
+            alert = new AlertDialog.Builder(BuildNewProgramRoot.this);
+        }
+
         alert.setTitle("Enter Program Name");
 
         alert.setView(editText);

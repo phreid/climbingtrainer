@@ -2,6 +2,7 @@ package com.adamson.miles.climbingtrainer;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -36,7 +37,13 @@ public class BuildNewProgramTypeSelect extends AppCompatActivity {
         initButtons();
         initHelp();
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(BuildNewProgramTypeSelect.this);
+        AlertDialog.Builder builder;
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            builder = new AlertDialog.Builder(BuildNewProgramTypeSelect.this, android.R.style.Theme_Material_Light_Dialog_Alert);
+        } else {
+            builder = new AlertDialog.Builder(BuildNewProgramTypeSelect.this);
+        }
+
         builder.setMessage("Most users will want to select either a routes program or a bouldering program. For example, if you are training for a route climbing trip 6 months away, select Routes Program." +
                 "\n\nProgram segments are put together to create complete programs. You can create just a segment if you wish to.");
         builder.setCancelable(true);
