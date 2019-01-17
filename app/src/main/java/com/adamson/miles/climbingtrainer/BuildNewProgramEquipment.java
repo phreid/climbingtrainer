@@ -104,12 +104,23 @@ public class BuildNewProgramEquipment extends AppCompatActivity {
         String[] texts = getResources().getStringArray(R.array.equipment);
         for(int i = 0; i < boxes.length; i++){
             boxes[i].setText(texts[i]);
+            if(ProgramBuilder.getInstance().getEquipmentAvailable()!=null){
+                if(i != 0 && i != 1) {
+                    boxes[i].setChecked(ProgramBuilder.getInstance().getEquipmentAvailable()[i]);
+                }
+            }
         }
     }
 
     void forced(CheckBox checkBox){
         checkBox.setChecked(true);
         checkBox.setClickable(false);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initCheckBoxes();
     }
 
 }

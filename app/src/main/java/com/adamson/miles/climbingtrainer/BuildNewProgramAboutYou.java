@@ -106,6 +106,27 @@ public class BuildNewProgramAboutYou extends AppCompatActivity {
         gradeArray.setDropDownViewResource(R.layout.spinner_my_style);
         spinnerGrades.setAdapter(gradeArray);
         spinnerGrades.setSelection(0);
+        if(ProgramBuilder.getInstance().getCurrentGrade()!=null){
+            switch (ProgramBuilder.getInstance().getCurrentGrade()){
+                case "[5.10d or V0 and below]":
+                    spinnerGrades.setSelection(1);
+                    break;
+                case "[5.11a to 5.11d] or [V1 to V3]":
+                    spinnerGrades.setSelection(2);
+                    break;
+                case "[5.12a to 5.12d] or [V4 to V6]":
+                    spinnerGrades.setSelection(3);
+                    break;
+                case "[5.13a to 5.13d] or [V7 to V9]":
+                    spinnerGrades.setSelection(4);
+                    break;
+                case "[5.14a or V10 and above]":
+                    spinnerGrades.setSelection(5);
+                    break;
+            }
+        } else {
+            spinnerGrades.setSelection(0);
+        }
 
         commitmentStrings = getResources().getStringArray(R.array.commitment_levels);
         spinnerCommitment = (Spinner) findViewById(R.id.spinnerCommitment);
@@ -115,7 +136,18 @@ public class BuildNewProgramAboutYou extends AppCompatActivity {
                 commitmentStrings);
         gradeArray.setDropDownViewResource(R.layout.spinner_my_style);
         spinnerCommitment.setAdapter(commitmentArray);
-        spinnerCommitment.setSelection(0);
+        if(ProgramBuilder.getInstance().getCommitmentLevel()!=null){
+            switch (ProgramBuilder.getInstance().getCommitmentLevel()){
+                case "Moderate":
+                    spinnerCommitment.setSelection(1);
+                    break;
+                case "Dedicated":
+                    spinnerCommitment.setSelection(2);
+                    break;
+            }
+        } else {
+            spinnerCommitment.setSelection(0);
+        }
     }
 
     void initHelp(){
@@ -174,6 +206,9 @@ public class BuildNewProgramAboutYou extends AppCompatActivity {
         daysStrings = getResources().getStringArray(R.array.days_of_week);
         for(int i = 0; i < checkBoxes.length; i++){
             checkBoxes[i].setText(daysStrings[i]);
+            if(ProgramBuilder.getInstance().getDaysOfWeek()!=null) {
+                checkBoxes[i].setChecked(ProgramBuilder.getInstance().getDaysOfWeek()[i]);
+            }
         }
     }
 
@@ -198,5 +233,12 @@ public class BuildNewProgramAboutYou extends AppCompatActivity {
             }
         }
         return array;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initCheckBoxes();
+        initSpinners();
     }
 }
