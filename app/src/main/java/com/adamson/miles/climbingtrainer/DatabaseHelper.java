@@ -542,6 +542,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.update(removeSpaces(name), cv, T2_exercise+"='"+oldExercise.name+"' AND "+T2_completed+"='0'", null);
     }
 
+    // Replaces all exercises in a program with a different one
+    public void updateProgramExercise(Exercise oldExercise, Exercise newExercise, String name, String date){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(T2_exercise, newExercise.name);
+        cv.put(T2_completed,"0");
+        db.update(removeSpaces(name), cv, T2_exercise+"='"+oldExercise.name+"' AND "+T2_date+"='"+date+"'", null);
+    }
+
     // Returns true if an exercise is in ANY program
     // Returns false if it is not
     public boolean inProgram(String e){

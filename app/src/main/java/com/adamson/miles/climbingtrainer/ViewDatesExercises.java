@@ -31,8 +31,8 @@ public class ViewDatesExercises extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_dates_exercises);
 
-        scrollView = (ScrollView)findViewById(R.id.scrollViewDatesExercises);
-        scrollLayoutChild = (LinearLayout)findViewById(R.id.scrollViewDatesExercisesChild);
+        scrollView = findViewById(R.id.scrollViewDatesExercises);
+        scrollLayoutChild = findViewById(R.id.scrollViewDatesExercisesChild);
         dateString = getIntent().getStringExtra("dateString");
         programName = getIntent().getStringExtra("programName");
         DatabaseHelper db = new DatabaseHelper(getApplicationContext());
@@ -81,21 +81,38 @@ public class ViewDatesExercises extends AppCompatActivity {
                             builder = new AlertDialog.Builder(ViewDatesExercises.this);
                         }
                         builder.setMessage(getResources().getString(R.string.replace_warning));
-                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        builder.setPositiveButton("ALL", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent intent = new Intent(ViewDatesExercises.this, ExerciseList.class);
                                 intent.putExtra("exercise", exercise);
                                 intent.putExtra("programName", programName);
+                                intent.putExtra("dateString", dateString);
+                                intent.putExtra("all", true);
                                 dialog.dismiss();
                                 startActivity(intent);
                             }
                         });
-                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
                             }
                         });
+
+                        builder.setNeutralButton("This One", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                Intent intent = new Intent(ViewDatesExercises.this, ExerciseList.class);
+                                intent.putExtra("exercise", exercise);
+                                intent.putExtra("all", false);
+                                intent.putExtra("dateString", dateString);
+                                intent.putExtra("programName", programName);
+                                dialog.dismiss();
+                                startActivity(intent);
+                            }
+                        });
+
                         AlertDialog alert = builder.create();
                         alert.show();
                         return false;
@@ -149,6 +166,19 @@ public class ViewDatesExercises extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    // Only allow back button to navigate to load program screen if overrideBack set
+    @Override
+    public void onBackPressed() {
+        if(getIntent().getBooleanExtra("overrideBack", false)){
+            Intent intent = new Intent(ViewDatesExercises.this, ViewProgramByWeek.class);
+            intent.putExtra("overrideBack", true);
+            intent.putExtra("programName", getIntent().getStringExtra("programName"));
+            startActivity(intent);
+        } else {
+            ViewDatesExercises.super.onBackPressed();
+        }
     }
 
 }

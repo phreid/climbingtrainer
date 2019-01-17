@@ -4,6 +4,13 @@
     tools:context="com.adamson.miles.climbingtrainer.ExerciseList">
 
     <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_action_search"
+        android:orderInCategory="100"
+        android:title="@string/search"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/action_help"
         android:icon="@drawable/ic_action_help_white"
         android:orderInCategory="100"

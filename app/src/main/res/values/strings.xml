@@ -35,7 +35,11 @@
     <string name="enter_description">Enter Description...</string>
     <string name="enter_rest">Enter Rest Description...</string>
 
+    <string name="no_results">No Results Found</string>
+    <string name="search_message">Search is not case sensitive, and is affected by your current filter selection (Strength, Power, ect).
+        "View All" shows the complete exercise list again.</string>
 
+    <string name="search">Search</string>
     <string name="zero">0</string>
     <string name="pause">Pause</string>
     <string name="reset">Reset</string>
@@ -43,7 +47,7 @@
     <string name="zero_time">00:00:0</string>
     <string name="na">N/A</string>
     <string name="empty_description">When you view an exercise, you can navigate to here with the clock button on the action bar. The description and goals for sets/reps will be filled in with that exercises information.</string>
-    <string name="replace_warning">"Replace EVERY uncompleted instance of this exercise with another?\n\nWarning: You have the freedom to select any exercise. This may cause your training sessions to be of a different length. You may also have the exercise twice in one day, if it was already selected."</string>
+    <string name="replace_warning">"You may replace this one exercise with another. Or, replace EVERY instance of this exercise with another.\n\nWarning: You have the freedom to select any exercise. This may cause your training sessions to be of a different length. You may also have the exercise twice in one day, if it was already selected."</string>
 
     <string name="help_view_dates_exercises">Press and hold on an exercise to replace every instance of it with another.</string>
 
