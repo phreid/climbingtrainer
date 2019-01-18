@@ -105,6 +105,7 @@ public class BuildNewProgramEquipment extends AppCompatActivity {
         for(int i = 0; i < boxes.length; i++){
             boxes[i].setText(texts[i]);
             if(ProgramBuilder.getInstance().getEquipmentAvailable()!=null){
+                // 0 and 1 are bar and hangboard
                 if(i != 0 && i != 1) {
                     boxes[i].setChecked(ProgramBuilder.getInstance().getEquipmentAvailable()[i]);
                 }
